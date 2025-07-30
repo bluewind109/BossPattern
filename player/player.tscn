@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://v67gpa0c2rdm"]
+
+[ext_resource type="Script" uid="uid://c7fml14t62ej7" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://component_Hitbox/component_Hitbox.tscn" id="2_rkbax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oul6g"]
+radius = 0.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rkbax"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_oul6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oul6g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_rkbax")
+
+[node name="component_Hitbox" parent="." instance=ExtResource("2_rkbax")]
