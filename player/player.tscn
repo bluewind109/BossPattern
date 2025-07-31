@@ -1,18 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://v67gpa0c2rdm"]
+[gd_scene load_steps=11 format=3 uid="uid://v67gpa0c2rdm"]
 
 [ext_resource type="Script" uid="uid://c7fml14t62ej7" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://component_Hitbox/component_Hitbox.tscn" id="2_rkbax"]
+[ext_resource type="PackedScene" uid="uid://c8qiyb0hv14it" path="res://common/component_Health/component_Health.tscn" id="2_yw30f"]
+[ext_resource type="PackedScene" uid="uid://ba5chyifcbwsv" path="res://common/component_Hurtbox/component_Hurtbox.tscn" id="4_qjkh3"]
+[ext_resource type="PackedScene" uid="uid://c8vwlygwm1ac2" path="res://common/component_Exp/component_Exp.tscn" id="5_g6k8r"]
+[ext_resource type="Script" uid="uid://bb5c06xlmd0fb" path="res://common/component_Exp/component_Exp.gd" id="6_boad6"]
+[ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://common/component_Velocity/component_Velocity.tscn" id="7_boad6"]
+[ext_resource type="PackedScene" uid="uid://bp71esg3p5br1" path="res://common/component_FourWaysControl/component_FourWaysControl.tscn" id="7_rgyib"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oul6g"]
 radius = 0.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rkbax"]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
+size = Vector2(1, 1)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("component_health")]
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_oul6g")
+component_health = NodePath("component_Health")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oul6g")
@@ -20,4 +32,18 @@ shape = SubResource("CircleShape2D_oul6g")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_rkbax")
 
-[node name="component_Hitbox" parent="." instance=ExtResource("2_rkbax")]
+[node name="component_Health" parent="." instance=ExtResource("2_yw30f")]
+
+[node name="component_Hurtbox" parent="." node_paths=PackedStringArray("component_health") instance=ExtResource("4_qjkh3")]
+component_health = NodePath("../component_Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hurtbox"]
+shape = SubResource("RectangleShape2D_boad6")
+
+[node name="component_Exp" parent="." instance=ExtResource("5_g6k8r")]
+script = ExtResource("6_boad6")
+
+[node name="component_Velocity" parent="." node_paths=PackedStringArray("owner_node") instance=ExtResource("7_boad6")]
+owner_node = NodePath("..")
+
+[node name="component_FourWaysControl" parent="component_Velocity" instance=ExtResource("7_rgyib")]
