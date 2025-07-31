@@ -12,9 +12,9 @@
 radius = 0.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rkbax"]
+size = Vector2(20, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
-size = Vector2(1, 1)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("component_health")]
 collision_layer = 0
