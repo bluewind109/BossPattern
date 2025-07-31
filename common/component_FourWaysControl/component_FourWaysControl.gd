@@ -8,6 +8,8 @@ class_name ComponentFourWaysControl
 @export var input_action_right: InputEventAction
 
 func _ready() -> void:
+	super._ready()
+	
 	if (null == input_action_up):
 		reset_action_up()
 

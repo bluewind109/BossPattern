@@ -11,5 +11,6 @@ const PLAYER_INPUT: Dictionary[String, String] = {
 var component_velocity: ComponentVelocity
 
 func _ready() -> void:
-    component_velocity = get_parent() as ComponentVelocity
-    assert(component_velocity, "BaseControlComponent must be a child of a ComponentVelocity in %s." % [str(get_path())])
+	component_velocity = get_parent() as ComponentVelocity
+	print("a")
+	assert(component_velocity, "BaseControlComponent must be a child of a ComponentVelocity in %s." % [str(get_path())])
