@@ -6,5 +6,5 @@ class_name Player
 var max_health: float = 100.0
 
 func _ready() -> void:
-    var health = max_health
-    component_health.init.call_deferred(max_health, health)
+	var health = max_health
+	component_health.init.call_deferred(max_health, health)
