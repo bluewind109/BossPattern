@@ -5,7 +5,7 @@ class_name Player
 
 @export var sprite: Sprite2D
 var idle_texture: Texture2D = preload("./sprites/Player_idle.png")
-var chase_texture: Texture2D = preload("./sprites/Player_run.png")
+var run_texture: Texture2D = preload("./sprites/Player_run.png")
 
 @export var component_health: ComponentHealth
 @export var component_look: ComponentLook
@@ -26,7 +26,7 @@ var anim_dict: Dictionary [String, Variant] = {
 	},
 	"run": {
 		"anim_id": "player_run",
-		"texture": chase_texture,
+		"texture": run_texture,
 		"hframes": 8
 	},
 }
@@ -52,14 +52,14 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	state_machine.update()
-	
+
 	var target_pos = get_global_mouse_position()
 	component_look.look(target_pos)
 
 func _play_anim(anim_name: String):
 	if (not anim_dict.has(anim_name)): return
 	if (current_anim == anim_name): return
-	print("_play_anim: ", anim_name)
+	# print("_play_anim: ", anim_name)
 	var sprite_size: float = 32
 	var anim_data: Variant = anim_dict[anim_name]
 	sprite.texture = anim_data.texture
