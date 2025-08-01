@@ -2,11 +2,12 @@ extends EnemyBase
 class_name EnemyBat
 
 @export var sprite: Sprite2D
-var idle_texture: Texture2D = preload("res://enemy/sprites/Bat-IdleFly.png")
-var chase_texture: Texture2D = preload("res://enemy/sprites/Bat-Run.png")
+var idle_texture: Texture2D = preload("./sprites/Bat-IdleFly.png")
+var chase_texture: Texture2D = preload("./sprites/Bat-Run.png")
 
 @export var anim_player: AnimationPlayer
 var anim_dict: Dictionary [String, Variant] = {}
+var current_anim: String = ""
 
 @export var component_velocity: ComponentVelocity
 @export var component_steer: ComponentSteer
@@ -17,7 +18,6 @@ var charge_direction: Vector2
 @export var CHARGE_RANGE: float = 150.0
 @export var CHARGE_DISTANCE: float = 350.0
 
-var current_anim: String = ""
 
 func _ready() -> void:
 	super._ready()
@@ -36,9 +36,9 @@ func _ready() -> void:
 	))
 
 	state_machine.add_states(STATE.WindUp, CallableState.new(
-		on_normal_state,
-		on_enter_normal_state,
-		on_leave_normal_state
+		on_wind_up_state,
+		on_enter_wind_up_state,
+		on_leave_wind_up_state
 	))
 
 	state_machine.add_states(STATE.Charge, CallableState.new(
@@ -70,13 +70,13 @@ func _play_anim(anim_name: String):
 	if (not anim_dict.has(anim_name)): return
 	if (current_anim == anim_name): return
 	print("_play_anim: ", anim_name)
+	var sprite_size: float = 64
 	var anim_data: Variant = anim_dict[anim_name]
 	sprite.texture = anim_data.texture
 	sprite.hframes = anim_data.hframes
-	sprite.region_rect.size = Vector2(64 * sprite.hframes, 64)
+	sprite.region_rect.size = Vector2(sprite_size * sprite.hframes, sprite_size)
 	anim_player.play(anim_dict[anim_name].anim_id)
 	current_anim = anim_name
-
 
 func on_enter_normal_state():
 	_play_anim("idle")
@@ -98,7 +98,7 @@ func on_normal_state():
 	component_look.look(target_pos)
 	move_and_slide()
 
-	# TODO if player in X range, change to chase state
+	# if player in X range, change to chase state
 	if (is_in_charge_range()):
 		state_machine.change_state(STATE.Charge)
 

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_drigw"]
 [ext_resource type="Script" uid="uid://cv6glw0h1k60u" path="res://enemy/enemy_Bat/enemy_Bat.gd" id="2_gk5d6"]
 [ext_resource type="PackedScene" uid="uid://co3yjo3qkw6an" path="res://common/component_Steering/component_Steering.tscn" id="3_dfyub"]
-[ext_resource type="Texture2D" uid="uid://lwxali42kc7u" path="res://enemy/sprites/Bat-IdleFly.png" id="3_e3oof"]
+[ext_resource type="Texture2D" uid="uid://lwxali42kc7u" path="res://enemy/enemy_Bat/sprites/Bat-IdleFly.png" id="3_e3oof"]
 [ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://common/component_Look/component_Look.tscn" id="4_e3oof"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dfyub"]
