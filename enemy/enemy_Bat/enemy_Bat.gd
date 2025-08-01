@@ -69,7 +69,7 @@ func _physics_process(_delta: float) -> void:
 func _play_anim(anim_name: String):
 	if (not anim_dict.has(anim_name)): return
 	if (current_anim == anim_name): return
-	print("_play_anim: ", anim_name)
+	# print("_play_anim: ", anim_name)
 	var sprite_size: float = 64
 	var anim_data: Variant = anim_dict[anim_name]
 	sprite.texture = anim_data.texture

@@ -7,7 +7,7 @@ class_name ComponentWeapon
 func _ready() -> void:
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	pivot.look_at(mouse_pos)
 
