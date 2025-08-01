@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://cklv0i360e6o4" path="res://common/component_Weapon/component_Weapon.gd" id="1_188md"]
 [ext_resource type="Texture2D" uid="uid://byc20yaqx3c0w" path="res://assets/Updated_ZombiePack_AssetPack/SpriteSheets/Weapons sprites (32x32).png" id="2_56nyi"]
 
-[node name="component_Weapon" type="Node2D" node_paths=PackedStringArray("pivot", "weapon_sprite")]
+[node name="component_Weapon" type="Node2D" node_paths=PackedStringArray("pivot", "weapon_sprite", "bullet_spawn_position")]
 script = ExtResource("1_188md")
 pivot = NodePath("Pivot")
 weapon_sprite = NodePath("Pivot/Sprite2D")
+bullet_spawn_position = NodePath("Pivot/Sprite2D/BulletSpawnPosition")
 
 [node name="Pivot" type="Marker2D" parent="."]
 
@@ -15,3 +16,6 @@ position = Vector2(10, -1)
 texture = ExtResource("2_56nyi")
 region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
+
+[node name="BulletSpawnPosition" type="Marker2D" parent="Pivot/Sprite2D"]
+position = Vector2(11, -1)

@@ -3,6 +3,7 @@ class_name ComponentWeapon
 
 @export var pivot: Marker2D
 @export var weapon_sprite: Sprite2D
+@export var bullet_spawn_position: Marker2D
 
 func _ready() -> void:
 	pass
