@@ -5,8 +5,8 @@ const DECELERATION_TARGET: Vector2 = Vector2.ZERO
 
 @export var owner_node: CharacterBody2D
 
-@export_range(0.0, 1.0) var acceleration_coefficient: float = 1.0
-@export_range(0.0, 1.0) var deceleration_coefficient: float = 1.0
+@export var acceleration_coefficient: float = 1.0
+@export var deceleration_coefficient: float = 1.0
 
 @export var max_speed: float = 150.0
 

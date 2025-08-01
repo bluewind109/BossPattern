@@ -15,3 +15,5 @@ position = Vector2(641, 362)
 
 [node name="enemy_Bat" parent="." instance=ExtResource("4_4fuuu")]
 position = Vector2(884, 306)
+CHARGE_RANGE = 300.0
+CHARGE_DISTANCE = 400.0

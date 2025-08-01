@@ -15,9 +15,17 @@ var current_anim: String = ""
 
 var charge_position: Vector2
 var charge_direction: Vector2
-@export var CHARGE_RANGE: float = 150.0
-@export var CHARGE_DISTANCE: float = 350.0
+@export var CHARGE_RANGE: float = 300.0
+@export var CHARGE_DISTANCE: float = 400.0
 
+@export var wind_up_timer: Timer
+var wind_up_duration: float = 1.0
+
+@export var charge_cooldown_timer: Timer
+var charge_cooldown_duration: float = 3.0
+var can_charge: float = true
+
+var speed_dict: Dictionary[String, float] = {}
 
 func _ready() -> void:
 	super._ready()
@@ -27,7 +35,19 @@ func _ready() -> void:
 		"Charge": "Charge",
 	}
 
+	speed_dict = {
+		STATE.Normal: 50.0,
+		STATE.WindUp: 150.0,
+		STATE.Charge: 350.0,
+	}
+
 	init_anim_data()
+
+	wind_up_timer.one_shot = true
+	wind_up_timer.timeout.connect(on_wind_up_timer_time_out)
+
+	charge_cooldown_timer.one_shot = true
+	charge_cooldown_timer.timeout.connect(on_charge_cooldown_timer_time_out)
 
 	state_machine.add_states(STATE.Normal, CallableState.new(
 		on_normal_state,
@@ -80,10 +100,9 @@ func _play_anim(anim_name: String):
 
 func on_enter_normal_state():
 	_play_anim("idle")
+	component_velocity.max_speed = speed_dict.Normal
 	
 func on_normal_state():
-	component_velocity.max_speed = 25.0
-
 	var target_pos: Vector2 = player_ref.global_position
 	var mass: float = 20.0
 	velocity = component_steer.steer(
@@ -94,41 +113,46 @@ func on_normal_state():
 		mass
 	)
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
-
 	component_look.look(target_pos)
-	move_and_slide()
 
 	# if player in X range, change to chase state
-	if (is_in_charge_range()):
-		state_machine.change_state(STATE.Charge)
+	if (is_in_charge_range() and can_charge):
+		state_machine.change_state(STATE.WindUp)
 
 func on_leave_normal_state():
 	pass
 
 func on_enter_wind_up_state():
 	_play_anim("idle")
+	wind_up_timer.start(wind_up_duration)
+	component_velocity.max_speed = speed_dict.WindUp
+	component_velocity.direction = Vector2.ZERO
 
 func on_wind_up_state():
-	pass
+	var target_pos: Vector2 = player_ref.global_position
+	component_look.look(target_pos)
 
 func on_leave_wind_up_state():
 	pass
 
 func on_enter_charge_state():
 	_play_anim("chase")
+	component_velocity.max_speed = speed_dict.Charge
+	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	charge()
 
 func on_charge_state():
-	component_velocity.max_speed = 200.0
 	velocity = charge_direction * component_velocity.max_speed
 
 	if (is_charge_distance_reached()):
 		state_machine.change_state(STATE.Normal)
 
 func on_leave_charge_state():
-	pass
+	can_charge = false
+	charge_cooldown_timer.start(charge_cooldown_duration)
 
 func charge():
+	if (not can_charge): return
 	charge_position = global_position
 	charge_direction = global_position.direction_to(player_ref.global_position)
 
@@ -139,3 +163,9 @@ func is_in_charge_range() -> bool:
 func is_charge_distance_reached() -> bool:
 	var distance = charge_position.distance_to(global_position)
 	return distance >= CHARGE_DISTANCE
+
+func on_wind_up_timer_time_out():
+	state_machine.change_state(STATE.Charge)
+
+func on_charge_cooldown_timer_time_out():
+	can_charge = true
