@@ -1,14 +1,10 @@
 extends EnemyBase
 class_name EnemyBat
 
-@export var sprite: Sprite2D
 var idle_texture: Texture2D = preload("./sprites/Bat-IdleFly.png")
 var chase_texture: Texture2D = preload("./sprites/Bat-Run.png")
 
-@export var anim_player: AnimationPlayer
-var anim_dict: Dictionary [String, Variant] = {}
-var current_anim: String = ""
-
+@export var component_anim_ss: ComponentAnimSpriteSheet
 @export var component_charge: ComponentCharge
 
 @export var wind_up_timer: Timer
@@ -30,7 +26,21 @@ func _ready() -> void:
 		STATE.Charge: 350.0,
 	}
 
-	init_anim_data()
+	var lib_name = "enemy_bat_anim_lib"
+	component_anim_ss.init_anim_data(
+		{		
+			"idle": {
+				"anim_id": lib_name + "/" + "fly_idle",
+				"texture": idle_texture,
+				"hframes": 9
+			},
+			"chase": {
+				"anim_id": lib_name + "/" + "fly_chase",
+				"texture": chase_texture,
+				"hframes": 8
+			},
+		}
+	)
 
 	component_charge.is_charge_done.connect(on_charge_done)
 
@@ -57,37 +67,11 @@ func _ready() -> void:
 
 	state_machine.set_initial_state(STATE.Normal)
 
-func init_anim_data():
-	anim_dict = {
-		"idle": {
-			"anim_id": "fly_idle",
-			"texture": idle_texture,
-			"hframes": 9
-		},
-		"chase": {
-			"anim_id": "fly_chase",
-			"texture": chase_texture,
-			"hframes": 8
-		},
-	}
-
 func _physics_process(_delta: float) -> void:
 	state_machine.update()
 
-func _play_anim(anim_name: String):
-	if (not anim_dict.has(anim_name)): return
-	if (current_anim == anim_name): return
-	# print("_play_anim: ", anim_name)
-	var sprite_size: float = 64
-	var anim_data: Variant = anim_dict[anim_name]
-	sprite.texture = anim_data.texture
-	sprite.hframes = anim_data.hframes
-	sprite.region_rect.size = Vector2(sprite_size * sprite.hframes, sprite_size)
-	anim_player.play(anim_dict[anim_name].anim_id)
-	current_anim = anim_name
-
 func on_enter_normal_state():
-	_play_anim("idle")
+	component_anim_ss.play_anim("idle")
 	component_velocity.max_speed = speed_dict.Normal
 	
 func on_normal_state():
@@ -110,7 +94,7 @@ func on_leave_normal_state():
 	pass
 
 func on_enter_wind_up_state():
-	_play_anim("idle")
+	component_anim_ss.play_anim("idle")
 	wind_up_timer.start(wind_up_duration)
 	component_velocity.max_speed = speed_dict.WindUp
 	component_velocity.direction = Vector2.ZERO
@@ -123,7 +107,7 @@ func on_leave_wind_up_state():
 	pass
 
 func on_enter_charge_state():
-	_play_anim("chase")
+	component_anim_ss.play_anim("chase")
 	component_velocity.max_speed = speed_dict.Charge
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	component_charge.charge(player_ref.global_position)

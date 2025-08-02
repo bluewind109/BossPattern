@@ -1,18 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk5q3wde4ijnu"]
+[gd_scene load_steps=8 format=3 uid="uid://bk5q3wde4ijnu"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_drigw"]
 [ext_resource type="Script" uid="uid://cv6glw0h1k60u" path="res://enemy/enemy_Bat/enemy_Bat.gd" id="2_gk5d6"]
 [ext_resource type="Texture2D" uid="uid://lwxali42kc7u" path="res://enemy/enemy_Bat/sprites/Bat-IdleFly.png" id="3_e3oof"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/component_Anim_SpriteSheet/component_Anim_SpriteSheet.tscn" id="5_3rmk0"]
 [ext_resource type="AnimationLibrary" uid="uid://nkq56nm7ypvj" path="res://enemy/enemy_Bat/animation/enemy_bat_anim_lib.res" id="5_e3oof"]
 [ext_resource type="PackedScene" uid="uid://dw7xrc40uht3h" path="res://common/component_Charge/component_Charge.tscn" id="5_p1fpe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dfyub"]
 radius = 7.0
 
-[node name="enemy_Bat" node_paths=PackedStringArray("sprite", "anim_player", "component_charge", "wind_up_timer") instance=ExtResource("1_drigw")]
+[node name="enemy_Bat" node_paths=PackedStringArray("component_anim_ss", "component_charge", "wind_up_timer") instance=ExtResource("1_drigw")]
 script = ExtResource("2_gk5d6")
-sprite = NodePath("Sprite2D")
-anim_player = NodePath("Sprite2D/AnimationPlayer")
+component_anim_ss = NodePath("component_Anim_SpriteSheet")
 component_charge = NodePath("component_Charge")
 wind_up_timer = NodePath("wind_up_timer")
 
@@ -29,23 +29,23 @@ max_speed = 25.0
 
 [node name="component_Charge" parent="." index="5" instance=ExtResource("5_p1fpe")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="7"]
+[node name="component_Look" parent="." index="7" node_paths=PackedStringArray("origin_sprite")]
+origin_sprite = NodePath("../component_Anim_SpriteSheet")
+
+[node name="component_Anim_SpriteSheet" parent="." index="8" instance=ExtResource("5_3rmk0")]
 position = Vector2(0, -8)
 texture = ExtResource("3_e3oof")
 hframes = 9
 region_enabled = true
 region_rect = Rect2(0, 0, 576, 64)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
 libraries = {
 &"enemy_bat_anim_lib": ExtResource("5_e3oof")
 }
 
-[node name="wind_up_timer" type="Timer" parent="." index="8"]
-
-[node name="component_Look" parent="." index="9" node_paths=PackedStringArray("origin_sprite")]
-origin_sprite = NodePath("../Sprite2D")
-
-[node name="CollisionShape2D" parent="." index="10"]
+[node name="CollisionShape2D" parent="." index="9"]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_dfyub")
+
+[node name="wind_up_timer" type="Timer" parent="." index="10"]

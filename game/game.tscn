@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://s35lmfixqjns"]
+[gd_scene load_steps=5 format=3 uid="uid://s35lmfixqjns"]
 
 [ext_resource type="Script" uid="uid://cpl63vx0dh74g" path="res://game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://geb0lg3x5n8l" path="res://background/background.tscn" id="2_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://v67gpa0c2rdm" path="res://player/player.tscn" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://bk5q3wde4ijnu" path="res://enemy/enemy_Bat/enemy_Bat.tscn" id="4_4fuuu"]
-[ext_resource type="PackedScene" uid="uid://cilp4lyahrv8p" path="res://enemy/enemy_Golem/enemy_Golem.tscn" id="5_dxrkv"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_l1rk1")
@@ -17,6 +16,3 @@ position = Vector2(641, 362)
 
 [node name="enemy_Bat" parent="." instance=ExtResource("4_4fuuu")]
 position = Vector2(884, 306)
-
-[node name="enemy_Golem" parent="." instance=ExtResource("5_dxrkv")]
-position = Vector2(488, 329)

@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cilp4lyahrv8p"]
+[gd_scene load_steps=7 format=3 uid="uid://cilp4lyahrv8p"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_0gnu6"]
 [ext_resource type="Script" uid="uid://qqh6nhuo4pf1" path="res://enemy/enemy_Golem/enemy_Golem.gd" id="2_787gj"]
 [ext_resource type="Texture2D" uid="uid://b7xlcg6bi4koh" path="res://enemy/enemy_Golem/sprites/Golem_1_idle.png" id="3_mxsxs"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/component_Anim_SpriteSheet/component_Anim_SpriteSheet.tscn" id="4_d7w4c"]
 [ext_resource type="AnimationLibrary" uid="uid://dqhy63gr4ub3i" path="res://enemy/enemy_Golem/animation/enemy_golem_anim_lib.res" id="4_g3mdy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787gj"]
 
-[node name="enemy_Golem" node_paths=PackedStringArray("sprite", "anim_player", "wind_up_timer") instance=ExtResource("1_0gnu6")]
+[node name="enemy_Golem" node_paths=PackedStringArray("sprite", "component_anim_ss", "wind_up_timer") instance=ExtResource("1_0gnu6")]
 script = ExtResource("2_787gj")
-sprite = NodePath("Sprite2D")
-anim_player = NodePath("Sprite2D/AnimationPlayer")
+sprite = NodePath("")
+component_anim_ss = NodePath("component_Anim_SpriteSheet")
 wind_up_timer = NodePath("wind_up_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox" index="0"]
@@ -21,21 +22,22 @@ shape = SubResource("CapsuleShape2D_787gj")
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_787gj")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="5"]
+[node name="component_Look" parent="." index="6" node_paths=PackedStringArray("origin_sprite")]
+origin_sprite = NodePath("../component_Anim_SpriteSheet")
+is_base_sprite_looking_left = false
+
+[node name="component_Anim_SpriteSheet" parent="." index="7" instance=ExtResource("4_d7w4c")]
 position = Vector2(0, -32)
 texture = ExtResource("3_mxsxs")
 hframes = 8
 region_enabled = true
 region_rect = Rect2(0, 0, 720, 64)
+sprite_size = 90.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
 libraries = {
 &"enemy_golem_anim_lib": ExtResource("4_g3mdy")
 }
-
-[node name="component_Look" parent="." index="7" node_paths=PackedStringArray("origin_sprite")]
-origin_sprite = NodePath("../Sprite2D")
-is_base_sprite_looking_left = false
 
 [node name="CollisionShape2D" parent="." index="8"]
 position = Vector2(0, -15)
