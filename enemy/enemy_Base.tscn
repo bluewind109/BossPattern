@@ -1,17 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbsmy8l7srlc1"]
+[gd_scene load_steps=9 format=3 uid="uid://cbsmy8l7srlc1"]
 
 [ext_resource type="Script" uid="uid://b4ynji4ptgobk" path="res://enemy/enemy_Base.gd" id="1_5wlh4"]
 [ext_resource type="PackedScene" uid="uid://c8qiyb0hv14it" path="res://common/component_Health/component_Health.tscn" id="2_6w35g"]
 [ext_resource type="PackedScene" uid="uid://bojlohyvov773" path="res://common/callable_state_machine/callable_state_machine.tscn" id="2_8r14e"]
 [ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://common/component_Hitbox/component_Hitbox.tscn" id="3_8r14e"]
 [ext_resource type="PackedScene" uid="uid://ba5chyifcbwsv" path="res://common/component_Hurtbox/component_Hurtbox.tscn" id="4_jw7fl"]
+[ext_resource type="PackedScene" uid="uid://co3yjo3qkw6an" path="res://common/component_Steering/component_Steering.tscn" id="7_pf73l"]
 [ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://common/component_Velocity/component_Velocity.tscn" id="7_vg5so"]
+[ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://common/component_Look/component_Look.tscn" id="8_faccg"]
 
-[node name="EnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "component_health")]
+[node name="EnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "component_health", "component_velocity", "component_steer", "component_look")]
 motion_mode = 1
 script = ExtResource("1_5wlh4")
 state_machine = NodePath("callable_state_machine")
 component_health = NodePath("component_Health")
+component_velocity = NodePath("component_Velocity")
+component_steer = NodePath("component_Steering")
+component_look = NodePath("component_Look")
 
 [node name="callable_state_machine" parent="." instance=ExtResource("2_8r14e")]
 
@@ -25,5 +30,9 @@ component_health = NodePath("../component_Health")
 
 [node name="component_Velocity" parent="." node_paths=PackedStringArray("owner_node") instance=ExtResource("7_vg5so")]
 owner_node = NodePath("..")
+
+[node name="component_Steering" parent="." instance=ExtResource("7_pf73l")]
+
+[node name="component_Look" parent="." instance=ExtResource("8_faccg")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

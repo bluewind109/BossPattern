@@ -8,6 +8,9 @@ var STATE: Dictionary[String, String] = {}
 @export var state_machine: CallableStateMachine
 
 @export var component_health: ComponentHealth
+@export var component_velocity: ComponentVelocity
+@export var component_steer: ComponentSteer
+@export var component_look: ComponentLook
 
 var is_spawning: bool = false
 

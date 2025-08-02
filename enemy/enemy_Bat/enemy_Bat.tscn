@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bk5q3wde4ijnu"]
+[gd_scene load_steps=10 format=3 uid="uid://bk5q3wde4ijnu"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_drigw"]
 [ext_resource type="Script" uid="uid://cv6glw0h1k60u" path="res://enemy/enemy_Bat/enemy_Bat.gd" id="2_gk5d6"]
-[ext_resource type="PackedScene" uid="uid://co3yjo3qkw6an" path="res://common/component_Steering/component_Steering.tscn" id="3_dfyub"]
 [ext_resource type="Texture2D" uid="uid://lwxali42kc7u" path="res://enemy/enemy_Bat/sprites/Bat-IdleFly.png" id="3_e3oof"]
-[ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://common/component_Look/component_Look.tscn" id="4_e3oof"]
 [ext_resource type="PackedScene" uid="uid://dw7xrc40uht3h" path="res://common/component_Charge/component_Charge.tscn" id="5_p1fpe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dfyub"]
@@ -89,18 +87,9 @@ shape = SubResource("CircleShape2D_dfyub")
 [node name="component_Velocity" parent="." index="4"]
 max_speed = 25.0
 
-[node name="component_Steering" parent="." index="5" instance=ExtResource("3_dfyub")]
+[node name="component_Charge" parent="." index="5" instance=ExtResource("5_p1fpe")]
 
-[node name="component_Look" parent="." index="6" node_paths=PackedStringArray("origin_sprite") instance=ExtResource("4_e3oof")]
-origin_sprite = NodePath("../Sprite2D")
-
-[node name="component_Charge" parent="." index="7" instance=ExtResource("5_p1fpe")]
-
-[node name="CollisionShape2D" parent="." index="8"]
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_dfyub")
-
-[node name="Sprite2D" type="Sprite2D" parent="." index="9"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="7"]
 position = Vector2(0, -8)
 texture = ExtResource("3_e3oof")
 hframes = 9
@@ -112,4 +101,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_e3oof")
 }
 
-[node name="wind_up_timer" type="Timer" parent="." index="10"]
+[node name="wind_up_timer" type="Timer" parent="." index="8"]
+
+[node name="component_Look" parent="." index="9" node_paths=PackedStringArray("origin_sprite")]
+origin_sprite = NodePath("../Sprite2D")
+
+[node name="CollisionShape2D" parent="." index="10"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_dfyub")

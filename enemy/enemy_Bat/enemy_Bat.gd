@@ -9,9 +9,6 @@ var chase_texture: Texture2D = preload("./sprites/Bat-Run.png")
 var anim_dict: Dictionary [String, Variant] = {}
 var current_anim: String = ""
 
-@export var component_velocity: ComponentVelocity
-@export var component_steer: ComponentSteer
-@export var component_look: ComponentLook
 @export var component_charge: ComponentCharge
 
 @export var wind_up_timer: Timer
