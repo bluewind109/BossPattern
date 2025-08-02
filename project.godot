@@ -15,6 +15,10 @@ run/main_scene="uid://s35lmfixqjns"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/inspector_tabs/plugin.cfg")
+
 [input]
 
 up={
