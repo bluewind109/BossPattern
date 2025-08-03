@@ -4,6 +4,7 @@ class_name EnemyBase
 var player_ref: CharacterBody2D
 
 var STATE: Dictionary[String, String] = {}
+var speed_dict: Dictionary[String, float] = {}
 
 @export var state_machine: CallableStateMachine
 

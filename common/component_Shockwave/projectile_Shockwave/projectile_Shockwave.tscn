@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://qahn4byisc42"]
+
+[ext_resource type="Script" uid="uid://mjxtwy2yredv" path="res://common/component_Shockwave/projectile_Shockwave/projectile_Shockwave.gd" id="1_rhuc8"]
+[ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://common/component_Velocity/component_Velocity.tscn" id="2_o36gw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rhuc8"]
+
+[node name="projectile_Shockwave" type="Node2D"]
+script = ExtResource("1_rhuc8")
+
+[node name="DebugSprite" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = SubResource("PlaceholderTexture2D_rhuc8")
+
+[node name="component_Velocity" parent="." instance=ExtResource("2_o36gw")]

@@ -19,7 +19,12 @@ func play_anim(_anim_name: String):
 	# print("_play_anim: ", anim_name)
 	var anim_data: Variant = anim_dict[_anim_name]
 	texture = anim_data.texture
-	hframes = anim_data.hframes
-	region_rect.size = Vector2(sprite_size * hframes, sprite_size)
+	# hframes = anim_data.hframes
+	# region_rect.size = Vector2(sprite_size * hframes, sprite_size)
 	anim_player.play(anim_dict[_anim_name].anim_id)
 	current_anim = _anim_name
+
+func get_anim_id(_anim_name: String) -> String:
+	if (not anim_dict.has(_anim_name)): return ""
+	return anim_dict[_anim_name].anim_id
+

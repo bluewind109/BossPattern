@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://s4omm7n78ybg"]
+
+[ext_resource type="Script" uid="uid://dltywfiga8uai" path="res://common/component_Shockwave/component_Shockwave.gd" id="1_dg4fi"]
+
+[node name="component_Shockwave" type="Node2D" node_paths=PackedStringArray("shockwave_cooldown_timer")]
+script = ExtResource("1_dg4fi")
+shockwave_cooldown_timer = NodePath("shockwave_cooldown_timer")
+
+[node name="shockwave_cooldown_timer" type="Timer" parent="."]
