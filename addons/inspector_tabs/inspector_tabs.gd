@@ -15,7 +15,7 @@ var settings = EditorInterface.get_editor_settings()
 
 var tab_can_change = false # Stops the TabBar from changing tab
 
-var vertical_mode:bool = false # Tab position
+var vertical_mode:bool = true # Tab position
 var vertical_tab_side = 1 # 0:left; 1:Right;
 var tab_style:int
 var property_mode:int
