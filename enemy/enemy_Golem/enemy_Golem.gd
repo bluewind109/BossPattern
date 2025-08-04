@@ -176,5 +176,7 @@ func _on_recover_timer_time_out():
 
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == component_anim_ss.get_anim_id("attack")):
-		component_shockwave.attack(player_ref.global_position)
 		state_machine.change_state(STATE.Recover)
+
+func _on_release_shockwave():
+	component_shockwave.attack(player_ref.global_position)
