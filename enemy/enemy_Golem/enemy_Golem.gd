@@ -12,6 +12,9 @@ var die_texture: Texture2D = preload("./sprites/Golem_1_die.png")
 @export var wind_up_timer: Timer
 var wind_up_duration: float = 1.0
 
+@export var recover_timer: Timer
+var recover_duration: float = 3.0
+
 func _ready() -> void:
 	super._ready()
 	STATE = {
@@ -63,6 +66,9 @@ func _ready() -> void:
 	wind_up_timer.one_shot = true
 	wind_up_timer.timeout.connect(_on_wind_up_timer_time_out)
 
+	recover_timer.one_shot = true
+	recover_timer.timeout.connect(_on_recover_timer_time_out)
+
 	state_machine.add_states(STATE.Normal, CallableState.new(
 		_on_normal_state,
 		_on_enter_normal_state,
@@ -79,6 +85,12 @@ func _ready() -> void:
 		_on_attack_state,
 		_on_enter_attack_state,
 		_on_leave_attack_state
+	))
+
+	state_machine.add_states(STATE.Recover, CallableState.new(
+		_on_recover_state,
+		_on_enter_recover_state,
+		_on_leave_recover_state
 	))
 
 	state_machine.set_initial_state(STATE.Normal)
@@ -143,10 +155,26 @@ func _on_attack_state():
 func _on_leave_attack_state():
 	pass
 
+func _on_enter_recover_state():
+	component_anim_ss.play_anim("idle")
+	recover_timer.start(recover_duration)
+	component_velocity.max_speed = speed_dict.Recover
+	component_velocity.direction = Vector2.ZERO
+
+func _on_recover_state():
+	var target_pos: Vector2 = player_ref.global_position
+	component_look.look(target_pos)
+
+func _on_leave_recover_state():
+	pass
+
 func _on_wind_up_timer_time_out():
 	state_machine.change_state(STATE.Attack)
+
+func _on_recover_timer_time_out():
+	state_machine.change_state(STATE.Normal)
 
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == component_anim_ss.get_anim_id("attack")):
 		component_shockwave.attack(player_ref.global_position)
-		state_machine.change_state(STATE.Normal)
+		state_machine.change_state(STATE.Recover)

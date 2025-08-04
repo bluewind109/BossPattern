@@ -53,11 +53,12 @@ _data = {
 &"RESET": SubResource("Animation_76isr")
 }
 
-[node name="enemy_Golem" node_paths=PackedStringArray("component_anim_ss", "component_shockwave", "wind_up_timer") instance=ExtResource("1_0gnu6")]
+[node name="enemy_Golem" node_paths=PackedStringArray("component_anim_ss", "component_shockwave", "wind_up_timer", "recover_timer") instance=ExtResource("1_0gnu6")]
 script = ExtResource("2_787gj")
 component_anim_ss = NodePath("component_Anim_SpriteSheet")
 component_shockwave = NodePath("component_Shockwave")
 wind_up_timer = NodePath("wind_up_timer")
+recover_timer = NodePath("recover_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox" index="0"]
 position = Vector2(0, -15)
@@ -92,3 +93,5 @@ position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_787gj")
 
 [node name="wind_up_timer" type="Timer" parent="." index="10"]
+
+[node name="recover_timer" type="Timer" parent="." index="11"]
