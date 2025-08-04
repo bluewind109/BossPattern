@@ -135,7 +135,7 @@ func _on_leave_wind_up_state():
 
 func _on_enter_attack_state():
 	component_velocity.max_speed = speed_dict.Attack
-	component_anim_ss.play_anim("attack")
+	component_anim_ss.play_anim("attack", false)
 
 func _on_attack_state():
 	pass

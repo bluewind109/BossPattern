@@ -18,13 +18,13 @@ func _ready() -> void:
 func attack(_target_pos: Vector2):
 	if (not can_attack): return
 	var projectile_shockwave = projectile_shockwave_prefab.instantiate() as ProjectileShockwave
-
 	projectile_shockwave.init(
 		global_position, 
 		_target_pos, 
 		250, 
 		75
 	)
+	
 	get_tree().current_scene.add_child(projectile_shockwave)
 	projectile_shockwave.activate()
 	shockwave_cooldown_timer.start(shockwave_cooldown_duration)

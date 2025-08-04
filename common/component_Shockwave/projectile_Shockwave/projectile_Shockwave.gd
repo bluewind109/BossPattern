@@ -5,9 +5,12 @@ class_name ProjectileShockwave
 # release 1 shockwave every X pixels
 # stop when reaching target position / certain distance
 
+@export var explosion_shockwave_prefab: PackedScene = preload("res://common/component_Shockwave/explosion_Shockwave/explosion_Shockwave.tscn")
+
+
 var checkpoint_pos: Vector2
 var current_interval_distance: float = 0
-var interval_distance: float = 50.0
+var interval_distance: float = 25.0
 
 var target_distance: float = 250.0
 var spawn_pos : Vector2
@@ -41,8 +44,12 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _spawn_shockwave():
-	print("_spawn_shockwave %s %s" % [global_position.x, global_position.y])
+	# print("_spawn_shockwave %s %s" % [global_position.x, global_position.y])
 	checkpoint_pos = global_position
+	var explosion_shockwave = explosion_shockwave_prefab.instantiate() as ExplosionShockwave
+	explosion_shockwave.init(global_position)
+	get_tree().current_scene.add_child(explosion_shockwave)
+	explosion_shockwave.activate()
 
 func _can_spawn_shockwave() -> bool:
 	current_interval_distance = checkpoint_pos.distance_to(global_position)

@@ -18,7 +18,10 @@ func _init() -> void:
 func _ready() -> void:
 	pass
 
-func _on_hurtbox_entered(hurtbox: ComponentHurtbox) -> void:
+func _on_hurtbox_entered(area: Area2D) -> void:
 	if (owner_ref == null): return
-	hurtbox.take_damage(damage_amount)
-	hit.emit(hurtbox, damage_amount)
+
+	if (area is ComponentHurtbox):
+		var hurtbox: ComponentHurtbox = area
+		hurtbox.take_damage(damage_amount)
+		hit.emit(hurtbox, damage_amount)
