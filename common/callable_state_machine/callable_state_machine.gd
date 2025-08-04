@@ -11,7 +11,7 @@ func add_states(state_name: String, callable_state: CallableState):
 	state_dictionary[state_name] = callable_state
 
 func set_initial_state(state_name: String):
-	print("set_initial_state: ", state_name)
+	# print("set_initial_state: ", state_name)
 	# var state_name = state_callable.get_method()
 	if (state_dictionary.has(state_name)):
 		_set_state.call_deferred(state_name)

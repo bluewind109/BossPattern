@@ -17,11 +17,14 @@ scroll_offset = Vector2(248, 149)
 position = Vector2(641, 362)
 
 [node name="enemy_Bat" parent="." instance=ExtResource("4_4fuuu")]
-visible = false
 position = Vector2(884, 306)
+collision_layer = 1
+collision_mask = 1
 
 [node name="enemy_Golem" parent="." instance=ExtResource("5_dxrkv")]
 position = Vector2(880, 393)
+collision_layer = 1
+collision_mask = 1
 
 [node name="explosion_Shockwave" parent="." instance=ExtResource("6_dakft")]
 position = Vector2(736, 356)

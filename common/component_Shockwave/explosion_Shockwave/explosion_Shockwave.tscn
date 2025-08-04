@@ -159,8 +159,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_eaidp")
 }
 
-[node name="component_Hitbox" parent="." node_paths=PackedStringArray("owner_ref") instance=ExtResource("2_l4nk2")]
-owner_ref = NodePath("..")
+[node name="component_Hitbox" parent="." instance=ExtResource("2_l4nk2")]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox"]
 shape = SubResource("CircleShape2D_yc86y")
