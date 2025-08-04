@@ -1,8 +1,6 @@
 extends Area2D
 class_name ComponentHitbox
 
-@export var owner_ref: Node2D
-
 @export var damage_amount: float = 1.0
 
 signal hit(hurtbox: ComponentHurtbox, amount: float)
@@ -19,8 +17,6 @@ func _ready() -> void:
 	pass
 
 func _on_hurtbox_entered(area: Area2D) -> void:
-	if (owner_ref == null): return
-
 	if (area is ComponentHurtbox):
 		var hurtbox: ComponentHurtbox = area
 		hurtbox.take_damage(damage_amount)
