@@ -24,12 +24,12 @@ func init(
 	spawn_pos = _spawn_pos
 	checkpoint_pos = spawn_pos
 	global_position = spawn_pos
-	target_pos = _target_pos
 	target_distance = _target_distance
-	speed = _speed
+	component_projectile_velocity.target_pos = _target_pos
+	component_projectile_velocity.speed = _speed
 
 func activate():
-	direction = spawn_pos.direction_to(target_pos)
+	component_projectile_velocity.direction = spawn_pos.direction_to(component_projectile_velocity.target_pos)
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
