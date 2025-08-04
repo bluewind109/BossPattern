@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://qqh6nhuo4pf1" path="res://enemy/enemy_Golem/enemy_Golem.gd" id="2_787gj"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/component_Anim_SpriteSheet/component_Anim_SpriteSheet.tscn" id="4_d7w4c"]
 [ext_resource type="AnimationLibrary" uid="uid://dqhy63gr4ub3i" path="res://enemy/enemy_Golem/animation/enemy_golem_anim_lib.res" id="4_g3mdy"]
-[ext_resource type="Texture2D" uid="uid://8k3meq8arpaq" path="res://enemy/enemy_Golem/sprites/Golem_1_attack.png" id="4_tsbcv"]
+[ext_resource type="Texture2D" uid="uid://b7xlcg6bi4koh" path="res://enemy/enemy_Golem/sprites/Golem_1_idle.png" id="4_tsbcv"]
 [ext_resource type="PackedScene" uid="uid://s4omm7n78ybg" path="res://common/component_Shockwave/component_Shockwave.tscn" id="6_tsbcv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787gj"]
@@ -47,6 +47,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:region_rect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 1170, 64)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_637kx"]
 _data = {
@@ -78,7 +90,7 @@ texture = ExtResource("4_tsbcv")
 hframes = 11
 frame = 1
 region_enabled = true
-region_rect = Rect2(0, 0, 990, 64)
+region_rect = Rect2(0, 0, 1170, 64)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
 libraries = {

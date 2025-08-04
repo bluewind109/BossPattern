@@ -61,6 +61,7 @@ func _ready() -> void:
 		}
 	)
 
+	component_health.died.connect(_on_die)
 	component_anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
 
 	wind_up_timer.one_shot = true
@@ -68,6 +69,13 @@ func _ready() -> void:
 
 	recover_timer.one_shot = true
 	recover_timer.timeout.connect(_on_recover_timer_time_out)
+
+	# test die state
+	# var die_timer = Timer.new()
+	# die_timer.one_shot = true
+	# die_timer.timeout.connect(_on_die)
+	# get_tree().current_scene.add_child.call_deferred(die_timer)
+	# die_timer.start.call_deferred(10.0)
 
 	state_machine.add_states(STATE.Normal, CallableState.new(
 		_on_normal_state,
@@ -91,6 +99,12 @@ func _ready() -> void:
 		_on_recover_state,
 		_on_enter_recover_state,
 		_on_leave_recover_state
+	))
+
+	state_machine.add_states(STATE.Die, CallableState.new(
+		_on_die_state,
+		_on_enter_die_state,
+		_on_leave_die_state
 	))
 
 	state_machine.set_initial_state(STATE.Normal)
@@ -168,6 +182,18 @@ func _on_recover_state():
 func _on_leave_recover_state():
 	pass
 
+func _on_enter_die_state():
+	_disable_collision()
+	component_anim_ss.play_anim("die", false)
+	component_velocity.max_speed = speed_dict.Die
+	component_velocity.direction = Vector2.ZERO
+
+func _on_die_state():
+	pass
+
+func _on_leave_die_state():
+	pass
+
 func _on_wind_up_timer_time_out():
 	state_machine.change_state(STATE.Attack)
 
@@ -177,6 +203,11 @@ func _on_recover_timer_time_out():
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == component_anim_ss.get_anim_id("attack")):
 		state_machine.change_state(STATE.Recover)
+	elif (_anim_name == component_anim_ss.get_anim_id("die")):
+		queue_free()
 
 func _on_release_shockwave():
 	component_shockwave.attack(player_ref.global_position)
+
+func _on_die():
+	state_machine.change_state(STATE.Die)
