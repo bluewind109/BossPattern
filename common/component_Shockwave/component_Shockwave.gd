@@ -1,7 +1,6 @@
 extends Node2D
 class_name ComponentShockwave
 
-@export var projectile_shockwave_prefab: PackedScene = preload("res://common/component_Shockwave/projectile_Shockwave/projectile_Shockwave.tscn")
 @export var ATTACK_RANGE: float = 100.0
 
 @export var shockwave_cooldown_timer: Timer
@@ -17,14 +16,12 @@ func _ready() -> void:
 
 func attack(_target_pos: Vector2):
 	if (not can_attack): return
-	var projectile_shockwave = projectile_shockwave_prefab.instantiate() as ProjectileShockwave
-	projectile_shockwave.init(
+	var projectile_shockwave: ProjectileShockwave = ProjectileShockwave.new_projectile(
 		global_position, 
 		_target_pos, 
 		250, 
 		75
 	)
-	
 	get_tree().current_scene.add_child(projectile_shockwave)
 	projectile_shockwave.activate()
 	shockwave_cooldown_timer.start(shockwave_cooldown_duration)

@@ -5,6 +5,7 @@ class_name ProjectileShockwave
 # release 1 shockwave every X pixels
 # stop when reaching target position / certain distance
 
+const PROJECTILE_SHOCKWAVE_SCENE: PackedScene = preload("res://common/component_Shockwave/projectile_Shockwave/projectile_Shockwave.tscn")
 @export var explosion_shockwave_prefab: PackedScene = preload("res://common/component_Shockwave/explosion_Shockwave/explosion_Shockwave.tscn")
 
 
@@ -18,18 +19,20 @@ var spawn_pos : Vector2
 func _ready() -> void:
 	pass
 
-func init(
+static  func new_projectile(
 	_spawn_pos: Vector2,
 	_target_pos: Vector2,
 	_target_distance: float,
 	_speed: float = 75
-):
-	spawn_pos = _spawn_pos
-	checkpoint_pos = spawn_pos
-	global_position = spawn_pos
-	target_distance = _target_distance
-	component_projectile_velocity.target_pos = _target_pos
-	component_projectile_velocity.speed = _speed
+) -> ProjectileShockwave:
+	var new_projectile_shockwave: ProjectileShockwave = PROJECTILE_SHOCKWAVE_SCENE.instantiate()
+	new_projectile_shockwave.spawn_pos = _spawn_pos
+	new_projectile_shockwave.checkpoint_pos = _spawn_pos
+	new_projectile_shockwave.global_position = _spawn_pos
+	new_projectile_shockwave.target_distance = _target_distance
+	new_projectile_shockwave.component_projectile_velocity.target_pos = _target_pos
+	new_projectile_shockwave.component_projectile_velocity.speed = _speed
+	return new_projectile_shockwave
 
 func activate():
 	component_projectile_velocity.direction = spawn_pos.direction_to(component_projectile_velocity.target_pos)
