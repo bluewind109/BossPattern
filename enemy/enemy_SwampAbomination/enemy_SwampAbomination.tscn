@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7i6e1muxswrj"]
+
+[ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_i8lsp"]
+[ext_resource type="Script" uid="uid://di7i8t45k4kos" path="res://enemy/enemy_SwampAbomination/enemy_SwampAbomination.gd" id="2_gmfen"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/component_Anim_SpriteSheet/component_Anim_SpriteSheet.tscn" id="3_rr64c"]
+
+[node name="enemy_SwampAbomination" instance=ExtResource("1_i8lsp")]
+script = ExtResource("2_gmfen")
+
+[node name="component_Anim_SpriteSheet" parent="." index="7" instance=ExtResource("3_rr64c")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]

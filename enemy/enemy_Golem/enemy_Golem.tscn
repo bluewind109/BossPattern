@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cilp4lyahrv8p"]
+[gd_scene load_steps=9 format=3 uid="uid://cilp4lyahrv8p"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_0gnu6"]
 [ext_resource type="Script" uid="uid://qqh6nhuo4pf1" path="res://enemy/enemy_Golem/enemy_Golem.gd" id="2_787gj"]
@@ -9,61 +9,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787gj"]
 
-[sub_resource type="Animation" id="Animation_76isr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:hframes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [11]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:vframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:region_rect")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 1170, 64)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_637kx"]
-_data = {
-&"RESET": SubResource("Animation_76isr")
-}
 
 [node name="enemy_Golem" node_paths=PackedStringArray("component_anim_ss", "component_shockwave", "wind_up_timer", "recover_timer") instance=ExtResource("1_0gnu6")]
 script = ExtResource("2_787gj")
@@ -87,10 +33,9 @@ is_base_sprite_looking_left = false
 [node name="component_Anim_SpriteSheet" parent="." index="7" instance=ExtResource("4_d7w4c")]
 position = Vector2(0, -32)
 texture = ExtResource("4_tsbcv")
-hframes = 11
-frame = 1
+hframes = 8
 region_enabled = true
-region_rect = Rect2(0, 0, 1170, 64)
+region_rect = Rect2(0, 0, 720, 64)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
 libraries = {

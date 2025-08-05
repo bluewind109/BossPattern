@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bk5q3wde4ijnu"]
+[gd_scene load_steps=9 format=3 uid="uid://bk5q3wde4ijnu"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_drigw"]
 [ext_resource type="Script" uid="uid://cv6glw0h1k60u" path="res://enemy/enemy_Bat/enemy_Bat.gd" id="2_gk5d6"]
@@ -9,6 +9,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dfyub"]
 radius = 7.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1fpe"]
 
 [node name="enemy_Bat" node_paths=PackedStringArray("component_anim_ss", "component_charge", "wind_up_timer") instance=ExtResource("1_drigw")]
 script = ExtResource("2_gk5d6")
@@ -41,6 +43,7 @@ region_rect = Rect2(0, 0, 576, 64)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
 libraries = {
+&"": SubResource("AnimationLibrary_p1fpe"),
 &"enemy_bat_anim_lib": ExtResource("5_e3oof")
 }
 

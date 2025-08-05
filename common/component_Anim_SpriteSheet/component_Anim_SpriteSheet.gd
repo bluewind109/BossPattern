@@ -17,9 +17,11 @@ func play_anim(_anim_name: String, is_loop: bool = true):
 	if (not anim_dict.has(_anim_name)): return
 	if (current_anim == _anim_name): return
 	# print("_play_anim: ", anim_name)
-	anim_player.stop()
-	var anim_data: Variant = anim_dict[_anim_name]
-	texture = anim_data.texture
+
+	# anim_player.stop()
+	# var anim_data: Variant = anim_dict[_anim_name]
+	# texture = anim_data.texture
+
 	# hframes = anim_data.hframes
 	# region_rect.size = Vector2(sprite_size * hframes, sprite_size)
 	if (is_loop):	
