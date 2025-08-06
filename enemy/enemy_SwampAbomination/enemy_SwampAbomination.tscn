@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b7i6e1muxswrj"]
+[gd_scene load_steps=23 format=3 uid="uid://b7i6e1muxswrj"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_i8lsp"]
 [ext_resource type="Script" uid="uid://di7i8t45k4kos" path="res://enemy/enemy_SwampAbomination/enemy_SwampAbomination.gd" id="2_gmfen"]
@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://cuayka4y5yq3x" path="res://enemy/enemy_SwampAbomination/sprites/Attack4.png" id="9_k08v7"]
 [ext_resource type="Texture2D" uid="uid://dhi2bilv6j5h1" path="res://enemy/enemy_SwampAbomination/sprites/Death.png" id="10_vli8d"]
 [ext_resource type="Texture2D" uid="uid://caft1q8k7bh4a" path="res://enemy/enemy_SwampAbomination/sprites/Special.png" id="11_rk6qd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rk6qd"]
+radius = 16.9996
+height = 41.9989
 
 [sub_resource type="Animation" id="Animation_rdn76"]
 resource_name = "idle"
@@ -663,6 +667,16 @@ _data = {
 [node name="enemy_SwampAbomination" instance=ExtResource("1_i8lsp")]
 script = ExtResource("2_gmfen")
 
+[node name="collision_shape_2d" type="CollisionShape2D" parent="component_Hitbox" index="0"]
+position = Vector2(3, -17)
+rotation = -1.56352
+shape = SubResource("CapsuleShape2D_rk6qd")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="component_Hurtbox" index="0"]
+position = Vector2(3, -17)
+rotation = -1.56352
+shape = SubResource("CapsuleShape2D_rk6qd")
+
 [node name="component_Anim_SpriteSheet" parent="." index="7" instance=ExtResource("3_rr64c")]
 position = Vector2(-16, -48)
 texture = ExtResource("4_yjnw8")
@@ -671,7 +685,7 @@ frame = 1
 region_enabled = true
 region_rect = Rect2(0, 0, 384, 96)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
+[node name="animation_player" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_r8ir8")
 }

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://common/component_Velocity/component_Velocity.tscn" id="7_vg5so"]
 [ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://common/component_Look/component_Look.tscn" id="8_faccg"]
 
-[node name="EnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "component_health", "component_hitbox", "component_hurtbox", "component_velocity", "component_steer", "component_look")]
+[node name="enemy_Base" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "component_health", "component_hitbox", "component_hurtbox", "component_velocity", "component_steer", "component_look")]
 collision_layer = 256
 collision_mask = 0
 motion_mode = 1
@@ -41,4 +41,4 @@ owner_node = NodePath("..")
 
 [node name="component_Look" parent="." instance=ExtResource("8_faccg")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="collision_shape" type="CollisionShape2D" parent="."]

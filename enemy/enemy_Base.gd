@@ -19,7 +19,7 @@ var is_spawning: bool = false
 
 func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("Player")
-	return
+	component_velocity.owner_node = self 
 
 func _disable_collision():
 	if (component_hitbox):

@@ -3,7 +3,7 @@ class_name ComponentVelocity
 
 const DECELERATION_TARGET: Vector2 = Vector2.ZERO
 
-@export var owner_node: CharacterBody2D
+var owner_node: CharacterBody2D
 
 @export var acceleration_coefficient: float = 1.0
 @export var deceleration_coefficient: float = 1.0

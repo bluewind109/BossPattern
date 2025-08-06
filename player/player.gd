@@ -9,6 +9,7 @@ var run_texture: Texture2D = preload("./sprites/Player_run.png")
 
 @export var component_health: ComponentHealth
 @export var component_look: ComponentLook
+@export var component_velocity: ComponentVelocity
 
 var max_health: float = 100.0
 
@@ -33,6 +34,8 @@ var anim_dict: Dictionary [String, Variant] = {
 var current_anim: String = ""
 
 func _ready() -> void:
+	component_velocity.owner_node = self
+
 	state_machine.add_states(STATE.Idle, CallableState.new(
 		on_idle_state,
 		on_enter_idle_state,
