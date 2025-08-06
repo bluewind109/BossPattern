@@ -34,11 +34,10 @@ collision_layer = 256
 collision_mask = 0
 component_health = NodePath("../component_Health")
 
-[node name="component_Velocity" parent="." node_paths=PackedStringArray("owner_node") instance=ExtResource("7_vg5so")]
-owner_node = NodePath("..")
+[node name="component_Velocity" parent="." instance=ExtResource("7_vg5so")]
 
 [node name="component_Steering" parent="." instance=ExtResource("7_pf73l")]
 
 [node name="component_Look" parent="." instance=ExtResource("8_faccg")]
 
-[node name="collision_shape" type="CollisionShape2D" parent="."]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]

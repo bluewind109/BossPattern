@@ -1,9 +1,6 @@
 extends EnemyBase
 class_name EnemyBat
 
-var idle_texture: Texture2D = preload("./sprites/Bat-IdleFly.png")
-var chase_texture: Texture2D = preload("./sprites/Bat-Run.png")
-
 @export var component_anim_ss: ComponentAnimSpriteSheet
 @export var component_charge: ComponentCharge
 
@@ -30,13 +27,9 @@ func _ready() -> void:
 		{		
 			"idle": {
 				"anim_id": lib_name + "/" + "fly_idle",
-				"texture": idle_texture,
-				"hframes": 9
 			},
 			"chase": {
 				"anim_id": lib_name + "/" + "fly_chase",
-				"texture": chase_texture,
-				"hframes": 8
 			},
 		}
 	)
@@ -66,14 +59,14 @@ func _ready() -> void:
 
 	state_machine.set_initial_state(STATE.Normal)
 
-func _physics_process(_delta: float) -> void:
-	state_machine.update()
+func _physics_process(delta: float) -> void:
+	state_machine.update(delta)
 
 func _on_enter_normal_state():
 	component_anim_ss.play_anim("idle")
 	component_velocity.max_speed = speed_dict.Normal
 	
-func _on_normal_state():
+func _on_normal_state(_delta: float):
 	# follow the player
 	var target_pos: Vector2 = player_ref.global_position
 	var mass: float = 20.0
@@ -99,7 +92,7 @@ func _on_enter_wind_up_state():
 	component_velocity.max_speed = speed_dict.WindUp
 	component_velocity.direction = Vector2.ZERO
 
-func _on_wind_up_state():
+func _on_wind_up_state(_delta: float):
 	var target_pos: Vector2 = player_ref.global_position
 	component_look.look(target_pos)
 
@@ -112,7 +105,7 @@ func _on_enter_charge_state():
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	component_charge.charge(player_ref.global_position)
 
-func _on_charge_state():
+func _on_charge_state(_delta: float):
 	velocity = component_charge.update(component_velocity.max_speed)
 
 func _on_leave_charge_state():

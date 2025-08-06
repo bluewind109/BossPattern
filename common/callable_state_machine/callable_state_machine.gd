@@ -18,12 +18,12 @@ func set_initial_state(state_name: String):
 	else:
 		push_warning("No state found with name: ", state_name)
 
-func update():
+func update(delta: float):
 	if (state_dictionary.has(current_state)):
 		# print("update: ", current_state)
 		var normal_state: CallableState = state_dictionary[current_state]
 		var normal_callback: Callable = normal_state.normal
-		normal_callback.call()
+		normal_callback.call(delta)
 
 func change_state(state_name: String):
 	if (state_dictionary.has(state_name)):

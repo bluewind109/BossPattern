@@ -17,9 +17,3 @@ position = Vector2(562, 303)
 
 [node name="enemy_Golem" parent="." instance=ExtResource("5_dxrkv")]
 position = Vector2(439, 261)
-
-[node name="enemy_Golem2" parent="." instance=ExtResource("5_dxrkv")]
-position = Vector2(625, 551)
-
-[node name="enemy_Golem3" parent="." instance=ExtResource("5_dxrkv")]
-position = Vector2(891, 293)

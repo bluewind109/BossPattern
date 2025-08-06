@@ -19,7 +19,8 @@ var is_spawning: bool = false
 
 func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("Player")
-	component_velocity.owner_node = self 
+	if (component_velocity): component_velocity.owner_node = self 
+	if (component_health): component_health.died.connect(_on_die)
 
 func _disable_collision():
 	if (component_hitbox):
@@ -28,3 +29,6 @@ func _disable_collision():
 	if (component_hurtbox):
 		component_hurtbox.monitoring = false
 		component_hurtbox.monitorable = false
+
+func _on_die():
+	pass
