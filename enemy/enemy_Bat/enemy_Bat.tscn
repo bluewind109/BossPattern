@@ -19,10 +19,12 @@ component_charge = NodePath("component_Charge")
 wind_up_timer = NodePath("wind_up_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox" index="0"]
+visible = false
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_dfyub")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hurtbox" index="0"]
+visible = false
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_dfyub")
 
@@ -48,6 +50,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" parent="." index="9"]
+visible = false
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_dfyub")
 
