@@ -19,10 +19,12 @@ wind_up_timer = NodePath("wind_up_timer")
 recover_timer = NodePath("recover_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox" index="0"]
+visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_787gj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hurtbox" index="0"]
+visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_787gj")
 
@@ -46,6 +48,7 @@ libraries = {
 [node name="component_Shockwave" parent="." index="8" instance=ExtResource("6_tsbcv")]
 
 [node name="CollisionShape2D" parent="." index="9"]
+visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_787gj")
 

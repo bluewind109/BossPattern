@@ -6,16 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://cilp4lyahrv8p" path="res://enemy/enemy_Golem/enemy_Golem.tscn" id="5_dxrkv"]
 
 [node name="game" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_l1rk1")
 
 [node name="Background" parent="." instance=ExtResource("2_h7iqs")]
 scroll_offset = Vector2(248, 149)
 
 [node name="Player" parent="." instance=ExtResource("2_vasa2")]
-position = Vector2(641, 362)
+position = Vector2(562, 303)
 
 [node name="enemy_Golem" parent="." instance=ExtResource("5_dxrkv")]
-position = Vector2(442, 290)
+position = Vector2(439, 261)
 
 [node name="enemy_Golem2" parent="." instance=ExtResource("5_dxrkv")]
 position = Vector2(625, 551)
