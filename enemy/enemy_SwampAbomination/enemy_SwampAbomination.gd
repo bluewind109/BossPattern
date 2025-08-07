@@ -24,6 +24,7 @@ func init_states():
 		"Normal": "Normal",
 		"WindUp": "WindUp",
 		"Attack": "Attack",
+		"Charge": "Charge",
 		"Recover": "Recover",
 		"Die": "Die",
 	}
@@ -34,6 +35,7 @@ func init_speed_dict():
 		STATE.Normal: 75.0,
 		STATE.WindUp: 150.0,
 		STATE.Attack: 150.0,
+		STATE.Charge: 350.0,
 		STATE.Recover: 150.0,
 		STATE.Die: 150.0,
 	}
@@ -97,6 +99,12 @@ func add_states():
 		_on_leave_attack_state
 	))
 
+	state_machine.add_states(STATE.Charge, CallableState.new(
+		_on_charge_state,
+		_on_enter_charge_state,
+		_on_leave_charge_state
+	))
+
 	state_machine.add_states(STATE.Recover, CallableState.new(
 		_on_recover_state,
 		_on_enter_recover_state,
@@ -124,6 +132,22 @@ func _on_normal_state(_delta: float):
 	else:
 		component_anim_ss.play_anim("walk")
 
+	# follow the player
+	var target_pos: Vector2 = player_ref.global_position
+	var mass: float = 20.0
+	velocity = component_steer.steer(
+		velocity,
+		global_position,
+		target_pos,
+		component_velocity.max_speed,
+		mass
+	)
+	component_velocity.direction = global_position.direction_to(player_ref.global_position)
+	component_look.look(target_pos)
+
+	if (component_charge.is_in_charge_range(player_ref.global_position) and component_charge.can_charge):
+		state_machine.change_state(STATE.WindUp)
+
 func _on_leave_normal_state():
 	pass
 
@@ -149,6 +173,18 @@ func _on_attack_state(_delta: float):
 	pass
 
 func _on_leave_attack_state():
+	pass
+
+func _on_enter_charge_state():
+	component_anim_ss.play_anim("attack3")
+	component_velocity.max_speed = speed_dict.Charge
+	component_velocity.direction = global_position.direction_to(player_ref.global_position)
+	component_charge.charge(player_ref.global_position)
+
+func _on_charge_state(_delta: float):
+	velocity = component_charge.update(component_velocity.max_speed)
+
+func _on_leave_charge_state():
 	pass
 
 func _on_enter_recover_state():
@@ -184,3 +220,6 @@ func _on_recover_timer_time_out():
 
 func _on_animation_finished(_anim_name: StringName):
 	pass
+
+func _on_charge_done():
+	state_machine.change_state(STATE.Normal)
