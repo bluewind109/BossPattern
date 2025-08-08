@@ -10,6 +10,12 @@ var wind_up_duration: float = 1.0
 @export var recover_timer: Timer
 var recover_duration: float = 3.0
 
+var range_dict: Dictionary[String, float] = {
+	"bite": 50,
+	"charge": 250,
+	"lightning_strike": 350,
+}
+
 func _ready() -> void:
 	super._ready()
 	init_states()
@@ -223,3 +229,10 @@ func _on_animation_finished(_anim_name: StringName):
 
 func _on_charge_done():
 	state_machine.change_state(STATE.Normal)
+
+func _check_possible_attack(_target_pos: Vector2) -> String:
+	var distance = _target_pos.distance_to(global_position)
+	for n in range_dict:
+		if (distance < range_dict[n]):
+			return n
+	return ""
