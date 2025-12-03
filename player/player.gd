@@ -53,8 +53,8 @@ func _ready() -> void:
 	var health = max_health
 	component_health.init.call_deferred(max_health, health)
 
-func _physics_process(_delta: float) -> void:
-	state_machine.update()
+func _physics_process(delta: float) -> void:
+	state_machine.update(delta)
 
 	var target_pos = get_global_mouse_position()
 	component_look.look(target_pos)
@@ -75,7 +75,7 @@ func _play_anim(anim_name: String):
 func on_enter_idle_state():
 	_play_anim("idle")
 
-func on_idle_state():
+func on_idle_state(_delta: float):
 	if (velocity != Vector2.ZERO):
 		state_machine.change_state(STATE.Run)
 
@@ -85,7 +85,7 @@ func on_leave_idle_state():
 func on_enter_run_state():
 	_play_anim("run")
 
-func on_run_state():
+func on_run_state(_delta: float):
 	if (velocity == Vector2.ZERO):
 		state_machine.change_state(STATE.Idle)
 
