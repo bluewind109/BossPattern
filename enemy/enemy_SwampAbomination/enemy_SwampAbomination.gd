@@ -170,6 +170,7 @@ func _on_wind_up_state(_delta: float):
 func _on_leave_wind_up_state():
 	return
 
+# TODO implement attack state
 func _on_enter_attack_state():
 	# component_velocity.max_speed = speed_dict.Attack
 	# component_anim_ss.play_anim("attack1", false)
