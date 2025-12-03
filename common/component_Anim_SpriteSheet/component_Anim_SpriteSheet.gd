@@ -16,7 +16,7 @@ func init_anim_data(data: Dictionary[String, Variant]):
 func play_anim(_anim_name: String, is_loop: bool = true):	
 	if (not anim_dict.has(_anim_name)): return
 	if (current_anim == _anim_name): return
-	# print("_play_anim: ", anim_name)
+	# print("_play_anim: ", anim_dict)
 	anim_player.stop()
 	if (is_loop):	
 		anim_player.get_animation(anim_dict[_anim_name].anim_id).loop_mode = Animation.LoopMode.LOOP_LINEAR

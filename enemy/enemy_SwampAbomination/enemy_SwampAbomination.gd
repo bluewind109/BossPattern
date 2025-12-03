@@ -20,7 +20,7 @@ func _ready() -> void:
 	super._ready()
 	init_states()
 	init_speed_dict()
-	init_anim_dict("enemy_swamp_animation_lib")
+	init_anim_dict("enemy_swamp_abomination_lib")
 	bind_signals()
 	add_states()
 
