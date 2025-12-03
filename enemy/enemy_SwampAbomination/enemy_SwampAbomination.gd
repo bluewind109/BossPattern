@@ -85,6 +85,7 @@ func bind_signals():
 	recover_timer.timeout.connect(_on_recover_timer_time_out)
 
 	component_anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
+	component_charge.is_charge_done.connect(_on_charge_done)
 
 func add_states():
 	state_machine.add_states(STATE.Normal, CallableState.new(
@@ -220,7 +221,7 @@ func _on_leave_die_state():
 	pass
 
 func _on_wind_up_timer_time_out():
-	state_machine.change_state(STATE.Attack)
+	state_machine.change_state(STATE.Charge)
 
 func _on_recover_timer_time_out():
 	state_machine.change_state(STATE.Normal)

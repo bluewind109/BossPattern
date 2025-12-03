@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_i8lsp"]
 [ext_resource type="Script" uid="uid://di7i8t45k4kos" path="res://enemy/enemy_SwampAbomination/enemy_SwampAbomination.gd" id="2_gmfen"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/component_Anim_SpriteSheet/component_Anim_SpriteSheet.tscn" id="3_rr64c"]
-[ext_resource type="Texture2D" uid="uid://b4ae88j4e00wc" path="res://enemy/enemy_SwampAbomination/sprites/Idle.png" id="4_yjnw8"]
+[ext_resource type="Texture2D" uid="uid://caft1q8k7bh4a" path="res://enemy/enemy_SwampAbomination/sprites/Special.png" id="4_xn83n"]
 [ext_resource type="AnimationLibrary" uid="uid://bvfr7lmcacr6g" path="res://enemy/enemy_SwampAbomination/animation/enemy_swamp_abomination_lib.res" id="5_rdn76"]
 [ext_resource type="PackedScene" uid="uid://dw7xrc40uht3h" path="res://common/component_Charge/component_Charge.tscn" id="6_xn83n"]
 
@@ -35,9 +35,9 @@ origin_sprite = NodePath("../component_Anim_SpriteSheet")
 
 [node name="component_Anim_SpriteSheet" parent="." index="7" instance=ExtResource("3_rr64c")]
 position = Vector2(-16, -48)
-texture = ExtResource("4_yjnw8")
+texture = ExtResource("4_xn83n")
 hframes = 4
-frame = 1
+frame = 2
 region_enabled = true
 region_rect = Rect2(0, 0, 384, 96)
 
@@ -47,6 +47,7 @@ libraries = {
 }
 
 [node name="component_Charge" parent="." index="8" instance=ExtResource("6_xn83n")]
+CHARGE_RANGE = 300.0
 
 [node name="wind_up_timer" type="Timer" parent="." index="10"]
 
