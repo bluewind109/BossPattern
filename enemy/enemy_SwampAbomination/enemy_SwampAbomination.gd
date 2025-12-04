@@ -1,6 +1,8 @@
 extends EnemyBase
 class_name EnemySwampAbomination
 
+@export var mass: float = 20.0
+
 @export var component_anim_ss: ComponentAnimSpriteSheet
 @export var component_charge: ComponentCharge
 
@@ -129,6 +131,7 @@ func add_states():
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
 
+# NORMAL STATE
 func _on_enter_normal_state():
 	component_anim_ss.play_anim("idle")
 	component_velocity.max_speed = speed_dict.Normal
@@ -137,11 +140,10 @@ func _on_normal_state(_delta: float):
 	if (velocity == Vector2.ZERO and not component_velocity.direction):
 		component_anim_ss.play_anim("idle")
 	else:
-		component_anim_ss.play_anim("walk")
+		component_anim_ss.play_anim("attack3")
 
 	# follow the player
 	var target_pos: Vector2 = player_ref.global_position
-	var mass: float = 20.0
 	velocity = component_steer.steer(
 		velocity,
 		global_position,
@@ -158,6 +160,7 @@ func _on_normal_state(_delta: float):
 func _on_leave_normal_state():
 	pass
 
+# WIND UP STATE
 func _on_enter_wind_up_state():
 	component_anim_ss.play_anim("special")
 	wind_up_timer.start(wind_up_duration)
@@ -171,6 +174,7 @@ func _on_wind_up_state(_delta: float):
 func _on_leave_wind_up_state():
 	return
 
+# ATTACK STATE
 # TODO implement attack state
 func _on_enter_attack_state():
 	# component_velocity.max_speed = speed_dict.Attack
@@ -183,8 +187,9 @@ func _on_attack_state(_delta: float):
 func _on_leave_attack_state():
 	pass
 
+# CHARGE STATE
 func _on_enter_charge_state():
-	component_anim_ss.play_anim("attack3")
+	component_anim_ss.play_anim("attack4")
 	component_velocity.max_speed = speed_dict.Charge
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	component_charge.charge(player_ref.global_position)
@@ -195,6 +200,7 @@ func _on_charge_state(_delta: float):
 func _on_leave_charge_state():
 	pass
 
+# RECOVER STATE
 func _on_enter_recover_state():
 	component_anim_ss.play_anim("idle")
 	recover_timer.start(recover_duration)
@@ -208,6 +214,7 @@ func _on_recover_state(_delta: float):
 func _on_leave_recover_state():
 	pass
 
+# DIE STATE
 func _on_enter_die_state():
 	_disable_collision()
 	component_anim_ss.play_anim("die", false)
@@ -220,6 +227,7 @@ func _on_die_state(_delta: float):
 func _on_leave_die_state():
 	pass
 
+# Functions
 func _on_wind_up_timer_time_out():
 	state_machine.change_state(STATE.Charge)
 
