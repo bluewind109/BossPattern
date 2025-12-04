@@ -53,6 +53,8 @@ libraries = {
 CHARGE_RANGE = 250.0
 CHARGE_DISTANCE = 500.0
 
-[node name="wind_up_timer" type="Timer" parent="." index="10"]
+[node name="shoot_random_position" type="Node2D" parent="." index="9"]
 
-[node name="recover_timer" type="Timer" parent="." index="11"]
+[node name="wind_up_timer" type="Timer" parent="." index="11"]
+
+[node name="recover_timer" type="Timer" parent="." index="12"]

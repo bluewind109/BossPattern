@@ -21,4 +21,4 @@ visible = false
 position = Vector2(439, 261)
 
 [node name="enemy_SwampAbomination" parent="." instance=ExtResource("5_dakft")]
-position = Vector2(788, 200)
+position = Vector2(863, 159)
