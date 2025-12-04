@@ -7,7 +7,7 @@ var charge_direction: Vector2
 @export var CHARGE_DISTANCE: float = 400.0
 
 @export var charge_cooldown_timer: Timer
-var charge_cooldown_duration: float = 3.0
+@export var charge_cooldown_duration: float = 3.0
 var can_charge: float = true
 
 var target_pos: Vector2
