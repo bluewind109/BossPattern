@@ -1,21 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7i6e1muxswrj"]
+[gd_scene load_steps=10 format=3 uid="uid://b7i6e1muxswrj"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_i8lsp"]
 [ext_resource type="Script" uid="uid://di7i8t45k4kos" path="res://enemy/enemy_SwampAbomination/enemy_SwampAbomination.gd" id="2_gmfen"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/component_Anim_SpriteSheet/component_Anim_SpriteSheet.tscn" id="3_rr64c"]
-[ext_resource type="Texture2D" uid="uid://cuayka4y5yq3x" path="res://enemy/enemy_SwampAbomination/sprites/Attack4.png" id="4_xn83n"]
+[ext_resource type="Texture2D" uid="uid://b4ae88j4e00wc" path="res://enemy/enemy_SwampAbomination/sprites/Idle.png" id="5_r8ir8"]
 [ext_resource type="AnimationLibrary" uid="uid://bvfr7lmcacr6g" path="res://enemy/enemy_SwampAbomination/animation/enemy_swamp_abomination_lib.res" id="5_rdn76"]
 [ext_resource type="PackedScene" uid="uid://dw7xrc40uht3h" path="res://common/component_Charge/component_Charge.tscn" id="6_xn83n"]
+[ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://common/pulse_effect/pulse_effect.tscn" id="7_7ysgq"]
+[ext_resource type="Script" uid="uid://b8cttaywdkirw" path="res://common/pulse_effect/pulse_effect.gd" id="8_k08v7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rk6qd"]
 radius = 16.9996
 height = 41.9989
 
-[node name="enemy_SwampAbomination" node_paths=PackedStringArray("component_anim_ss", "component_charge", "wind_up_timer", "recover_timer") instance=ExtResource("1_i8lsp")]
+[node name="enemy_SwampAbomination" node_paths=PackedStringArray("anim_ss", "charge_handler", "pulse_effect", "wind_up_timer", "recover_timer") instance=ExtResource("1_i8lsp")]
 script = ExtResource("2_gmfen")
 mass = 40.0
-component_anim_ss = NodePath("component_Anim_SpriteSheet")
-component_charge = NodePath("component_Charge")
+anim_ss = NodePath("component_Anim_SpriteSheet")
+charge_handler = NodePath("component_Charge")
+pulse_effect = NodePath("pulse_effect")
 wind_up_timer = NodePath("wind_up_timer")
 recover_timer = NodePath("recover_timer")
 
@@ -39,10 +42,11 @@ origin_sprite = NodePath("../component_Anim_SpriteSheet")
 
 [node name="component_Anim_SpriteSheet" parent="." index="7" instance=ExtResource("3_rr64c")]
 position = Vector2(-16, -48)
-texture = ExtResource("4_xn83n")
-hframes = 6
+texture = ExtResource("5_r8ir8")
+hframes = 4
+frame = 1
 region_enabled = true
-region_rect = Rect2(0, 0, 576, 96)
+region_rect = Rect2(0, 0, 384, 96)
 
 [node name="animation_player" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
 libraries = {
@@ -55,6 +59,9 @@ CHARGE_DISTANCE = 500.0
 
 [node name="shoot_random_position" type="Node2D" parent="." index="9"]
 
-[node name="wind_up_timer" type="Timer" parent="." index="11"]
+[node name="pulse_effect" parent="." index="10" instance=ExtResource("7_7ysgq")]
+script = ExtResource("8_k08v7")
 
-[node name="recover_timer" type="Timer" parent="." index="12"]
+[node name="wind_up_timer" type="Timer" parent="." index="12"]
+
+[node name="recover_timer" type="Timer" parent="." index="13"]

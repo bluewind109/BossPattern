@@ -3,11 +3,12 @@ class_name EnemySwampAbomination
 
 @export var mass: float = 20.0
 
-@export var component_anim_ss: ComponentAnimSpriteSheet
-@export var component_charge: ComponentCharge
+@export var anim_ss: ComponentAnimSpriteSheet
+@export var charge_handler: ComponentCharge
+@export var pulse_effect: PulseEffect
 
 @export var wind_up_timer: Timer
-var wind_up_duration: float = 1.0
+var wind_up_duration: float = 2.0
 
 @export var recover_timer: Timer
 var recover_duration: float = 3.0
@@ -50,7 +51,7 @@ func init_speed_dict():
 
 func init_anim_dict(_lib_name: String):
 	var lib_name = _lib_name
-	component_anim_ss.init_anim_data(
+	anim_ss.init_anim_data(
 		{		
 			"idle": {
 				"anim_id": lib_name + "/" + "idle",
@@ -86,8 +87,8 @@ func bind_signals():
 	recover_timer.one_shot = true
 	recover_timer.timeout.connect(_on_recover_timer_time_out)
 
-	component_anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
-	component_charge.is_charge_done.connect(_on_charge_done)
+	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
+	charge_handler.is_charge_done.connect(_on_charge_done)
 
 func add_states():
 	state_machine.add_states(STATE.Normal, CallableState.new(
@@ -133,14 +134,14 @@ func _physics_process(delta: float) -> void:
 
 # NORMAL STATE
 func _on_enter_normal_state():
-	component_anim_ss.play_anim("idle")
+	anim_ss.play_anim("idle")
 	component_velocity.max_speed = speed_dict.Normal
 
 func _on_normal_state(_delta: float):
 	if (velocity == Vector2.ZERO and not component_velocity.direction):
-		component_anim_ss.play_anim("idle")
+		anim_ss.play_anim("idle")
 	else:
-		component_anim_ss.play_anim("attack3")
+		anim_ss.play_anim("attack3")
 
 	# follow the player
 	var target_pos: Vector2 = player_ref.global_position
@@ -154,7 +155,7 @@ func _on_normal_state(_delta: float):
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	component_look.look(target_pos)
 
-	if (component_charge.is_in_charge_range(player_ref.global_position) and component_charge.can_charge):
+	if (charge_handler.is_in_charge_range(player_ref.global_position) and charge_handler.can_charge):
 		state_machine.change_state(STATE.WindUp)
 
 func _on_leave_normal_state():
@@ -162,23 +163,24 @@ func _on_leave_normal_state():
 
 # WIND UP STATE
 func _on_enter_wind_up_state():
-	component_anim_ss.play_anim("special")
+	anim_ss.play_anim("special")
 	wind_up_timer.start(wind_up_duration)
 	component_velocity.max_speed = speed_dict.WindUp
 	component_velocity.direction = Vector2.ZERO
+	pulse_effect.start_pulse(anim_ss)
 
 func _on_wind_up_state(_delta: float):
 	var target_pos: Vector2 = player_ref.global_position
 	component_look.look(target_pos)
 
 func _on_leave_wind_up_state():
-	return
+	pulse_effect.stop_pulse()
 
 # ATTACK STATE
 # TODO implement attack state
 func _on_enter_attack_state():
 	# component_velocity.max_speed = speed_dict.Attack
-	# component_anim_ss.play_anim("attack1", false)
+	# anim_ss.play_anim("attack1", false)
 	pass
 
 func _on_attack_state(_delta: float):
@@ -189,20 +191,20 @@ func _on_leave_attack_state():
 
 # CHARGE STATE
 func _on_enter_charge_state():
-	component_anim_ss.play_anim("attack4")
+	anim_ss.play_anim("attack4")
 	component_velocity.max_speed = speed_dict.Charge
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
-	component_charge.charge(player_ref.global_position)
+	charge_handler.charge(player_ref.global_position)
 
 func _on_charge_state(_delta: float):
-	velocity = component_charge.update(component_velocity.max_speed)
+	velocity = charge_handler.update(component_velocity.max_speed)
 
 func _on_leave_charge_state():
 	pass
 
 # RECOVER STATE
 func _on_enter_recover_state():
-	component_anim_ss.play_anim("idle")
+	anim_ss.play_anim("idle")
 	recover_timer.start(recover_duration)
 	component_velocity.max_speed = speed_dict.Recover
 	component_velocity.direction = Vector2.ZERO
@@ -217,7 +219,7 @@ func _on_leave_recover_state():
 # DIE STATE
 func _on_enter_die_state():
 	_disable_collision()
-	component_anim_ss.play_anim("die", false)
+	anim_ss.play_anim("die", false)
 	component_velocity.max_speed = speed_dict.Die
 	component_velocity.direction = Vector2.ZERO
 
