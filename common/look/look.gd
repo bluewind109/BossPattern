@@ -1,8 +1,8 @@
 extends Node2D
 class_name ComponentLook
 
-@export var origin_sprite: Sprite2D
 @export var is_base_sprite_looking_left: bool = true
+var owner_node: Node2D
 
 func _ready() -> void:
 	pass
@@ -10,14 +10,21 @@ func _ready() -> void:
 func look(target_pos: Vector2):
 	if (is_base_sprite_looking_left):
 		if (global_position.x < target_pos.x):
-			origin_sprite.flip_h = true
+			flip_direction(true)
 		else:
-			origin_sprite.flip_h = false
+			flip_direction(false)
 	else:
 		if (global_position.x > target_pos.x):
-			origin_sprite.flip_h = true
+			flip_direction(true)
 		else:
-			origin_sprite.flip_h = false
+			flip_direction(false)
+
+func flip_direction(is_flipped: bool):
+	if (!owner_node): return
+	if (is_flipped):
+		owner_node.scale.x = -1
+	else:
+		owner_node.scale.x = 1
 
 
 

@@ -1,15 +1,15 @@
 extends CharacterBody2D
 class_name Player
 
-@export var state_machine: CallableStateMachine
+@onready var state_machine: CallableStateMachine = $callable_state_machine
 
-@export var sprite: Sprite2D
+@onready var character_sprite: Sprite2D = $character_sprite
 var idle_texture: Texture2D = preload("./sprites/Player_idle.png")
 var run_texture: Texture2D = preload("./sprites/Player_run.png")
 
-@export var component_health: ComponentHealth
-@export var component_look: ComponentLook
-@export var component_velocity: ComponentVelocity
+@onready var comp_health: ComponentHealth = $health
+@onready var comp_look: ComponentLook = $look
+@onready var comp_velocity: ComponentVelocity = $velocity
 
 var max_health: float = 100.0
 
@@ -34,7 +34,7 @@ var anim_dict: Dictionary [String, Variant] = {
 var current_anim: String = ""
 
 func _ready() -> void:
-	component_velocity.owner_node = self
+	comp_velocity.owner_node = self
 
 	state_machine.add_states(STATE.Idle, CallableState.new(
 		on_idle_state,
@@ -51,13 +51,13 @@ func _ready() -> void:
 	state_machine.set_initial_state(STATE.Idle)
 
 	var health = max_health
-	component_health.init.call_deferred(max_health, health)
+	comp_health.init.call_deferred(max_health, health)
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
 
 	var target_pos = get_global_mouse_position()
-	component_look.look(target_pos)
+	comp_look.look(target_pos)
 
 func _play_anim(anim_name: String):
 	if (not anim_dict.has(anim_name)): return
@@ -65,9 +65,9 @@ func _play_anim(anim_name: String):
 	# print("_play_anim: ", anim_name)
 	var sprite_size: float = 32
 	var anim_data: Variant = anim_dict[anim_name]
-	sprite.texture = anim_data.texture
-	sprite.hframes = anim_data.hframes
-	sprite.region_rect.size = Vector2(sprite_size * sprite.hframes, sprite_size)
+	character_sprite.texture = anim_data.texture
+	character_sprite.hframes = anim_data.hframes
+	character_sprite.region_rect.size = Vector2(sprite_size * character_sprite.hframes, sprite_size)
 	anim_player.play(anim_dict[anim_name].anim_id)
 	anim_player.speed_scale = 0.25
 	current_anim = anim_name

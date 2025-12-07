@@ -6,14 +6,13 @@ var player_ref: CharacterBody2D
 var STATE: Dictionary[String, String] = {}
 var speed_dict: Dictionary[String, float] = {}
 
-@export var state_machine: CallableStateMachine
-
-@export var component_health: ComponentHealth
-@export var component_hitbox: ComponentHitbox
-@export var component_hurtbox: ComponentHurtbox
-@export var component_velocity: ComponentVelocity
-@export var component_steer: ComponentSteer
-@export var component_look: ComponentLook
+@onready var state_machine: CallableStateMachine = $callable_state_machine
+@onready var component_health: ComponentHealth = $health
+@onready var component_hitbox: ComponentHitbox = $component_Hitbox
+@onready var component_hurtbox: ComponentHurtbox = $component_Hurtbox
+@onready var component_velocity: ComponentVelocity = $velocity
+@onready var component_steer: ComponentSteer = $steering
+@onready var component_look: ComponentLook = $look
 
 var is_spawning: bool = false
 

@@ -3,15 +3,17 @@ class_name EnemySwampAbomination
 
 @export var mass: float = 20.0
 
-@export var anim_ss: ComponentAnimSpriteSheet
-@export var charge_handler: ComponentCharge
-@export var pulse_effect: PulseEffect
+@onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
+@onready var charge_handler: ComponentCharge = $charge
+@onready var pulse_effect: PulseEffect = $pulse_effect
 
-@export var wind_up_timer: Timer
+@onready var wind_up_timer: Timer = $wind_up_timer
 var wind_up_duration: float = 2.0
 
-@export var recover_timer: Timer
+@onready var recover_timer: Timer = $recover_timer
 var recover_duration: float = 3.0
+
+@export var debug_circle:= preload("res://debug/debug_circle.tscn")
 
 var range_dict: Dictionary[String, float] = {
 	"bite": 50,
@@ -27,12 +29,15 @@ func _ready() -> void:
 	bind_signals()
 	add_states()
 
+	charge_handler.charge_cooldown_duration = 5.0
+	if (component_look): component_look.owner_node = anim_ss
+
 func init_states():
 	STATE = {
 		"Idle": "Idle",
 		"Normal": "Normal",
-		"WindUp": "WindUp",
 		"Attack": "Attack",
+		"WindUp": "WindUp",
 		"Charge": "Charge",
 		"Recover": "Recover",
 		"Die": "Die",
@@ -88,7 +93,7 @@ func bind_signals():
 	recover_timer.timeout.connect(_on_recover_timer_time_out)
 
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
-	charge_handler.is_charge_done.connect(_on_charge_done)
+	charge_handler.on_charge_finished.connect(_on_charge_finished)
 
 func add_states():
 	state_machine.add_states(STATE.Normal, CallableState.new(
@@ -155,10 +160,35 @@ func _on_normal_state(_delta: float):
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	component_look.look(target_pos)
 
+	# do ranged area attack
+	if (charge_handler.is_on_cooldown()):
+		state_machine.change_state(STATE.Attack)
+		return
+
+	# do charge attack
 	if (charge_handler.is_in_charge_range(player_ref.global_position) and charge_handler.can_charge):
 		state_machine.change_state(STATE.WindUp)
+		return
 
 func _on_leave_normal_state():
+	pass
+
+# ATTACK STATE
+# TODO implement attack state
+func _on_enter_attack_state():
+	# component_velocity.max_speed = speed_dict.Attack
+	# anim_ss.play_anim("attack1", false)
+	for i in 6:
+		var result_pos = Utils.get_random_position_around(player_ref, 50, 100)
+		var circle_instance = debug_circle.instantiate() as Node2D
+		circle_instance.global_position = result_pos
+		get_tree().current_scene.add_child(circle_instance)
+
+func _on_attack_state(_delta: float):
+	component_look.look(player_ref.global_position)
+	pass
+
+func _on_leave_attack_state():
 	pass
 
 # WIND UP STATE
@@ -170,24 +200,10 @@ func _on_enter_wind_up_state():
 	pulse_effect.start_pulse(anim_ss)
 
 func _on_wind_up_state(_delta: float):
-	var target_pos: Vector2 = player_ref.global_position
-	component_look.look(target_pos)
+	component_look.look(player_ref.global_position)
 
 func _on_leave_wind_up_state():
 	pulse_effect.stop_pulse()
-
-# ATTACK STATE
-# TODO implement attack state
-func _on_enter_attack_state():
-	# component_velocity.max_speed = speed_dict.Attack
-	# anim_ss.play_anim("attack1", false)
-	pass
-
-func _on_attack_state(_delta: float):
-	pass
-
-func _on_leave_attack_state():
-	pass
 
 # CHARGE STATE
 func _on_enter_charge_state():
@@ -210,8 +226,7 @@ func _on_enter_recover_state():
 	component_velocity.direction = Vector2.ZERO
 
 func _on_recover_state(_delta: float):
-	var target_pos: Vector2 = player_ref.global_position
-	component_look.look(target_pos)
+	component_look.look(player_ref.global_position)
 
 func _on_leave_recover_state():
 	pass
@@ -239,7 +254,7 @@ func _on_recover_timer_time_out():
 func _on_animation_finished(_anim_name: StringName):
 	pass
 
-func _on_charge_done():
+func _on_charge_finished():
 	state_machine.change_state(STATE.Normal)
 
 func _check_possible_attack(_target_pos: Vector2) -> String:

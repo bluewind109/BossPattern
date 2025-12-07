@@ -74,40 +74,35 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
 size = Vector2(14, 24)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "sprite", "component_health", "component_look", "component_velocity", "anim_player") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "anim_player") groups=["Player"]]
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_oul6g")
-state_machine = NodePath("callable_state_machine")
-sprite = NodePath("Sprite2D")
-component_health = NodePath("health")
-component_look = NodePath("look")
-component_velocity = NodePath("velocity")
-anim_player = NodePath("Sprite2D/AnimationPlayer")
+sprite = NodePath("character_sprite")
+anim_player = NodePath("character_sprite/animation_player")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="camera_2d" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 
 [node name="callable_state_machine" parent="." instance=ExtResource("2_rgyib")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
 visible = false
 scale = Vector2(1, 2.72)
 shape = SubResource("CircleShape2D_oul6g")
 
 [node name="health" parent="." instance=ExtResource("2_yw30f")]
 
-[node name="look" parent="." node_paths=PackedStringArray("origin_sprite") instance=ExtResource("5_8t03j")]
-origin_sprite = NodePath("../Sprite2D")
+[node name="look" parent="." instance=ExtResource("5_8t03j")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="character_sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
 texture = ExtResource("3_hg6s5")
 hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 0, 192, 32)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+[node name="animation_player" type="AnimationPlayer" parent="character_sprite"]
 libraries = {
 &"": SubResource("AnimationLibrary_2ieo8")
 }

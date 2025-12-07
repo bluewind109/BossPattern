@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bk5q3wde4ijnu"]
+[gd_scene load_steps=10 format=3 uid="uid://bk5q3wde4ijnu"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_drigw"]
 [ext_resource type="Script" uid="uid://cv6glw0h1k60u" path="res://enemy/enemy_Bat/enemy_Bat.gd" id="2_gk5d6"]
 [ext_resource type="Texture2D" uid="uid://lwxali42kc7u" path="res://enemy/enemy_Bat/sprites/Bat-IdleFly.png" id="3_e3oof"]
+[ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://common/pulse_effect/pulse_effect.tscn" id="4_3rmk0"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="5_3rmk0"]
 [ext_resource type="AnimationLibrary" uid="uid://nkq56nm7ypvj" path="res://enemy/enemy_Bat/animation/enemy_bat_anim_lib.res" id="5_e3oof"]
 [ext_resource type="PackedScene" uid="uid://dw7xrc40uht3h" path="res://common/charge/charge.tscn" id="5_p1fpe"]
@@ -12,10 +13,10 @@ radius = 7.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p1fpe"]
 
-[node name="enemy_Bat" node_paths=PackedStringArray("component_anim_ss", "component_charge", "wind_up_timer") instance=ExtResource("1_drigw")]
+[node name="enemy_Bat" node_paths=PackedStringArray("anim_ss", "charge", "wind_up_timer") instance=ExtResource("1_drigw")]
 script = ExtResource("2_gk5d6")
-component_anim_ss = NodePath("anim_spritesheet")
-component_charge = NodePath("charge")
+anim_ss = NodePath("anim_spritesheet")
+charge = NodePath("charge")
 wind_up_timer = NodePath("wind_up_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox" index="0"]
@@ -30,12 +31,11 @@ shape = SubResource("CircleShape2D_dfyub")
 
 [node name="charge" parent="." index="5" instance=ExtResource("5_p1fpe")]
 
-[node name="look" parent="." index="7" node_paths=PackedStringArray("origin_sprite")]
-origin_sprite = NodePath("../anim_spritesheet")
+[node name="pulse_effect" parent="." index="8" instance=ExtResource("4_3rmk0")]
 
-[node name="anim_spritesheet" parent="." index="8" instance=ExtResource("5_3rmk0")]
-position = Vector2(0, -8)
+[node name="anim_spritesheet" parent="." index="9" instance=ExtResource("5_3rmk0")]
 texture = ExtResource("3_e3oof")
+offset = Vector2(0, -8)
 hframes = 9
 region_enabled = true
 region_rect = Rect2(0, 0, 576, 64)
@@ -46,4 +46,4 @@ libraries = {
 &"enemy_bat_anim_lib": ExtResource("5_e3oof")
 }
 
-[node name="wind_up_timer" type="Timer" parent="." index="10"]
+[node name="wind_up_timer" type="Timer" parent="." index="11"]
