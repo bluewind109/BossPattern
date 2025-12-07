@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfays8guerdto"]
+
+[ext_resource type="Script" uid="uid://b8najat4v8gcq" path="res://explosion/explosion.gd" id="1_echoh"]
+[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://common/hitbox/hitbox.tscn" id="2_pim3w"]
+[ext_resource type="Texture2D" uid="uid://76s6d6ifyqgx" path="res://assets/circle_filled_100x100.png" id="3_mp546"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pim3w"]
+
+[node name="explosion" type="Node2D" node_paths=PackedStringArray("explo_size")]
+script = ExtResource("1_echoh")
+explo_size = NodePath("hitbox/explo_size")
+
+[node name="hitbox" parent="." instance=ExtResource("2_pim3w")]
+monitoring = false
+
+[node name="explo_size" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_pim3w")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="range_predict" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.16078432, 0, 0.15686275)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_mp546")
+
+[node name="range_real" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.16078432, 0, 0.39215687)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_mp546")
+
+[node name="delay_timer" type="Timer" parent="."]
