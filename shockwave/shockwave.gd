@@ -3,7 +3,7 @@ class_name ComponentShockwave
 
 @export var ATTACK_RANGE: float = 100.0
 
-@export var shockwave_cooldown_timer: Timer
+@onready var shockwave_cooldown_timer: Timer = $shockwave_cooldown_timer
 var shockwave_cooldown_duration: float = 7.5
 
 var target_pos: Vector2

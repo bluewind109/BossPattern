@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://s4omm7n78ybg"]
+
+[ext_resource type="Script" uid="uid://dltywfiga8uai" path="res://shockwave/shockwave.gd" id="1_dg4fi"]
+
+[node name="component_Shockwave" type="Node2D"]
+script = ExtResource("1_dg4fi")
+
+[node name="shockwave_cooldown_timer" type="Timer" parent="."]

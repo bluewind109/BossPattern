@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="4_d7w4c"]
 [ext_resource type="AnimationLibrary" uid="uid://dqhy63gr4ub3i" path="res://enemy/enemy_Golem/animation/enemy_golem_anim_lib.res" id="4_g3mdy"]
 [ext_resource type="Texture2D" uid="uid://b7xlcg6bi4koh" path="res://enemy/enemy_Golem/sprites/Golem_1_idle.png" id="4_tsbcv"]
-[ext_resource type="PackedScene" uid="uid://s4omm7n78ybg" path="res://common/shockwave/shockwave.tscn" id="6_tsbcv"]
+[ext_resource type="PackedScene" uid="uid://s4omm7n78ybg" path="res://shockwave/shockwave.tscn" id="6_tsbcv"]
 [ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://common/pulse_effect/pulse_effect.tscn" id="7_76isr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787gj"]
