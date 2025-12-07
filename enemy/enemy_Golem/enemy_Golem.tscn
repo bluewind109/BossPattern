@@ -12,13 +12,8 @@
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_637kx"]
 
-[node name="enemy_Golem" node_paths=PackedStringArray("anim_ss", "shockwave", "pulse_effect", "wind_up_timer", "recover_timer") instance=ExtResource("1_0gnu6")]
+[node name="enemy_Golem" instance=ExtResource("1_0gnu6")]
 script = ExtResource("2_787gj")
-anim_ss = NodePath("anim_spritesheet")
-shockwave = NodePath("shockwave")
-pulse_effect = NodePath("pulse_effect")
-wind_up_timer = NodePath("wind_up_timer")
-recover_timer = NodePath("recover_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox" index="0"]
 visible = false
@@ -49,6 +44,10 @@ libraries = {
 [node name="shockwave" parent="." index="8" instance=ExtResource("6_tsbcv")]
 
 [node name="pulse_effect" parent="." index="9" instance=ExtResource("7_76isr")]
+
+[node name="collision_shape_2d" parent="." index="10"]
+visible = true
+position = Vector2(0, -17)
 
 [node name="wind_up_timer" type="Timer" parent="." index="11"]
 

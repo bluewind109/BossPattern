@@ -13,11 +13,8 @@ radius = 7.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p1fpe"]
 
-[node name="enemy_Bat" node_paths=PackedStringArray("anim_ss", "charge", "wind_up_timer") instance=ExtResource("1_drigw")]
+[node name="enemy_Bat" instance=ExtResource("1_drigw")]
 script = ExtResource("2_gk5d6")
-anim_ss = NodePath("anim_spritesheet")
-charge = NodePath("charge")
-wind_up_timer = NodePath("wind_up_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox" index="0"]
 visible = false
@@ -45,5 +42,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_p1fpe"),
 &"enemy_bat_anim_lib": ExtResource("5_e3oof")
 }
+
+[node name="collision_shape_2d" parent="." index="10"]
+visible = true
+position = Vector2(0, -8)
 
 [node name="wind_up_timer" type="Timer" parent="." index="11"]
