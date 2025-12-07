@@ -16,8 +16,8 @@ height = 41.9989
 [node name="enemy_SwampAbomination" node_paths=PackedStringArray("anim_ss", "charge_handler", "pulse_effect", "wind_up_timer", "recover_timer") instance=ExtResource("1_i8lsp")]
 script = ExtResource("2_gmfen")
 mass = 40.0
-anim_ss = NodePath("component_Anim_SpriteSheet")
-charge_handler = NodePath("component_Charge")
+anim_ss = NodePath("anim_spritesheet")
+charge_handler = NodePath("charge")
 pulse_effect = NodePath("pulse_effect")
 wind_up_timer = NodePath("wind_up_timer")
 recover_timer = NodePath("recover_timer")
@@ -34,13 +34,10 @@ position = Vector2(3, -17)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_rk6qd")
 
-[node name="component_Velocity" parent="." index="4"]
-acceleration_coefficient = 5.0
+[node name="look" parent="." index="6" node_paths=PackedStringArray("origin_sprite")]
+origin_sprite = NodePath("../anim_spritesheet")
 
-[node name="component_Look" parent="." index="6" node_paths=PackedStringArray("origin_sprite")]
-origin_sprite = NodePath("../component_Anim_SpriteSheet")
-
-[node name="component_Anim_SpriteSheet" parent="." index="7" instance=ExtResource("3_rr64c")]
+[node name="anim_spritesheet" parent="." index="7" instance=ExtResource("3_rr64c")]
 position = Vector2(-16, -48)
 texture = ExtResource("5_r8ir8")
 hframes = 4
@@ -48,12 +45,12 @@ frame = 1
 region_enabled = true
 region_rect = Rect2(0, 0, 384, 96)
 
-[node name="animation_player" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
+[node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
 libraries = {
 &"enemy_swamp_abomination_lib": ExtResource("5_rdn76")
 }
 
-[node name="component_Charge" parent="." index="8" instance=ExtResource("6_xn83n")]
+[node name="charge" parent="." index="8" instance=ExtResource("6_xn83n")]
 CHARGE_RANGE = 250.0
 CHARGE_DISTANCE = 500.0
 

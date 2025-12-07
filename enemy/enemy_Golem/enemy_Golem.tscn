@@ -13,8 +13,8 @@
 
 [node name="enemy_Golem" node_paths=PackedStringArray("component_anim_ss", "component_shockwave", "wind_up_timer", "recover_timer") instance=ExtResource("1_0gnu6")]
 script = ExtResource("2_787gj")
-component_anim_ss = NodePath("component_Anim_SpriteSheet")
-component_shockwave = NodePath("component_Shockwave")
+component_anim_ss = NodePath("anim_spritesheet")
+component_shockwave = NodePath("shockwave")
 wind_up_timer = NodePath("wind_up_timer")
 recover_timer = NodePath("recover_timer")
 
@@ -28,24 +28,23 @@ visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_787gj")
 
-[node name="component_Look" parent="." index="6" node_paths=PackedStringArray("origin_sprite")]
-origin_sprite = NodePath("../component_Anim_SpriteSheet")
-is_base_sprite_looking_left = false
+[node name="look" parent="." index="6" node_paths=PackedStringArray("origin_sprite")]
+origin_sprite = NodePath("../anim_spritesheet")
 
-[node name="component_Anim_SpriteSheet" parent="." index="7" instance=ExtResource("4_d7w4c")]
+[node name="anim_spritesheet" parent="." index="7" instance=ExtResource("4_d7w4c")]
 position = Vector2(0, -32)
 texture = ExtResource("4_tsbcv")
 hframes = 8
 region_enabled = true
 region_rect = Rect2(0, 0, 720, 64)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_637kx"),
 &"enemy_golem_anim_lib": ExtResource("4_g3mdy")
 }
 
-[node name="component_Shockwave" parent="." index="8" instance=ExtResource("6_tsbcv")]
+[node name="shockwave" parent="." index="8" instance=ExtResource("6_tsbcv")]
 
 [node name="wind_up_timer" type="Timer" parent="." index="10"]
 

@@ -80,9 +80,9 @@ motion_mode = 1
 script = ExtResource("1_oul6g")
 state_machine = NodePath("callable_state_machine")
 sprite = NodePath("Sprite2D")
-component_health = NodePath("component_Health")
-component_look = NodePath("component_Look")
-component_velocity = NodePath("component_Velocity")
+component_health = NodePath("health")
+component_look = NodePath("look")
+component_velocity = NodePath("velocity")
 anim_player = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -95,9 +95,9 @@ visible = false
 scale = Vector2(1, 2.72)
 shape = SubResource("CircleShape2D_oul6g")
 
-[node name="component_Health" parent="." instance=ExtResource("2_yw30f")]
+[node name="health" parent="." instance=ExtResource("2_yw30f")]
 
-[node name="component_Look" parent="." node_paths=PackedStringArray("origin_sprite") instance=ExtResource("5_8t03j")]
+[node name="look" parent="." node_paths=PackedStringArray("origin_sprite") instance=ExtResource("5_8t03j")]
 origin_sprite = NodePath("../Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -112,21 +112,21 @@ libraries = {
 &"": SubResource("AnimationLibrary_2ieo8")
 }
 
-[node name="component_Weapon" parent="." instance=ExtResource("6_2ieo8")]
+[node name="weapon" parent="." instance=ExtResource("6_2ieo8")]
 position = Vector2(0, -10)
 
-[node name="component_Hurtbox" parent="." node_paths=PackedStringArray("component_health") instance=ExtResource("4_qjkh3")]
+[node name="hurtbox" parent="." node_paths=PackedStringArray("component_health") instance=ExtResource("4_qjkh3")]
 collision_mask = 0
-component_health = NodePath("../component_Health")
+component_health = NodePath("../health")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 visible = false
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_boad6")
 
-[node name="component_Exp" parent="." instance=ExtResource("5_g6k8r")]
+[node name="exp" parent="." instance=ExtResource("5_g6k8r")]
 script = ExtResource("6_boad6")
 
-[node name="component_Velocity" parent="." instance=ExtResource("7_boad6")]
+[node name="velocity" parent="." instance=ExtResource("7_boad6")]
 
-[node name="component_FourWaysControl" parent="component_Velocity" instance=ExtResource("7_rgyib")]
+[node name="component_FourWaysControl" parent="velocity" instance=ExtResource("7_rgyib")]

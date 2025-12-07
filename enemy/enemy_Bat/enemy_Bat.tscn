@@ -14,8 +14,8 @@ radius = 7.0
 
 [node name="enemy_Bat" node_paths=PackedStringArray("component_anim_ss", "component_charge", "wind_up_timer") instance=ExtResource("1_drigw")]
 script = ExtResource("2_gk5d6")
-component_anim_ss = NodePath("component_Anim_SpriteSheet")
-component_charge = NodePath("component_Charge")
+component_anim_ss = NodePath("anim_spritesheet")
+component_charge = NodePath("charge")
 wind_up_timer = NodePath("wind_up_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox" index="0"]
@@ -28,22 +28,19 @@ visible = false
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_dfyub")
 
-[node name="component_Velocity" parent="." index="4"]
-max_speed = 25.0
+[node name="charge" parent="." index="5" instance=ExtResource("5_p1fpe")]
 
-[node name="component_Charge" parent="." index="5" instance=ExtResource("5_p1fpe")]
+[node name="look" parent="." index="7" node_paths=PackedStringArray("origin_sprite")]
+origin_sprite = NodePath("../anim_spritesheet")
 
-[node name="component_Look" parent="." index="7" node_paths=PackedStringArray("origin_sprite")]
-origin_sprite = NodePath("../component_Anim_SpriteSheet")
-
-[node name="component_Anim_SpriteSheet" parent="." index="8" instance=ExtResource("5_3rmk0")]
+[node name="anim_spritesheet" parent="." index="8" instance=ExtResource("5_3rmk0")]
 position = Vector2(0, -8)
 texture = ExtResource("3_e3oof")
 hframes = 9
 region_enabled = true
 region_rect = Rect2(0, 0, 576, 64)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="component_Anim_SpriteSheet" index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_p1fpe"),
 &"enemy_bat_anim_lib": ExtResource("5_e3oof")
