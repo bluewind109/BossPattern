@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_drigw"]
 [ext_resource type="Script" uid="uid://cv6glw0h1k60u" path="res://enemy/enemy_Bat/enemy_Bat.gd" id="2_gk5d6"]
 [ext_resource type="Texture2D" uid="uid://lwxali42kc7u" path="res://enemy/enemy_Bat/sprites/Bat-IdleFly.png" id="3_e3oof"]
-[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/component_Anim_SpriteSheet/component_Anim_SpriteSheet.tscn" id="5_3rmk0"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="5_3rmk0"]
 [ext_resource type="AnimationLibrary" uid="uid://nkq56nm7ypvj" path="res://enemy/enemy_Bat/animation/enemy_bat_anim_lib.res" id="5_e3oof"]
-[ext_resource type="PackedScene" uid="uid://dw7xrc40uht3h" path="res://common/component_Charge/component_Charge.tscn" id="5_p1fpe"]
+[ext_resource type="PackedScene" uid="uid://dw7xrc40uht3h" path="res://common/charge/charge.tscn" id="5_p1fpe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dfyub"]
 radius = 7.0
@@ -48,10 +48,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_p1fpe"),
 &"enemy_bat_anim_lib": ExtResource("5_e3oof")
 }
-
-[node name="CollisionShape2D" parent="." index="9"]
-visible = false
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_dfyub")
 
 [node name="wind_up_timer" type="Timer" parent="." index="10"]

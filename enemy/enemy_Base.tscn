@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://cbsmy8l7srlc1"]
 
 [ext_resource type="Script" uid="uid://b4ynji4ptgobk" path="res://enemy/enemy_Base.gd" id="1_5wlh4"]
-[ext_resource type="PackedScene" uid="uid://c8qiyb0hv14it" path="res://common/component_Health/component_Health.tscn" id="2_6w35g"]
-[ext_resource type="PackedScene" uid="uid://bojlohyvov773" path="res://common/callable_state_machine/callable_state_machine.tscn" id="2_8r14e"]
-[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://common/component_Hitbox/component_Hitbox.tscn" id="3_8r14e"]
-[ext_resource type="PackedScene" uid="uid://ba5chyifcbwsv" path="res://common/component_Hurtbox/component_Hurtbox.tscn" id="4_jw7fl"]
-[ext_resource type="PackedScene" uid="uid://co3yjo3qkw6an" path="res://common/component_Steering/component_Steering.tscn" id="7_pf73l"]
-[ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://common/component_Velocity/component_Velocity.tscn" id="7_vg5so"]
-[ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://common/component_Look/component_Look.tscn" id="8_faccg"]
+[ext_resource type="PackedScene" uid="uid://c8qiyb0hv14it" path="res://common/health/health.tscn" id="2_6w35g"]
+[ext_resource type="PackedScene" uid="uid://bojlohyvov773" path="res://callable_state_machine/callable_state_machine.tscn" id="2_8r14e"]
+[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://common/hitbox/hitbox.tscn" id="3_8r14e"]
+[ext_resource type="PackedScene" uid="uid://ba5chyifcbwsv" path="res://common/hurtbox/hurtbox.tscn" id="4_jw7fl"]
+[ext_resource type="PackedScene" uid="uid://co3yjo3qkw6an" path="res://common/steering/steering.tscn" id="7_pf73l"]
+[ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://common/velocity/velocity.tscn" id="7_vg5so"]
+[ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://common/look/look.tscn" id="8_faccg"]
 
 [node name="enemy_Base" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "component_health", "component_hitbox", "component_hurtbox", "component_velocity", "component_steer", "component_look")]
 collision_layer = 256

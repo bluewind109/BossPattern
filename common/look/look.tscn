@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5srpg1xw2dur"]
+
+[ext_resource type="Script" uid="uid://ono0g306af3w" path="res://common/look/look.gd" id="1_2oksl"]
+
+[node name="component_Look" type="Node2D"]
+script = ExtResource("1_2oksl")

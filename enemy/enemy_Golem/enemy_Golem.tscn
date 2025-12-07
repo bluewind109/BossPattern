@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_0gnu6"]
 [ext_resource type="Script" uid="uid://qqh6nhuo4pf1" path="res://enemy/enemy_Golem/enemy_Golem.gd" id="2_787gj"]
-[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/component_Anim_SpriteSheet/component_Anim_SpriteSheet.tscn" id="4_d7w4c"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="4_d7w4c"]
 [ext_resource type="AnimationLibrary" uid="uid://dqhy63gr4ub3i" path="res://enemy/enemy_Golem/animation/enemy_golem_anim_lib.res" id="4_g3mdy"]
 [ext_resource type="Texture2D" uid="uid://b7xlcg6bi4koh" path="res://enemy/enemy_Golem/sprites/Golem_1_idle.png" id="4_tsbcv"]
-[ext_resource type="PackedScene" uid="uid://s4omm7n78ybg" path="res://common/component_Shockwave/component_Shockwave.tscn" id="6_tsbcv"]
+[ext_resource type="PackedScene" uid="uid://s4omm7n78ybg" path="res://common/shockwave/shockwave.tscn" id="6_tsbcv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787gj"]
 
@@ -46,11 +46,6 @@ libraries = {
 }
 
 [node name="component_Shockwave" parent="." index="8" instance=ExtResource("6_tsbcv")]
-
-[node name="CollisionShape2D" parent="." index="9"]
-visible = false
-position = Vector2(0, -15)
-shape = SubResource("CapsuleShape2D_787gj")
 
 [node name="wind_up_timer" type="Timer" parent="." index="10"]
 

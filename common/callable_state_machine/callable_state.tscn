@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvrmye70chivc"]
-
-[ext_resource type="Script" uid="uid://c0bnunsd0tkcw" path="res://common/callable_state_machine/callable_state.gd" id="1_n5vmc"]
-
-[node name="callable_state" type="Node2D"]
-script = ExtResource("1_n5vmc")

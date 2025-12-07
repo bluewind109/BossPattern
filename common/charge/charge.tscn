@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw7xrc40uht3h"]
+
+[ext_resource type="Script" uid="uid://uvpjcudm1tp3" path="res://common/charge/charge.gd" id="1_nluki"]
+
+[node name="component_Charge" type="Node2D" node_paths=PackedStringArray("charge_cooldown_timer")]
+script = ExtResource("1_nluki")
+CHARGE_RANGE = 200.0
+charge_cooldown_timer = NodePath("charge_cooldown_timer")
+
+[node name="charge_cooldown_timer" type="Timer" parent="."]

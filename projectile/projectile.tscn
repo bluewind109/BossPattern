@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ca278nten02jd"]
 
 [ext_resource type="Script" uid="uid://bdwkti5nico8r" path="res://projectile/projectile.gd" id="1_6aa83"]
-[ext_resource type="PackedScene" uid="uid://h4qd7datfdq6" path="res://common/component_ProjectileVelocity/component_ProjectileVelocity.tscn" id="2_makwg"]
+[ext_resource type="PackedScene" uid="uid://h4qd7datfdq6" path="res://common/projectile_velocity/projectile_velocity.tscn" id="2_makwg"]
 
 [node name="Projectile" type="Node2D" node_paths=PackedStringArray("component_projectile_velocity")]
 script = ExtResource("1_6aa83")

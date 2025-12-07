@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://diyefkios6nos"]
-
-[ext_resource type="Script" uid="uid://bodm8ksv0kl1d" path="res://common/component_Anim_SpriteSheet/component_Anim_SpriteSheet.gd" id="1_coc5i"]
-
-[node name="anim_spritesheet" type="Sprite2D"]
-script = ExtResource("1_coc5i")
