@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7i6e1muxswrj"]
+[gd_scene load_steps=11 format=3 uid="uid://b7i6e1muxswrj"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_i8lsp"]
 [ext_resource type="Script" uid="uid://di7i8t45k4kos" path="res://enemy/enemy_SwampAbomination/enemy_SwampAbomination.gd" id="2_gmfen"]
@@ -13,26 +13,25 @@
 radius = 16.9996
 height = 41.9989
 
-[node name="enemy_SwampAbomination" node_paths=PackedStringArray("anim_ss", "pulse_effect", "wind_up_timer", "recover_timer") instance=ExtResource("1_i8lsp")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ysgq"]
+radius = 22.0
+
+[node name="enemy_SwampAbomination" instance=ExtResource("1_i8lsp")]
 script = ExtResource("2_gmfen")
 mass = 40.0
-anim_ss = NodePath("anim_spritesheet")
-pulse_effect = NodePath("pulse_effect")
-wind_up_timer = NodePath("wind_up_timer")
-recover_timer = NodePath("recover_timer")
 debug_circle = ExtResource("3_k08v7")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="component_Hitbox" index="0"]
-visible = false
 position = Vector2(3, -17)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_rk6qd")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="component_Hurtbox" index="0"]
-visible = false
 position = Vector2(3, -17)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_rk6qd")
+debug_color = Color(0.9607843, 0, 0.52156866, 0.41960785)
 
 [node name="anim_spritesheet" parent="." index="7" instance=ExtResource("3_rr64c")]
 texture = ExtResource("5_r8ir8")
@@ -54,6 +53,10 @@ CHARGE_DISTANCE = 500.0
 [node name="shoot_random_position" type="Node2D" parent="." index="9"]
 
 [node name="pulse_effect" parent="." index="10" instance=ExtResource("7_7ysgq")]
+
+[node name="collision_shape_2d" parent="." index="11"]
+position = Vector2(0, -22)
+shape = SubResource("CircleShape2D_7ysgq")
 
 [node name="wind_up_timer" type="Timer" parent="." index="12"]
 
