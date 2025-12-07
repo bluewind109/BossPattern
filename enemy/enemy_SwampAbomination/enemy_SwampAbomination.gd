@@ -186,7 +186,6 @@ func _on_enter_attack_state():
 
 func _on_attack_state(_delta: float):
 	component_look.look(player_ref.global_position)
-	pass
 
 func _on_leave_attack_state():
 	pass
