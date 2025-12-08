@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://s35lmfixqjns"]
+[gd_scene load_steps=7 format=3 uid="uid://s35lmfixqjns"]
 
 [ext_resource type="Script" uid="uid://cpl63vx0dh74g" path="res://game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://geb0lg3x5n8l" path="res://background/background.tscn" id="2_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://v67gpa0c2rdm" path="res://player/player.tscn" id="2_vasa2"]
-[ext_resource type="PackedScene" uid="uid://dfays8guerdto" path="res://explosion/explosion.tscn" id="4_u5opy"]
 [ext_resource type="PackedScene" uid="uid://b7i6e1muxswrj" path="res://enemy/enemy_SwampAbomination/enemy_SwampAbomination.tscn" id="5_dakft"]
 [ext_resource type="PackedScene" uid="uid://cilp4lyahrv8p" path="res://enemy/enemy_Golem/enemy_Golem.tscn" id="5_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://bk5q3wde4ijnu" path="res://enemy/enemy_Bat/enemy_Bat.tscn" id="6_dakft"]
@@ -17,9 +16,6 @@ scroll_offset = Vector2(-616, -465)
 
 [node name="Player" parent="." instance=ExtResource("2_vasa2")]
 position = Vector2(562, 303)
-
-[node name="explosion" parent="." instance=ExtResource("4_u5opy")]
-position = Vector2(631, 301)
 
 [node name="enemy_Golem" parent="." instance=ExtResource("5_dxrkv")]
 position = Vector2(378, 182)

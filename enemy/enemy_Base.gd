@@ -13,6 +13,7 @@ var speed_dict: Dictionary[String, float] = {}
 @onready var component_velocity: ComponentVelocity = $velocity
 @onready var component_steer: ComponentSteer = $steering
 @onready var component_look: ComponentLook = $look
+@onready var attack_manager: AttackManager = $attack_manager
 
 var is_spawning: bool = false
 

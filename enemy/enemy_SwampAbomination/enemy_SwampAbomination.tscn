@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7i6e1muxswrj"]
+[gd_scene load_steps=11 format=3 uid="uid://b7i6e1muxswrj"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_i8lsp"]
 [ext_resource type="Script" uid="uid://di7i8t45k4kos" path="res://enemy/enemy_SwampAbomination/enemy_SwampAbomination.gd" id="2_gmfen"]
@@ -8,6 +8,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://bvfr7lmcacr6g" path="res://enemy/enemy_SwampAbomination/animation/enemy_swamp_abomination_lib.res" id="5_rdn76"]
 [ext_resource type="PackedScene" uid="uid://dw7xrc40uht3h" path="res://common/charge/charge.tscn" id="6_xn83n"]
 [ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://common/pulse_effect/pulse_effect.tscn" id="7_7ysgq"]
+[ext_resource type="PackedScene" uid="uid://c1abyrmgtotyk" path="res://poison_explosion_attack/poison_explosion_attack.tscn" id="8_k08v7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rk6qd"]
 radius = 16.9996
@@ -47,7 +48,7 @@ libraries = {
 CHARGE_RANGE = 250.0
 CHARGE_DISTANCE = 500.0
 
-[node name="shoot_random_position" type="Node2D" parent="." index="9"]
+[node name="poison_explosion_attack" parent="." index="9" instance=ExtResource("8_k08v7")]
 
 [node name="pulse_effect" parent="." index="10" instance=ExtResource("7_7ysgq")]
 

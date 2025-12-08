@@ -80,7 +80,7 @@ func _on_normal_state(_delta: float):
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	component_look.look(target_pos)
 
-	if (charge.is_in_charge_range(player_ref.global_position) and charge.can_charge):
+	if (charge.is_in_charge_range(player_ref.global_position) and charge.can_cast()):
 		state_machine.change_state(STATE.WindUp)
 
 func _on_leave_normal_state():
