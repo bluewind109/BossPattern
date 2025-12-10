@@ -57,8 +57,8 @@ func activate_explosion():
 
 func _on_delay_finished():
 	range_real.scale = range_predict.scale
-	range_predict.visible = false
-	range_real.visible = false
+	# range_predict.visible = false
+	# range_real.visible = false
 	if anim_player.has_animation("lightning_strike"): anim_player.play("lightning_strike")
 
 func _on_animation_finished(anim_name: StringName):
