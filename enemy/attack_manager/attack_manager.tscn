@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://djd68yuw8h6mi"]
 
 [ext_resource type="Script" uid="uid://dq6523jaeacb7" path="res://enemy/attack_manager/attack_manager.gd" id="1_wwx0i"]
-[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://enemy/attack_manager/enemy_skill/enemy_skill.tscn" id="2_r1bhs"]
+[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://enemy_skill/enemy_skill.tscn" id="2_r1bhs"]
 
 [node name="attack_manager" type="Node2D"]
 script = ExtResource("1_wwx0i")

@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="3_rr64c"]
 [ext_resource type="Texture2D" uid="uid://b4ae88j4e00wc" path="res://enemy/enemy_SwampAbomination/sprites/Idle.png" id="5_r8ir8"]
 [ext_resource type="AnimationLibrary" uid="uid://bvfr7lmcacr6g" path="res://enemy/enemy_SwampAbomination/animation/enemy_swamp_abomination_lib.res" id="5_rdn76"]
-[ext_resource type="PackedScene" uid="uid://boy1ugloxmvf3" path="res://common/charge/charge.tscn" id="6_xn83n"]
+[ext_resource type="PackedScene" uid="uid://boy1ugloxmvf3" path="res://enemy_skill/charge/charge.tscn" id="6_xn83n"]
 [ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://common/pulse_effect/pulse_effect.tscn" id="7_7ysgq"]
-[ext_resource type="PackedScene" uid="uid://c1abyrmgtotyk" path="res://poison_explosion_attack/poison_explosion_attack.tscn" id="8_k08v7"]
+[ext_resource type="PackedScene" uid="uid://cuwtjmojfon06" path="res://enemy_skill/poison_explosion_attack/poison_explosion_attack.tscn" id="8_k08v7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rk6qd"]
 radius = 16.9996
@@ -44,12 +44,12 @@ libraries = {
 &"enemy_swamp_abomination_lib": ExtResource("5_rdn76")
 }
 
-[node name="poison_explosion_attack" parent="." index="8" instance=ExtResource("8_k08v7")]
-
-[node name="charge" parent="." index="9" instance=ExtResource("6_xn83n")]
+[node name="charge" parent="." index="8" instance=ExtResource("6_xn83n")]
 CHARGE_RANGE = 250.0
 CHARGE_DISTANCE = 500.0
 cooldown_duration = 10.0
+
+[node name="poison_explosion_attack" parent="." index="9" instance=ExtResource("8_k08v7")]
 
 [node name="pulse_effect" parent="." index="10" instance=ExtResource("7_7ysgq")]
 
