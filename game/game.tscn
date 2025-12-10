@@ -25,3 +25,5 @@ position = Vector2(863, 159)
 
 [node name="enemy_Bat" parent="." instance=ExtResource("6_dakft")]
 position = Vector2(782, 346)
+
+[node name="explosion_container" type="Node2D" parent="."]

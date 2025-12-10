@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Utils="*res://singleton/utils.gd"
 SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
+SignalManager="*res://singleton/signal_manager.gd"
 
 [editor]
 
