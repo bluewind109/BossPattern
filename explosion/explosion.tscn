@@ -28,3 +28,4 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_mp546")
 
 [node name="delay_timer" type="Timer" parent="."]
+one_shot = true
