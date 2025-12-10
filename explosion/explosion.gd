@@ -22,6 +22,7 @@ const BASE_SCALE: float = 0.2
 func _ready() -> void:
 	delay_timer.timeout.connect(_on_delay_finished)
 	skill_sprite.visible = false
+	anim_player.animation_finished.connect(_on_animation_finished)
 	if (!hitbox.is_node_ready()):
 		await hitbox.ready
 		_on_hitbox_ready()
@@ -33,11 +34,9 @@ func _on_hitbox_ready():
 	hitbox.monitoring = false
 
 func init(spawn_pos: Vector2, delay: float) -> void:
-	print("init")
 	global_position = spawn_pos
 	delay_duration = delay
 	delay_timer.wait_time = delay_duration
-	print(explo_size.shape.radius)
 	explo_size.shape.radius = explo_radius
 
 	var scale_multiplier: float = explo_radius / BASE_RADIUS
@@ -55,7 +54,7 @@ func activate_explosion():
 	if (delay_duration > 0.0): 
 		delay_timer.start()
 		await delay_timer.timeout
-		print("[Explosion] activate_explosion")
+	print("[Explosion] activate_explosion")
 	hitbox.monitoring = true
 
 func _on_delay_finished():
@@ -63,3 +62,8 @@ func _on_delay_finished():
 	range_predict.visible = false
 	range_real.visible = false
 	if anim_player.has_animation("lightning_strike"): anim_player.play("lightning_strike")
+
+func _on_animation_finished(anim_name: StringName):
+	if (anim_name == "lightning_strike"):
+		hitbox.monitoring = false
+		queue_free()
