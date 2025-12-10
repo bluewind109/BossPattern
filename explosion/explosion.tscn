@@ -1,10 +1,73 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfays8guerdto"]
+[gd_scene load_steps=9 format=3 uid="uid://dfays8guerdto"]
 
 [ext_resource type="Script" uid="uid://b8najat4v8gcq" path="res://explosion/explosion.gd" id="1_echoh"]
 [ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://common/hitbox/hitbox.tscn" id="2_pim3w"]
 [ext_resource type="Texture2D" uid="uid://76s6d6ifyqgx" path="res://assets/circle_filled_100x100.png" id="3_mp546"]
+[ext_resource type="Texture2D" uid="uid://dj3xb008n48qr" path="res://assets/Pixel Art Skill Animations - Lightning/VFX3/Sprite-sheet/Sprite-sheet.png" id="4_tic5l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pim3w"]
+
+[sub_resource type="Animation" id="Animation_tic5l"]
+resource_name = "lightning_strike"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ran55"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4jg8r"]
+_data = {
+&"RESET": SubResource("Animation_ran55"),
+&"lightning_strike": SubResource("Animation_tic5l")
+}
 
 [node name="explosion" type="Node2D" node_paths=PackedStringArray("explo_size")]
 script = ExtResource("1_echoh")
@@ -29,3 +92,17 @@ texture = ExtResource("3_mp546")
 
 [node name="delay_timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="skill_sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -32)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_tic5l")
+hframes = 5
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 256)
+
+[node name="animation_player" type="AnimationPlayer" parent="skill_sprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_4jg8r")
+}

@@ -8,6 +8,9 @@ class_name Explosion
 @onready var range_predict: Sprite2D = $range_predict
 @onready var range_real: Sprite2D = $range_real
 
+@onready var skill_sprite: Sprite2D = $skill_sprite
+@onready var anim_player: AnimationPlayer = $skill_sprite/animation_player
+
 @export var explo_size: CollisionShape2D
 var delay_duration: float = 0.0
 var explo_duration: float = 1.0
@@ -18,6 +21,7 @@ const BASE_SCALE: float = 0.2
 
 func _ready() -> void:
 	delay_timer.timeout.connect(_on_delay_finished)
+	skill_sprite.visible = false
 	if (!hitbox.is_node_ready()):
 		await hitbox.ready
 		_on_hitbox_ready()
@@ -58,3 +62,4 @@ func _on_delay_finished():
 	range_real.scale = range_predict.scale
 	range_predict.visible = false
 	range_real.visible = false
+	anim_player.play("lightning_strike")
