@@ -1,7 +1,6 @@
 extends Node2D
 class_name Explosion
 
-
 @onready var hitbox: ComponentHitbox = $hitbox
 @onready var delay_timer: Timer = $delay_timer
 
@@ -54,7 +53,6 @@ func activate_explosion():
 	if (delay_duration > 0.0): 
 		delay_timer.start()
 		await delay_timer.timeout
-	print("[Explosion] activate_explosion")
 	hitbox.monitoring = true
 
 func _on_delay_finished():

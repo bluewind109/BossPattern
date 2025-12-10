@@ -171,8 +171,9 @@ func _on_normal_state(_delta: float):
 	# 	return
 
 	# do ranged area attack
-	# if (!charge_skill.can_cast() and 
-	if (poison_explosion_skill.is_in_cast_range(player_ref.global_position) and 
+	if (
+		# !charge_skill.can_cast() and 
+		poison_explosion_skill.is_in_cast_range(player_ref.global_position) and 
 		poison_explosion_skill.can_cast()
 	):
 		attack_manager.next_skill = poison_explosion_skill
@@ -217,7 +218,7 @@ func _on_enter_charge_state():
 	anim_ss.play_anim("attack4")
 	component_velocity.max_speed = speed_dict.Charge
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
-	charge_skill.charge(player_ref)
+	charge_skill.cast_at(player_ref)
 
 func _on_charge_state(_delta: float):
 	velocity = charge_skill.update(component_velocity.max_speed)

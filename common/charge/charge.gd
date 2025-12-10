@@ -14,17 +14,17 @@ var target_pos: Vector2
 signal on_charge_finished
 
 func _ready() -> void:
-	pass
+	cooldown_timer.wait_time = cooldown_duration
 
 func update(speed: float) -> Vector2:
 	if (is_charge_distance_reached() and is_charging):
 		is_charging = false
-		cooldown_timer.start(cooldown_duration)
+		cooldown_timer.start()
 		on_charge_finished.emit()
 
 	return charge_direction * speed
 
-func charge(_target):
+func cast_at(_target: Node2D):
 	super.cast_at(_target)
 	if (is_charging): return
 	if (cooldown_timer.time_left > 0): return

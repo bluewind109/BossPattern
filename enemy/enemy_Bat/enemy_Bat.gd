@@ -106,7 +106,7 @@ func _on_enter_charge_state():
 	anim_ss.play_anim("chase")
 	component_velocity.max_speed = speed_dict.Charge
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
-	charge_skill.charge(player_ref)
+	charge_skill.cast_at(player_ref)
 
 func _on_charge_state(_delta: float):
 	velocity = charge_skill.update(component_velocity.max_speed)

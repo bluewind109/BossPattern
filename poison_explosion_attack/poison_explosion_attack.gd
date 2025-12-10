@@ -6,11 +6,11 @@ var explo_prefab:= preload("res://explosion/explosion.tscn")
 @export var CAST_RANGE: float = 300.0
 
 var explosion_count: int = 6
-var attack_cooldown_duration: float = 4.0
+var cooldown_duration: float = 4.0
 var delay_duration: float = 2.0
 
 func _ready() -> void:
-	cooldown_timer.wait_time = attack_cooldown_duration
+	cooldown_timer.wait_time = cooldown_duration
 
 var explo_range: Vector2 = Vector2(50, 100)
 func cast_at(target: Node2D):
