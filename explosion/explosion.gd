@@ -62,4 +62,4 @@ func _on_delay_finished():
 	range_real.scale = range_predict.scale
 	range_predict.visible = false
 	range_real.visible = false
-	anim_player.play("lightning_strike")
+	if anim_player.has_animation("lightning_strike"): anim_player.play("lightning_strike")
