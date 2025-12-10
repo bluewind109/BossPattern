@@ -21,4 +21,5 @@ func _start_timer():
 	cooldown_timer.start()
 
 func _on_cooldown_finished():
-	print("[EnemySkill] _on_cooldown_finished")
+	# print("[EnemySkill] _on_cooldown_finished")
+	pass

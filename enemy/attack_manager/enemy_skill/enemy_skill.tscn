@@ -6,3 +6,4 @@
 script = ExtResource("1_cpgi8")
 
 [node name="cooldown_timer" type="Timer" parent="."]
+one_shot = true

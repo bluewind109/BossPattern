@@ -27,7 +27,6 @@ func update(speed: float) -> Vector2:
 func cast_at(_target: Node2D):
 	super.cast_at(_target)
 	if (is_charging): return
-	if (cooldown_timer.time_left > 0): return
 	is_charging = true
 	target_pos = _target.global_position
 	charge_position = global_position
