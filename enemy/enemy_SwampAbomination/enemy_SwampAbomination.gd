@@ -30,7 +30,7 @@ func _ready() -> void:
 	bind_signals()
 	add_states()
 
-	charge_skill.charge_cooldown_duration = 5.0
+	charge_skill.cooldown_duration = 5.0
 	if (component_look): component_look.owner_node = anim_ss
 
 func init_states():
@@ -165,12 +165,17 @@ func _on_normal_state(_delta: float):
 	attack_manager.attack()
 
 	# do charge attack
-	if (charge_skill.is_in_charge_range(player_ref.global_position) and charge_skill.can_cast()):
-		state_machine.change_state(STATE.WindUp)
-		return
+	# if (charge_skill.is_in_charge_range(player_ref.global_position) and charge_skill.can_cast()):
+	# 	attack_manager.next_skill = charge_skill
+	# 	state_machine.change_state(STATE.WindUp)
+	# 	return
 
 	# do ranged area attack
-	if (!charge_skill.can_cast() and poison_explosion_skill.can_cast()):
+	# if (!charge_skill.can_cast() and 
+	if (poison_explosion_skill.is_in_cast_range(player_ref.global_position) and 
+		poison_explosion_skill.can_cast()
+	):
+		attack_manager.next_skill = poison_explosion_skill
 		state_machine.change_state(STATE.Attack)
 		return
 
@@ -182,10 +187,13 @@ func _on_leave_normal_state():
 func _on_enter_attack_state():
 	# component_velocity.max_speed = speed_dict.Attack
 	# anim_ss.play_anim("attack1", false)
+	anim_ss.play_anim("idle")
 	poison_explosion_skill.cast_at(player_ref)
 
 func _on_attack_state(_delta: float):
 	component_look.look(player_ref.global_position)
+	component_velocity.max_speed = speed_dict.Recover
+	component_velocity.direction = Vector2.ZERO
 
 func _on_leave_attack_state():
 	pass
@@ -209,7 +217,7 @@ func _on_enter_charge_state():
 	anim_ss.play_anim("attack4")
 	component_velocity.max_speed = speed_dict.Charge
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
-	charge_skill.charge(player_ref.global_position)
+	charge_skill.charge(player_ref)
 
 func _on_charge_state(_delta: float):
 	velocity = charge_skill.update(component_velocity.max_speed)

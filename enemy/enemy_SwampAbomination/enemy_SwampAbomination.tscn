@@ -47,15 +47,16 @@ libraries = {
 [node name="charge" parent="." index="8" instance=ExtResource("6_xn83n")]
 CHARGE_RANGE = 250.0
 CHARGE_DISTANCE = 500.0
+cooldown_duration = 10.0
 
 [node name="poison_explosion_attack" parent="." index="9" instance=ExtResource("8_k08v7")]
 
 [node name="pulse_effect" parent="." index="10" instance=ExtResource("7_7ysgq")]
 
-[node name="collision_shape_2d" parent="." index="11"]
-visible = true
-position = Vector2(0, -22)
-
 [node name="wind_up_timer" type="Timer" parent="." index="12"]
 
 [node name="recover_timer" type="Timer" parent="." index="13"]
+
+[node name="collision_shape_2d" parent="." index="14"]
+visible = true
+position = Vector2(0, -22)

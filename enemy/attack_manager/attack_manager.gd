@@ -4,6 +4,8 @@ class_name AttackManager
 
 @onready var cooldown_timer: Timer = $cooldown_timer
 
+var next_skill: EnemySkill
+
 ## global attack cooldown
 var cooldown_duration: float = 2.0
 
@@ -12,7 +14,6 @@ func _ready() -> void:
 
 func attack():
 	cooldown_timer.start()
-	pass
 
 func can_attack() -> bool:
 	return cooldown_timer.is_stopped()
@@ -21,4 +22,4 @@ func set_cooldown_duration(val: float):
 	cooldown_duration = val
 
 func _on_cooldown_finished():
-	pass
+	print("[AttackManager] _on_cooldown_finished")

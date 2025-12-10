@@ -2,7 +2,8 @@ extends EnemyBase
 class_name EnemyBat
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var charge: ComponentCharge = $charge
+@onready var charge_skill: ComponentCharge = $charge
+@onready var pulse_effect: PulseEffect = $pulse_effect
 
 @onready var wind_up_timer: Timer = $wind_up_timer
 var wind_up_duration: float = 1.0
@@ -33,7 +34,7 @@ func _ready() -> void:
 		}
 	)
 
-	charge.on_charge_finished.connect(_on_charge_finished)
+	charge_skill.on_charge_finished.connect(_on_charge_finished)
 	if (component_look): component_look.owner_node = anim_ss
 
 	wind_up_timer.one_shot = true
@@ -80,8 +81,9 @@ func _on_normal_state(_delta: float):
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	component_look.look(target_pos)
 
-	if (charge.is_in_charge_range(player_ref.global_position) and charge.can_cast()):
+	if (charge_skill.is_in_charge_range(player_ref.global_position) and charge_skill.can_cast()):
 		state_machine.change_state(STATE.WindUp)
+		return
 
 func _on_leave_normal_state():
 	pass
@@ -91,22 +93,23 @@ func _on_enter_wind_up_state():
 	wind_up_timer.start(wind_up_duration)
 	component_velocity.max_speed = speed_dict.WindUp
 	component_velocity.direction = Vector2.ZERO
+	pulse_effect.start_pulse(anim_ss)
 
 func _on_wind_up_state(_delta: float):
 	var target_pos: Vector2 = player_ref.global_position
 	component_look.look(target_pos)
 
 func _on_leave_wind_up_state():
-	pass
+	pulse_effect.stop_pulse()
 
 func _on_enter_charge_state():
 	anim_ss.play_anim("chase")
 	component_velocity.max_speed = speed_dict.Charge
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
-	charge.charge(player_ref.global_position)
+	charge_skill.charge(player_ref)
 
 func _on_charge_state(_delta: float):
-	velocity = charge.update(component_velocity.max_speed)
+	velocity = charge_skill.update(component_velocity.max_speed)
 
 func _on_leave_charge_state():
 	pass

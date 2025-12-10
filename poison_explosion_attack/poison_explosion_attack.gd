@@ -3,6 +3,7 @@ class_name PoisonExplosionAttack
 
 var explo_prefab:= preload("res://explosion/explosion.tscn")
 
+@export var CAST_RANGE: float = 300.0
 
 var explosion_count: int = 6
 var attack_cooldown_duration: float = 4.0
@@ -16,11 +17,15 @@ func cast_at(target: Node2D):
 	super.cast_at(target)
 	for i in explosion_count:
 		var result_pos = Utils.get_random_position_around(target, explo_range.x, explo_range.y)
-		var explo_instance = explo_prefab.new() as Explosion
-		explo_instance.global_position = result_pos
+		var explo_instance = explo_prefab.instantiate() as Explosion
 		get_tree().current_scene.add_child(explo_instance)
+		explo_instance.init.call_deferred(result_pos, delay_duration)
+		explo_instance.activate_explosion.call_deferred()
+
+func is_in_cast_range(_target_pos: Vector2) -> bool:
+	var distance = _target_pos.distance_to(global_position)
+	return distance <= CAST_RANGE
 
 func _on_cooldown_finished():
 	super._on_cooldown_finished()
 	print("[PoisonExplosionAttack] _on_cooldown_finished")
-
