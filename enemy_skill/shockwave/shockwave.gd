@@ -12,11 +12,11 @@ func _ready() -> void:
 	cooldown_timer.wait_time = cooldown_duration
 	can_attack = true
 
-func attack(_target_pos: Vector2):
-	if (not can_attack): return
+func cast_at(_target: Node2D):
+	super.cast_at(_target)
 	var projectile_shockwave: ProjectileShockwave = ProjectileShockwave.new_projectile(
 		global_position, 
-		_target_pos, 
+		_target.global_position, 
 		250, 
 		75
 	)

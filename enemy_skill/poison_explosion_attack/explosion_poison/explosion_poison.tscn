@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtu6espjjrvrb"]
+
+[ext_resource type="PackedScene" uid="uid://dfays8guerdto" path="res://explosion/explosion.tscn" id="1_n74l0"]
+[ext_resource type="Script" uid="uid://chnt5s00g4o42" path="res://enemy_skill/poison_explosion_attack/explosion_poison/explosion_poison.gd" id="2_yepqf"]
+[ext_resource type="AnimationLibrary" uid="uid://bqdrdjqe62lgk" path="res://explosion/animation/explosion_poison.res" id="3_vc4bw"]
+
+[node name="explosion_poison" instance=ExtResource("1_n74l0")]
+script = ExtResource("2_yepqf")
+
+[node name="animation_player" parent="skill_sprite" index="0"]
+libraries = {
+&"explosion_poison": ExtResource("3_vc4bw")
+}

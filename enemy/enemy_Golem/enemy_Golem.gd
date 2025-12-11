@@ -131,7 +131,7 @@ func _on_normal_state(_delta: float):
 	attack_manager.attack()
 
 	if (shockwave.is_in_attack_range(player_ref.global_position) and
-		shockwave.can_attack):
+		shockwave.can_cast()):
 		state_machine.change_state(STATE.WindUp)
 
 func _on_leave_normal_state():
@@ -198,7 +198,7 @@ func _on_animation_finished(_anim_name: StringName):
 		queue_free()
 
 func _on_release_shockwave():
-	shockwave.attack(player_ref.global_position)
+	shockwave.cast_at(player_ref)
 
 func _on_die():
 	state_machine.change_state(STATE.Die)

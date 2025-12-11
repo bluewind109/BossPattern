@@ -14,6 +14,7 @@ var target_pos: Vector2
 signal on_charge_finished
 
 func _ready() -> void:
+	super._ready()
 	cooldown_timer.wait_time = cooldown_duration
 
 func update(speed: float) -> Vector2:

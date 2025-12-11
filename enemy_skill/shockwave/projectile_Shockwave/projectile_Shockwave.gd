@@ -18,7 +18,7 @@ var spawn_pos : Vector2
 func _ready() -> void:
 	pass
 
-static  func new_projectile(
+static func new_projectile(
 	_spawn_pos: Vector2,
 	_target_pos: Vector2,
 	_target_distance: float,
