@@ -16,6 +16,8 @@ radius = 7.0
 [node name="enemy_Bat" instance=ExtResource("1_drigw")]
 script = ExtResource("2_gk5d6")
 
+[node name="charge" parent="attack_manager" index="1" instance=ExtResource("5_p1fpe")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox" index="0"]
 visible = false
 position = Vector2(0, -7)
@@ -26,11 +28,9 @@ visible = false
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_dfyub")
 
-[node name="charge" parent="." index="7" instance=ExtResource("5_p1fpe")]
+[node name="pulse_effect" parent="." index="7" instance=ExtResource("4_3rmk0")]
 
-[node name="pulse_effect" parent="." index="8" instance=ExtResource("4_3rmk0")]
-
-[node name="anim_spritesheet" parent="." index="9" instance=ExtResource("5_3rmk0")]
+[node name="anim_spritesheet" parent="." index="8" instance=ExtResource("5_3rmk0")]
 texture = ExtResource("3_e3oof")
 offset = Vector2(0, -8)
 hframes = 9
@@ -43,8 +43,8 @@ libraries = {
 &"enemy_bat_anim_lib": ExtResource("5_e3oof")
 }
 
-[node name="wind_up_timer" type="Timer" parent="." index="11"]
+[node name="wind_up_timer" type="Timer" parent="." index="10"]
 
-[node name="collision_shape_2d" parent="." index="12"]
+[node name="collision_shape_2d" parent="." index="11"]
 visible = true
 position = Vector2(0, -8)

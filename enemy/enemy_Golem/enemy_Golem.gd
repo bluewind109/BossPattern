@@ -2,7 +2,7 @@ extends EnemyBase
 class_name EnemyGolem
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var shockwave: ComponentShockwave = $shockwave
+@onready var shockwave: ComponentShockwave = $attack_manager/shockwave
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
 @onready var wind_up_timer: Timer = $wind_up_timer
@@ -126,6 +126,9 @@ func _on_normal_state(_delta: float):
 		component_velocity.direction = global_position.direction_to(player_ref.global_position)
 
 	component_look.look(target_pos)
+
+	if (!attack_manager.can_attack()): return
+	attack_manager.attack()
 
 	if (shockwave.is_in_attack_range(player_ref.global_position) and
 		shockwave.can_attack):

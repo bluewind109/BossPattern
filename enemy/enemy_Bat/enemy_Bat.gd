@@ -2,7 +2,7 @@ extends EnemyBase
 class_name EnemyBat
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var charge_skill: ComponentCharge = $charge
+@onready var charge_skill: ComponentCharge = $attack_manager/charge
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
 @onready var wind_up_timer: Timer = $wind_up_timer
@@ -81,7 +81,11 @@ func _on_normal_state(_delta: float):
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	component_look.look(target_pos)
 
+	if (!attack_manager.can_attack()): return
+	attack_manager.attack()
+
 	if (charge_skill.is_in_charge_range(player_ref.global_position) and charge_skill.can_cast()):
+		attack_manager.set_next_skill(charge_skill)
 		state_machine.change_state(STATE.WindUp)
 		return
 

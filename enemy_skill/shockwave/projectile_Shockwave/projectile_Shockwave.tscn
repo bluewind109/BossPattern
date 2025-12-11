@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://qahn4byisc42"]
 
-[ext_resource type="Script" uid="uid://mjxtwy2yredv" path="res://shockwave/projectile_Shockwave/projectile_Shockwave.gd" id="1_rhuc8"]
+[ext_resource type="Script" uid="uid://mjxtwy2yredv" path="res://enemy_skill/shockwave/projectile_Shockwave/projectile_Shockwave.gd" id="1_rhuc8"]
 [ext_resource type="PackedScene" uid="uid://h4qd7datfdq6" path="res://common/projectile_velocity/projectile_velocity.tscn" id="2_o36gw"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rhuc8"]
