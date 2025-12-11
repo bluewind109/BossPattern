@@ -4,8 +4,8 @@ class_name EnemySwampAbomination
 @export var mass: float = 20.0
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var charge_skill: ComponentCharge = $charge
-@onready var poison_explosion_skill: PoisonExplosionAttack = $poison_explosion_attack
+@onready var charge_skill: ComponentCharge = $attack_manager/charge
+@onready var poison_explosion_skill: PoisonExplosionAttack = $attack_manager/poison_explosion_attack
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
 @onready var wind_up_timer: Timer = $wind_up_timer
@@ -30,7 +30,6 @@ func _ready() -> void:
 	bind_signals()
 	add_states()
 
-	charge_skill.cooldown_duration = 5.0
 	if (component_look): component_look.owner_node = anim_ss
 
 func init_states():
@@ -88,10 +87,10 @@ func init_anim_dict(_lib_name: String):
 
 func bind_signals():
 	wind_up_timer.one_shot = true
-	wind_up_timer.timeout.connect(_on_wind_up_timer_time_out)
+	wind_up_timer.timeout.connect(_on_wind_up_finished)
 
 	recover_timer.one_shot = true
-	recover_timer.timeout.connect(_on_recover_timer_time_out)
+	recover_timer.timeout.connect(_on_recover_finished)
 
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
 	charge_skill.on_charge_finished.connect(_on_charge_finished)
@@ -165,18 +164,18 @@ func _on_normal_state(_delta: float):
 	attack_manager.attack()
 
 	# do charge attack
-	# if (charge_skill.is_in_charge_range(player_ref.global_position) and charge_skill.can_cast()):
-	# 	attack_manager.next_skill = charge_skill
-	# 	state_machine.change_state(STATE.WindUp)
-	# 	return
+	if (charge_skill.is_in_charge_range(player_ref.global_position) and charge_skill.can_cast()):
+		attack_manager.set_next_skill(charge_skill)
+		state_machine.change_state(STATE.WindUp)
+		return
 
 	# do ranged area attack
 	if (
-		# !charge_skill.can_cast() and 
+		!charge_skill.can_cast() and 
 		poison_explosion_skill.is_in_cast_range(player_ref.global_position) and 
 		poison_explosion_skill.can_cast()
 	):
-		attack_manager.next_skill = poison_explosion_skill
+		attack_manager.set_next_skill(poison_explosion_skill)
 		state_machine.change_state(STATE.Attack)
 		return
 
@@ -253,10 +252,10 @@ func _on_leave_die_state():
 	pass
 
 # Functions
-func _on_wind_up_timer_time_out():
+func _on_wind_up_finished():
 	state_machine.change_state(STATE.Charge)
 
-func _on_recover_timer_time_out():
+func _on_recover_finished():
 	state_machine.change_state(STATE.Normal)
 
 func _on_animation_finished(_anim_name: StringName):
