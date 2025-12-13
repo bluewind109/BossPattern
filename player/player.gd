@@ -35,6 +35,7 @@ var current_anim: String = ""
 
 func _ready() -> void:
 	comp_velocity.owner_node = self
+	if (comp_look): comp_look.owner_node = character_sprite
 
 	state_machine.add_states(STATE.Idle, CallableState.new(
 		on_idle_state,
