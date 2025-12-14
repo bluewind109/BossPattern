@@ -8,8 +8,6 @@ class_name EnemySwampAbomination
 @onready var poison_explosion_skill: PoisonExplosionAttack = $attack_manager/poison_explosion_attack
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
-@onready var wind_up_timer: Timer = $wind_up_timer
-var wind_up_duration: float = 2.0
 
 @onready var recover_timer: Timer = $recover_timer
 var recover_duration: float = 3.0
@@ -86,14 +84,13 @@ func init_anim_dict(_lib_name: String):
 	)
 
 func bind_signals():
-	wind_up_timer.one_shot = true
-	wind_up_timer.timeout.connect(_on_wind_up_finished)
-
 	recover_timer.one_shot = true
 	recover_timer.timeout.connect(_on_recover_finished)
 
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
-	charge_skill.on_charge_finished.connect(_on_charge_finished)
+
+	# attack_manager.on_attack_ready.connect()
+	attack_manager.on_attack_finished.connect(_on_attack_finished)
 
 func add_states():
 	state_machine.add_states(STATE.Normal, CallableState.new(
@@ -201,7 +198,7 @@ func _on_leave_attack_state():
 # WIND UP STATE
 func _on_enter_wind_up_state():
 	anim_ss.play_anim("special")
-	wind_up_timer.start(wind_up_duration)
+	attack_manager.start_delay()
 	component_velocity.max_speed = speed_dict.WindUp
 	component_velocity.direction = Vector2.ZERO
 	pulse_effect.start_pulse(anim_ss)
@@ -261,8 +258,8 @@ func _on_recover_finished():
 func _on_animation_finished(_anim_name: StringName):
 	pass
 
-func _on_charge_finished():
-	state_machine.change_state(STATE.Normal)
+func _on_attack_finished():
+	state_machine.change_state(STATE.Recover)
 
 func _check_possible_attack(_target_pos: Vector2) -> String:
 	var distance = _target_pos.distance_to(global_position)

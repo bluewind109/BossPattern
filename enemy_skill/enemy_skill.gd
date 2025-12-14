@@ -3,7 +3,10 @@ class_name EnemySkill
 
 @onready var cooldown_timer: Timer = $cooldown_timer
 
+@export var delay_duration: float = 0.0
+
 signal on_skill_casted
+signal on_skill_finished
 
 func _ready() -> void:
 	pass
@@ -23,6 +26,9 @@ func can_cast() -> bool:
 
 func _start_timer():
 	cooldown_timer.start()
+
+func _on_skill_finished():
+	on_skill_finished.emit()
 
 func _on_cooldown_finished():
 	# print("[EnemySkill] _on_cooldown_finished")

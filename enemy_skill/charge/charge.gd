@@ -22,6 +22,7 @@ func update(speed: float) -> Vector2:
 		is_charging = false
 		cooldown_timer.start()
 		on_charge_finished.emit()
+		on_skill_finished.emit()
 
 	return charge_direction * speed
 

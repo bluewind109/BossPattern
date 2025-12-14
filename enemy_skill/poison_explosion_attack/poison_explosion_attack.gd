@@ -7,7 +7,6 @@ var explo_prefab:= preload("res://explosion/explosion.tscn")
 
 var explosion_count: int = 6
 @export var cooldown_duration: float = 4.0
-var delay_duration: float = 2.0
 
 func _ready() -> void:
 	super._ready()
