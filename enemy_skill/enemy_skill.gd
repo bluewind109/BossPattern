@@ -2,8 +2,9 @@ extends Node2D
 class_name EnemySkill
 
 @onready var cooldown_timer: Timer = $cooldown_timer
-
 @export var delay_duration: float = 0.0
+
+var on_skill_ready_callback: Callable
 
 signal on_skill_casted
 signal on_skill_finished

@@ -158,12 +158,13 @@ func _on_normal_state(_delta: float):
 	component_look.look(target_pos)
 
 	if (!attack_manager.can_attack()): return
-	attack_manager.attack()
+	# attack_manager.attack()
 
 	# do charge attack
 	if (charge_skill.is_in_charge_range(player_ref.global_position) and charge_skill.can_cast()):
-		attack_manager.set_next_skill(charge_skill)
-		state_machine.change_state(STATE.WindUp)
+		attack_manager.set_next_skill(charge_skill, func():
+			state_machine.change_state(STATE.WindUp)
+		)
 		return
 
 	# do ranged area attack
@@ -172,8 +173,9 @@ func _on_normal_state(_delta: float):
 		poison_explosion_skill.is_in_cast_range(player_ref.global_position) and 
 		poison_explosion_skill.can_cast()
 	):
-		attack_manager.set_next_skill(poison_explosion_skill)
-		state_machine.change_state(STATE.Attack)
+		attack_manager.set_next_skill(poison_explosion_skill, func(): 
+			state_machine.change_state(STATE.WindUp)
+		)
 		return
 
 func _on_leave_normal_state():
@@ -198,7 +200,7 @@ func _on_leave_attack_state():
 # WIND UP STATE
 func _on_enter_wind_up_state():
 	anim_ss.play_anim("special")
-	attack_manager.start_delay()
+	attack_manager.start_delay(attack_manager.get_wind_up_duration())
 	component_velocity.max_speed = speed_dict.WindUp
 	component_velocity.direction = Vector2.ZERO
 	pulse_effect.start_pulse(anim_ss)

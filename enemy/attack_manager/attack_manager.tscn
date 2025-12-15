@@ -10,3 +10,6 @@ one_shot = true
 
 [node name="delay_timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="recover_timer" type="Timer" parent="."]
+one_shot = true
