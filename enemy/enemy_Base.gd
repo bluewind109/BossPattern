@@ -4,7 +4,7 @@ class_name EnemyBase
 var player_ref: CharacterBody2D
 
 var STATE: Dictionary[String, String] = {}
-var speed_dict: Dictionary[String, float] = {}
+var speed_dict: Dictionary[int, float] = {}
 
 @onready var state_machine: CallableStateMachine = $callable_state_machine
 @onready var component_health: ComponentHealth = $health
@@ -29,6 +29,16 @@ func _disable_collision():
 	if (component_hurtbox):
 		component_hurtbox.monitoring = false
 		component_hurtbox.monitorable = false
+
+func init_component_look(_target: Node2D):
+	if (not component_look): return
+	component_look.owner_node = _target
+
+func look_at_player():
+	if (not component_look): return
+	if (not player_ref): return
+	var target_pos: Vector2 = player_ref.global_position
+	component_look.look(target_pos)
 
 func _on_die():
 	pass

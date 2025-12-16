@@ -1,24 +1,24 @@
 extends EnemyBase
 class_name EnemySwampAbomination
 
+
 @export var mass: float = 20.0
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var charge_skill: ComponentCharge = $attack_manager/charge
+@onready var charge_skill: Charge = $attack_manager/charge
 @onready var poison_explosion_skill: PoisonExplosionAttack = $attack_manager/poison_explosion_attack
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
-
-@onready var recover_timer: Timer = $recover_timer
-var recover_duration: float = 3.0
-
 @export var debug_circle:= preload("res://debug/debug_circle.tscn")
 
-var range_dict: Dictionary[String, float] = {
-	"bite": 50,
-	"charge": 250,
-	"lightning_strike": 350,
+enum RANGE {bite, charge, lightning_strike}
+var range_dict: Dictionary[int, float] = {
+	RANGE.bite: 50,
+	RANGE.charge: 250,
+	RANGE.lightning_strike: 350,
 }
+
+enum SPEED_STATE {idle, normal, wind_up, charge, poison_explosion_attack, recover, die}
 
 func _ready() -> void:
 	super._ready()
@@ -27,29 +27,28 @@ func _ready() -> void:
 	init_anim_dict("enemy_swamp_abomination_lib")
 	bind_signals()
 	add_states()
-
-	if (component_look): component_look.owner_node = anim_ss
+	super.init_component_look(anim_ss)
 
 func init_states():
 	STATE = {
 		"Idle": "Idle",
 		"Normal": "Normal",
-		"Attack": "Attack",
 		"WindUp": "WindUp",
 		"Charge": "Charge",
+		"PoisonExplosionAttack": "PoisonExplosionAttack",
 		"Recover": "Recover",
 		"Die": "Die",
 	}
 
 func init_speed_dict():
 	speed_dict = {
-		STATE.Idle: 150.0,
-		STATE.Normal: 75.0,
-		STATE.WindUp: 150.0,
-		STATE.Attack: 150.0,
-		STATE.Charge: 350.0,
-		STATE.Recover: 150.0,
-		STATE.Die: 150.0,
+		SPEED_STATE.idle: 150.0,
+		SPEED_STATE.normal: 75.0,
+		SPEED_STATE.wind_up: 150.0,
+		SPEED_STATE.charge: 350.0,
+		SPEED_STATE.poison_explosion_attack: 350.0,
+		SPEED_STATE.recover: 150.0,
+		SPEED_STATE.die: 150.0,
 	}
 
 func init_anim_dict(_lib_name: String):
@@ -84,13 +83,12 @@ func init_anim_dict(_lib_name: String):
 	)
 
 func bind_signals():
-	recover_timer.one_shot = true
-	recover_timer.timeout.connect(_on_recover_finished)
-
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
 
 	# attack_manager.on_attack_ready.connect()
 	attack_manager.on_attack_finished.connect(_on_attack_finished)
+	attack_manager.delay_cb = _on_wind_up_finished
+	attack_manager.recover_cb = _on_recover_finished
 
 func add_states():
 	state_machine.add_states(STATE.Normal, CallableState.new(
@@ -105,16 +103,16 @@ func add_states():
 		_on_leave_wind_up_state
 	))
 
-	state_machine.add_states(STATE.Attack, CallableState.new(
-		_on_attack_state,
-		_on_enter_attack_state,
-		_on_leave_attack_state
-	))
-
 	state_machine.add_states(STATE.Charge, CallableState.new(
 		_on_charge_state,
 		_on_enter_charge_state,
 		_on_leave_charge_state
+	))
+
+	state_machine.add_states(STATE.PoisonExplosionAttack, CallableState.new(
+		_on_pea_state,
+		_on_enter_pea_state,
+		_on_leave_pea_state
 	))
 
 	state_machine.add_states(STATE.Recover, CallableState.new(
@@ -137,7 +135,7 @@ func _physics_process(delta: float) -> void:
 # NORMAL STATE
 func _on_enter_normal_state():
 	anim_ss.play_anim("idle")
-	component_velocity.max_speed = speed_dict.Normal
+	component_velocity.max_speed = speed_dict[SPEED_STATE.normal]
 
 func _on_normal_state(_delta: float):
 	if (velocity == Vector2.ZERO and not component_velocity.direction):
@@ -155,16 +153,15 @@ func _on_normal_state(_delta: float):
 		mass
 	)
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
-	component_look.look(target_pos)
+	super.look_at_player()
 
 	if (!attack_manager.can_attack()): return
 	# attack_manager.attack()
 
 	# do charge attack
 	if (charge_skill.is_in_charge_range(player_ref.global_position) and charge_skill.can_cast()):
-		attack_manager.set_next_skill(charge_skill, func():
-			state_machine.change_state(STATE.WindUp)
-		)
+		attack_manager.set_next_skill(charge_skill)
+		state_machine.change_state(STATE.WindUp)
 		return
 
 	# do ranged area attack
@@ -173,40 +170,23 @@ func _on_normal_state(_delta: float):
 		poison_explosion_skill.is_in_cast_range(player_ref.global_position) and 
 		poison_explosion_skill.can_cast()
 	):
-		attack_manager.set_next_skill(poison_explosion_skill, func(): 
-			state_machine.change_state(STATE.WindUp)
-		)
+		attack_manager.set_next_skill(poison_explosion_skill)
+		state_machine.change_state(STATE.WindUp)
 		return
 
 func _on_leave_normal_state():
-	pass
-
-# ATTACK STATE
-# TODO implement attack state
-func _on_enter_attack_state():
-	# component_velocity.max_speed = speed_dict.Attack
-	# anim_ss.play_anim("attack1", false)
-	anim_ss.play_anim("idle")
-	poison_explosion_skill.cast_at(player_ref)
-
-func _on_attack_state(_delta: float):
-	component_look.look(player_ref.global_position)
-	component_velocity.max_speed = speed_dict.Recover
-	component_velocity.direction = Vector2.ZERO
-
-func _on_leave_attack_state():
 	pass
 
 # WIND UP STATE
 func _on_enter_wind_up_state():
 	anim_ss.play_anim("special")
 	attack_manager.start_delay(attack_manager.get_wind_up_duration())
-	component_velocity.max_speed = speed_dict.WindUp
+	component_velocity.max_speed = speed_dict[SPEED_STATE.wind_up]
 	component_velocity.direction = Vector2.ZERO
 	pulse_effect.start_pulse(anim_ss)
 
 func _on_wind_up_state(_delta: float):
-	component_look.look(player_ref.global_position)
+	super.look_at_player()
 
 func _on_leave_wind_up_state():
 	pulse_effect.stop_pulse()
@@ -214,7 +194,7 @@ func _on_leave_wind_up_state():
 # CHARGE STATE
 func _on_enter_charge_state():
 	anim_ss.play_anim("attack4")
-	component_velocity.max_speed = speed_dict.Charge
+	component_velocity.max_speed = speed_dict[SPEED_STATE.charge]
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	charge_skill.cast_at(player_ref)
 
@@ -224,15 +204,28 @@ func _on_charge_state(_delta: float):
 func _on_leave_charge_state():
 	pass
 
+# POISON EXPLOSION ATTACK STATE
+func _on_enter_pea_state():
+	anim_ss.play_anim("idle")
+	component_velocity.max_speed = speed_dict[SPEED_STATE.poison_explosion_attack]
+	component_velocity.direction = Vector2.ZERO
+	poison_explosion_skill.cast_at(player_ref)
+
+func _on_pea_state(_delta: float):
+	super.look_at_player()
+
+func _on_leave_pea_state():
+	pass
+
 # RECOVER STATE
 func _on_enter_recover_state():
 	anim_ss.play_anim("idle")
-	recover_timer.start(recover_duration)
-	component_velocity.max_speed = speed_dict.Recover
+	attack_manager.start_delay(attack_manager.get_recover_duration())
+	component_velocity.max_speed = speed_dict[SPEED_STATE.recover]
 	component_velocity.direction = Vector2.ZERO
 
 func _on_recover_state(_delta: float):
-	component_look.look(player_ref.global_position)
+	super.look_at_player()
 
 func _on_leave_recover_state():
 	pass
@@ -241,7 +234,7 @@ func _on_leave_recover_state():
 func _on_enter_die_state():
 	_disable_collision()
 	anim_ss.play_anim("die", false)
-	component_velocity.max_speed = speed_dict.Die
+	component_velocity.max_speed = speed_dict[SPEED_STATE.die]
 	component_velocity.direction = Vector2.ZERO
 
 func _on_die_state(_delta: float):
@@ -252,7 +245,16 @@ func _on_leave_die_state():
 
 # Functions
 func _on_wind_up_finished():
-	state_machine.change_state(STATE.Charge)
+	match attack_manager.next_skill.skill_type:
+		EnemySkill.SKILL_TYPE.charge:
+			state_machine.change_state(STATE.Charge)
+		EnemySkill.SKILL_TYPE.poison_explosion_attack:
+			state_machine.change_state(STATE.PoisonExplosionAttack)
+		_:
+			pass
+
+func _on_attack_finished():
+	state_machine.change_state(STATE.Recover)
 
 func _on_recover_finished():
 	state_machine.change_state(STATE.Normal)
@@ -260,12 +262,9 @@ func _on_recover_finished():
 func _on_animation_finished(_anim_name: StringName):
 	pass
 
-func _on_attack_finished():
-	state_machine.change_state(STATE.Recover)
-
-func _check_possible_attack(_target_pos: Vector2) -> String:
+func _check_possible_attack(_target_pos: Vector2) -> int:
 	var distance = _target_pos.distance_to(global_position)
 	for n in range_dict:
 		if (distance < range_dict[n]):
 			return n
-	return ""
+	return -1

@@ -10,6 +10,7 @@ var explosion_count: int = 6
 
 func _ready() -> void:
 	super._ready()
+	skill_type = SKILL_TYPE.poison_explosion_attack
 	cooldown_timer.wait_time = cooldown_duration
 
 var explo_range: Vector2 = Vector2(50, 100)

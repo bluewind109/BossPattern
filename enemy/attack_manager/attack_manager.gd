@@ -12,6 +12,7 @@ var is_casting: bool = false
 var cooldown_duration: float = 5.0
 
 var delay_cb: Callable
+var recover_cb: Callable
 
 signal on_attack_finished
 
@@ -27,7 +28,7 @@ func attack():
 func can_attack() -> bool:
 	return cooldown_timer.is_stopped()
 
-func set_next_skill(_skill: EnemySkill, _callback: Callable):
+func set_next_skill(_skill: EnemySkill):
 	if (next_skill and next_skill.on_skill_casted.is_connected(_on_skill_casted)): 
 		next_skill.on_skill_casted.disconnect(_on_skill_casted)
 	if (next_skill and next_skill.on_skill_finished.is_connected(_on_skill_finished)): 
@@ -39,11 +40,13 @@ func set_next_skill(_skill: EnemySkill, _callback: Callable):
 		next_skill.on_skill_casted.connect(_on_skill_casted)
 		next_skill.on_skill_finished.connect(_on_skill_finished)
 
-	if (_callback): _callback.call()
-
 func get_wind_up_duration() -> float:
 	if (not next_skill): return 0
 	return next_skill.delay_duration
+
+func get_recover_duration() -> float:
+	if (not next_skill): return 0
+	return next_skill.recover_duration
 
 func _on_skill_ready():
 	pass
@@ -61,6 +64,9 @@ func set_cooldown_duration(val: float):
 func start_delay(_delay: float):
 	delay_timer.start(_delay)
 
+func start_recover(_recover: float):
+	recover_timer.start(_recover)
+
 func start_cooldown():
 	cooldown_timer.start()
 
@@ -69,4 +75,7 @@ func _on_cooldown_finished():
 
 func _on_delay_finished():
 	if (delay_cb): delay_cb.call()
+
+func _on_recover_finished():
+	if (recover_cb): recover_cb.call()
 	start_cooldown()

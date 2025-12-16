@@ -1,5 +1,5 @@
 extends EnemySkill
-class_name ComponentCharge
+class_name Charge
 
 var charge_position: Vector2
 var charge_direction: Vector2
@@ -15,6 +15,7 @@ signal on_charge_finished
 
 func _ready() -> void:
 	super._ready()
+	skill_type = SKILL_TYPE.charge
 	cooldown_timer.wait_time = cooldown_duration
 
 func update(speed: float) -> Vector2:

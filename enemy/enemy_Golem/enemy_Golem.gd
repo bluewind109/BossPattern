@@ -11,6 +11,8 @@ var wind_up_duration: float = 1.0
 @onready var recover_timer: Timer = $recover_timer
 var recover_duration: float = 3.0
 
+enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
+
 func _ready() -> void:
 	super._ready()
 	STATE = {
@@ -23,12 +25,12 @@ func _ready() -> void:
 	}
 
 	speed_dict = {
-		STATE.Idle: 150.0,
-		STATE.Normal: 75.0,
-		STATE.WindUp: 150.0,
-		STATE.Attack: 150.0,
-		STATE.Recover: 150.0,
-		STATE.Die: 150.0,
+		SPEED_STATE.idle: 75.0,
+		SPEED_STATE.normal: 150.0,
+		SPEED_STATE.wind_up: 150.0,
+		SPEED_STATE.attack: 150.0,
+		SPEED_STATE.recover: 150.0,
+		SPEED_STATE.die: 150.0,
 	}
 
 	var lib_name = "enemy_golem_anim_lib"
@@ -50,7 +52,6 @@ func _ready() -> void:
 	)
 
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
-	if (component_look): component_look.owner_node = anim_ss
 
 	wind_up_timer.one_shot = true
 	wind_up_timer.timeout.connect(_on_wind_up_timer_time_out)
@@ -97,12 +98,14 @@ func _ready() -> void:
 
 	state_machine.set_initial_state(STATE.Normal)
 
+	super.init_component_look(anim_ss)
+
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
 
 func _on_enter_normal_state():
 	anim_ss.play_anim("idle")
-	component_velocity.max_speed = speed_dict.Normal
+	component_velocity.max_speed = speed_dict[SPEED_STATE.normal]
 
 func _on_normal_state(_delta: float):
 	if (velocity == Vector2.ZERO and not component_velocity.direction):
@@ -125,7 +128,7 @@ func _on_normal_state(_delta: float):
 		)
 		component_velocity.direction = global_position.direction_to(player_ref.global_position)
 
-	component_look.look(target_pos)
+	super.look_at_player()
 
 	if (!attack_manager.can_attack()): return
 	attack_manager.attack()
@@ -140,22 +143,22 @@ func _on_leave_normal_state():
 func _on_enter_wind_up_state():
 	anim_ss.play_anim("idle")
 	wind_up_timer.start(wind_up_duration)
-	component_velocity.max_speed = speed_dict.WindUp
+	component_velocity.max_speed = speed_dict[SPEED_STATE.wind_up]
 	component_velocity.direction = Vector2.ZERO
 	pulse_effect.start_pulse(anim_ss)
 
 func _on_wind_up_state(_delta: float):
-	component_look.look(player_ref.global_position)
+	super.look_at_player()
 
 func _on_leave_wind_up_state():
 	pulse_effect.stop_pulse()
 
 func _on_enter_attack_state():
-	component_velocity.max_speed = speed_dict.Attack
+	component_velocity.max_speed = speed_dict[SPEED_STATE.attack]
 	anim_ss.play_anim("attack", false)
 
 func _on_attack_state(_delta: float):
-	component_look.look(player_ref.global_position)
+	super.look_at_player()
 
 func _on_leave_attack_state():
 	pass
@@ -163,12 +166,11 @@ func _on_leave_attack_state():
 func _on_enter_recover_state():
 	anim_ss.play_anim("idle")
 	recover_timer.start(recover_duration)
-	component_velocity.max_speed = speed_dict.Recover
+	component_velocity.max_speed = speed_dict[SPEED_STATE.recover]
 	component_velocity.direction = Vector2.ZERO
 
 func _on_recover_state(_delta: float):
-	var target_pos: Vector2 = player_ref.global_position
-	component_look.look(target_pos)
+	super.look_at_player()
 
 func _on_leave_recover_state():
 	pass
@@ -176,7 +178,7 @@ func _on_leave_recover_state():
 func _on_enter_die_state():
 	_disable_collision()
 	anim_ss.play_anim("die", false)
-	component_velocity.max_speed = speed_dict.Die
+	component_velocity.max_speed = speed_dict[SPEED_STATE.die]
 	component_velocity.direction = Vector2.ZERO
 
 func _on_die_state(_delta: float):

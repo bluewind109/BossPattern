@@ -1,8 +1,18 @@
 extends Node2D
 class_name EnemySkill
 
+enum SKILL_TYPE 
+{
+	charge,
+	poison_explosion_attack,
+	shockwave,
+}
+
 @onready var cooldown_timer: Timer = $cooldown_timer
 @export var delay_duration: float = 0.0
+@export var recover_duration: float = 0.0
+
+var skill_type: SKILL_TYPE
 
 var on_skill_ready_callback: Callable
 

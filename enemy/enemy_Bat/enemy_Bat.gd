@@ -2,27 +2,37 @@ extends EnemyBase
 class_name EnemyBat
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var charge_skill: ComponentCharge = $attack_manager/charge
+@onready var charge: Charge = $attack_manager/charge
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
-@onready var wind_up_timer: Timer = $wind_up_timer
-var wind_up_duration: float = 1.0
+enum SPEED_STATE {idle, normal, attack, wind_up, charge, recover, die}
 
 func _ready() -> void:
 	super._ready()
+	init_states()
+	init_speed_dict()
+	init_anim_dict("enemy_bat_anim_lib")
+	bind_signals()
+	add_states()
+	super.init_component_look(anim_ss)
+
+func init_states():
 	STATE = {
 		"Normal": "Normal",
 		"WindUp": "WindUp",
 		"Charge": "Charge",
+		"Recover": "Recover",
 	}
 
+func init_speed_dict():
 	speed_dict = {
-		STATE.Normal: 75.0,
-		STATE.WindUp: 150.0,
-		STATE.Charge: 350.0,
+		SPEED_STATE.normal: 75.0,
+		SPEED_STATE.wind_up: 150.0,
+		SPEED_STATE.charge: 350.0,
 	}
 
-	var lib_name = "enemy_bat_anim_lib"
+func init_anim_dict(_lib_name: String):
+	var lib_name = _lib_name
 	anim_ss.init_anim_data(
 		{		
 			"idle": {
@@ -34,12 +44,12 @@ func _ready() -> void:
 		}
 	)
 
-	charge_skill.on_charge_finished.connect(_on_charge_finished)
-	if (component_look): component_look.owner_node = anim_ss
+func bind_signals():
+	attack_manager.delay_cb = _on_wind_up_finished
+	attack_manager.on_attack_finished.connect(_on_attack_finished)
+	attack_manager.recover_cb = _on_recover_finished
 
-	wind_up_timer.one_shot = true
-	wind_up_timer.timeout.connect(_on_wind_up_timer_time_out)
-
+func add_states():
 	state_machine.add_states(STATE.Normal, CallableState.new(
 		_on_normal_state,
 		_on_enter_normal_state,
@@ -57,7 +67,6 @@ func _ready() -> void:
 		_on_enter_charge_state,
 		_on_leave_charge_state
 	))
-
 	state_machine.set_initial_state(STATE.Normal)
 
 func _physics_process(delta: float) -> void:
@@ -65,7 +74,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_enter_normal_state():
 	anim_ss.play_anim("idle")
-	component_velocity.max_speed = speed_dict.Normal
+	component_velocity.max_speed = speed_dict[SPEED_STATE.normal]
 	
 func _on_normal_state(_delta: float):
 	# follow the player
@@ -78,14 +87,13 @@ func _on_normal_state(_delta: float):
 		component_velocity.max_speed,
 		mass
 	)
-	component_velocity.direction = global_position.direction_to(player_ref.global_position)
-	component_look.look(target_pos)
+	super.look_at_player()
 
 	if (!attack_manager.can_attack()): return
 	attack_manager.attack()
 
-	if (charge_skill.is_in_charge_range(player_ref.global_position) and charge_skill.can_cast()):
-		attack_manager.set_next_skill(charge_skill)
+	if (charge.is_in_charge_range(player_ref.global_position) and charge.can_cast()):
+		attack_manager.set_next_skill(charge)
 		state_machine.change_state(STATE.WindUp)
 		return
 
@@ -94,32 +102,39 @@ func _on_leave_normal_state():
 
 func _on_enter_wind_up_state():
 	anim_ss.play_anim("idle")
-	wind_up_timer.start(wind_up_duration)
-	component_velocity.max_speed = speed_dict.WindUp
+	attack_manager.start_delay(attack_manager.get_wind_up_duration())
+	component_velocity.max_speed = speed_dict[SPEED_STATE.wind_up]
 	component_velocity.direction = Vector2.ZERO
 	pulse_effect.start_pulse(anim_ss)
 
 func _on_wind_up_state(_delta: float):
-	var target_pos: Vector2 = player_ref.global_position
-	component_look.look(target_pos)
+	super.look_at_player()
 
 func _on_leave_wind_up_state():
 	pulse_effect.stop_pulse()
 
 func _on_enter_charge_state():
 	anim_ss.play_anim("chase")
-	component_velocity.max_speed = speed_dict.Charge
+	component_velocity.max_speed = speed_dict[SPEED_STATE.charge]
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
-	charge_skill.cast_at(player_ref)
+	charge.cast_at(player_ref)
 
 func _on_charge_state(_delta: float):
-	velocity = charge_skill.update(component_velocity.max_speed)
+	velocity = charge.update(component_velocity.max_speed)
 
 func _on_leave_charge_state():
 	pass
 
-func _on_wind_up_timer_time_out():
-	state_machine.change_state(STATE.Charge)
+func _on_wind_up_finished():
+	print("[EnemyBat] _on_wind_up_finished", typeof(attack_manager.next_skill))
+	match attack_manager.next_skill.skill_type:
+		EnemySkill.SKILL_TYPE.charge:
+			state_machine.change_state(STATE.Charge)
+		_:
+			pass
 
-func _on_charge_finished():
+func _on_attack_finished():
+	state_machine.change_state(STATE.Recover)
+
+func _on_recover_finished():
 	state_machine.change_state(STATE.Normal)
