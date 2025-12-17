@@ -43,8 +43,6 @@ libraries = {
 &"enemy_bat_anim_lib": ExtResource("5_e3oof")
 }
 
-[node name="wind_up_timer" type="Timer" parent="." index="10"]
-
-[node name="collision_shape_2d" parent="." index="11"]
+[node name="collision_shape_2d" parent="." index="10"]
 visible = true
 position = Vector2(0, -8)

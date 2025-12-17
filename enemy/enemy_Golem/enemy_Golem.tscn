@@ -46,10 +46,6 @@ libraries = {
 [node name="look" parent="." index="9"]
 is_base_sprite_looking_left = false
 
-[node name="wind_up_timer" type="Timer" parent="." index="10"]
-
-[node name="recover_timer" type="Timer" parent="." index="11"]
-
-[node name="collision_shape_2d" parent="." index="12"]
+[node name="collision_shape_2d" parent="." index="10"]
 visible = true
 position = Vector2(0, -17)
