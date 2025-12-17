@@ -1,11 +1,8 @@
 extends EnemyBase
 class_name EnemySwampAbomination
 
-
-@export var mass: float = 20.0
-
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var charge_skill: Charge = $attack_manager/charge
+@onready var charge: Charge = $attack_manager/charge
 @onready var poison_explosion_skill: PoisonExplosionAttack = $attack_manager/poison_explosion_attack
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
@@ -136,6 +133,7 @@ func _physics_process(delta: float) -> void:
 func _on_enter_normal_state():
 	anim_ss.play_anim("idle")
 	component_velocity.max_speed = speed_dict[SPEED_STATE.normal]
+	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 
 func _on_normal_state(_delta: float):
 	if (velocity == Vector2.ZERO and not component_velocity.direction):
@@ -152,21 +150,26 @@ func _on_normal_state(_delta: float):
 		component_velocity.max_speed,
 		mass
 	)
-	component_velocity.direction = global_position.direction_to(player_ref.global_position)
+
+	if (attack_manager.is_in_attack_range(player_ref.global_position)):
+		component_velocity.direction = Vector2.ZERO
+	else:
+		component_velocity.direction = global_position.direction_to(player_ref.global_position)
+
 	super.look_at_player()
 
 	if (!attack_manager.can_attack()): return
 	# attack_manager.attack()
 
 	# do charge attack
-	if (charge_skill.is_in_charge_range(player_ref.global_position) and charge_skill.can_cast()):
-		attack_manager.set_next_skill(charge_skill)
+	if (charge.is_in_charge_range(player_ref.global_position) and charge.can_cast()):
+		attack_manager.set_next_skill(charge)
 		state_machine.change_state(STATE.WindUp)
 		return
 
 	# do ranged area attack
 	if (
-		!charge_skill.can_cast() and 
+		!charge.can_cast() and 
 		poison_explosion_skill.is_in_cast_range(player_ref.global_position) and 
 		poison_explosion_skill.can_cast()
 	):
@@ -196,10 +199,10 @@ func _on_enter_charge_state():
 	anim_ss.play_anim("attack4")
 	component_velocity.max_speed = speed_dict[SPEED_STATE.charge]
 	component_velocity.direction = global_position.direction_to(player_ref.global_position)
-	charge_skill.cast_at(player_ref)
+	charge.cast_at(player_ref)
 
 func _on_charge_state(_delta: float):
-	velocity = charge_skill.update(component_velocity.max_speed)
+	velocity = charge.update(component_velocity.max_speed)
 
 func _on_leave_charge_state():
 	pass
@@ -220,7 +223,7 @@ func _on_leave_pea_state():
 # RECOVER STATE
 func _on_enter_recover_state():
 	anim_ss.play_anim("idle")
-	attack_manager.start_delay(attack_manager.get_recover_duration())
+	attack_manager.start_recover(attack_manager.get_recover_duration())
 	component_velocity.max_speed = speed_dict[SPEED_STATE.recover]
 	component_velocity.direction = Vector2.ZERO
 

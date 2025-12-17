@@ -16,12 +16,10 @@ height = 41.9989
 
 [node name="enemy_SwampAbomination" instance=ExtResource("1_i8lsp")]
 script = ExtResource("2_gmfen")
-mass = 40.0
 debug_circle = ExtResource("3_k08v7")
+mass = 40.0
 
 [node name="charge" parent="attack_manager" index="1" instance=ExtResource("6_xn83n")]
-CHARGE_RANGE = 250.0
-CHARGE_DISTANCE = 500.0
 cooldown_duration = 10.0
 
 [node name="poison_explosion_attack" parent="attack_manager" index="2" instance=ExtResource("8_k08v7")]
@@ -54,10 +52,6 @@ libraries = {
 
 [node name="pulse_effect" parent="." index="8" instance=ExtResource("7_7ysgq")]
 
-[node name="wind_up_timer" type="Timer" parent="." index="10"]
-
-[node name="recover_timer" type="Timer" parent="." index="11"]
-
-[node name="collision_shape_2d" parent="." index="12"]
+[node name="collision_shape_2d" parent="." index="10"]
 visible = true
 position = Vector2(0, -22)

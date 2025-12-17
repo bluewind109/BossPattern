@@ -29,6 +29,7 @@ func init_speed_dict():
 		SPEED_STATE.normal: 75.0,
 		SPEED_STATE.wind_up: 150.0,
 		SPEED_STATE.charge: 350.0,
+		SPEED_STATE.recover: 150.0,
 	}
 
 func init_anim_dict(_lib_name: String):
@@ -67,6 +68,13 @@ func add_states():
 		_on_enter_charge_state,
 		_on_leave_charge_state
 	))
+
+	state_machine.add_states(STATE.Recover, CallableState.new(
+		_on_recover_state,
+		_on_enter_recover_state,
+		_on_leave_recover_state
+	))
+
 	state_machine.set_initial_state(STATE.Normal)
 
 func _physics_process(delta: float) -> void:
@@ -75,11 +83,11 @@ func _physics_process(delta: float) -> void:
 func _on_enter_normal_state():
 	anim_ss.play_anim("idle")
 	component_velocity.max_speed = speed_dict[SPEED_STATE.normal]
+	component_velocity.direction = global_position.direction_to(player_ref.global_position)
 	
 func _on_normal_state(_delta: float):
 	# follow the player
 	var target_pos: Vector2 = player_ref.global_position
-	var mass: float = 20.0
 	velocity = component_steer.steer(
 		velocity,
 		global_position,
@@ -87,10 +95,16 @@ func _on_normal_state(_delta: float):
 		component_velocity.max_speed,
 		mass
 	)
+
+	if (attack_manager.is_in_attack_range(player_ref.global_position)):
+		component_velocity.direction = Vector2.ZERO
+	else:
+		component_velocity.direction = global_position.direction_to(player_ref.global_position)
+
 	super.look_at_player()
 
 	if (!attack_manager.can_attack()): return
-	attack_manager.attack()
+	# attack_manager.attack()
 
 	if (charge.is_in_charge_range(player_ref.global_position) and charge.can_cast()):
 		attack_manager.set_next_skill(charge)
@@ -123,6 +137,19 @@ func _on_charge_state(_delta: float):
 	velocity = charge.update(component_velocity.max_speed)
 
 func _on_leave_charge_state():
+	pass
+
+# RECOVER STATE
+func _on_enter_recover_state():
+	anim_ss.play_anim("idle")
+	attack_manager.start_recover(attack_manager.get_recover_duration())
+	component_velocity.max_speed = speed_dict[SPEED_STATE.recover]
+	component_velocity.direction = Vector2.ZERO
+
+func _on_recover_state(_delta: float):
+	super.look_at_player()
+
+func _on_leave_recover_state():
 	pass
 
 func _on_wind_up_finished():

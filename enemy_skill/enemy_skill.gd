@@ -24,18 +24,18 @@ func _ready() -> void:
 
 func cast():
 	if (not can_cast()): return
-	_start_timer()
+	_start_cooldown()
 	on_skill_casted.emit()
 
 func cast_at(_target: Node2D):
 	if (not can_cast()): return
-	_start_timer()
+	_start_cooldown()
 	on_skill_casted.emit()
 
 func can_cast() -> bool:
 	return cooldown_timer.is_stopped()
 
-func _start_timer():
+func _start_cooldown():
 	cooldown_timer.start()
 
 func _on_skill_finished():

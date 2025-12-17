@@ -23,11 +23,8 @@ func cast_at(target: Node2D):
 		SignalManager.on_explosion_created.emit(explo_instance)
 		explo_instance.init.call_deferred(result_pos, delay_duration)
 		explo_instance.activate_explosion.call_deferred()
+	on_skill_finished.emit()
 
 func is_in_cast_range(_target_pos: Vector2) -> bool:
 	var distance = _target_pos.distance_to(global_position)
 	return distance <= CAST_RANGE
-
-func _on_cooldown_finished():
-	super._on_cooldown_finished()
-	print("[PoisonExplosionAttack] _on_cooldown_finished")

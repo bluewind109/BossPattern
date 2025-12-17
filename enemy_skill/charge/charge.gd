@@ -3,15 +3,13 @@ class_name Charge
 
 var charge_position: Vector2
 var charge_direction: Vector2
-@export var CHARGE_RANGE: float = 300.0
-@export var CHARGE_DISTANCE: float = 400.0
+@export var CHARGE_RANGE: float = 200.0
+@export var CHARGE_DISTANCE: float = 300.0
 
 @export var cooldown_duration: float = 3.0
 var is_charging: float = false
 
 var target_pos: Vector2
-
-signal on_charge_finished
 
 func _ready() -> void:
 	super._ready()
@@ -22,7 +20,6 @@ func update(speed: float) -> Vector2:
 	if (is_charge_distance_reached() and is_charging):
 		is_charging = false
 		cooldown_timer.start()
-		on_charge_finished.emit()
 		on_skill_finished.emit()
 
 	return charge_direction * speed

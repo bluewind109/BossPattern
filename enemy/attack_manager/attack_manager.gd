@@ -6,10 +6,12 @@ class_name AttackManager
 @onready var delay_timer: Timer = $delay_timer
 @onready var recover_timer: Timer = $recover_timer
 
+@export var ATTACK_RANGE: float = 150.0
+
 var next_skill: EnemySkill
 var is_casting: bool = false
 ## global attack cooldown
-var cooldown_duration: float = 5.0
+@export var cooldown_duration: float = 2.5
 
 var delay_cb: Callable
 var recover_cb: Callable
@@ -19,6 +21,7 @@ signal on_attack_finished
 func _ready() -> void:
 	delay_timer.timeout.connect(_on_delay_finished)
 	cooldown_timer.timeout.connect(_on_cooldown_finished)
+	recover_timer.timeout.connect(_on_recover_finished)
 	cooldown_timer.wait_time = cooldown_duration
 	is_casting = false
 
@@ -27,6 +30,10 @@ func attack():
 
 func can_attack() -> bool:
 	return cooldown_timer.is_stopped()
+
+func is_in_attack_range(_target_pos: Vector2) -> bool:
+	var distance = _target_pos.distance_to(global_position)
+	return distance <= ATTACK_RANGE
 
 func set_next_skill(_skill: EnemySkill):
 	if (next_skill and next_skill.on_skill_casted.is_connected(_on_skill_casted)): 
@@ -71,11 +78,14 @@ func start_cooldown():
 	cooldown_timer.start()
 
 func _on_cooldown_finished():
-	print("[AttackManager] _on_cooldown_finished")
+	# print("[AttackManager] _on_cooldown_finished")
+	pass
 
 func _on_delay_finished():
 	if (delay_cb): delay_cb.call()
+	print("[AttackManager] _on_delay_finished")
 
 func _on_recover_finished():
 	if (recover_cb): recover_cb.call()
+	print("[AttackManager] _on_recover_finished")
 	start_cooldown()

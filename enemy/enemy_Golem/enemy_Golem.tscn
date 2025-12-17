@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d4nfpxngruc6j" path="res://enemy_skill/shockwave/shockwave.tscn" id="3_76isr"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="4_d7w4c"]
 [ext_resource type="AnimationLibrary" uid="uid://dqhy63gr4ub3i" path="res://enemy/enemy_Golem/animation/enemy_golem_anim_lib.res" id="4_g3mdy"]
-[ext_resource type="Texture2D" uid="uid://b7xlcg6bi4koh" path="res://enemy/enemy_Golem/sprites/Golem_1_idle.png" id="4_tsbcv"]
+[ext_resource type="Texture2D" uid="uid://dey5sbxosbar2" path="res://enemy/enemy_Golem/sprites/Golem_1_walk.png" id="5_76isr"]
 [ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://common/pulse_effect/pulse_effect.tscn" id="7_76isr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787gj"]
@@ -29,11 +29,11 @@ position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_787gj")
 
 [node name="anim_spritesheet" parent="." index="7" instance=ExtResource("4_d7w4c")]
-texture = ExtResource("4_tsbcv")
+texture = ExtResource("5_76isr")
 offset = Vector2(0, -32)
-hframes = 8
+hframes = 10
 region_enabled = true
-region_rect = Rect2(0, 0, 720, 64)
+region_rect = Rect2(0, 0, 900, 64)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
 libraries = {

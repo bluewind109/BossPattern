@@ -15,6 +15,8 @@ var speed_dict: Dictionary[int, float] = {}
 @onready var component_look: ComponentLook = $look
 @onready var attack_manager: AttackManager = $attack_manager
 
+@export var mass: float = 20
+
 var is_spawning: bool = false
 
 func _ready() -> void:
