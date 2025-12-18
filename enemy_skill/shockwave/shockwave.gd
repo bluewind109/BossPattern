@@ -9,8 +9,10 @@ var target_pos: Vector2
 var can_attack: bool = false
 
 func _ready() -> void:
+	skill_type = SKILL_TYPE.shockwave
 	cooldown_timer.wait_time = cooldown_duration
 	can_attack = true
+	super._ready()
 
 func cast_at(_target: Node2D):
 	super.cast_at(_target)

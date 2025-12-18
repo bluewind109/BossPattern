@@ -130,14 +130,14 @@ func _on_normal_state(_delta: float):
 		# follow the player
 		component_velocity.direction = global_position.direction_to(player_ref.global_position)
 
-
 	super.look_at_player()
 
 	if (!attack_manager.can_attack()): return
-	attack_manager.attack()
+	# attack_manager.attack()
 
 	if (shockwave.is_in_attack_range(player_ref.global_position) and
 		shockwave.can_cast()):
+		attack_manager.set_next_skill(shockwave)
 		state_machine.change_state(STATE.WindUp)
 
 func _on_leave_normal_state():
@@ -209,9 +209,6 @@ func _on_animation_finished(_anim_name: StringName):
 		state_machine.change_state(STATE.Recover)
 	elif (_anim_name == anim_ss.get_anim_id("die")):
 		queue_free()
-
-func _on_release_shockwave():
-	shockwave.cast_at(player_ref)
 
 func _on_die():
 	state_machine.change_state(STATE.Die)

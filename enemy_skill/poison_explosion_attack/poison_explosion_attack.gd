@@ -9,9 +9,9 @@ var explosion_count: int = 6
 @export var cooldown_duration: float = 4.0
 
 func _ready() -> void:
-	super._ready()
 	skill_type = SKILL_TYPE.poison_explosion_attack
 	cooldown_timer.wait_time = cooldown_duration
+	super._ready()
 
 var explo_range: Vector2 = Vector2(50, 100)
 func cast_at(target: Node2D):

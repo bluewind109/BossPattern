@@ -12,9 +12,9 @@ var is_charging: float = false
 var target_pos: Vector2
 
 func _ready() -> void:
-	super._ready()
 	skill_type = SKILL_TYPE.charge
 	cooldown_timer.wait_time = cooldown_duration
+	super._ready()
 
 func update(speed: float) -> Vector2:
 	if (is_charge_distance_reached() and is_charging):

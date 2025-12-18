@@ -20,7 +20,7 @@ signal on_skill_casted
 signal on_skill_finished
 
 func _ready() -> void:
-	pass
+	assert(skill_type != null)
 
 func cast():
 	if (not can_cast()): return
