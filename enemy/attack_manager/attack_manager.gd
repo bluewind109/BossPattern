@@ -83,9 +83,9 @@ func _on_cooldown_finished():
 
 func _on_delay_finished():
 	if (delay_cb): delay_cb.call()
-	print("[AttackManager] _on_delay_finished")
+	# print("[AttackManager] _on_delay_finished")
 
 func _on_recover_finished():
 	if (recover_cb): recover_cb.call()
-	print("[AttackManager] _on_recover_finished")
+	# print("[AttackManager] _on_recover_finished")
 	start_cooldown()

@@ -153,7 +153,7 @@ func _on_leave_recover_state():
 	pass
 
 func _on_wind_up_finished():
-	print("[EnemyBat] _on_wind_up_finished", typeof(attack_manager.next_skill))
+	# print("[EnemyBat] _on_wind_up_finished", typeof(attack_manager.next_skill))
 	match attack_manager.next_skill.skill_type:
 		EnemySkill.SKILL_TYPE.charge:
 			state_machine.change_state(STATE.Charge)
