@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cuwtjmojfon06" path="res://enemy_skill/poison_explosion_attack/poison_explosion_attack.tscn" id="3_ree8f"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="3_vcj3g"]
 [ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://common/pulse_effect/pulse_effect.tscn" id="4_ree8f"]
-[ext_resource type="Texture2D" uid="uid://dup2iq6iyla3a" path="res://assets/DARK - Character Pack 3/Summoner/idle.png" id="5_favoi"]
+[ext_resource type="Texture2D" uid="uid://dup2iq6iyla3a" path="res://enemy/enemy_Mage/sprites/idle.png" id="5_favoi"]
 [ext_resource type="AnimationLibrary" uid="uid://rwvyrh05hhsi" path="res://enemy/enemy_Mage/animation/enemy_mage_lib.res" id="6_glphd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_glphd"]
