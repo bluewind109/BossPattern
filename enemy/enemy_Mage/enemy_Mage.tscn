@@ -1,7 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4bvc1nfwdm4g"]
+[gd_scene load_steps=9 format=3 uid="uid://b4bvc1nfwdm4g"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_briyy"]
 [ext_resource type="Script" uid="uid://cpwjigdy3peav" path="res://enemy/enemy_Mage/enemy_Mage.gd" id="2_uixk6"]
+[ext_resource type="PackedScene" uid="uid://cuwtjmojfon06" path="res://enemy_skill/poison_explosion_attack/poison_explosion_attack.tscn" id="3_ree8f"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="3_vcj3g"]
+[ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://common/pulse_effect/pulse_effect.tscn" id="4_ree8f"]
+[ext_resource type="Texture2D" uid="uid://dup2iq6iyla3a" path="res://assets/DARK - Character Pack 3/Summoner/idle.png" id="5_favoi"]
+[ext_resource type="AnimationLibrary" uid="uid://rwvyrh05hhsi" path="res://enemy/enemy_Mage/animation/enemy_mage_lib.res" id="6_glphd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_glphd"]
+radius = 9.0
+height = 24.0
 
 [node name="enemy_Mage" instance=ExtResource("1_briyy")]
 script = ExtResource("2_uixk6")
+
+[node name="poison_explosion_attack" parent="attack_manager" index="3" instance=ExtResource("3_ree8f")]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="component_Hitbox" index="0"]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_glphd")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="component_Hurtbox" index="0"]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_glphd")
+
+[node name="anim_spritesheet" parent="." index="9" instance=ExtResource("3_vcj3g")]
+texture = ExtResource("5_favoi")
+offset = Vector2(-8, -22)
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 0, 276, 44)
+
+[node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
+libraries = {
+&"enemy_mage_lib": ExtResource("6_glphd")
+}
+
+[node name="pulse_effect" parent="." index="10" instance=ExtResource("4_ree8f")]
