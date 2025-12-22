@@ -203,12 +203,14 @@ func _on_attack_finished():
 	
 func _on_recover_finished():
 	state_machine.change_state(STATE.Normal)
+	# _on_die()
+
+
+func _on_die():
+	state_machine.change_state(STATE.Die)
 
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == anim_ss.get_anim_id("attack")):
 		state_machine.change_state(STATE.Recover)
 	elif (_anim_name == anim_ss.get_anim_id("die")):
 		queue_free()
-
-func _on_die():
-	state_machine.change_state(STATE.Die)

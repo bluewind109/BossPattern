@@ -22,6 +22,7 @@ func init_states():
 		"WindUp": "WindUp",
 		"Charge": "Charge",
 		"Recover": "Recover",
+		"Die": "Die",
 	}
 
 func init_speed_dict():
@@ -30,6 +31,7 @@ func init_speed_dict():
 		SPEED_STATE.wind_up: 150.0,
 		SPEED_STATE.charge: 350.0,
 		SPEED_STATE.recover: 150.0,
+		SPEED_STATE.die: 75.0,
 	}
 
 func init_anim_dict(_lib_name: String):
@@ -73,6 +75,12 @@ func add_states():
 		_on_recover_state,
 		_on_enter_recover_state,
 		_on_leave_recover_state
+	))
+
+	state_machine.add_states(STATE.Die, CallableState.new(
+		_on_die_state,
+		_on_enter_die_state,
+		_on_leave_die_state
 	))
 
 	state_machine.set_initial_state(STATE.Normal)
@@ -152,6 +160,19 @@ func _on_recover_state(_delta: float):
 func _on_leave_recover_state():
 	pass
 
+# DIE STATE
+func _on_enter_die_state():
+	_disable_collision()
+	anim_ss.play_anim("die", false)
+	component_velocity.max_speed = speed_dict[SPEED_STATE.die]
+	component_velocity.direction = Vector2.ZERO
+
+func _on_die_state(_delta: float):
+	pass
+
+func _on_leave_die_state():
+	pass
+
 func _on_wind_up_finished():
 	# print("[EnemyBat] _on_wind_up_finished", typeof(attack_manager.next_skill))
 	match attack_manager.next_skill.skill_type:
@@ -165,3 +186,14 @@ func _on_attack_finished():
 
 func _on_recover_finished():
 	state_machine.change_state(STATE.Normal)
+	# _on_die()
+
+
+func _on_die():
+	print("_on_die")
+	super._on_die()
+	state_machine.change_state(STATE.Die)
+
+func _on_animation_finished(_anim_name: StringName):
+	if (_anim_name == anim_ss.get_anim_id("die")):
+		queue_free()
