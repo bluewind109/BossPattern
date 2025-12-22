@@ -24,6 +24,21 @@ func _ready() -> void:
 	if (component_velocity): component_velocity.owner_node = self 
 	if (component_health): component_health.died.connect(_on_die)
 
+func init_states():
+	pass
+
+func init_speed_dict():
+	pass
+
+func init_anim_dict(_lib_name: String):
+	pass
+
+func bind_signals():
+	pass
+
+func add_states():
+	pass
+
 func _disable_collision():
 	if (component_hitbox):
 		component_hitbox.monitoring = false
