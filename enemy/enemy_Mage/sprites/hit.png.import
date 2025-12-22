@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwtgbwxty5gsg"
-path="res://.godot/imported/move.png-8754902aa41e758779c5150c533e7f32.ctex"
+uid="uid://cylv6bk8hragh"
+path="res://.godot/imported/hit.png-4153492556b551fb6c47da2090e8612a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DARK - Character Pack 3/Summoner/move.png"
-dest_files=["res://.godot/imported/move.png-8754902aa41e758779c5150c533e7f32.ctex"]
+source_file="res://enemy/enemy_Mage/sprites/hit.png"
+dest_files=["res://.godot/imported/hit.png-4153492556b551fb6c47da2090e8612a.ctex"]
 
 [params]
 
