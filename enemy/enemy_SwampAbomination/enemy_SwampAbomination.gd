@@ -6,8 +6,6 @@ class_name EnemySwampAbomination
 @onready var poison_explosion_skill: PoisonExplosionAttack = $attack_manager/poison_explosion_attack
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
-@export var debug_circle:= preload("res://debug/debug_circle.tscn")
-
 enum RANGE {bite, charge, lightning_strike}
 var range_dict: Dictionary[int, float] = {
 	RANGE.bite: 50,
@@ -39,13 +37,13 @@ func init_states():
 
 func init_speed_dict():
 	speed_dict = {
-		SPEED_STATE.idle: 150.0,
+		SPEED_STATE.idle: 75.0,
 		SPEED_STATE.normal: 75.0,
-		SPEED_STATE.wind_up: 150.0,
+		SPEED_STATE.wind_up: 75.0,
 		SPEED_STATE.charge: 350.0,
-		SPEED_STATE.poison_explosion_attack: 350.0,
-		SPEED_STATE.recover: 150.0,
-		SPEED_STATE.die: 150.0,
+		SPEED_STATE.poison_explosion_attack: 75.0,
+		SPEED_STATE.recover: 75.0,
+		SPEED_STATE.die: 75.0,
 	}
 
 func init_anim_dict(_lib_name: String):
@@ -74,7 +72,7 @@ func init_anim_dict(_lib_name: String):
 				"anim_id": lib_name + "/" + "special",
 			},
 			"die": {
-				"anim_id": lib_name + "/" + "death",
+				"anim_id": lib_name + "/" + "die",
 			},
 		}
 	)
@@ -264,10 +262,3 @@ func _on_recover_finished():
 
 func _on_animation_finished(_anim_name: StringName):
 	pass
-
-func _check_possible_attack(_target_pos: Vector2) -> int:
-	var distance = _target_pos.distance_to(global_position)
-	for n in range_dict:
-		if (distance < range_dict[n]):
-			return n
-	return -1
