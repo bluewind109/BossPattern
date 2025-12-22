@@ -4,6 +4,7 @@ class_name EnemySkill
 enum SKILL_TYPE 
 {
 	charge,
+	lightning_strike,
 	poison_explosion_attack,
 	shockwave,
 }
