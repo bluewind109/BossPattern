@@ -71,3 +71,7 @@ attack={
 2d_physics/layer_9="Enemy"
 2d_physics/layer_10="EnemyProjectile"
 2d_physics/layer_11="EnemySkill"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
