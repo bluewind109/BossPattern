@@ -61,6 +61,7 @@ func init_anim_dict(_lib_name: String):
 	)
 
 func bind_signals():
+	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
 	attack_manager.on_attack_finished.connect(_on_attack_finished)
 	attack_manager.delay_cb = _on_wind_up_finished
 	attack_manager.recover_cb = _on_recover_finished
@@ -172,7 +173,7 @@ func _on_leave_pea_state():
 
 # RECOVER STATE
 func _on_enter_recover_state():
-	anim_ss.play_anim("idle")
+	# anim_ss.play_anim("idle")
 	attack_manager.start_recover(attack_manager.get_recover_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.recover])
 	component_velocity.set_direction(Vector2.ZERO)
@@ -216,5 +217,7 @@ func _on_die():
 	state_machine.change_state(STATE.Die)
 
 func _on_animation_finished(_anim_name: StringName):
+	if (_anim_name == anim_ss.get_anim_id("summon")):
+		anim_ss.play_anim("idle")
 	if (_anim_name == anim_ss.get_anim_id("die")):
 		queue_free()

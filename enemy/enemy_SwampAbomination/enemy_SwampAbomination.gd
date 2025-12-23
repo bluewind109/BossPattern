@@ -79,8 +79,6 @@ func init_anim_dict(_lib_name: String):
 
 func bind_signals():
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
-
-	# attack_manager.on_attack_ready.connect()
 	attack_manager.on_attack_finished.connect(_on_attack_finished)
 	attack_manager.delay_cb = _on_wind_up_finished
 	attack_manager.recover_cb = _on_recover_finished
