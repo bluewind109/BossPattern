@@ -1,79 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx10hkpffvam7"]
+[gd_scene load_steps=7 format=3 uid="uid://dx10hkpffvam7"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_mj3h6"]
 [ext_resource type="Script" uid="uid://kei166y1fge6" path="res://enemy/enemy_Ghoul/enemy_Ghoul.gd" id="2_4jn1o"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="3_wchuc"]
 [ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://common/pulse_effect/pulse_effect.tscn" id="4_4n3ik"]
-[ext_resource type="Texture2D" uid="uid://5r4hhvvys0nr" path="res://enemy/enemy_Ghoul/sprites/death.png" id="4_q5mot"]
+[ext_resource type="Texture2D" uid="uid://by4758ldyu3jq" path="res://enemy/enemy_Ghoul/sprites/Wake.png" id="4_q5mot"]
 [ext_resource type="AnimationLibrary" uid="uid://dan4b8av3lg87" path="res://enemy/enemy_Ghoul/animation/enemy_ghoul_lib.res" id="5_q5mot"]
-
-[sub_resource type="Animation" id="Animation_3cwum"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:hframes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:vframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:region_rect")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 496, 33)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:texture")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_q5mot")]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_que0r"]
-_data = {
-&"RESET": SubResource("Animation_3cwum")
-}
 
 [node name="enemy_Ghoul" instance=ExtResource("1_mj3h6")]
 script = ExtResource("2_4jn1o")
@@ -85,13 +17,12 @@ is_base_sprite_looking_left = false
 position = Vector2(0, -16)
 texture = ExtResource("4_q5mot")
 offset = Vector2(2, 0)
-hframes = 8
+hframes = 4
 region_enabled = true
-region_rect = Rect2(0, 0, 496, 33)
+region_rect = Rect2(0, 0, 248, 33)
 
 [node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
 libraries = {
-&"": SubResource("AnimationLibrary_que0r"),
 &"enemy_ghoul_lib": ExtResource("5_q5mot")
 }
 

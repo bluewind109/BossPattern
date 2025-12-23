@@ -34,16 +34,19 @@ func init_anim_dict(_lib_name: String):
 	anim_ss.init_anim_data(
 		{		
 			"idle": {
-				"anim_id": lib_name + "/" + "golem_idle",
+				"anim_id": lib_name + "/" + "wake",
 			},
 			"walk": {
-				"anim_id": lib_name + "/" + "golem_walk",
+				"anim_id": lib_name + "/" + "walk",
 			},
 			"attack": {
-				"anim_id": lib_name + "/" + "golem_attack",
+				"anim_id": lib_name + "/" + "attack",
 			},
 			"die": {
-				"anim_id": lib_name + "/" + "golem_die",
+				"anim_id": lib_name + "/" + "death",
+			},
+			"spawn": {
+				"anim_id": lib_name + "/" + "spawn",
 			},
 		}
 	)
