@@ -1,16 +1,17 @@
 extends Explosion
 class_name ExplosionPoison
 
+var lib_name: String = "explosion_poison"
 func _ready() -> void:
 	super._ready()
-	anim_lib_path = "res://explosion/animation/explosion_poison.res"
-	var anim_lib: AnimationLibrary = load(anim_lib_path)
-	if (anim_lib):
-		anim_player.add_animation_library("explosion_poison", anim_lib)
+	anim_name = "explosion_poison/explode"
 
 func init(spawn_pos: Vector2, delay: float) -> void:
-	pass
+	super.init(spawn_pos, delay)
 
-func set_anim_ss():
-	anim_player.get_animation_library("explosion_poison")
-	pass
+func _on_delay_finished():
+	super._on_delay_finished()
+	if anim_player.has_animation(anim_name): anim_player.play(anim_name)
+
+func _on_animation_finished(_anim_name: StringName):
+	super._on_animation_finished(anim_name)

@@ -1,13 +1,91 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtu6espjjrvrb"]
+[gd_scene load_steps=7 format=3 uid="uid://dtu6espjjrvrb"]
 
 [ext_resource type="PackedScene" uid="uid://dfays8guerdto" path="res://explosion/explosion.tscn" id="1_n74l0"]
 [ext_resource type="Script" uid="uid://chnt5s00g4o42" path="res://enemy_skill/poison_explosion_attack/explosion_poison/explosion_poison.gd" id="2_yepqf"]
-[ext_resource type="AnimationLibrary" uid="uid://bqdrdjqe62lgk" path="res://explosion/animation/explosion_poison.res" id="3_vc4bw"]
+[ext_resource type="Texture2D" uid="uid://da86s65w3elp2" path="res://enemy_skill/poison_explosion_attack/explosion_poison/sprites/fx1_magic_puff_large_green/spritesheet.png" id="3_rs537"]
+[ext_resource type="AnimationLibrary" uid="uid://bqdrdjqe62lgk" path="res://enemy_skill/poison_explosion_attack/explosion_poison/animation/explosion_poison.res" id="3_vc4bw"]
+
+[sub_resource type="Animation" id="Animation_rs537"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:region_rect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 576, 80)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_rs537")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hxfoj"]
+_data = {
+&"RESET": SubResource("Animation_rs537")
+}
 
 [node name="explosion_poison" instance=ExtResource("1_n74l0")]
 script = ExtResource("2_yepqf")
 
+[node name="skill_sprite" parent="." index="4"]
+position = Vector2(0, 0)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_rs537")
+hframes = 12
+frame = 5
+region_rect = Rect2(0, 0, 576, 80)
+
 [node name="animation_player" parent="skill_sprite" index="0"]
 libraries = {
+&"": SubResource("AnimationLibrary_hxfoj"),
 &"explosion_poison": ExtResource("3_vc4bw")
 }

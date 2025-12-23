@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da86s65w3elp2"
-path="res://.godot/imported/spritesheet.png-c6b7aa2979da72c2ed0a6dd7cd1998e1.ctex"
+uid="uid://bkhp4dqlx5ncl"
+path="res://.godot/imported/spritesheet.png-e91f8d3c6b5ec9932155eb895ae0a781.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Super Pixel Effects Pack 1/spritesheet/fx1_magic_puff_large_green/spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-c6b7aa2979da72c2ed0a6dd7cd1998e1.ctex"]
+source_file="res://enemy_skill/poison_explosion_attack/explosion_poison/sprites/fx1_magic_puff_small_green/spritesheet.png"
+dest_files=["res://.godot/imported/spritesheet.png-e91f8d3c6b5ec9932155eb895ae0a781.ctex"]
 
 [params]
 

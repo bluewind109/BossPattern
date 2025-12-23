@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://common/hitbox/hitbox.tscn" id="2_pim3w"]
 [ext_resource type="Texture2D" uid="uid://76s6d6ifyqgx" path="res://assets/circle_filled_100x100.png" id="3_mp546"]
 [ext_resource type="Texture2D" uid="uid://dj3xb008n48qr" path="res://assets/Pixel Art Skill Animations - Lightning/VFX3/Sprite-sheet/Sprite-sheet.png" id="4_tic5l"]
-[ext_resource type="AnimationLibrary" uid="uid://bqdrdjqe62lgk" path="res://explosion/animation/explosion_poison.res" id="5_ran55"]
+[ext_resource type="AnimationLibrary" uid="uid://bqdrdjqe62lgk" path="res://enemy_skill/poison_explosion_attack/explosion_poison/animation/explosion_poison.res" id="5_ran55"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pim3w"]
+radius = 20.0
 
 [node name="explosion" type="Node2D" node_paths=PackedStringArray("explo_size")]
 script = ExtResource("1_echoh")
@@ -18,7 +19,7 @@ monitoring = false
 
 [node name="explo_size" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_pim3w")
-debug_color = Color(0, 0.6, 0.69803923, 0)
+debug_color = Color(0, 0.6, 0.69803923, 0.078431375)
 
 [node name="range_predict" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0.16078432, 0, 0.15686275)

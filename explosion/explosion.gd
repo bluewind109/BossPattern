@@ -15,7 +15,7 @@ class_name Explosion
 @export var explo_radius: float = 20.0
 
 @export var anim_res: Resource
-var anim_name: String = "explosion_poison/lightning_strike"
+var anim_name: String = ""
 
 var delay_duration: float = 0.0
 var explo_duration: float = 1.0
@@ -65,9 +65,6 @@ func activate_explosion():
 
 func _on_delay_finished():
 	range_real.scale = range_predict.scale
-	# range_predict.visible = false
-	# range_real.visible = false
-	if anim_player.has_animation(anim_name): anim_player.play(anim_name)
 
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == anim_name):
