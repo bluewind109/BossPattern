@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xh1lhxy52cy1"
-path="res://.godot/imported/hit.png-e137bb92147cc494e2c744312f03b640.ctex"
+path="res://.godot/imported/hit.png-0c9969063016d202449e65e0f93ac387.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DARK - Character Pack 3/Ghoul/hit.png"
-dest_files=["res://.godot/imported/hit.png-e137bb92147cc494e2c744312f03b640.ctex"]
+source_file="res://enemy/enemy_Ghoul/sprites/hit.png"
+dest_files=["res://.godot/imported/hit.png-0c9969063016d202449e65e0f93ac387.ctex"]
 
 [params]
 

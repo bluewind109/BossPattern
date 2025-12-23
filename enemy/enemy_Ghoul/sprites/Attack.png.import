@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5r4hhvvys0nr"
-path="res://.godot/imported/death.png-dd6c7bfebb34220df4290ba40ad10257.ctex"
+uid="uid://cb55sb6pooap0"
+path="res://.godot/imported/Attack.png-c68682acd2c2b4059b0dfde8592be582.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DARK - Character Pack 3/Ghoul/death.png"
-dest_files=["res://.godot/imported/death.png-dd6c7bfebb34220df4290ba40ad10257.ctex"]
+source_file="res://enemy/enemy_Ghoul/sprites/Attack.png"
+dest_files=["res://.godot/imported/Attack.png-c68682acd2c2b4059b0dfde8592be582.ctex"]
 
 [params]
 

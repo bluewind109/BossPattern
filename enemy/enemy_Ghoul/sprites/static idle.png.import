@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by4758ldyu3jq"
-path="res://.godot/imported/Wake.png-03fa130a6a7ecece33a0fc1910d4bb3f.ctex"
+uid="uid://cjt2bvr31ii5w"
+path="res://.godot/imported/static idle.png-d0dc90be2bf447676b4e97981da9c195.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DARK - Character Pack 3/Ghoul/Wake.png"
-dest_files=["res://.godot/imported/Wake.png-03fa130a6a7ecece33a0fc1910d4bb3f.ctex"]
+source_file="res://enemy/enemy_Ghoul/sprites/static idle.png"
+dest_files=["res://.godot/imported/static idle.png-d0dc90be2bf447676b4e97981da9c195.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blk1dfqas1ryw"
-path="res://.godot/imported/Ghoul Sprite Sheet 62 x 33.png-eed3f8d2029f1527f632c12640d86e75.ctex"
+uid="uid://bo72c0f0bo3s4"
+path="res://.godot/imported/spawn.png-0221c03886ec669cb4f2fef690e33b07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DARK - Character Pack 3/Ghoul/Ghoul Sprite Sheet 62 x 33.png"
-dest_files=["res://.godot/imported/Ghoul Sprite Sheet 62 x 33.png-eed3f8d2029f1527f632c12640d86e75.ctex"]
+source_file="res://enemy/enemy_Ghoul/sprites/spawn.png"
+dest_files=["res://.godot/imported/spawn.png-0221c03886ec669cb4f2fef690e33b07.ctex"]
 
 [params]
 
