@@ -93,8 +93,8 @@ func _physics_process(delta: float) -> void:
 # NORMAL STATE
 func _on_enter_normal_state():
 	anim_ss.play_anim("idle")
-	component_velocity.max_speed = speed_dict[SPEED_STATE.normal]
-	component_velocity.direction = global_position.direction_to(player_ref.global_position)
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
+	component_velocity.set_direction(global_position.direction_to(player_ref.global_position))
 
 func _on_normal_state(_delta: float):
 	if (velocity == Vector2.ZERO and not component_velocity.direction):
@@ -112,11 +112,11 @@ func _on_normal_state(_delta: float):
 	)
 
 	if (attack_manager.is_in_attack_range(player_ref.global_position)):
-		component_velocity.direction = Vector2.ZERO
+		component_velocity.set_direction(Vector2.ZERO)
 	else:
 		# follow the player
-		component_velocity.direction = global_position.direction_to(player_ref.global_position)
-		
+		component_velocity.set_direction(global_position.direction_to(player_ref.global_position))
+
 	super.look_at_player()
 	if (!attack_manager.can_attack()): return
 	
@@ -128,8 +128,8 @@ func _on_leave_normal_state():
 func _on_enter_wind_up_state():
 	anim_ss.play_anim("idle")
 	attack_manager.start_delay(attack_manager.get_wind_up_duration())
-	component_velocity.max_speed = speed_dict[SPEED_STATE.wind_up]
-	component_velocity.direction = Vector2.ZERO
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.wind_up])
+	component_velocity.set_direction(Vector2.ZERO)
 	pulse_effect.start_pulse(anim_ss)
 
 func _on_wind_up_state(_delta: float):
@@ -140,7 +140,7 @@ func _on_leave_wind_up_state():
 
 # ATTACK STATE
 func _on_enter_attack_state():
-	component_velocity.max_speed = speed_dict[SPEED_STATE.attack]
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
 	# shockwave.cast_at(player_ref)
 	anim_ss.play_anim("attack", false)
 
@@ -154,8 +154,8 @@ func _on_leave_attack_state():
 func _on_enter_recover_state():
 	anim_ss.play_anim("idle")
 	attack_manager.start_recover(attack_manager.get_recover_duration())
-	component_velocity.max_speed = speed_dict[SPEED_STATE.recover]
-	component_velocity.direction = Vector2.ZERO
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.recover])
+	component_velocity.set_direction(Vector2.ZERO)
 
 func _on_recover_state(_delta: float):
 	super.look_at_player()
@@ -167,8 +167,8 @@ func _on_leave_recover_state():
 func _on_enter_die_state():
 	_disable_collision()
 	anim_ss.play_anim("die", false)
-	component_velocity.max_speed = speed_dict[SPEED_STATE.die]
-	component_velocity.direction = Vector2.ZERO
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
+	component_velocity.set_direction(Vector2.ZERO)
 
 func _on_die_state(_delta: float):
 	pass

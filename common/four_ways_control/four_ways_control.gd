@@ -24,12 +24,12 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if (component_velocity == null): return
-	component_velocity.direction = Input.get_vector(
+	component_velocity.set_direction(Input.get_vector(
 		input_action_left.action, 
 		input_action_right.action,
 		input_action_up.action,
 		input_action_down.action
-	)
+	))
 
 func reset_action_up():
 	input_action_up = InputEventAction.new()

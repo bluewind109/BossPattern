@@ -25,6 +25,12 @@ func _physics_process(_delta: float) -> void:
 			_decelerate()
 	owner_node.move_and_slide()
 
+func set_max_speed(val: float):
+	max_speed = val
+
+func set_direction(val: Vector2):
+	direction = val
+
 func _accelerate():
 	var acceleration_rate: float = max_speed * acceleration_coefficient
 	var speed: Vector2 = direction.normalized() * max_speed
