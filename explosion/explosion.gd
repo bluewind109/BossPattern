@@ -9,15 +9,18 @@ class_name Explosion
 
 @onready var skill_sprite: Sprite2D = $skill_sprite
 @onready var anim_player: AnimationPlayer = $skill_sprite/animation_player
-@export var anim_lib_path = "res://explosion/animation/explosion_poison.res"
+@export var anim_lib_path = ""
 
 @export var explo_size: CollisionShape2D
 @export var explo_radius: float = 20.0
 
 @export var anim_res: Resource
+var anim_name: String = "explosion_poison/lightning_strike"
 
 var delay_duration: float = 0.0
 var explo_duration: float = 1.0
+
+var damage: float = 1.0
 
 const BASE_RADIUS: float = 10.0
 const BASE_SCALE: float = 0.2
@@ -26,10 +29,6 @@ func _ready() -> void:
 	delay_timer.timeout.connect(_on_delay_finished)
 	skill_sprite.visible = false
 	anim_player.animation_finished.connect(_on_animation_finished)
-	anim_player.libraries["explosion_poison"] = anim_res
-	var anim_lib: AnimationLibrary = load(anim_lib_path)
-	if (anim_lib):
-		anim_player.add_animation_library("explosion_poison", anim_lib)
 	
 	if (!hitbox.is_node_ready()):
 		await hitbox.ready
@@ -68,9 +67,9 @@ func _on_delay_finished():
 	range_real.scale = range_predict.scale
 	# range_predict.visible = false
 	# range_real.visible = false
-	if anim_player.has_animation("explosion_poison/lightning_strike"): anim_player.play("explosion_poison/lightning_strike")
+	if anim_player.has_animation(anim_name): anim_player.play(anim_name)
 
-func _on_animation_finished(anim_name: StringName):
-	if (anim_name == "explosion_poison/lightning_strike"):
+func _on_animation_finished(_anim_name: StringName):
+	if (_anim_name == anim_name):
 		hitbox.monitoring = false
 		queue_free()

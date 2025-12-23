@@ -16,6 +16,9 @@ func _init() -> void:
 func _ready() -> void:
 	pass
 
+func set_damage(val: float):
+	damage_amount = val
+
 func _on_hurtbox_entered(area: Area2D) -> void:
 	if (area is ComponentHurtbox):
 		var hurtbox: ComponentHurtbox = area

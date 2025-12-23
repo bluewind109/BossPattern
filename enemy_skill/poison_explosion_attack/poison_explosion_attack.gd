@@ -1,7 +1,7 @@
 extends EnemySkill
 class_name PoisonExplosionAttack
 
-var explo_prefab:= preload("res://explosion/explosion.tscn")
+var explo_prefab:= preload("./explosion_poison/explosion_poison.tscn")
 
 @export var CAST_RANGE: float = 300.0
 
