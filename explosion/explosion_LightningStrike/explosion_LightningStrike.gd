@@ -1,7 +1,7 @@
 extends Explosion
-class_name Explosion_PoisonBomb
+class_name Explosion_LightningStrike
 
-var lib_name: String = "explosion_PoisonBomb"
+var lib_name: String = "explosion_LightningStrike"
 func _ready() -> void:
 	super._ready()
 	anim_name = lib_name + "/" + "explode"

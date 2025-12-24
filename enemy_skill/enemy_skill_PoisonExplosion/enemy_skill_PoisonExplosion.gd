@@ -4,13 +4,13 @@ class_name EnemySkill_PoisonExplosion
 @export var CAST_RANGE: float = 300.0
 @export var cooldown_duration: float = 4.0
 var explosion_count: int = 6
+var explo_range: Vector2 = Vector2(50, 100)
 
 func _ready() -> void:
 	skill_type = SKILL_TYPE.poison_explosion_attack
 	cooldown_timer.wait_time = cooldown_duration
 	super._ready()
 
-var explo_range: Vector2 = Vector2(50, 100)
 func cast_at(target: Node2D):
 	super.cast_at(target)
 	if (not explo_prefab): return

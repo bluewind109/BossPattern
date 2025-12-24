@@ -2,7 +2,7 @@ extends EnemyBase
 class_name EnemyMage
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var poison_explosion_skill: EnemySkill_PoisonExplosion = $attack_manager/poison_explosion_attack
+@onready var lightning_strike: EnemySkill_LightningStrike = $attack_manager/enemy_skill_LightningStrike
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
 enum RANGE {lightning_strike}
@@ -10,7 +10,7 @@ var range_dict: Dictionary[int, Vector2] = {
 	RANGE.lightning_strike: Vector2(300, 350),
 }
 
-enum SPEED_STATE{idle, normal, wind_up, poison_explosion_attack, recover, die}
+enum SPEED_STATE{idle, normal, wind_up, lightning_strike, recover, die}
 
 func _ready() -> void:
 	super._ready()
@@ -26,7 +26,7 @@ func init_states():
 		"Idle": "Idle",
 		"Normal": "Normal",
 		"WindUp": "WindUp",
-		"PoisonExplosionAttack": "PoisonExplosionAttack",
+		"LightningStrike": "LightningStrike",
 		"Recover": "Recover",
 		"Die": "Die",
 	}
@@ -36,7 +36,7 @@ func init_speed_dict():
 		SPEED_STATE.idle: 75.0,
 		SPEED_STATE.normal: 75.0,
 		SPEED_STATE.wind_up: 75.0,
-		SPEED_STATE.poison_explosion_attack: 75.0,
+		SPEED_STATE.lightning_strike: 75.0,
 		SPEED_STATE.recover: 75.0,
 		SPEED_STATE.die: 75.0,
 	}
@@ -79,7 +79,7 @@ func add_states():
 		_on_leave_wind_up_state
 	))
 
-	state_machine.add_states(STATE.PoisonExplosionAttack, CallableState.new(
+	state_machine.add_states(STATE.LightningStrike, CallableState.new(
 		_on_pea_state,
 		_on_enter_pea_state,
 		_on_leave_pea_state
@@ -134,10 +134,10 @@ func _on_normal_state(_delta: float):
 	if (!attack_manager.can_attack()): return
 
 	if (
-		poison_explosion_skill.is_in_cast_range(player_ref.global_position) and 
-		poison_explosion_skill.can_cast()
+		lightning_strike.is_in_cast_range(player_ref.global_position) and 
+		lightning_strike.can_cast()
 	):
-		attack_manager.set_next_skill(poison_explosion_skill)
+		attack_manager.set_next_skill(lightning_strike)
 		state_machine.change_state(STATE.WindUp)
 		return
 
@@ -158,12 +158,12 @@ func _on_wind_up_state(_delta: float):
 func _on_leave_wind_up_state():
 	pulse_effect.stop_pulse()
 
-# POISON EXPLOSION ATTACK STATE
+# LIGHTNING STRIKE ATTACK STATE
 func _on_enter_pea_state():
 	anim_ss.play_anim("summon", false)
-	component_velocity.set_max_speed(speed_dict[SPEED_STATE.poison_explosion_attack])
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.lightning_strike])
 	component_velocity.set_direction(Vector2.ZERO)
-	poison_explosion_skill.cast_at(player_ref)
+	lightning_strike.cast_at(player_ref)
 
 func _on_pea_state(_delta: float):
 	super.look_at_player()
@@ -200,8 +200,8 @@ func _on_leave_die_state():
 #FUNCTIONS
 func _on_wind_up_finished():
 	match attack_manager.next_skill.skill_type:
-		EnemySkill.SKILL_TYPE.poison_explosion_attack:
-			state_machine.change_state(STATE.PoisonExplosionAttack)
+		EnemySkill.SKILL_TYPE.lightning_strike:
+			state_machine.change_state(STATE.LightningStrike)
 		_:
 			pass
 

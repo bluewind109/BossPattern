@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcnmwh84wucq"]
+
+[ext_resource type="PackedScene" uid="uid://dfays8guerdto" path="res://explosion/explosion.tscn" id="1_a5py4"]
+[ext_resource type="Script" uid="uid://cpclq2i4adnys" path="res://explosion/explosion_LightningStrike/explosion_LightningStrike.gd" id="2_4eqvj"]
+[ext_resource type="AnimationLibrary" uid="uid://qb7odjjsvjhe" path="res://explosion/explosion_LightningStrike/animation/explosion_LightningStrike.res" id="3_4j5o5"]
+[ext_resource type="Texture2D" uid="uid://cckdupodpglch" path="res://explosion/explosion_LightningStrike/sprites/fx1_electric_zap_large_blue/spritesheet.png" id="3_w7nqe"]
+
+[node name="explosion_LightningStrike" instance=ExtResource("1_a5py4")]
+script = ExtResource("2_4eqvj")
+anim_res = ExtResource("3_4j5o5")
+
+[node name="skill_sprite" parent="." index="4"]
+visible = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_w7nqe")
+hframes = 6
+region_rect = Rect2(0, 0, 432, 72)
+
+[node name="animation_player" parent="skill_sprite" index="0"]
+libraries = {
+&"explosion_LightningStrike": ExtResource("3_4j5o5")
+}
