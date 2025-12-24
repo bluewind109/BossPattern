@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://lhdn4v5vc3cd"]
+
+[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://enemy_skill/enemy_skill.tscn" id="1_4fswe"]
+[ext_resource type="Script" uid="uid://qwr3x7qvgcw0" path="res://enemy_skill/enemy_skill_MeleeAttack/enemy_skill_MeleeAttack.gd" id="2_dm2nq"]
+
+[node name="enemy_skill_MeleeAttack" instance=ExtResource("1_4fswe")]
+script = ExtResource("2_dm2nq")
+CAST_RANGE = 50.0
+explo_range = Vector2(25, 50)
+cooldown_duration = 3.0

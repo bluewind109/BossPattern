@@ -2,7 +2,7 @@ extends EnemyBase
 class_name EnemyMage
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var poison_explosion_skill: PoisonExplosionAttack = $attack_manager/poison_explosion_attack
+@onready var poison_explosion_skill: EnemySkill_PoisonExplosion = $attack_manager/poison_explosion_attack
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
 enum RANGE {lightning_strike}

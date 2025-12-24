@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://8wbgso5jlk84"]
 
-[ext_resource type="Script" uid="uid://2ktru81uww3r" path="res://enemy_skill/shockwave/explosion_Shockwave/explosion_Shockwave.gd" id="1_l4nk2"]
+[ext_resource type="Script" uid="uid://2ktru81uww3r" path="res://explosion/explosion_Shockwave/explosion_Shockwave.gd" id="1_l4nk2"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="1_yc86y"]
 [ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://common/hitbox/hitbox.tscn" id="2_l4nk2"]
-[ext_resource type="Texture2D" uid="uid://by5qyyisra70y" path="res://enemy_skill/shockwave/explosion_Shockwave/sprites/sprite_sheet.png" id="3_o4k6v"]
+[ext_resource type="Texture2D" uid="uid://by5qyyisra70y" path="res://explosion/explosion_Shockwave/sprites/sprite_sheet.png" id="3_o4k6v"]
 
 [sub_resource type="Animation" id="Animation_eaidp"]
 length = 0.001

@@ -1,5 +1,5 @@
 extends EnemySkill
-class_name EnemyMeleeAttack
+class_name EnemySkill_MeleeAttack
 
 var explo_prefab:= preload("res://explosion/explosion.tscn")
 

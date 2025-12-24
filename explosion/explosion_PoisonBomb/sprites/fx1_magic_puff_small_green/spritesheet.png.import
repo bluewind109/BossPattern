@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da86s65w3elp2"
-path="res://.godot/imported/spritesheet.png-f61419b6f927979de709179d9673f8a7.ctex"
+uid="uid://bkhp4dqlx5ncl"
+path="res://.godot/imported/spritesheet.png-127b2e8abdfac1956ff7e5f00d9777ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy_skill/poison_explosion_attack/explosion_poison/sprites/fx1_magic_puff_large_green/spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-f61419b6f927979de709179d9673f8a7.ctex"]
+source_file="res://explosion/explosion_PoisonBomb/sprites/fx1_magic_puff_small_green/spritesheet.png"
+dest_files=["res://.godot/imported/spritesheet.png-127b2e8abdfac1956ff7e5f00d9777ad.ctex"]
 
 [params]
 

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn567e2bat71b"]
+
+[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://enemy_skill/enemy_skill.tscn" id="1_g2iky"]
+[ext_resource type="Script" uid="uid://csufx7hlo8adq" path="res://enemy_skill/enemy_skill_LightningStrike/enemy_skill_LightningStrike.gd" id="2_jk5df"]
+
+[node name="enemy_skill_LightningStrike" instance=ExtResource("1_g2iky")]
+script = ExtResource("2_jk5df")

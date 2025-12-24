@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://boy1ugloxmvf3"]
+
+[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://enemy_skill/enemy_skill.tscn" id="1_dqipw"]
+[ext_resource type="Script" uid="uid://uvpjcudm1tp3" path="res://enemy_skill/enemy_skill_Charge/enemy_skill_Charge.gd" id="2_6b1u2"]
+
+[node name="enemy_skill_Charge" instance=ExtResource("1_dqipw")]
+script = ExtResource("2_6b1u2")
+CHARGE_RANGE = 200.0
+CHARGE_DISTANCE = 300.0
+cooldown_duration = 3.0
+delay_duration = 2.0
+recover_duration = 1.0

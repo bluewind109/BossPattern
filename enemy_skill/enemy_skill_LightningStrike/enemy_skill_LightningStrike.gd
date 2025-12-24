@@ -1,0 +1,2 @@
+extends EnemySkill
+class_name EnemySkill_LightningStrike

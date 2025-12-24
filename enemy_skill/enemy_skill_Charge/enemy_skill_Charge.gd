@@ -1,5 +1,5 @@
 extends EnemySkill
-class_name Charge
+class_name EnemySkill_Charge
 
 var charge_position: Vector2
 var charge_direction: Vector2

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuwtjmojfon06"]
+
+[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://enemy_skill/enemy_skill.tscn" id="1_uyvag"]
+[ext_resource type="Script" uid="uid://bqt35j684a8jx" path="res://enemy_skill/enemy_skill_PoisonExplosion/enemy_skill_PoisonExplosion.gd" id="2_wd0h1"]
+
+[node name="enemy_skill_PoisonExplosion" instance=ExtResource("1_uyvag")]
+script = ExtResource("2_wd0h1")
+CAST_RANGE = 300.0
+cooldown_duration = 4.0
+delay_duration = 2.0
+recover_duration = 1.0

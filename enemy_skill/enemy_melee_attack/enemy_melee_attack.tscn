@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://lhdn4v5vc3cd"]
-
-[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://enemy_skill/enemy_skill.tscn" id="1_2bm44"]
-[ext_resource type="Script" uid="uid://qwr3x7qvgcw0" path="res://enemy_skill/enemy_melee_attack/enemy_melee_attack.gd" id="2_oabv5"]
-
-[node name="enemy_melee_attack" instance=ExtResource("1_2bm44")]
-script = ExtResource("2_oabv5")

@@ -5,8 +5,8 @@ class_name ProjectileShockwave
 # release 1 shockwave every X pixels
 # stop when reaching target position / certain distance
 
-const PROJECTILE_SHOCKWAVE_SCENE: PackedScene = preload("res://enemy_skill/shockwave/projectile_Shockwave/projectile_Shockwave.tscn")
-@export var explosion_shockwave_prefab: PackedScene = preload("res://enemy_skill/shockwave/explosion_Shockwave/explosion_Shockwave.tscn")
+const PROJECTILE_SHOCKWAVE_SCENE: PackedScene = preload("./projectile_Shockwave.tscn")
+@export var explosion_shockwave_prefab: PackedScene
 
 var checkpoint_pos: Vector2
 var current_interval_distance: float = 0

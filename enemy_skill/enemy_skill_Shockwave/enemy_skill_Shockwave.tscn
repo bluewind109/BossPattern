@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4nfpxngruc6j"]
+
+[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://enemy_skill/enemy_skill.tscn" id="1_bdpj4"]
+[ext_resource type="Script" uid="uid://dltywfiga8uai" path="res://enemy_skill/enemy_skill_Shockwave/enemy_skill_Shockwave.gd" id="2_nurbp"]
+
+[node name="shockwave" instance=ExtResource("1_bdpj4")]
+script = ExtResource("2_nurbp")
+ATTACK_RANGE = 100.0

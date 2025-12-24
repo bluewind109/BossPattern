@@ -2,7 +2,7 @@ extends EnemyBase
 class_name EnemyBat
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var charge: Charge = $attack_manager/charge
+@onready var charge: EnemySkill_Charge = $attack_manager/charge
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
 enum SPEED_STATE {idle, normal, attack, wind_up, charge, recover, die}
