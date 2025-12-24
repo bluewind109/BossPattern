@@ -11,6 +11,8 @@ enum SKILL_TYPE
 }
 
 @onready var cooldown_timer: Timer = $cooldown_timer
+
+@export var explo_prefab: PackedScene
 @export var delay_duration: float = 0.0
 @export var recover_duration: float = 0.0
 

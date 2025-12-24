@@ -1,12 +1,9 @@
 extends EnemySkill
 class_name EnemySkill_PoisonExplosion
 
-var explo_prefab:= preload("res://explosion/explosion_PoisonBomb/explosion_PoisonBomb.tscn")
-
 @export var CAST_RANGE: float = 300.0
-
-var explosion_count: int = 6
 @export var cooldown_duration: float = 4.0
+var explosion_count: int = 6
 
 func _ready() -> void:
 	skill_type = SKILL_TYPE.poison_explosion_attack
@@ -16,6 +13,7 @@ func _ready() -> void:
 var explo_range: Vector2 = Vector2(50, 100)
 func cast_at(target: Node2D):
 	super.cast_at(target)
+	if (not explo_prefab): return
 	for i in explosion_count:
 		var result_pos = Utils.get_random_position_around(target, explo_range.x, explo_range.y)
 		var explo_instance = explo_prefab.instantiate() as Explosion
