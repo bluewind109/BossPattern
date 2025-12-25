@@ -2,7 +2,7 @@ extends Node2D
 class_name ComponentLook
 
 @export var is_base_sprite_looking_left: bool = true
-var owner_node: Node2D
+@export var owner_node: Node2D
 
 func _ready() -> void:
 	pass

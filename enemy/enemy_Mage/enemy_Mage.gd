@@ -2,8 +2,9 @@ extends EnemyBase
 class_name EnemyMage
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var lightning_strike: EnemySkill_LightningStrike = $attack_manager/enemy_skill_LightningStrike
 @onready var pulse_effect: PulseEffect = $pulse_effect
+
+@onready var lightning_strike: EnemySkill_LightningStrike = $attack_manager/enemy_skill_LightningStrike
 
 enum RANGE {lightning_strike}
 var range_dict: Dictionary[int, Vector2] = {

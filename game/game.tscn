@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://s35lmfixqjns"]
+[gd_scene load_steps=9 format=3 uid="uid://s35lmfixqjns"]
 
 [ext_resource type="Script" uid="uid://cpl63vx0dh74g" path="res://game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://geb0lg3x5n8l" path="res://background/background.tscn" id="2_h7iqs"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cilp4lyahrv8p" path="res://enemy/enemy_Golem/enemy_Golem.tscn" id="5_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://bk5q3wde4ijnu" path="res://enemy/enemy_Bat/enemy_Bat.tscn" id="6_dakft"]
 [ext_resource type="PackedScene" uid="uid://b4bvc1nfwdm4g" path="res://enemy/enemy_Mage/enemy_Mage.tscn" id="7_u5opy"]
+[ext_resource type="PackedScene" uid="uid://dx10hkpffvam7" path="res://enemy/enemy_Ghoul/enemy_Ghoul.tscn" id="8_y36n6"]
 
 [node name="game" type="Node2D"]
 y_sort_enabled = true
@@ -31,3 +32,6 @@ position = Vector2(782, 346)
 position = Vector2(298, 157)
 
 [node name="explosion_container" type="Node2D" parent="."]
+
+[node name="enemy_Ghoul" parent="." instance=ExtResource("8_y36n6")]
+position = Vector2(430, 359)

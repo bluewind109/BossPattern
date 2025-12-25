@@ -2,9 +2,10 @@ extends EnemyBase
 class_name EnemySwampAbomination
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
+@onready var pulse_effect: PulseEffect = $pulse_effect
+
 @onready var charge: EnemySkill_Charge = $attack_manager/charge
 @onready var poison_explosion_skill: EnemySkill_PoisonExplosion = $attack_manager/poison_explosion_attack
-@onready var pulse_effect: PulseEffect = $pulse_effect
 
 enum RANGE {bite, charge, lightning_strike}
 var range_dict: Dictionary[int, float] = {

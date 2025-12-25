@@ -9,12 +9,10 @@ class_name Explosion
 
 @onready var skill_sprite: Sprite2D = $skill_sprite
 @onready var anim_player: AnimationPlayer = $skill_sprite/animation_player
-@export var anim_lib_path = ""
 
 @export var explo_size: CollisionShape2D
 @export var explo_radius: float = 20.0
 
-@export var anim_res: Resource
 var anim_name: String = ""
 
 var delay_duration: float = 0.0
@@ -57,11 +55,12 @@ func _physics_process(delta: float) -> void:
 func _visualize_explosion(_delta: float):
 	range_real.scale = range_predict.scale * (1 - (delay_timer.time_left / delay_timer.wait_time))
 
-func activate_explosion():
+func activate_explosion(cb: Callable = Callable()):
 	if (delay_duration > 0.0): 
 		delay_timer.start()
 		await delay_timer.timeout
 	hitbox.monitoring = true
+	if (cb): cb.call()
 
 func _on_delay_finished():
 	range_real.scale = range_predict.scale

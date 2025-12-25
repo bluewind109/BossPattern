@@ -2,8 +2,9 @@ extends EnemyBase
 class_name EnemyGolem
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var shockwave: ComponentShockwave = $attack_manager/shockwave
 @onready var pulse_effect: PulseEffect = $pulse_effect
+
+@onready var shockwave: ComponentShockwave = $attack_manager/shockwave
 
 enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
 

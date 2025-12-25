@@ -4,10 +4,18 @@ class_name EnemyGhoul
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
+@onready var melee_attack: EnemySkill_MeleeAttack = $attack_manager/enemy_skill_MeleeAttack
+
 enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
 
 func _ready() -> void:
-	pass
+	super._ready()
+	init_states()
+	init_speed_dict()
+	init_anim_dict("enemy_ghoul_lib")
+	bind_signals()
+	add_states()
+	super.init_component_look(anim_ss)
 
 func init_states():
 	STATE = {
@@ -122,7 +130,11 @@ func _on_normal_state(_delta: float):
 
 	super.look_at_player()
 	if (!attack_manager.can_attack()): return
-	
+
+	if (melee_attack.is_in_cast_range(player_ref.global_position) and melee_attack.can_cast()):
+		attack_manager.set_next_skill(melee_attack)
+		state_machine.change_state(STATE.WindUp)
+		return
 
 func _on_leave_normal_state():
 	return
@@ -144,8 +156,9 @@ func _on_leave_wind_up_state():
 # ATTACK STATE
 func _on_enter_attack_state():
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
-	# shockwave.cast_at(player_ref)
-	anim_ss.play_anim("attack", false)
+	melee_attack.cast_at_callback(player_ref, func(): (
+		anim_ss.play_anim("attack", false)
+	))
 
 func _on_attack_state(_delta: float):
 	super.look_at_player()
@@ -181,7 +194,7 @@ func _on_leave_die_state():
 
 func _on_wind_up_finished():
 	match attack_manager.next_skill.skill_type:
-		EnemySkill.SKILL_TYPE.shockwave:
+		EnemySkill.SKILL_TYPE.melee:
 			state_machine.change_state(STATE.Attack)
 		_:
 			pass
