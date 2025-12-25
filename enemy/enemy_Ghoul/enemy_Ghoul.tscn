@@ -16,8 +16,6 @@ ATTACK_RANGE = 50.0
 cooldown_duration = 3.5
 
 [node name="enemy_skill_MeleeAttack" parent="attack_manager" index="3" instance=ExtResource("3_3cwum")]
-delay_duration = 2.0
-recover_duration = 2.0
 
 [node name="look" parent="." index="7"]
 is_base_sprite_looking_left = false
