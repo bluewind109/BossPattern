@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dn567e2bat71b" path="res://enemy_skill/enemy_skill_LightningStrike/enemy_skill_LightningStrike.tscn" id="3_glphd"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://common/anim_spritesheet/anim_spritesheet.tscn" id="3_vcj3g"]
 [ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://common/pulse_effect/pulse_effect.tscn" id="4_ree8f"]
-[ext_resource type="Texture2D" uid="uid://da68cvsy6x0be" path="res://enemy/enemy_Mage/sprites/STRANDED - Relic Guardian 3/Guardian Sprite Sheets/Relic Guardian 3 Export Ready-Idle.png" id="5_glphd"]
+[ext_resource type="Texture2D" uid="uid://66dw8oiexphf" path="res://enemy/enemy_Mage/sprites/STRANDED - Relic Guardian 3/Guardian Sprite Sheets/Relic Guardian 3 Sprite Sheet 95x65 - No Shadow.png" id="5_glphd"]
 [ext_resource type="AnimationLibrary" uid="uid://rwvyrh05hhsi" path="res://enemy/enemy_Mage/animation/enemy_mage_lib.res" id="6_glphd"]
 
 [sub_resource type="Animation" id="Animation_2er04"]
