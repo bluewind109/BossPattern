@@ -7,11 +7,11 @@ class_name Enemy_SwampAbomination
 @onready var charge: EnemySkill_Charge = $attack_manager/charge
 @onready var poison_explosion_skill: EnemySkill_PoisonExplosion = $attack_manager/poison_explosion_attack
 
-enum RANGE {bite, charge, lightning_strike}
+enum RANGE {bite, charge, poison_explosion}
 var range_dict: Dictionary[int, float] = {
 	RANGE.bite: 50,
 	RANGE.charge: 250,
-	RANGE.lightning_strike: 350,
+	RANGE.poison_explosion: 350,
 }
 
 enum SPEED_STATE {idle, normal, wind_up, charge, poison_explosion_attack, recover, die}
