@@ -94,7 +94,11 @@ radius = 9.0
 [node name="enemy_Mage" instance=ExtResource("1_briyy")]
 script = ExtResource("2_uixk6")
 
+[node name="attack_manager" parent="." index="1"]
+ATTACK_RANGE = 200.0
+
 [node name="enemy_skill_LightningStrike" parent="attack_manager" index="3" instance=ExtResource("3_glphd")]
+CAST_RANGE = 200.0
 
 [node name="anim_spritesheet" parent="." index="3" instance=ExtResource("3_vcj3g")]
 texture = ExtResource("5_glphd")

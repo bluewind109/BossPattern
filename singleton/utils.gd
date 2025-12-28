@@ -1,13 +1,13 @@
 extends Node
 
-func get_random_position_around(target: Node2D, min_distance: float, max_distance: float) -> Vector2:
+func get_random_position_around(target_pos: Vector2, min_distance: float, max_distance: float) -> Vector2:
 	var _angle = randf_range(0, TAU)
 	# var _deg_angle = rad_to_deg(_angle)
 	# print(_deg_angle)
 	var _distance = randf_range(min_distance, max_distance)
 	var direction_vector = Vector2.RIGHT.rotated(_angle)
 	var offset = direction_vector * _distance
-	var new_pos = target.global_position + offset
+	var new_pos = target_pos + offset
 	return new_pos
 
 func get_final_cast_position(current_pos: Vector2, target_pos: Vector2, cast_range: float) -> Vector2:

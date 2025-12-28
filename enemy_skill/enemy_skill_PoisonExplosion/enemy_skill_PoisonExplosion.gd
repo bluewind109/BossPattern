@@ -14,12 +14,18 @@ func _ready() -> void:
 func cast_at(target: Node2D):
 	super.cast_at(target)
 	if (not explo_prefab): return
+
+	var result_pos: Vector2 = Utils.get_final_cast_position(
+		global_position, 
+		target.global_position, 
+		CAST_RANGE
+	)
+
 	for i in explosion_count:
-		var result_pos = Utils.get_random_position_around(target, explo_range.x, explo_range.y)
+		var explo_pos: Vector2 = Utils.get_random_position_around(result_pos, explo_range.x, explo_range.y)
 		var explo_instance = explo_prefab.instantiate() as Explosion
-		# get_tree().current_scene.add_child(explo_instance)
 		SignalManager.on_explosion_created.emit(explo_instance)
-		explo_instance.init.call_deferred(result_pos, delay_duration)
+		explo_instance.init.call_deferred(explo_pos, delay_duration)
 		explo_instance.activate_explosion.call_deferred()
 	on_skill_finished.emit()
 
