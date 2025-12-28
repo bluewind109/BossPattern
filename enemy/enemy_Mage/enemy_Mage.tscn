@@ -113,17 +113,17 @@ libraries = {
 &"enemy_mage_lib": ExtResource("6_glphd")
 }
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="component_Hitbox" index="0"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_glphd")
 debug_color = Color(0, 0.6, 0.69803923, 0.0627451)
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="component_Hurtbox" index="0"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_glphd")
 debug_color = Color(0, 0.6, 0.7019608, 0.0627451)
 
-[node name="look" parent="." index="8"]
-is_base_sprite_looking_left = false
+[node name="pulse_effect" parent="." index="8" instance=ExtResource("4_ree8f")]
 
-[node name="pulse_effect" parent="." index="10" instance=ExtResource("4_ree8f")]
+[node name="look" parent="." index="9"]
+is_base_sprite_looking_left = false

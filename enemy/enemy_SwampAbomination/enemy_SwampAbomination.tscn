@@ -23,19 +23,19 @@ cooldown_duration = 10.0
 [node name="poison_explosion_attack" parent="attack_manager" index="2" instance=ExtResource("8_k08v7")]
 cooldown_duration = 3.0
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="component_Hitbox" index="0"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2(3, -17)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_rk6qd")
 debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="component_Hurtbox" index="0"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
 position = Vector2(3, -17)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_rk6qd")
 debug_color = Color(0.9607843, 0, 0.52156866, 0.41960785)
 
-[node name="anim_spritesheet" parent="." index="7" instance=ExtResource("3_rr64c")]
+[node name="anim_spritesheet" parent="." index="5" instance=ExtResource("3_rr64c")]
 texture = ExtResource("6_7ysgq")
 offset = Vector2(-16, -48)
 hframes = 6
@@ -47,7 +47,7 @@ libraries = {
 &"enemy_swamp_abomination_lib": ExtResource("5_rdn76")
 }
 
-[node name="pulse_effect" parent="." index="8" instance=ExtResource("7_7ysgq")]
+[node name="pulse_effect" parent="." index="6" instance=ExtResource("7_7ysgq")]
 
 [node name="collision_shape_2d" parent="." index="10"]
 visible = true

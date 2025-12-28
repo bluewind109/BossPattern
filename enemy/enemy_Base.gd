@@ -8,8 +8,8 @@ var speed_dict: Dictionary[int, float] = {}
 
 @onready var state_machine: CallableStateMachine = $callable_state_machine
 @onready var component_health: ComponentHealth = $health
-@onready var component_hitbox: ComponentHitbox = $component_Hitbox
-@onready var component_hurtbox: ComponentHurtbox = $component_Hurtbox
+@onready var component_hitbox: ComponentHitbox = $hitbox
+@onready var component_hurtbox: ComponentHurtbox = $hurtbox
 @onready var component_velocity: ComponentVelocity = $velocity
 @onready var component_steer: ComponentSteer = $steering
 @onready var component_look: ComponentLook = $look
