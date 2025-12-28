@@ -9,3 +9,11 @@ func get_random_position_around(target: Node2D, min_distance: float, max_distanc
 	var offset = direction_vector * _distance
 	var new_pos = target.global_position + offset
 	return new_pos
+
+func get_final_cast_position(current_pos: Vector2, target_pos: Vector2, cast_range: float) -> Vector2:
+	var result_pos: Vector2 = target_pos
+	var _distance: float = current_pos.distance_to(result_pos)
+	var _direction: Vector2 = current_pos.direction_to(result_pos)
+	if (_distance > cast_range):
+		result_pos = current_pos + _direction * cast_range
+	return result_pos

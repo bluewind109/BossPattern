@@ -1,7 +1,7 @@
 extends EnemySkill
 class_name EnemySkill_MeleeAttack
 
-@export var CAST_RANGE: float = 50.0
+@export var CAST_RANGE: float = 25.0
 @export var explo_range: Vector2 = Vector2(25, 50)
 @export var cooldown_duration: float = 3.0
 
@@ -12,7 +12,11 @@ func _ready() -> void:
 
 func cast_at_callback(target: Node2D, cb: Callable):
 	super.cast_at(target)
-	var result_pos = target.global_position
+	var result_pos: Vector2 = Utils.get_final_cast_position(
+		global_position, 
+		target.global_position, 
+		CAST_RANGE
+	)
 	var explo_instance = explo_prefab.instantiate() as Explosion
 	SignalManager.on_explosion_created.emit(explo_instance)
 	explo_instance.init.call_deferred(result_pos, delay_duration)
