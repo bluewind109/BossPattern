@@ -1,5 +1,5 @@
 extends EnemyBase
-class_name EnemyGhoul
+class_name Enemy_Ghoul
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect

@@ -1,5 +1,5 @@
 extends EnemyBase
-class_name EnemySwampAbomination
+class_name Enemy_SwampAbomination
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
