@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnvvwfqh6ley"]
+[gd_scene load_steps=5 format=3 uid="uid://dnvvwfqh6ley"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://enemy/enemy_Base.tscn" id="1_3uqgw"]
 [ext_resource type="Script" uid="uid://bh5ft7dsqd2x0" path="res://enemy/enemy_DustJumper/enemy_DustJumper.gd" id="2_1q7fn"]
+[ext_resource type="PackedScene" uid="uid://bimbul081uogi" path="res://enemy_skill/enemy_skill_JumpSmash/enemy_skill_JumpSmash.tscn" id="3_t0s52"]
+[ext_resource type="PackedScene" uid="uid://ciwdhd6kf2noe" path="res://enemy_skill/enemy_skill_ThrowBomb/enemy_skill_ThrowBomb.tscn" id="4_6fl3v"]
 
 [node name="enemy_DustJumper" instance=ExtResource("1_3uqgw")]
 script = ExtResource("2_1q7fn")
+
+[node name="enemy_skill_JumpSmash" parent="attack_manager" index="3" instance=ExtResource("3_t0s52")]
+
+[node name="enemy_skill_ThrowBomb" parent="attack_manager" index="4" instance=ExtResource("4_6fl3v")]
