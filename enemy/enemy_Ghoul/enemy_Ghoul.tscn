@@ -15,7 +15,7 @@ radius = 6.0
 script = ExtResource("2_4jn1o")
 
 [node name="attack_manager" parent="." index="1"]
-ATTACK_RANGE = 50.0
+ATTACK_RANGE = 25.0
 cooldown_duration = 3.5
 
 [node name="enemy_skill_MeleeAttack" parent="attack_manager" index="3" instance=ExtResource("3_3cwum")]
@@ -44,5 +44,9 @@ shape = SubResource("CapsuleShape2D_3cwum")
 
 [node name="look" parent="." index="8"]
 is_base_sprite_looking_left = false
+
+[node name="collision_shape_2d" parent="." index="9"]
+position = Vector2(0, -15)
+debug_color = Color(0.74509805, 0.2901961, 0.89411765, 0)
 
 [node name="pulse_effect" parent="." index="10" instance=ExtResource("4_4n3ik")]
