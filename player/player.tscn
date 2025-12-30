@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bp71esg3p5br1" path="res://common/four_ways_control/four_ways_control.tscn" id="7_rgyib"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ieo8"]
-radius = 8.0
+radius = 7.0
 height = 26.0
 
 [sub_resource type="Animation" id="Animation_8t03j"]
