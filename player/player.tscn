@@ -82,9 +82,6 @@ motion_mode = 1
 script = ExtResource("1_oul6g")
 anim_player = NodePath("character_sprite/animation_player")
 
-[node name="camera_2d" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
-
 [node name="callable_state_machine" parent="." instance=ExtResource("2_rgyib")]
 
 [node name="health" parent="." instance=ExtResource("2_yw30f")]
