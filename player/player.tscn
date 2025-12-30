@@ -126,3 +126,4 @@ script = ExtResource("6_boad6")
 [node name="component_FourWaysControl" parent="velocity" instance=ExtResource("7_rgyib")]
 
 [node name="abilityController_Sword" parent="." instance=ExtResource("12_ebec5")]
+max_range = 150.0
