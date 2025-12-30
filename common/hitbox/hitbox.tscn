@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://dos8oqbqoxu4j" path="res://common/hitbox/hitbox.gd" id="1_y6jhg"]
 
-[node name="component_Hitbox" type="Area2D"]
+[node name="hitbox" type="Area2D"]
 script = ExtResource("1_y6jhg")

@@ -32,4 +32,8 @@ func _on_ability_timer_finished():
 
 	var sword_instance = sword_prefab.instantiate() as Ability_Sword
 	player.get_parent().add_child(sword_instance)
-	sword_instance.global_position = enemies[0].global_position 
+	sword_instance.global_position = enemies[0].global_position
+	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
+	var enemy_direction = (enemies[0].global_position - sword_instance.global_position).normalized() 
+	# sword_instance.global_position -= enemy_direction * round(150.0/10.0)
+	sword_instance.rotation = enemy_direction.angle()

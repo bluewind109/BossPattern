@@ -1,7 +1,7 @@
 extends Area2D
 class_name ComponentHitbox
 
-@export var damage_amount: float = 1.0
+@export var damage_amount: float = 0.0
 
 signal hit(hurtbox: ComponentHurtbox, amount: float)
 
@@ -21,6 +21,7 @@ func set_damage(val: float):
 
 func _on_hurtbox_entered(area: Area2D) -> void:
 	if (area is ComponentHurtbox):
+		# print(get_parent().name, " _on_hurtbox_entered ", area.get_parent().name)
 		var hurtbox: ComponentHurtbox = area
 		hurtbox.take_damage(damage_amount)
 		hit.emit(hurtbox, damage_amount)

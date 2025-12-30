@@ -154,13 +154,14 @@ hframes = 4
 region_enabled = true
 region_rect = Rect2(0, 0, 512, 128)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="component_Anim_SpriteSheet"]
+[node name="animation_player" type="AnimationPlayer" parent="component_Anim_SpriteSheet"]
 libraries = {
 &"": SubResource("AnimationLibrary_eaidp")
 }
 
-[node name="component_Hitbox" parent="." instance=ExtResource("2_l4nk2")]
+[node name="hitbox" parent="." instance=ExtResource("2_l4nk2")]
 collision_layer = 0
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="component_Hitbox"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_yc86y")

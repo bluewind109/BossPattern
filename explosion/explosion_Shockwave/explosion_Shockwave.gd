@@ -4,6 +4,7 @@ class_name ExplosionShockwave
 @export var component_anim_ss: ComponentAnimSpriteSheet
 
 func _ready() -> void:
+	self.name = "ExplosionShockwave"
 	component_anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
 	component_anim_ss.init_anim_data(
 		{		

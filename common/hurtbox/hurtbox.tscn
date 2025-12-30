@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://dgf651lrvds2w" path="res://common/hurtbox/hurtbox.gd" id="1_mhcyh"]
 
-[node name="component_Hurtbox" type="Area2D"]
+[node name="hurtbox" type="Area2D"]
 script = ExtResource("1_mhcyh")
