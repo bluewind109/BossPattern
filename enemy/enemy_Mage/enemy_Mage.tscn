@@ -98,7 +98,7 @@ script = ExtResource("2_uixk6")
 ATTACK_RANGE = 200.0
 
 [node name="enemy_skill_LightningStrike" parent="attack_manager" index="3" instance=ExtResource("3_glphd")]
-CAST_RANGE = 200.0
+cast_range = 200.0
 
 [node name="anim_spritesheet" parent="." index="3" instance=ExtResource("3_vcj3g")]
 texture = ExtResource("5_glphd")

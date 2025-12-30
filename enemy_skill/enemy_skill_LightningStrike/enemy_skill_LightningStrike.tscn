@@ -6,7 +6,7 @@
 
 [node name="enemy_skill_LightningStrike" instance=ExtResource("1_g2iky")]
 script = ExtResource("2_jk5df")
-CAST_RANGE = 300.0
+cast_range = 300.0
 cooldown_duration = 4.0
 explo_prefab = ExtResource("3_jk5df")
 delay_duration = 2.0

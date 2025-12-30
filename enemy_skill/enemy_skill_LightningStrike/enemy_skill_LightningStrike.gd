@@ -1,7 +1,7 @@
 extends EnemySkill
 class_name EnemySkill_LightningStrike
 
-@export var CAST_RANGE: float = 300.0
+@export var cast_range: float = 300.0
 @export var cooldown_duration: float = 4.0
 var explosion_count: int = 6
 var explo_range: Vector2 = Vector2(50, 100)
@@ -18,7 +18,7 @@ func cast_at(target: Node2D):
 	var result_pos: Vector2 = Utils.get_final_cast_position(
 		global_position, 
 		target.global_position, 
-		CAST_RANGE
+		cast_range
 	)
 
 	for i in explosion_count:
@@ -31,4 +31,4 @@ func cast_at(target: Node2D):
 
 func is_in_cast_range(_target_pos: Vector2) -> bool:
 	var distance = _target_pos.distance_to(global_position)
-	return distance <= CAST_RANGE
+	return distance <= cast_range
