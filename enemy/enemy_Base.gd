@@ -53,9 +53,20 @@ func init_component_look(_target: Node2D):
 
 func look_at_player():
 	if (not component_look): return
-	if (not player_ref): return
-	var target_pos: Vector2 = player_ref.global_position
+	# if (not player_ref): return
+	var target_pos: Vector2 = get_player_position()
+	if (target_pos == null): return
 	component_look.look(target_pos)
+
+func get_player_position():
+	var player_node = get_tree().get_first_node_in_group("Player") as Node2D
+	if (player_node == null): return null
+	return player_node.global_position
+
+func get_direction_to_player() -> Vector2:
+	var player_node = get_tree().get_first_node_in_group("Player") as Node2D
+	if (player_node == null): return Vector2.ZERO
+	return (player_node.global_position - global_position).normalized()
 
 func _on_die():
 	pass
