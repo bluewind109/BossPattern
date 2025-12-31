@@ -117,7 +117,7 @@ func _on_normal_state(_delta: float):
 
 	if (charge.is_in_charge_range(player_ref.global_position) and charge.can_cast()):
 		attack_manager.set_next_skill(charge)
-		state_machine.change_state(STATE.WindUp)
+		set_state(STATE.WindUp)
 		return
 
 func _on_leave_normal_state():
@@ -164,9 +164,8 @@ func _on_leave_recover_state():
 # DIE STATE
 func _on_enter_die_state():
 	_disable_collision()
-	anim_ss.play_anim("die", false)
-	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
-	component_velocity.set_direction(Vector2.ZERO)
+	# TODO add die animation for BAT
+	queue_free()
 
 func _on_die_state(_delta: float):
 	pass
@@ -178,23 +177,22 @@ func _on_wind_up_finished():
 	# print("[EnemyBat] _on_wind_up_finished", typeof(attack_manager.next_skill))
 	match attack_manager.next_skill.skill_type:
 		EnemySkill.SKILL_TYPE.charge:
-			state_machine.change_state(STATE.Charge)
+			set_state(STATE.Charge)
 		_:
 			pass
 
 func _on_attack_finished():
-	state_machine.change_state(STATE.Recover)
+	set_state(STATE.Recover)
 
 func _on_recover_finished():
-	state_machine.change_state(STATE.Normal)
+	set_state(STATE.Normal)
 	attack_manager.start_cooldown()
 	# _on_die()
 
 
 func _on_die():
-	print("_on_die")
+	set_state(STATE.Die)
 	super._on_die()
-	state_machine.change_state(STATE.Die)
 
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == anim_ss.get_anim_id("die")):

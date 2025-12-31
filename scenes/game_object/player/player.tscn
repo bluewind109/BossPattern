@@ -101,6 +101,7 @@ max_health = 1000.0
 script = ExtResource("6_boad6")
 
 [node name="abilityController_Sword" parent="." instance=ExtResource("12_ebec5")]
+max_range = 100.0
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)

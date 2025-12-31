@@ -139,7 +139,7 @@ func _on_normal_state(_delta: float):
 	if (shockwave.is_in_attack_range(player_ref.global_position) and
 		shockwave.can_cast()):
 		attack_manager.set_next_skill(shockwave)
-		state_machine.change_state(STATE.WindUp)
+		set_state(STATE.WindUp)
 
 func _on_leave_normal_state():
 	return
@@ -195,23 +195,24 @@ func _on_leave_die_state():
 func _on_wind_up_finished():
 	match attack_manager.next_skill.skill_type:
 		EnemySkill.SKILL_TYPE.shockwave:
-			state_machine.change_state(STATE.Attack)
+			set_state(STATE.Attack)
 		_:
 			pass
 
 func _on_attack_finished():
-	state_machine.change_state(STATE.Recover)	
+	set_state(STATE.Recover)	
 	
 func _on_recover_finished():
-	state_machine.change_state(STATE.Normal)
+	set_state(STATE.Normal)
 	attack_manager.start_cooldown()
 	# _on_die()
 
 func _on_die():
-	state_machine.change_state(STATE.Die)
+	set_state(STATE.Die)
+	super._on_die()
 
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == anim_ss.get_anim_id("attack")):
-		state_machine.change_state(STATE.Recover)
+		set_state(STATE.Recover)
 	elif (_anim_name == anim_ss.get_anim_id("die")):
 		queue_free()

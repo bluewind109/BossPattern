@@ -18,6 +18,7 @@ var speed_dict: Dictionary[int, float] = {}
 @export var mass: float = 20
 
 var is_spawning: bool = false
+var is_dead: bool = false
 
 func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("Player")
@@ -58,6 +59,10 @@ func look_at_player():
 	if (target_pos == null): return
 	component_look.look(target_pos)
 
+func set_state(state_name: String):
+	if (is_dead): return
+	state_machine.change_state(state_name)
+
 func get_player_position():
 	var player_node = get_tree().get_first_node_in_group("Player") as Node2D
 	if (player_node == null): return null
@@ -69,4 +74,4 @@ func get_direction_to_player() -> Vector2:
 	return (player_node.global_position - global_position).normalized()
 
 func _on_die():
-	queue_free()
+	is_dead = true

@@ -1,6 +1,7 @@
 extends Node
 class_name VialDrop
 
+@export_range(0, 1) var drop_percent: float = 0.5
 @export var exp_vial: PackedScene
 @export var health_component: ComponentHealth
 
@@ -12,6 +13,8 @@ func _ready() -> void:
 func _on_died():
 	if (exp_vial == null): return
 	if (not owner is Node2D): return
+	var result = randf()
+	if (result > drop_percent): return
 
 	var vial_instance = exp_vial.instantiate() as ExperienceVial
 	var spawn_pos = (owner as Node2D).global_position
