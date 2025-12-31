@@ -13,15 +13,10 @@ var is_casting: bool = false
 ## global attack cooldown
 @export var cooldown_duration: float = 2.5
 
-var delay_cb: Callable
-var recover_cb: Callable
-
 signal on_attack_finished
 
 func _ready() -> void:
-	delay_timer.timeout.connect(_on_delay_finished)
 	cooldown_timer.timeout.connect(_on_cooldown_finished)
-	recover_timer.timeout.connect(_on_recover_finished)
 	cooldown_timer.wait_time = cooldown_duration
 	is_casting = false
 
@@ -36,15 +31,12 @@ func is_in_attack_range(_target_pos: Vector2) -> bool:
 	return distance <= ATTACK_RANGE
 
 func set_next_skill(_skill: EnemySkill):
-	if (next_skill and next_skill.on_skill_casted.is_connected(_on_skill_casted)): 
-		next_skill.on_skill_casted.disconnect(_on_skill_casted)
 	if (next_skill and next_skill.on_skill_finished.is_connected(_on_skill_finished)): 
 		next_skill.on_skill_finished.disconnect(_on_skill_finished)
 	next_skill = _skill
 	is_casting = next_skill != null
 
 	if (next_skill):
-		next_skill.on_skill_casted.connect(_on_skill_casted)
 		next_skill.on_skill_finished.connect(_on_skill_finished)
 
 func get_wind_up_duration() -> float:
@@ -56,9 +48,6 @@ func get_recover_duration() -> float:
 	return next_skill.recover_duration
 
 func _on_skill_ready():
-	pass
-
-func _on_skill_casted():
 	pass
 
 func _on_skill_finished():
@@ -80,12 +69,3 @@ func start_cooldown():
 func _on_cooldown_finished():
 	# print("[AttackManager] _on_cooldown_finished")
 	pass
-
-func _on_delay_finished():
-	if (delay_cb): delay_cb.call()
-	# print("[AttackManager] _on_delay_finished")
-
-func _on_recover_finished():
-	if (recover_cb): recover_cb.call()
-	# print("[AttackManager] _on_recover_finished")
-	start_cooldown()

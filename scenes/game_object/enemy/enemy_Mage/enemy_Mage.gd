@@ -64,8 +64,8 @@ func init_anim_dict(_lib_name: String):
 func bind_signals():
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
 	attack_manager.on_attack_finished.connect(_on_attack_finished)
-	attack_manager.delay_cb = _on_wind_up_finished
-	attack_manager.recover_cb = _on_recover_finished
+	attack_manager.delay_timer.timeout.connect(_on_wind_up_finished)
+	attack_manager.recover_timer.timeout.connect(_on_recover_finished)
 
 func add_states():
 	state_machine.add_states(STATE.Normal, CallableState.new(
@@ -211,6 +211,7 @@ func _on_attack_finished():
 
 func _on_recover_finished():
 	state_machine.change_state(STATE.Normal)
+	attack_manager.start_cooldown()
 	# _on_die()
 
 func _on_die():

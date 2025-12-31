@@ -10,7 +10,7 @@ func _ready() -> void:
 	cooldown_timer.wait_time = cooldown_duration
 	super._ready()
 
-func cast_at_callback(target: Node2D, cb: Callable):
+func cast_at(target: Node2D):
 	super.cast_at(target)
 	var result_pos: Vector2 = Utils.get_final_cast_position(
 		global_position, 
@@ -21,7 +21,7 @@ func cast_at_callback(target: Node2D, cb: Callable):
 	SignalManager.on_explosion_created.emit(explo_instance)
 	explo_instance.init.call_deferred(result_pos, delay_duration)
 	explo_instance.look.call_deferred(target)
-	explo_instance.activate_explosion.call_deferred(cb)
+	explo_instance.activate_explosion.call_deferred()
 
 func is_in_cast_range(_target_pos: Vector2) -> bool:
 	var distance = _target_pos.distance_to(global_position)

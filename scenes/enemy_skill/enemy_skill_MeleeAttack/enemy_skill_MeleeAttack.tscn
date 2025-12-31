@@ -10,5 +10,4 @@ cast_range = 25.0
 explo_range = Vector2(25, 50)
 cooldown_duration = 3.0
 explo_prefab = ExtResource("3_dm2nq")
-delay_duration = 1.0
 recover_duration = 2.0
