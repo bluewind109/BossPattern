@@ -1,6 +1,7 @@
 extends Node
-class_name GameEvents
+
+signal exp_vial_collected(number: float)
 
 
 func emit_exp_vial_collected(number: float):
-	pass
+	exp_vial_collected.emit()
