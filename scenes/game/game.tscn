@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://s35lmfixqjns"]
+[gd_scene load_steps=12 format=3 uid="uid://s35lmfixqjns"]
 
 [ext_resource type="Script" uid="uid://cpl63vx0dh74g" path="res://scenes/game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://geb0lg3x5n8l" path="res://scenes/background/background.tscn" id="2_h7iqs"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bk5q3wde4ijnu" path="res://scenes/game_object/enemy/enemy_Bat/enemy_Bat.tscn" id="6_dakft"]
 [ext_resource type="PackedScene" uid="uid://b4bvc1nfwdm4g" path="res://scenes/game_object/enemy/enemy_Mage/enemy_Mage.tscn" id="7_u5opy"]
 [ext_resource type="PackedScene" uid="uid://dx10hkpffvam7" path="res://scenes/game_object/enemy/enemy_Ghoul/enemy_Ghoul.tscn" id="8_y36n6"]
+[ext_resource type="PackedScene" uid="uid://puvsyvy51tsd" path="res://scenes/game_object/experience_vial/experience_vial.tscn" id="11_kp23o"]
 
 [node name="game" type="Node2D"]
 y_sort_enabled = true
@@ -53,3 +54,21 @@ position = Vector2(-260, -119)
 [node name="enemy_Ghoul" parent="." instance=ExtResource("8_y36n6")]
 position = Vector2(170, 240)
 collision_mask = 0
+
+[node name="experience_vial" parent="." instance=ExtResource("11_kp23o")]
+position = Vector2(172, 151)
+
+[node name="experience_vial2" parent="." instance=ExtResource("11_kp23o")]
+position = Vector2(230, 87)
+
+[node name="experience_vial3" parent="." instance=ExtResource("11_kp23o")]
+position = Vector2(346, 73)
+
+[node name="experience_vial4" parent="." instance=ExtResource("11_kp23o")]
+position = Vector2(278, 39)
+
+[node name="experience_vial5" parent="." instance=ExtResource("11_kp23o")]
+position = Vector2(136, 99)
+
+[node name="experience_vial6" parent="." instance=ExtResource("11_kp23o")]
+position = Vector2(104, 151)
