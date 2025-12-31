@@ -90,6 +90,7 @@ anim_player = NodePath("character_sprite/animation_player")
 [node name="callable_state_machine" parent="." instance=ExtResource("2_rgyib")]
 
 [node name="health" parent="." instance=ExtResource("2_yw30f")]
+max_health = 1000.0
 
 [node name="velocity" parent="." instance=ExtResource("7_boad6")]
 

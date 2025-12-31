@@ -10,5 +10,6 @@ func _ready() -> void:
 
 func take_damage(amount: float) -> void:
 	print(get_parent().name, " take_damage ", amount)
+	if (not component_health): return
 	component_health.take_damage(amount)
 	damaged.emit(amount)

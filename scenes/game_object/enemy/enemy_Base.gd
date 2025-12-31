@@ -69,4 +69,4 @@ func get_direction_to_player() -> Vector2:
 	return (player_node.global_position - global_position).normalized()
 
 func _on_die():
-	pass
+	queue_free()
