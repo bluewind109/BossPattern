@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://puvsyvy51tsd"]
-
-[ext_resource type="Texture2D" uid="uid://blsx6vvjli4ii" path="res://experience_vial/sprites/experience_vial.png" id="1_ldku8"]
-
-[node name="experience_vial" type="Node2D"]
-
-[node name="sprite_2d" type="Sprite2D" parent="."]
-texture = ExtResource("1_ldku8")

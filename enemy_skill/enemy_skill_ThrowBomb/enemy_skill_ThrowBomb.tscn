@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://ciwdhd6kf2noe"]
-
-[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://enemy_skill/enemy_skill.tscn" id="1_v0fyj"]
-[ext_resource type="Script" uid="uid://neg4iwtjyhk6" path="res://enemy_skill/enemy_skill_ThrowBomb/enemy_skill_ThrowBomb.gd" id="2_24u85"]
-
-[node name="enemy_skill_ThrowBomb" instance=ExtResource("1_v0fyj")]
-script = ExtResource("2_24u85")

@@ -1,0 +1,41 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbsmy8l7srlc1"]
+
+[ext_resource type="Script" uid="uid://b4ynji4ptgobk" path="res://scenes/game_object/enemy/enemy_Base.gd" id="1_5wlh4"]
+[ext_resource type="PackedScene" uid="uid://c8qiyb0hv14it" path="res://scenes/common/health/health.tscn" id="2_6w35g"]
+[ext_resource type="PackedScene" uid="uid://bojlohyvov773" path="res://scenes/callable_state_machine/callable_state_machine.tscn" id="2_8r14e"]
+[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/common/hitbox/hitbox.tscn" id="3_8r14e"]
+[ext_resource type="PackedScene" uid="uid://djd68yuw8h6mi" path="res://scenes/game_object/enemy/attack_manager/attack_manager.tscn" id="3_faccg"]
+[ext_resource type="PackedScene" uid="uid://ba5chyifcbwsv" path="res://scenes/common/hurtbox/hurtbox.tscn" id="4_jw7fl"]
+[ext_resource type="PackedScene" uid="uid://co3yjo3qkw6an" path="res://scenes/common/steering/steering.tscn" id="7_pf73l"]
+[ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://scenes/common/velocity/velocity.tscn" id="7_vg5so"]
+[ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://scenes/common/look/look.tscn" id="8_faccg"]
+
+[node name="enemy_Base" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 256
+collision_mask = 257
+motion_mode = 1
+script = ExtResource("1_5wlh4")
+
+[node name="callable_state_machine" parent="." instance=ExtResource("2_8r14e")]
+
+[node name="attack_manager" parent="." instance=ExtResource("3_faccg")]
+
+[node name="health" parent="." instance=ExtResource("2_6w35g")]
+
+[node name="hitbox" parent="." instance=ExtResource("3_8r14e")]
+collision_layer = 256
+collision_mask = 2
+
+[node name="hurtbox" parent="." node_paths=PackedStringArray("component_health") instance=ExtResource("4_jw7fl")]
+collision_layer = 0
+collision_mask = 4
+component_health = NodePath("../health")
+
+[node name="velocity" parent="." instance=ExtResource("7_vg5so")]
+
+[node name="steering" parent="." instance=ExtResource("7_pf73l")]
+
+[node name="look" parent="." instance=ExtResource("8_faccg")]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+visible = false

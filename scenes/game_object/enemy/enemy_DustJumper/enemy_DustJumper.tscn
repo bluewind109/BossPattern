@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnvvwfqh6ley"]
+
+[ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_csdxf"]
+[ext_resource type="Script" uid="uid://bh5ft7dsqd2x0" path="res://scenes/game_object/enemy/enemy_DustJumper/enemy_DustJumper.gd" id="2_2luat"]
+[ext_resource type="PackedScene" uid="uid://bimbul081uogi" path="res://scenes/enemy_skill/enemy_skill_JumpSmash/enemy_skill_JumpSmash.tscn" id="3_wmu30"]
+[ext_resource type="PackedScene" uid="uid://ciwdhd6kf2noe" path="res://scenes/enemy_skill/enemy_skill_ThrowBomb/enemy_skill_ThrowBomb.tscn" id="4_2ag2g"]
+[ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://scenes/common/pulse_effect/pulse_effect.tscn" id="5_2luat"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/common/anim_spritesheet/anim_spritesheet.tscn" id="5_wmu30"]
+
+[node name="enemy_DustJumper" instance=ExtResource("1_csdxf")]
+script = ExtResource("2_2luat")
+
+[node name="enemy_skill_JumpSmash" parent="attack_manager" index="3" instance=ExtResource("3_wmu30")]
+
+[node name="enemy_skill_ThrowBomb" parent="attack_manager" index="4" instance=ExtResource("4_2ag2g")]
+
+[node name="anim_spritesheet" parent="." index="9" instance=ExtResource("5_wmu30")]
+
+[node name="pulse_effect" parent="." index="10" instance=ExtResource("5_2luat")]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfays8guerdto"]
+
+[ext_resource type="Script" uid="uid://b8najat4v8gcq" path="res://scenes/game_object/explosion/explosion.gd" id="1_echoh"]
+[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/common/hitbox/hitbox.tscn" id="2_pim3w"]
+[ext_resource type="Texture2D" uid="uid://76s6d6ifyqgx" path="res://assets/circle_filled_100x100.png" id="3_mp546"]
+[ext_resource type="Texture2D" uid="uid://dj3xb008n48qr" path="res://assets/Pixel Art Skill Animations - Lightning/VFX3/Sprite-sheet/Sprite-sheet.png" id="4_tic5l"]
+[ext_resource type="AnimationLibrary" uid="uid://bqdrdjqe62lgk" path="res://scenes/game_object/explosion/explosion_PoisonBomb/animation/explosion_PoisonBomb.res" id="5_ran55"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pim3w"]
+radius = 20.0
+
+[node name="explosion" type="Node2D" node_paths=PackedStringArray("explo_size")]
+script = ExtResource("1_echoh")
+explo_size = NodePath("hitbox/explo_size")
+anim_res = ExtResource("5_ran55")
+
+[node name="hitbox" parent="." instance=ExtResource("2_pim3w")]
+monitoring = false
+
+[node name="explo_size" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_pim3w")
+debug_color = Color(0, 0.6, 0.69803923, 0.078431375)
+
+[node name="range_predict" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.16078432, 0, 0.15686275)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_mp546")
+
+[node name="range_real" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.16078432, 0, 0.39215687)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_mp546")
+
+[node name="delay_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="skill_sprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_tic5l")
+hframes = 5
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 256)
+
+[node name="animation_player" type="AnimationPlayer" parent="skill_sprite"]

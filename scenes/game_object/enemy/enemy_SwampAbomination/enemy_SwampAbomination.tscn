@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7i6e1muxswrj"]
+
+[ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_i8lsp"]
+[ext_resource type="Script" uid="uid://di7i8t45k4kos" path="res://scenes/game_object/enemy/enemy_SwampAbomination/enemy_SwampAbomination.gd" id="2_gmfen"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/common/anim_spritesheet/anim_spritesheet.tscn" id="3_rr64c"]
+[ext_resource type="AnimationLibrary" uid="uid://bvfr7lmcacr6g" path="res://scenes/game_object/enemy/enemy_SwampAbomination/animation/enemy_swamp_abomination_lib.res" id="5_rdn76"]
+[ext_resource type="Texture2D" uid="uid://dhi2bilv6j5h1" path="res://scenes/game_object/enemy/enemy_SwampAbomination/sprites/Death.png" id="6_7ysgq"]
+[ext_resource type="PackedScene" uid="uid://boy1ugloxmvf3" path="res://scenes/enemy_skill/enemy_skill_Charge/enemy_skill_Charge.tscn" id="6_xn83n"]
+[ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://scenes/common/pulse_effect/pulse_effect.tscn" id="7_7ysgq"]
+[ext_resource type="PackedScene" uid="uid://cuwtjmojfon06" path="res://scenes/enemy_skill/enemy_skill_PoisonExplosion/enemy_skill_PoisonExplosion.tscn" id="8_k08v7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rk6qd"]
+radius = 16.9996
+height = 41.9989
+
+[node name="enemy_SwampAbomination" instance=ExtResource("1_i8lsp")]
+script = ExtResource("2_gmfen")
+mass = 40.0
+
+[node name="charge" parent="attack_manager" index="1" instance=ExtResource("6_xn83n")]
+cooldown_duration = 10.0
+
+[node name="poison_explosion_attack" parent="attack_manager" index="2" instance=ExtResource("8_k08v7")]
+cooldown_duration = 3.0
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
+position = Vector2(3, -17)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_rk6qd")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(3, -17)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_rk6qd")
+debug_color = Color(0.9607843, 0, 0.52156866, 0.41960785)
+
+[node name="anim_spritesheet" parent="." index="5" instance=ExtResource("3_rr64c")]
+texture = ExtResource("6_7ysgq")
+offset = Vector2(-16, -48)
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 0, 576, 96)
+
+[node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
+libraries = {
+&"enemy_swamp_abomination_lib": ExtResource("5_rdn76")
+}
+
+[node name="pulse_effect" parent="." index="6" instance=ExtResource("7_7ysgq")]
+
+[node name="collision_shape_2d" parent="." index="10"]
+visible = true
+position = Vector2(0, -22)

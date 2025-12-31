@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn567e2bat71b"]
+
+[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://scenes/enemy_skill/enemy_skill.tscn" id="1_g2iky"]
+[ext_resource type="Script" uid="uid://csufx7hlo8adq" path="res://scenes/enemy_skill/enemy_skill_LightningStrike/enemy_skill_LightningStrike.gd" id="2_jk5df"]
+[ext_resource type="PackedScene" uid="uid://dcnmwh84wucq" path="res://scenes/game_object/explosion/explosion_LightningStrike/explosion_LightningStrike.tscn" id="3_jk5df"]
+
+[node name="enemy_skill_LightningStrike" instance=ExtResource("1_g2iky")]
+script = ExtResource("2_jk5df")
+cast_range = 300.0
+cooldown_duration = 4.0
+explo_prefab = ExtResource("3_jk5df")
+delay_duration = 2.0
+recover_duration = 1.0
