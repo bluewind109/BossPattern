@@ -1,16 +1,20 @@
 extends Node
 class_name AbilityController_Sword
 
+@export var sword_prefab: PackedScene
+@onready var timer: Timer = $timer
+
 @export var damage: float = 5.0
 @export var max_range: float = 50.0
 @export var offset: float = 16.0
-@export var sword_prefab: PackedScene
 
-@onready var timer: Timer = $timer
-
+var base_wait_time: float
+var reduction_rate: float = .1
 
 func _ready() -> void:
+	base_wait_time = timer.wait_time
 	timer.timeout.connect(_on_ability_timer_finished)
+	GameEvents.ability_upgrade_added.connect(_on_ability_upgraded)
 
 
 func _on_ability_timer_finished():
@@ -40,3 +44,12 @@ func _on_ability_timer_finished():
 	var enemy_direction = (enemies[0].global_position - sword_instance.global_position).normalized() 
 	# sword_instance.global_position -= enemy_direction * round(150.0/10.0)
 	sword_instance.rotation = enemy_direction.angle()
+
+
+func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary):
+	if (upgrade.id != "sword_rate"): return
+
+	var percent_reduction = current_upgrades["sword_rate"]["quantity"] * reduction_rate
+	timer.wait_time = base_wait_time * (1 - percent_reduction)
+	timer.start()
+	print(timer.wait_time)

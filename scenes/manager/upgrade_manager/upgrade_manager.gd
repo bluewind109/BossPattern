@@ -40,6 +40,7 @@ func _apply_upgrade(upgrade: Res_AbilityUpgrade):
 	else:
 		current_upgrades[upgrade.id]["quantity"] += 1
 	print("_on_level_up ", current_upgrades)
+	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
 	
 
 func _on_reroll_upgrades():
