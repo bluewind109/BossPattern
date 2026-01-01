@@ -9,7 +9,6 @@ var current_upgrades = {}
 var current_popup: LevelUpPopup
 
 func _ready() -> void:
-	GameEvents.reroll_upgrades.connect(_on_reroll_upgrades)
 	experience_manager.level_up.connect(_on_level_up)
 
 
@@ -21,11 +20,17 @@ func _on_level_up(current_level: int):
 	var popup_instance = level_up_popup.instantiate() as LevelUpPopup
 	current_popup = popup_instance
 	popup_instance.set_ability_upgrades(upgrade_pool)
+	popup_instance.reroll_upgrades.connect(_on_reroll_upgrades)
+	popup_instance.upgrade_selected.connect(_on_upgrade_selected)
 	add_child(popup_instance)
 	popup_instance.show_popup.call_deferred()
-	
 
-func apply_upgrade(upgrade: Res_AbilityUpgrade):
+
+func _on_upgrade_selected(upgrade: Res_AbilityUpgrade):
+	_apply_upgrade(upgrade)
+
+
+func _apply_upgrade(upgrade: Res_AbilityUpgrade):
 	var has_upgrade: bool = current_upgrades.has(upgrade.id)
 	if (!has_upgrade):
 		current_upgrades[upgrade.id] = {

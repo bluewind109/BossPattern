@@ -1,12 +1,15 @@
 extends Panel
 class_name CardLevelUp
 
+signal selected(upgrade: Res_AbilityUpgrade)
+
 @export var label_name: Label
 @export var label_description: Label
 @export var button_component: Button
 @export var sound_click: AudioStreamPlayer
 
 var popup_ref: LevelUpPopup
+var upgrade: Res_AbilityUpgrade
 
 # short duration = game with fast level up for urgency
 # long duration = game with slower level up for more impact
@@ -23,9 +26,10 @@ func _ready() -> void:
 	pivot_offset = size * Vector2(0.5, 0.5)
 
 
-func init(upgrade: Res_AbilityUpgrade):
-	label_name.text = upgrade.name
-	label_description.text = upgrade.desc
+func init(_upgrade: Res_AbilityUpgrade):
+	upgrade = _upgrade
+	label_name.text = _upgrade.name
+	label_description.text = _upgrade.desc
 
 
 func enable_selection(val: bool) -> void:
@@ -63,4 +67,5 @@ func _on_button_toggled(_toggled_on: bool) -> void:
 		button_tween.set_ease(Tween.EASE_IN)
 		button_tween.tween_property(self, "scale", Vector2(1, 1), button_tween_duration)
 	
-	popup_ref.on_card_selected.emit()
+	# popup_ref.on_card_selected.emit()
+	selected.emit(upgrade)

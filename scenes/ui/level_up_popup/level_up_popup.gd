@@ -17,16 +17,18 @@ var is_animation_done: bool = false
 var is_card_selected: bool = false
 
 var card_pool: Array[CardLevelUp]
+var selected_card: Res_AbilityUpgrade
 
 signal on_panel_shown
 signal on_card_shown
 signal on_button_shown
-signal on_card_selected
+signal upgrade_selected(upgrade: Res_AbilityUpgrade)
+signal reroll_upgrades
 
 
 func _ready() -> void:
 	get_tree().paused = true
-	on_card_selected.connect(_on_card_selected)
+	# on_card_selected.connect(_on_card_selected)
 
 	if (button_reroll): button_reroll.pressed.connect(_on_button_reroll)
 	if (button_ok): button_ok.pressed.connect(_on_button_ok)
@@ -44,6 +46,7 @@ func set_ability_upgrades(upgrades: Array[Res_AbilityUpgrade]):
 		var card_instance = card_prefab.instantiate() as CardLevelUp
 		card_instance.popup_ref = self
 		card_instance.init(upgrade)
+		card_instance.selected.connect(_on_card_selected)
 		card_pool.append(card_instance)
 
 
@@ -128,19 +131,21 @@ func _on_button_reroll() -> void:
 
 	sound_ok.pitch_scale = 0.8
 	sound_ok.play()
-	GameEvents.emit_reroll_upgrades()
+	reroll_upgrades.emit()
 	_tween_show_card(func(): is_animation_done = true)
 
 
 func _on_button_ok() -> void:
 	print("_on_button_ok")
-	if (not is_animation_done): return
-	if (not is_card_selected): return
+	if (!is_animation_done): return
+	if (!is_card_selected): return
+	if (selected_card == null): return
 	_tween_hide_panel()
 	is_card_selected = false
 	is_animation_done = false
 	sound_ok.pitch_scale = 1.0
 	sound_ok.play()
+	upgrade_selected.emit(selected_card)
 	tween_hide_panel.tween_callback(func():
 		print("hide done")
 		# TODO Whatever logic you want to put in
@@ -150,7 +155,9 @@ func _on_button_ok() -> void:
 	)
 
 
-func _on_card_selected() -> void:
-	# print("_on_card_selected")
+func _on_card_selected(_upgrade: Res_AbilityUpgrade) -> void:
+	if (_upgrade == null): return
+	print("_on_card_selected ", _upgrade.name)
+	selected_card = _upgrade
 	is_card_selected = true
 	button_ok.disabled = false
