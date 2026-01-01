@@ -1,6 +1,7 @@
 extends Node
 class_name AbilityController_Sword
 
+@export var damage: float = 5.0
 @export var max_range: float = 50.0
 @export var offset: float = 16.0
 @export var sword_prefab: PackedScene
@@ -33,6 +34,7 @@ func _on_ability_timer_finished():
 
 	var sword_instance = sword_prefab.instantiate() as Ability_Sword
 	player.get_parent().add_child(sword_instance)
+	sword_instance.hitbox.set_damage.call_deferred(damage)
 	sword_instance.global_position = enemies[0].global_position
 	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * offset
 	var enemy_direction = (enemies[0].global_position - sword_instance.global_position).normalized() 

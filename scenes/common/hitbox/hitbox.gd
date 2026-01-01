@@ -19,6 +19,9 @@ func _ready() -> void:
 func set_damage(val: float):
 	damage_amount = val
 
+func get_damage():
+	return damage_amount
+
 func _on_hurtbox_entered(area: Area2D) -> void:
 	if (area is ComponentHurtbox):
 		# print(get_parent().name, " _on_hurtbox_entered ", area.get_parent().name)
