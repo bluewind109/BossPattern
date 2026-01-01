@@ -19,4 +19,6 @@ func _on_died():
 	var vial_instance = exp_vial.instantiate() as ExperienceVial
 	var spawn_pos = (owner as Node2D).global_position
 	vial_instance.global_position = spawn_pos
-	owner.get_parent().add_child.call_deferred(vial_instance)
+	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
+	if (entities_layer == null): return
+	entities_layer.add_child.call_deferred(vial_instance)
