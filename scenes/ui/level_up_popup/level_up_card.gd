@@ -23,6 +23,11 @@ func _ready() -> void:
 	pivot_offset = size * Vector2(0.5, 0.5)
 
 
+func init(upgrade: Res_AbilityUpgrade):
+	label_name.text = upgrade.name
+	label_description.text = upgrade.desc
+
+
 func enable_selection(val: bool) -> void:
 	can_select = val
 

@@ -16,6 +16,8 @@ var show_duration: float = 0.5
 var is_animation_done: bool = false
 var is_card_selected: bool = false
 
+var card_pool: Array[CardLevelUp]
+
 signal on_panel_shown
 signal on_card_shown
 signal on_button_shown
@@ -23,13 +25,12 @@ signal on_card_selected
 
 
 func _ready() -> void:
+	get_tree().paused = true
 	on_card_selected.connect(_on_card_selected)
 
 	if (button_reroll): button_reroll.pressed.connect(_on_button_reroll)
 	if (button_ok): button_ok.pressed.connect(_on_button_ok)
 	
-	show_popup()
-
 
 func _reset_cards() -> void:
 	for i in card_container.get_children():
@@ -38,9 +39,12 @@ func _reset_cards() -> void:
 
 
 func set_ability_upgrades(upgrades: Array[Res_AbilityUpgrade]):
+	card_pool = []
 	for upgrade in upgrades:
-		var card_instance = card_prefab.instantiate()
-		card_container.add_child(card_instance)
+		var card_instance = card_prefab.instantiate() as CardLevelUp
+		card_instance.popup_ref = self
+		card_instance.init(upgrade)
+		card_pool.append(card_instance)
 
 
 func show_popup() -> void:
@@ -73,30 +77,25 @@ func _tween_show_panel() -> void:
 
 
 func _tween_show_card(callback: Callable = Callable()) -> void:
-	if (not card_prefab): return
+	if (card_prefab == null): return
 	is_animation_done = false
 	is_card_selected = false
 	button_ok.disabled = true
 	_reset_cards()
 	card_container.modulate.a = 1
-	var card_arr = []
 	sound_pop.pitch_scale = 0.25
-	for i in 3:
-		var card_instance = card_prefab.instantiate() as CardLevelUp
-		card_instance.popup_ref = self
-		card_container.add_child.call_deferred(card_instance)
-		await card_instance.ready
-		card_arr.append(card_instance)
-		card_instance.enable_selection(false)
+	for i in card_pool.size():
+		card_container.add_child.call_deferred(card_pool[i])
+		card_pool[i].enable_selection(false)
 	
-	for i in card_arr.size():
-		card_arr[i].show_card.call_deferred()
+	for i in card_pool.size():
+		card_pool[i].show_card.call_deferred()
 		sound_pop.play()
 		sound_pop.pitch_scale += 0.25
-		await get_tree().create_timer(card_arr[i].tween_duration).timeout
+		await get_tree().create_timer(card_pool[i].tween_duration).timeout
 
-	for i in card_arr.size():
-		card_arr[i].enable_selection(true)
+	for i in card_pool.size():
+		card_pool[i].enable_selection(true)
 
 	if (callback): callback.call()
 	on_card_shown.emit()
@@ -129,6 +128,7 @@ func _on_button_reroll() -> void:
 
 	sound_ok.pitch_scale = 0.8
 	sound_ok.play()
+	GameEvents.emit_reroll_upgrades()
 	_tween_show_card(func(): is_animation_done = true)
 
 
@@ -145,6 +145,8 @@ func _on_button_ok() -> void:
 		print("hide done")
 		# TODO Whatever logic you want to put in
 		# TODO Unpause the game after tween animation is done
+		get_tree().paused = false
+		queue_free()
 	)
 
 

@@ -24,6 +24,7 @@ corner_detail = 20
 font_size = 64
 
 [node name="level_up_popup" type="CanvasLayer" node_paths=PackedStringArray("panel", "card_container", "button_container", "button_reroll", "button_ok", "sound_pop", "sound_ok")]
+process_mode = 3
 script = ExtResource("1_tllgq")
 card_prefab = ExtResource("3_t6wr6")
 panel = NodePath("margin_container/level_up_panel")
