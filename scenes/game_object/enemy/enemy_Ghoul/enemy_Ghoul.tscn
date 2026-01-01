@@ -20,7 +20,24 @@ cooldown_duration = 3.5
 
 [node name="enemy_skill_MeleeAttack" parent="attack_manager" index="3" instance=ExtResource("3_3cwum")]
 
-[node name="anim_spritesheet" parent="." index="3" instance=ExtResource("3_wchuc")]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_3cwum")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_3cwum")
+
+[node name="pulse_effect" parent="." index="7" instance=ExtResource("4_4n3ik")]
+
+[node name="look" parent="." index="9"]
+is_base_sprite_looking_left = false
+
+[node name="collision_shape_2d" parent="." index="10"]
+position = Vector2(0, -15)
+debug_color = Color(0.74509805, 0.2901961, 0.89411765, 0)
+
+[node name="anim_spritesheet" parent="." index="11" instance=ExtResource("3_wchuc")]
 position = Vector2(0, -19.5)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("4_q5mot")
@@ -33,20 +50,3 @@ region_rect = Rect2(0, 0, 248, 33)
 libraries = {
 &"enemy_ghoul_lib": ExtResource("5_q5mot")
 }
-
-[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
-position = Vector2(0, -15)
-shape = SubResource("CapsuleShape2D_3cwum")
-
-[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
-position = Vector2(0, -15)
-shape = SubResource("CapsuleShape2D_3cwum")
-
-[node name="pulse_effect" parent="." index="8" instance=ExtResource("4_4n3ik")]
-
-[node name="look" parent="." index="10"]
-is_base_sprite_looking_left = false
-
-[node name="collision_shape_2d" parent="." index="11"]
-position = Vector2(0, -15)
-debug_color = Color(0.74509805, 0.2901961, 0.89411765, 0)

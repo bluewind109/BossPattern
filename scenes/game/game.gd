@@ -1,7 +1,7 @@
 extends Node2D
 class_name GameManager
 
-@onready var explosion_container: Node2D = $explosion_container
+@onready var explosion_container: Node2D = $%explosion_container
 
 
 func _ready() -> void:

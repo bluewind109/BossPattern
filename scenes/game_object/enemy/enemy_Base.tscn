@@ -19,12 +19,18 @@ script = ExtResource("1_5wlh4")
 
 [node name="callable_state_machine" parent="." instance=ExtResource("2_8r14e")]
 
-[node name="attack_manager" parent="." instance=ExtResource("3_faccg")]
-
 [node name="health" parent="." instance=ExtResource("2_6w35g")]
+
+[node name="velocity" parent="." instance=ExtResource("7_vg5so")]
+
+[node name="steering" parent="." instance=ExtResource("7_pf73l")]
+
+[node name="look" parent="." instance=ExtResource("8_faccg")]
 
 [node name="vial_drop" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_v4efm")]
 health_component = NodePath("../health")
+
+[node name="attack_manager" parent="." instance=ExtResource("3_faccg")]
 
 [node name="hitbox" parent="." instance=ExtResource("3_8r14e")]
 collision_layer = 0
@@ -34,12 +40,6 @@ collision_mask = 2
 collision_layer = 256
 collision_mask = 0
 component_health = NodePath("../health")
-
-[node name="velocity" parent="." instance=ExtResource("7_vg5so")]
-
-[node name="steering" parent="." instance=ExtResource("7_pf73l")]
-
-[node name="look" parent="." instance=ExtResource("8_faccg")]
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
 visible = false
