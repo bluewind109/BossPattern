@@ -75,3 +75,4 @@ func get_direction_to_player() -> Vector2:
 
 func _on_die():
 	is_dead = true
+	queue_free()
