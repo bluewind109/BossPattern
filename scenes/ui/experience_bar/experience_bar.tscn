@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://byl6awhgih8kh"]
+
+[node name="experience_bar" type="CanvasLayer"]
+
+[node name="margin_container" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="progress_bar" type="ProgressBar" parent="margin_container"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+max_value = 1.0
+value = 0.5
+show_percentage = false
