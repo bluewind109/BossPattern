@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b20o1b3sijcsr"]
+
+[ext_resource type="Script" uid="uid://cp77v570t73w0" path="res://scenes/manager/enemy_manager/enemy_manager.gd" id="1_ij5hy"]
+[ext_resource type="PackedScene" uid="uid://dx10hkpffvam7" path="res://scenes/game_object/enemy/enemy_Ghoul/enemy_Ghoul.tscn" id="2_a1uqj"]
+
+[node name="enemy_manager" type="Node"]
+script = ExtResource("1_ij5hy")
+enemy_scene = ExtResource("2_a1uqj")
+
+[node name="spawn_timer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
