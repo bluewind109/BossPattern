@@ -24,6 +24,7 @@ func _increase_exp(number: float):
 		target_exp += TARGET_EXP_GROWTH
 		current_exp = 0
 		exp_updated.emit(current_exp, target_exp)
+		level_up.emit(current_level)
 
 
 func _on_exp_vial_collected(number: float):
