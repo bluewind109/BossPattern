@@ -13,8 +13,8 @@ func _ready() -> void:
 func _on_died():
 	if (exp_vial == null): return
 	if (not owner is Node2D): return
-	var result = randf()
-	if (result > drop_percent): return
+	# var result = randf()
+	# if (result > drop_percent): return
 
 	var vial_instance = exp_vial.instantiate() as ExperienceVial
 	var spawn_pos = (owner as Node2D).global_position

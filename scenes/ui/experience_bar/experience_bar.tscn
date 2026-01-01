@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://byl6awhgih8kh"]
+[gd_scene load_steps=2 format=3 uid="uid://byl6awhgih8kh"]
+
+[ext_resource type="Script" uid="uid://dbo4kpj6krvev" path="res://scenes/ui/experience_bar/experience_bar.gd" id="1_l1wdu"]
 
 [node name="experience_bar" type="CanvasLayer"]
+script = ExtResource("1_l1wdu")
 
 [node name="margin_container" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -10,7 +13,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="progress_bar" type="ProgressBar" parent="margin_container"]
+[node name="exp_progress_bar" type="ProgressBar" parent="margin_container"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 8

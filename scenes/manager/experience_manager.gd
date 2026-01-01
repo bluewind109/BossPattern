@@ -1,7 +1,13 @@
 extends Node
 class_name ExperienceManager
 
+signal exp_updated(current_exp: float, target_exp: float)
+
+const TARGET_EXP_GROWTH = 5
+
 var current_exp = 0
+var current_level = 1
+var target_exp = 5
 
 
 func _ready() -> void:
@@ -9,8 +15,14 @@ func _ready() -> void:
 
 
 func _increase_exp(number: float):
-	current_exp += number
+	current_exp = min(current_exp + number, target_exp)
 	print("current exp: ", current_exp)
+	exp_updated.emit(current_exp, target_exp)
+	if (current_exp == target_exp):
+		current_level += 1
+		target_exp += TARGET_EXP_GROWTH
+		current_exp = 0
+		exp_updated.emit(current_exp, target_exp)
 
 
 func _on_exp_vial_collected(number: float):
