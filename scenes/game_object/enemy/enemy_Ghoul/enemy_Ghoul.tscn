@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx10hkpffvam7"]
+[gd_scene load_steps=10 format=3 uid="uid://dx10hkpffvam7"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_mj3h6"]
 [ext_resource type="Script" uid="uid://kei166y1fge6" path="res://scenes/game_object/enemy/enemy_Ghoul/enemy_Ghoul.gd" id="2_4jn1o"]
@@ -11,14 +11,23 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3cwum"]
 radius = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vdh2k"]
+radius = 7.0
+
 [node name="enemy_Ghoul" instance=ExtResource("1_mj3h6")]
+collision_mask = 1
 script = ExtResource("2_4jn1o")
 
-[node name="attack_manager" parent="." index="1"]
+[node name="look" parent="." index="4"]
+is_base_sprite_looking_left = false
+
+[node name="attack_manager" parent="." index="6"]
 ATTACK_RANGE = 25.0
 cooldown_duration = 3.5
 
 [node name="enemy_skill_MeleeAttack" parent="attack_manager" index="3" instance=ExtResource("3_3cwum")]
+
+[node name="pulse_effect" parent="." index="7" instance=ExtResource("4_4n3ik")]
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2(0, -15)
@@ -28,16 +37,7 @@ shape = SubResource("CapsuleShape2D_3cwum")
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_3cwum")
 
-[node name="pulse_effect" parent="." index="7" instance=ExtResource("4_4n3ik")]
-
-[node name="look" parent="." index="9"]
-is_base_sprite_looking_left = false
-
-[node name="collision_shape_2d" parent="." index="10"]
-position = Vector2(0, -15)
-debug_color = Color(0.74509805, 0.2901961, 0.89411765, 0)
-
-[node name="anim_spritesheet" parent="." index="11" instance=ExtResource("3_wchuc")]
+[node name="anim_spritesheet" parent="." index="10" instance=ExtResource("3_wchuc")]
 position = Vector2(0, -19.5)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("4_q5mot")
@@ -50,3 +50,8 @@ region_rect = Rect2(0, 0, 248, 33)
 libraries = {
 &"enemy_ghoul_lib": ExtResource("5_q5mot")
 }
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="." index="11"]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_vdh2k")
+debug_color = Color(0.9764706, 0, 0.0627451, 0.41960785)
