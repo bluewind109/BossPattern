@@ -181,6 +181,7 @@ func _on_recover_finished():
 	# _on_die()
 
 func _on_die():
+	if (is_dead): return
 	set_state(STATE.Die)
 	super._on_die()
 
