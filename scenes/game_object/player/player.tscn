@@ -86,7 +86,6 @@ collision_layer = 2
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_oul6g")
-max_health = 1.0
 anim_player = NodePath("character_sprite/animation_player")
 
 [node name="callable_state_machine" parent="." instance=ExtResource("2_rgyib")]
