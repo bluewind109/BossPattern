@@ -10,6 +10,7 @@ var run_texture: Texture2D = preload("./sprites/Player_run.png")
 @onready var comp_health: ComponentHealth = $health
 @onready var comp_look: ComponentLook = $look
 @onready var comp_velocity: ComponentVelocity = $velocity
+@onready var abilities: Node = $abilities
 
 @export var max_health: float = 100.0
 
@@ -34,6 +35,7 @@ var anim_dict: Dictionary [String, Variant] = {
 var current_anim: String = ""
 
 func _ready() -> void:
+	GameEvents.ability_upgrade_added.connect(_on_ability_upgrade_added)
 	comp_velocity.owner_node = self
 	if (comp_look): comp_look.owner_node = character_sprite
 
@@ -92,3 +94,13 @@ func on_run_state(_delta: float):
 
 func on_leave_run_state():
 	pass
+
+
+func _on_ability_upgrade_added(
+	ability_upgrade: Res_AbilityUpgrade, 
+	current_upgrades: Dictionary
+):
+	if (not ability_upgrade is Res_Ability): return
+
+	var ability = ability_upgrade as Res_Ability
+	abilities.add_child(ability.ability_controller_scene.instantiate())

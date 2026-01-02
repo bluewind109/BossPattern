@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://v67gpa0c2rdm"]
+[gd_scene load_steps=20 format=3 uid="uid://v67gpa0c2rdm"]
 
 [ext_resource type="Script" uid="uid://c7fml14t62ej7" path="res://scenes/game_object/player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://bojlohyvov773" path="res://scenes/callable_state_machine/callable_state_machine.tscn" id="2_rgyib"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://bb5c06xlmd0fb" path="res://scenes/common/exp/exp.gd" id="6_boad6"]
 [ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://scenes/common/velocity/velocity.tscn" id="7_boad6"]
 [ext_resource type="PackedScene" uid="uid://bp71esg3p5br1" path="res://scenes/common/four_ways_control/four_ways_control.tscn" id="7_rgyib"]
-[ext_resource type="PackedScene" uid="uid://dutm4v05gwxjr" path="res://scenes/ability/ability_Axe/controller/abilityController_Axe.tscn" id="10_mxgtx"]
 [ext_resource type="PackedScene" uid="uid://chqcr7r1nl7w7" path="res://scenes/ability/ability_Sword/controller/abilityController_Sword.tscn" id="12_ebec5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ieo8"]
@@ -92,6 +91,11 @@ anim_player = NodePath("character_sprite/animation_player")
 
 [node name="health" parent="." instance=ExtResource("2_yw30f")]
 
+[node name="abilities" type="Node" parent="."]
+
+[node name="abilityController_Sword" parent="abilities" instance=ExtResource("12_ebec5")]
+max_range = 100.0
+
 [node name="velocity" parent="." instance=ExtResource("7_boad6")]
 
 [node name="component_FourWaysControl" parent="velocity" instance=ExtResource("7_rgyib")]
@@ -100,11 +104,6 @@ anim_player = NodePath("character_sprite/animation_player")
 
 [node name="exp" parent="." instance=ExtResource("5_g6k8r")]
 script = ExtResource("6_boad6")
-
-[node name="abilityController_Sword" parent="." instance=ExtResource("12_ebec5")]
-max_range = 100.0
-
-[node name="abilityController_Axe" parent="." instance=ExtResource("10_mxgtx")]
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
