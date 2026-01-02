@@ -9,6 +9,7 @@ class_name Enemy_Ghoul
 enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
 
 func _ready() -> void:
+	name = "enemy_Ghoul"
 	super._ready()
 	init_states()
 	init_speed_dict()
@@ -29,12 +30,12 @@ func init_states():
 
 func init_speed_dict():
 	speed_dict = {
-		SPEED_STATE.idle: 75.0,
-		SPEED_STATE.normal: 75.0,
-		SPEED_STATE.wind_up: 150.0,
-		SPEED_STATE.attack: 150.0,
-		SPEED_STATE.recover: 150.0,
-		SPEED_STATE.die: 150.0,
+		SPEED_STATE.idle: 25.0,
+		SPEED_STATE.normal: 25.0,
+		SPEED_STATE.wind_up: 25.0,
+		SPEED_STATE.attack: 25.0,
+		SPEED_STATE.recover: 25.0,
+		SPEED_STATE.die: 25.0,
 	}
 
 func init_anim_dict(_lib_name: String):
@@ -215,7 +216,7 @@ func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == anim_ss.get_anim_id("attack")):
 		set_state(STATE.Recover)
 	elif (_anim_name == anim_ss.get_anim_id("die")):
-		super._on_die()
+		queue_free()
 
 func _on_melee_attack_casted():
 	if (is_dead): return
