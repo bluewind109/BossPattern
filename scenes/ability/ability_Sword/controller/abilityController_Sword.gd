@@ -1,7 +1,7 @@
 extends Node
 class_name AbilityController_Sword
 
-@export var sword_prefab: PackedScene
+@export var sword_ability_scene: PackedScene
 @onready var timer: Timer = $timer
 
 @export var damage: float = 5.0
@@ -36,7 +36,7 @@ func _on_ability_timer_finished():
 		return distance_a < distance_b
 	)
 
-	var sword_instance = sword_prefab.instantiate() as Ability_Sword
+	var sword_instance = sword_ability_scene.instantiate() as Ability_Sword
 	var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
 	if (foreground_layer == null): return
 	foreground_layer.add_child(sword_instance)

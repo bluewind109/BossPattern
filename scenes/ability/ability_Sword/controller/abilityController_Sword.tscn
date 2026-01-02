@@ -5,7 +5,7 @@
 
 [node name="abilityController_Sword" type="Node"]
 script = ExtResource("1_vouvy")
-sword_prefab = ExtResource("2_78fr6")
+sword_ability_scene = ExtResource("2_78fr6")
 
 [node name="timer" type="Timer" parent="."]
 autostart = true
