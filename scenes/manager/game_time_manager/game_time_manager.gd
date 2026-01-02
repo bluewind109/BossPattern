@@ -1,7 +1,7 @@
 extends CanvasLayer
-class_name GameUiTimer
+class_name GameTimeManager
 
-signal arena_difficulty_increased
+signal arena_difficulty_increased(arena_difficulty: int)
 
 const DIFFICULTY_INTERVAL = 5 # seconds
 
@@ -19,7 +19,6 @@ var previous_time: float = 0
 func _ready() -> void:
 	difficulty_timer.wait_time = DIFFICULTY_INTERVAL
 	difficulty_timer.timeout.connect(_on_count_down_finished)
-	difficulty_timer.start()
 	current_time = 0.0
 	update_game_time()
 
@@ -46,4 +45,4 @@ func _increase_difficulty():
 	print("_increase_difficulty ", arena_difficulty)
 	arena_difficulty += 1
 	difficulty_timer.start()
-	arena_difficulty_increased.emit()
+	arena_difficulty_increased.emit(arena_difficulty)
