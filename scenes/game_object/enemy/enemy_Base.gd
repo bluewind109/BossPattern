@@ -23,7 +23,10 @@ var is_dead: bool = false
 func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("Player")
 	if (component_velocity): component_velocity.owner_node = self 
-	if (component_health): component_health.died.connect(_on_die)
+	if (component_health): 
+		component_health.died.connect(_on_die)
+		component_health.init.call_deferred(component_health.max_health, component_health.health)
+
 
 func init_states():
 	pass

@@ -16,15 +16,18 @@ var health: float = 10.0:
 		max_health = val
 		on_max_health_changed.emit(max_health)
 
+
 func init(_max_health: float, _health: float):
 	max_health = _max_health
 	health = _health
+
 
 func take_damage(amount: float):
 	if (is_dead()): return
 	health = max(health - amount, 0)
 	on_health_changed.emit(health)
 	if (health <= 0): died.emit()
+
 
 func is_dead() -> bool:
 	return health <= 0
