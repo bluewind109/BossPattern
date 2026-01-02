@@ -11,7 +11,7 @@ var run_texture: Texture2D = preload("./sprites/Player_run.png")
 @onready var comp_look: ComponentLook = $look
 @onready var comp_velocity: ComponentVelocity = $velocity
 
-var max_health: float = 100.0
+@export var max_health: float = 100.0
 
 var STATE: Dictionary[String, String] = {
 	"Idle": "Idle",

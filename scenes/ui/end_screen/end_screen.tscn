@@ -31,6 +31,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="label_title" type="Label" parent="margin_container/panel_container/margin_container/v_box_container"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -40,6 +41,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="label_subtitle" type="Label" parent="margin_container/panel_container/margin_container/v_box_container"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "You won!"
 horizontal_alignment = 1

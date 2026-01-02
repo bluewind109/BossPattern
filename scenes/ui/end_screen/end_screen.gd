@@ -1,6 +1,8 @@
 extends CanvasLayer
 class_name EndScreen
 
+@onready var title_label: Label =  $%label_title
+@onready var subtitle_label: Label =  $%label_subtitle
 @onready var restart_button: Button = $%button_restart
 @onready var quit_button: Button = $%button_quit
 
@@ -9,6 +11,11 @@ func _ready() -> void:
 	get_tree().paused = true
 	restart_button.pressed.connect(_on_restart_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)
+
+
+func set_defeat():
+	title_label.text = "Defeat"
+	subtitle_label.text = "You lost!"
 
 
 func _on_restart_button_pressed():

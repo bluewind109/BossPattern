@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://s35lmfixqjns"]
+[gd_scene load_steps=13 format=3 uid="uid://s35lmfixqjns"]
 
 [ext_resource type="Script" uid="uid://cpl63vx0dh74g" path="res://scenes/game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://cmetek8tl6wgi" path="res://scenes/manager/experience_manager/experience_manager.tscn" id="2_5jirj"]
 [ext_resource type="PackedScene" uid="uid://geb0lg3x5n8l" path="res://scenes/background/background.tscn" id="2_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://v67gpa0c2rdm" path="res://scenes/game_object/player/player.tscn" id="2_vasa2"]
+[ext_resource type="PackedScene" uid="uid://bxcdcnb2upyhd" path="res://scenes/ui/end_screen/end_screen.tscn" id="2_vaxfo"]
 [ext_resource type="TileSet" uid="uid://6vofakptbxdi" path="res://resources/tilemap/swamp_tileset.tres" id="3_l8g03"]
 [ext_resource type="PackedScene" uid="uid://dtgbre40tbe7a" path="res://scenes/game_object/game_camera/game_camera.tscn" id="4_j8tme"]
 [ext_resource type="PackedScene" uid="uid://b20o1b3sijcsr" path="res://scenes/manager/enemy_manager/enemy_manager.tscn" id="4_kp23o"]
@@ -15,6 +16,7 @@
 [node name="game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_l1rk1")
+end_screen_scene = ExtResource("2_vaxfo")
 
 [node name="game_ui_timer" parent="." instance=ExtResource("6_vaxfo")]
 
@@ -44,7 +46,8 @@ layer_0/tile_data = PackedInt32Array(720913, 262144, 1, 720914, 262144, 1, 78645
 [node name="entities" type="Node2D" parent="." groups=["entities_layer"]]
 y_sort_enabled = true
 
-[node name="Player" parent="entities" instance=ExtResource("2_vasa2")]
+[node name="player" parent="entities" instance=ExtResource("2_vasa2")]
+unique_name_in_owner = true
 position = Vector2(302, 184)
 
 [node name="enemy_Ghoul" parent="entities" instance=ExtResource("8_y36n6")]
