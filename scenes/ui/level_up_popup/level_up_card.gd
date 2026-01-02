@@ -36,9 +36,9 @@ func enable_selection(val: bool) -> void:
 	can_select = val
 
 
-func set_card_info(upgrade: Res_AbilityUpgrade) -> void:
-	label_name.text = upgrade.name
-	label_description.text = upgrade.desc
+func set_card_info(_upgrade: Res_AbilityUpgrade) -> void:
+	label_name.text = _upgrade.name
+	label_description.text = _upgrade.desc
 
 
 func show_card() -> void:
