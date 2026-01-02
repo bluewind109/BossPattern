@@ -27,6 +27,7 @@ func _ready() -> void:
 
 
 func init(_upgrade: Res_AbilityUpgrade):
+	if (_upgrade == null): return
 	upgrade = _upgrade
 	label_name.text = _upgrade.name
 	label_description.text = _upgrade.desc

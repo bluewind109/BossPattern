@@ -46,6 +46,7 @@ func _on_ability_timer_finished():
 
 
 func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary):
+	return
 	if (upgrade.id != "sword_rate"): return
 
 	var percent_reduction = current_upgrades["sword_rate"]["quantity"] * reduction_rate

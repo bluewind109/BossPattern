@@ -9,5 +9,5 @@ axe_ability_scene = ExtResource("2_eg780")
 damage = 10.0
 
 [node name="timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.5
 autostart = true
