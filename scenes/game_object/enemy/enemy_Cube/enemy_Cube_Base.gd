@@ -5,7 +5,11 @@ enum SPEED_STATE {idle, normal, attack, recover, die}
 
 @onready var animation_player: AnimationPlayer = $animation_player
 @export var body_sprite: Sprite2D
+@export var face_decor_sprite: Sprite2D
 @export var dissolve_shader: Material
+
+@export var normal_decor_texture: Texture2D
+@export var die_decor_texture: Texture2D
 
 
 func _ready() -> void:
@@ -21,6 +25,8 @@ func _ready() -> void:
 	body_sprite.material.resource_local_to_scene = true
 	body_sprite.material.set_shader_parameter("texture_size", Vector2(16, 16))
 	body_sprite.material.set_shader_parameter("progress", 0.0)
+
+	face_decor_sprite.texture = normal_decor_texture
 
 
 func init_states():
@@ -157,6 +163,7 @@ func _on_leave_recover_state():
 # DIE STATE
 func _on_enter_die_state():
 	_disable_collision()
+	face_decor_sprite.texture = die_decor_texture
 	animation_player.play("RESET")
 	# anim_ss.play_anim("die", false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
