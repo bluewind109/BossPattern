@@ -1,0 +1,137 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwasuhvibmu61"]
+
+[ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_wxspj"]
+[ext_resource type="Script" uid="uid://p3rx5mm5eehr" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.gd" id="2_28axu"]
+[ext_resource type="Texture2D" uid="uid://m18p7kd5di2o" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-Body.png" id="3_i1s7g"]
+[ext_resource type="Texture2D" uid="uid://c7s8muw44w5k1" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-Face_Decor.png" id="4_vvwbs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvuhp"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fscs4"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_rvuhp"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/body:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -8), Vector2(0, -11), Vector2(0, -8), Vector2(0, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/body:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.17453292519943295, -0.17453292519943295, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/body:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fscs4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/body:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fscs4"]
+_data = {
+&"RESET": SubResource("Animation_fscs4"),
+&"walk": SubResource("Animation_rvuhp")
+}
+
+[node name="enemy_Cube_Base" instance=ExtResource("1_wxspj")]
+script = ExtResource("2_28axu")
+
+[node name="health" parent="." index="1"]
+max_health = 1.0
+
+[node name="look" parent="." index="4" node_paths=PackedStringArray("owner_node")]
+owner_node = NodePath("../visuals")
+
+[node name="attack_manager" parent="." index="6"]
+ATTACK_RANGE = 25.0
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_rvuhp")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_rvuhp")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="." index="9"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_fscs4")
+
+[node name="animation_player" type="AnimationPlayer" parent="." index="10"]
+libraries = {
+&"": SubResource("AnimationLibrary_fscs4")
+}
+autoplay = "walk"
+
+[node name="body" type="Sprite2D" parent="visuals" index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("3_i1s7g")
+
+[node name="face_decor" type="Sprite2D" parent="visuals/body" index="0"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("4_vvwbs")

@@ -39,3 +39,5 @@ collision_mask = 2
 collision_layer = 256
 collision_mask = 0
 component_health = NodePath("../health")
+
+[node name="visuals" type="Node2D" parent="."]

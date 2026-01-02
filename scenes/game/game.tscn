@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://s35lmfixqjns"]
+[gd_scene load_steps=14 format=3 uid="uid://s35lmfixqjns"]
 
 [ext_resource type="Script" uid="uid://cpl63vx0dh74g" path="res://scenes/game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://cmetek8tl6wgi" path="res://scenes/manager/experience_manager/experience_manager.tscn" id="2_5jirj"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://byl6awhgih8kh" path="res://scenes/ui/experience_bar/experience_bar.tscn" id="6_5jirj"]
 [ext_resource type="PackedScene" uid="uid://b8a8w5nfrr16x" path="res://scenes/manager/game_time_manager/game_time_manager.tscn" id="6_vaxfo"]
 [ext_resource type="PackedScene" uid="uid://dx10hkpffvam7" path="res://scenes/game_object/enemy/enemy_Ghoul/enemy_Ghoul.tscn" id="8_y36n6"]
+[ext_resource type="PackedScene" uid="uid://dwasuhvibmu61" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.tscn" id="13_vaxfo"]
 
 [node name="game" type="Node2D"]
 y_sort_enabled = true
@@ -55,6 +56,9 @@ position = Vector2(302, 184)
 [node name="enemy_Ghoul" parent="entities" instance=ExtResource("8_y36n6")]
 position = Vector2(147, 263)
 collision_mask = 0
+
+[node name="enemy_Cube_Base" parent="entities" instance=ExtResource("13_vaxfo")]
+position = Vector2(186, 175)
 
 [node name="foreground" type="Node2D" parent="." groups=["foreground_layer"]]
 
