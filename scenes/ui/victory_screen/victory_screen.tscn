@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxcdcnb2upyhd"]
+
+[ext_resource type="Script" uid="uid://cc5go481ax8pg" path="res://scenes/ui/victory_screen/victory_screen.gd" id="1_p4b2q"]
+
+[node name="victory_screen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_p4b2q")
+
+[node name="margin_container" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel_container" type="PanelContainer" parent="margin_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="margin_container" type="MarginContainer" parent="margin_container/panel_container"]
+custom_minimum_size = Vector2(240, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container/panel_container/margin_container"]
+layout_mode = 2
+alignment = 1
+
+[node name="label_victory" type="Label" parent="margin_container/panel_container/margin_container/v_box_container"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 48
+text = "Victory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label_you_won" type="Label" parent="margin_container/panel_container/margin_container/v_box_container"]
+layout_mode = 2
+text = "You won!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="button_restart" type="Button" parent="margin_container/panel_container/margin_container/v_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart"
+
+[node name="button_quit" type="Button" parent="margin_container/panel_container/margin_container/v_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
