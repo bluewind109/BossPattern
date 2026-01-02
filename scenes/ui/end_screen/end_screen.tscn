@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://bxcdcnb2upyhd"]
 
-[ext_resource type="Script" uid="uid://cc5go481ax8pg" path="res://scenes/ui/victory_screen/victory_screen.gd" id="1_p4b2q"]
+[ext_resource type="Script" uid="uid://cc5go481ax8pg" path="res://scenes/ui/end_screen/end_screen.gd" id="1_e6goq"]
 
-[node name="victory_screen" type="CanvasLayer"]
+[node name="end_screen" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_p4b2q")
+script = ExtResource("1_e6goq")
 
 [node name="margin_container" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -30,7 +30,7 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 alignment = 1
 
-[node name="label_victory" type="Label" parent="margin_container/panel_container/margin_container/v_box_container"]
+[node name="label_title" type="Label" parent="margin_container/panel_container/margin_container/v_box_container"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -39,7 +39,7 @@ text = "Victory"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="label_you_won" type="Label" parent="margin_container/panel_container/margin_container/v_box_container"]
+[node name="label_subtitle" type="Label" parent="margin_container/panel_container/margin_container/v_box_container"]
 layout_mode = 2
 text = "You won!"
 horizontal_alignment = 1

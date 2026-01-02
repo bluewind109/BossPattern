@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name VictoryScreen
+class_name EndScreen
 
 @onready var restart_button: Button = $%button_restart
 @onready var quit_button: Button = $%button_quit

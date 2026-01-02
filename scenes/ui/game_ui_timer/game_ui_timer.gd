@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name GameUiTimer
 
-@export var victory_screen_scene: PackedScene
+@export var end_screen_scene: PackedScene
 
 @onready var game_timer: Timer = $game_timer
 @onready var count_down_timer: Timer = $count_down_timer
@@ -28,5 +28,5 @@ func update_game_time():
 
 
 func _on_count_down_finished():
-	var victory_screen = victory_screen_scene.instantiate()
-	add_child(victory_screen)
+	var end_screen = end_screen_scene.instantiate()
+	add_child(end_screen)
