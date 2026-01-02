@@ -1,20 +1,62 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcr2ip2xfgrhb"]
+[gd_scene load_steps=8 format=3 uid="uid://bcr2ip2xfgrhb"]
 
 [ext_resource type="Script" uid="uid://21qvnr8ney5f" path="res://scenes/ability/ability_Axe/ability_Axe.gd" id="1_b7yiv"]
 [ext_resource type="Texture2D" uid="uid://7np0kabu3wsh" path="res://scenes/ability/ability_Axe/sprites/axe.png" id="1_idb6h"]
 [ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/common/hitbox/hitbox.tscn" id="3_12qok"]
 
+[sub_resource type="Animation" id="Animation_12qok"]
+resource_name = "default"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_2d:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="Animation" id="Animation_dfl5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_2d:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxaj0"]
+_data = {
+&"RESET": SubResource("Animation_dfl5u"),
+&"default": SubResource("Animation_12qok")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_dfl5u"]
-radius = 13.038404
+radius = 11.0
 
 [node name="ability_Axe" type="Node2D"]
 script = ExtResource("1_b7yiv")
 
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gxaj0")
+}
+autoplay = "default"
+
 [node name="sprite_2d" type="Sprite2D" parent="."]
 texture = ExtResource("1_idb6h")
-offset = Vector2(0, -4)
-
-[node name="animation_player" type="AnimationPlayer" parent="."]
+offset = Vector2(0, -1)
 
 [node name="hitbox" parent="." instance=ExtResource("3_12qok")]
 collision_layer = 0

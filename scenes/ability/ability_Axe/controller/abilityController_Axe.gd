@@ -41,7 +41,7 @@ func _on_ability_timer_finished():
 	if (foreground_layer == null): return
 	foreground_layer.add_child(axe_instance)
 
-	#axe_instance.hitbox.set_damage.call_deferred(damage)
+	axe_instance.hitbox.set_damage.call_deferred(damage)
 	axe_instance.global_position = player.global_position
 
 

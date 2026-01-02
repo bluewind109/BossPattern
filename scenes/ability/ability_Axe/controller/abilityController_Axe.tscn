@@ -6,6 +6,7 @@
 [node name="abilityController_Axe" type="Node"]
 script = ExtResource("1_jpgr0")
 axe_ability_scene = ExtResource("2_eg780")
+damage = 10.0
 
 [node name="timer" type="Timer" parent="."]
 wait_time = 2.0
