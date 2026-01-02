@@ -4,6 +4,8 @@ class_name Enemy_Cube_Base
 enum SPEED_STATE {idle, normal, attack, recover, die}
 
 @onready var animation_player: AnimationPlayer = $animation_player
+@export var body_sprite: Sprite2D
+@export var dissolve_shader: Material
 
 
 func _ready() -> void:
@@ -15,6 +17,10 @@ func _ready() -> void:
 	bind_signals()
 	add_states()
 	# super.init_component_look(anim_ss)
+	body_sprite.material = dissolve_shader
+	body_sprite.material.resource_local_to_scene = true
+	body_sprite.material.set_shader_parameter("texture_size", Vector2(16, 16))
+	body_sprite.material.set_shader_parameter("progress", 0.0)
 
 
 func init_states():
@@ -155,7 +161,7 @@ func _on_enter_die_state():
 	# anim_ss.play_anim("die", false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
 	component_velocity.set_direction(Vector2.ZERO)
-	queue_free()
+	_play_dissolve_effect()
 
 func _on_die_state(_delta: float):
 	pass
@@ -164,10 +170,17 @@ func _on_leave_die_state():
 	pass
 
 
+func _play_dissolve_effect():
+	body_sprite.material.set_shader_parameter("progress", 0.0)
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(body_sprite.material, "shader_parameter/progress", 1.0, 1.0)
+	tween.tween_callback(queue_free)	
 
 func _on_attack_finished():
 	set_state(STATE.Recover)
 	
+
 func _on_recover_finished():
 	set_state(STATE.Normal)
 	attack_manager.start_cooldown()
