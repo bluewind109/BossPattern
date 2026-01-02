@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcr2ip2xfgrhb"]
+
+[ext_resource type="Script" uid="uid://21qvnr8ney5f" path="res://scenes/ability/ability_Axe/ability_Axe.gd" id="1_b7yiv"]
+[ext_resource type="Texture2D" uid="uid://7np0kabu3wsh" path="res://scenes/ability/ability_Axe/sprites/axe.png" id="1_idb6h"]
+[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/common/hitbox/hitbox.tscn" id="3_12qok"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dfl5u"]
+radius = 13.038404
+
+[node name="ability_Axe" type="Node2D"]
+script = ExtResource("1_b7yiv")
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+texture = ExtResource("1_idb6h")
+offset = Vector2(0, -4)
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+
+[node name="hitbox" parent="." instance=ExtResource("3_12qok")]
+collision_layer = 0
+collision_mask = 256
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_dfl5u")
