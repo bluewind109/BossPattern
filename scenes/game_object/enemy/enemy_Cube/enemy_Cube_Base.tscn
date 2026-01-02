@@ -12,7 +12,7 @@ shader = ExtResource("3_28axu")
 shader_parameter/progress = 0.0
 shader_parameter/float_dist = 6.0
 shader_parameter/progress_rand_range = 0.2
-shader_parameter/texture_size = Vector2(0, 0)
+shader_parameter/texture_size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvuhp"]
 size = Vector2(16, 16)

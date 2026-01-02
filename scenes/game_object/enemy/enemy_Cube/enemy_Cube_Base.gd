@@ -23,7 +23,6 @@ func _ready() -> void:
 	# super.init_component_look(anim_ss)
 	body_sprite.material = dissolve_shader
 	body_sprite.material.resource_local_to_scene = true
-	body_sprite.material.set_shader_parameter("texture_size", Vector2(16, 16))
 	body_sprite.material.set_shader_parameter("progress", 0.0)
 
 	face_decor_sprite.texture = normal_decor_texture
