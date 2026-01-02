@@ -1,16 +1,25 @@
 extends CanvasLayer
 class_name GameUiTimer
 
+signal arena_difficulty_increased
+
+const DIFFICULTY_INTERVAL = 5 # seconds
+
 @export var end_screen_scene: PackedScene
 
 @onready var game_timer: Timer = $game_timer
-@onready var count_down_timer: Timer = $count_down_timer
+@onready var difficulty_timer: Timer = $difficulty_timer
 @onready var label_game_time: Label = $%label_game_time
-var current_time: float = 0.0
+
+var current_time: float = 0
+var arena_difficulty: int = 0
+var previous_time: float = 0
 
 
 func _ready() -> void:
-	count_down_timer.timeout.connect(_on_count_down_finished)
+	difficulty_timer.wait_time = DIFFICULTY_INTERVAL
+	difficulty_timer.timeout.connect(_on_count_down_finished)
+	difficulty_timer.start()
 	current_time = 0.0
 	update_game_time()
 
@@ -28,6 +37,13 @@ func update_game_time():
 
 
 func _on_count_down_finished():
+	_increase_difficulty()
 	#var end_screen = end_screen_scene.instantiate()
 	#add_child(end_screen)
-	pass
+
+
+func _increase_difficulty():
+	print("_increase_difficulty ", arena_difficulty)
+	arena_difficulty += 1
+	difficulty_timer.start()
+	arena_difficulty_increased.emit()
