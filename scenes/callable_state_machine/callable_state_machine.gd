@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 ## State Machine using callable
 ## Source code from FireBelley: 
 ## https://gist.github.com/firebelley/96f2f82e3feaa2756fe647d8b9843174 
