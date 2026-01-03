@@ -9,7 +9,7 @@ var run_texture: Texture2D = preload("./sprites/Player_run.png")
 
 @onready var comp_health: ComponentHealth = $health
 @onready var comp_look: ComponentLook = $look
-@onready var comp_velocity: ComponentVelocity = $velocity
+@onready var player_control: ComponentFourWaysControl = $component_FourWaysControl
 @onready var abilities: Node = $abilities
 
 @export var max_health: float = 100.0
@@ -36,7 +36,6 @@ var current_anim: String = ""
 
 func _ready() -> void:
 	GameEvents.ability_upgrade_added.connect(_on_ability_upgrade_added)
-	comp_velocity.owner_node = self
 	if (comp_look): comp_look.owner_node = character_sprite
 
 	state_machine.add_states(STATE.Idle, CallableState.new(

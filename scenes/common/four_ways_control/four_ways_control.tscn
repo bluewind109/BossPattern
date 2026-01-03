@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://dqu0ixg3p1rp" path="res://scenes/common/four_ways_control/four_ways_control.gd" id="1_3y25h"]
 
-[node name="component_FourWaysControl" type="Node2D"]
+[node name="component_FourWaysControl" type="Node"]
 script = ExtResource("1_3y25h")
