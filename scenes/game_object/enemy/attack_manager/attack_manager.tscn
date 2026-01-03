@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dq6523jaeacb7" path="res://scenes/game_object/enemy/attack_manager/attack_manager.gd" id="1_wwx0i"]
 
-[node name="attack_manager" type="Node2D"]
+[node name="attack_manager" type="Node"]
 script = ExtResource("1_wwx0i")
 
 [node name="cooldown_timer" type="Timer" parent="."]

@@ -1,9 +1,7 @@
-extends Node2D
+extends Node
 class_name ComponentVelocity
 
 const DECELERATION_TARGET: Vector2 = Vector2.ZERO
-
-var owner_node: CharacterBody2D
 
 @export var max_speed: float = 40
 @export var acceleration: float = 5

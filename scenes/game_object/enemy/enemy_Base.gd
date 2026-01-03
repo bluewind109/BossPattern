@@ -11,7 +11,6 @@ var speed_dict: Dictionary[int, float] = {}
 @onready var component_hitbox: ComponentHitbox = $hitbox
 @onready var component_hurtbox: ComponentHurtbox = $hurtbox
 @onready var component_velocity: ComponentVelocity = $velocity
-@onready var component_steer: ComponentSteer = $steering
 @onready var component_look: ComponentLook = $look
 @onready var attack_manager: AttackManager = $attack_manager
 
@@ -22,7 +21,6 @@ var is_dead: bool = false
 
 func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("Player")
-	if (component_velocity): component_velocity.owner_node = self 
 	if (component_health): 
 		component_health.died.connect(_on_die)
 		component_health.init.call_deferred(component_health.max_health, component_health.health)

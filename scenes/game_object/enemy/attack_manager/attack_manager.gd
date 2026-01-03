@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 # Manage all attack patterns of a boss enemy
 class_name AttackManager
 
@@ -27,7 +27,7 @@ func can_attack() -> bool:
 	return cooldown_timer.is_stopped()
 
 func is_in_attack_range(_target_pos: Vector2) -> bool:
-	var distance = _target_pos.distance_to(global_position)
+	var distance = _target_pos.distance_to(get_parent().global_position)
 	return distance <= ATTACK_RANGE
 
 func set_next_skill(_skill: EnemySkill):

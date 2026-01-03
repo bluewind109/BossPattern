@@ -17,23 +17,23 @@ radius = 7.0
 [node name="enemy_Ghoul" instance=ExtResource("1_mj3h6")]
 script = ExtResource("2_4jn1o")
 
-[node name="look" parent="." index="4"]
+[node name="look" parent="." index="3"]
 is_base_sprite_looking_left = false
 
-[node name="attack_manager" parent="." index="6"]
+[node name="attack_manager" parent="." index="5"]
 ATTACK_RANGE = 25.0
 cooldown_duration = 3.5
 
 [node name="enemy_skill_MeleeAttack" parent="attack_manager" index="3" instance=ExtResource("3_3cwum")]
 
-[node name="pulse_effect" parent="." index="7" instance=ExtResource("4_4n3ik")]
-
-[node name="hitbox" parent="." index="8"]
+[node name="hitbox" parent="." index="6"]
 damage_amount = 1.0
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_3cwum")
+
+[node name="pulse_effect" parent="." index="7" instance=ExtResource("4_4n3ik")]
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
 position = Vector2(0, -15)
