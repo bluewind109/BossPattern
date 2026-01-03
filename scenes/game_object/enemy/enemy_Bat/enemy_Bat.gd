@@ -4,7 +4,7 @@ class_name Enemy_Bat
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
-@onready var charge: EnemySkill_Charge = $attack_manager/charge
+@onready var skill_charge: EnemySkill_Charge = $attack_manager/charge
 
 enum SPEED_STATE {idle, normal, attack, wind_up, charge, recover, die}
 
@@ -28,11 +28,12 @@ func init_states():
 
 func init_speed_dict():
 	speed_dict = {
-		SPEED_STATE.normal: 75.0,
-		SPEED_STATE.wind_up: 150.0,
+		SPEED_STATE.idle: 0.0,
+		SPEED_STATE.normal: 40.0,
+		SPEED_STATE.wind_up: 0.0,
 		SPEED_STATE.charge: 350.0,
-		SPEED_STATE.recover: 150.0,
-		SPEED_STATE.die: 75.0,
+		SPEED_STATE.recover: 0.0,
+		SPEED_STATE.die: 0.0,
 	}
 
 func init_anim_dict(_lib_name: String):
@@ -92,31 +93,27 @@ func _physics_process(delta: float) -> void:
 func _on_enter_normal_state():
 	anim_ss.play_anim("idle")
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
-	component_velocity.set_direction(global_position.direction_to(player_ref.global_position))
 	
 func _on_normal_state(_delta: float):
-	# follow the player
-	var target_pos: Vector2 = player_ref.global_position
-	velocity = component_steer.steer(
-		velocity,
-		global_position,
-		target_pos,
-		component_velocity.max_speed,
-		mass
-	)
+	if (velocity == Vector2.ZERO):
+		anim_ss.play_anim("idle")
+	else:
+		# TODO add anim for following player
+		anim_ss.play_anim("idle")
 
 	if (attack_manager.is_in_attack_range(player_ref.global_position)):
-		component_velocity.set_direction(Vector2.ZERO)
+		component_velocity.set_max_speed(speed_dict[SPEED_STATE.idle])
 	else:
-		component_velocity.set_direction(global_position.direction_to(player_ref.global_position))
+		# follow the player
+		component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
 
 	super.look_at_player()
 
 	if (!attack_manager.can_attack()): return
 	# attack_manager.attack()
 
-	if (charge.is_in_charge_range(player_ref.global_position) and charge.can_cast()):
-		attack_manager.set_next_skill(charge)
+	if (skill_charge.is_in_charge_range(player_ref.global_position) and skill_charge.can_cast()):
+		attack_manager.set_next_skill(skill_charge)
 		set_state(STATE.WindUp)
 		return
 
@@ -127,7 +124,6 @@ func _on_enter_wind_up_state():
 	anim_ss.play_anim("idle")
 	attack_manager.start_delay(attack_manager.get_wind_up_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.wind_up])
-	component_velocity.set_direction(Vector2.ZERO)
 	pulse_effect.start_pulse(anim_ss)
 
 func _on_wind_up_state(_delta: float):
@@ -139,11 +135,10 @@ func _on_leave_wind_up_state():
 func _on_enter_charge_state():
 	anim_ss.play_anim("chase")
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.charge])
-	component_velocity.set_direction(global_position.direction_to(player_ref.global_position))
-	charge.cast_at(player_ref)
+	skill_charge.cast_at(player_ref)
 
 func _on_charge_state(_delta: float):
-	velocity = charge.update(component_velocity.max_speed)
+	velocity = skill_charge.update(component_velocity.max_speed)
 
 func _on_leave_charge_state():
 	pass
@@ -153,7 +148,6 @@ func _on_enter_recover_state():
 	anim_ss.play_anim("idle")
 	attack_manager.start_recover(attack_manager.get_recover_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.recover])
-	component_velocity.set_direction(Vector2.ZERO)
 
 func _on_recover_state(_delta: float):
 	super.look_at_player()
@@ -163,6 +157,7 @@ func _on_leave_recover_state():
 
 # DIE STATE
 func _on_enter_die_state():
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
 	_disable_collision()
 	# TODO add die animation for BAT
 	queue_free()

@@ -3,8 +3,6 @@ class_name ComponentShockwave
 
 @export var ATTACK_RANGE: float = 100.0
 
-var cooldown_duration: float = 7.5
-
 var target_pos: Vector2
 var can_attack: bool = false
 

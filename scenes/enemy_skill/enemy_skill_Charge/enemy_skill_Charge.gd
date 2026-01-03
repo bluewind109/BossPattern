@@ -5,8 +5,6 @@ var charge_position: Vector2
 var charge_direction: Vector2
 @export var CHARGE_RANGE: float = 200.0
 @export var CHARGE_DISTANCE: float = 300.0
-
-@export var cooldown_duration: float = 3.0
 var is_charging: float = false
 
 var target_pos: Vector2

@@ -43,9 +43,9 @@ func init_states():
 
 func init_speed_dict():
 	speed_dict = {
-		SPEED_STATE.idle: 25.0,
+		SPEED_STATE.idle: 0.0,
 		SPEED_STATE.normal: 25.0,
-		SPEED_STATE.wind_up: 25.0,
+		SPEED_STATE.wind_up: 0.0,
 		SPEED_STATE.attack: 25.0,
 		SPEED_STATE.recover: 25.0,
 		SPEED_STATE.die: 25.0,
@@ -116,27 +116,21 @@ func _physics_process(delta: float) -> void:
 func _on_enter_normal_state():
 	animation_player.play("RESET")
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
-	component_velocity.set_direction(global_position.direction_to(player_ref.global_position))
 
 func _on_normal_state(_delta: float):
-	if (velocity == Vector2.ZERO and not component_velocity.direction):
+	if (velocity == Vector2.ZERO):
 		animation_player.play("RESET")
 	else:
 		animation_player.play("walk")
 
-	var target_pos: Vector2 = player_ref.global_position
-	velocity = component_steer.steer(
-		velocity,
-		global_position,
-		target_pos,
-		component_velocity.max_speed,
-		mass
-	)
+	component_velocity.accelerate_to_player()
+	component_velocity.move(self)
 
 	if (attack_manager.is_in_attack_range(player_ref.global_position)):
-		component_velocity.set_direction(Vector2.ZERO)
+		component_velocity.set_max_speed(speed_dict[SPEED_STATE.idle])
 	else:
-		component_velocity.set_direction(global_position.direction_to(player_ref.global_position))
+		# follow the player
+		component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
 
 	super.look_at_player()
 	if (!attack_manager.can_attack()): return
@@ -155,7 +149,6 @@ func _on_enter_wind_up_state():
 	animation_player.play("RESET")
 	attack_manager.start_delay(attack_manager.get_wind_up_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.wind_up])
-	component_velocity.set_direction(Vector2.ZERO)
 	# pulse_effect.start_pulse(anim_ss)
 
 func _on_wind_up_state(_delta: float):
@@ -170,7 +163,6 @@ func _on_leave_wind_up_state():
 func _on_enter_attack_state():
 	animation_player.play("attack_headslam")
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
-	component_velocity.set_direction(Vector2.ZERO)
 	# melee_attack.cast_at(player_ref)
 
 func _on_attack_state(_delta: float):
@@ -185,7 +177,6 @@ func _on_enter_recover_state():
 	animation_player.play("RESET")
 	attack_manager.start_recover(attack_manager.get_recover_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.recover])
-	component_velocity.set_direction(Vector2.ZERO)
 
 func _on_recover_state(_delta: float):
 	super.look_at_player()
@@ -201,7 +192,6 @@ func _on_enter_die_state():
 	animation_player.play("RESET")
 	# anim_ss.play_anim("die", false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
-	component_velocity.set_direction(Vector2.ZERO)
 	_play_dissolve_effect()
 
 func _on_die_state(_delta: float):
