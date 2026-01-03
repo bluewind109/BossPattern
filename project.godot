@@ -44,6 +44,12 @@ naming/script_name_casing=2
 
 enabled=PackedStringArray("res://addons/signal_lens/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://scenes/game_object/": "yellow"
+}
+
 [input]
 
 up={
