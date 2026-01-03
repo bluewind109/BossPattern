@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwasuhvibmu61"]
+[gd_scene load_steps=15 format=3 uid="uid://dwasuhvibmu61"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_wxspj"]
 [ext_resource type="Script" uid="uid://p3rx5mm5eehr" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.gd" id="2_28axu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://m18p7kd5di2o" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-Body.png" id="3_i1s7g"]
 [ext_resource type="Texture2D" uid="uid://c7s8muw44w5k1" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-Face_Decor.png" id="4_vvwbs"]
 [ext_resource type="Texture2D" uid="uid://cm3wg5xg3iltp" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-Face_Decor-Sad.png" id="5_i1s7g"]
+[ext_resource type="PackedScene" uid="uid://cqsedpf1ft2xq" path="res://scenes/enemy_skill/enemy_skill_HeadSlam/enemy_skill_HeadSlam.tscn" id="6_vvwbs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_28axu"]
 shader = ExtResource("3_28axu")
@@ -19,6 +20,45 @@ size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fscs4"]
 size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_fscs4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/body:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_rvuhp"]
 resource_name = "walk"
@@ -62,48 +102,39 @@ tracks/2/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_fscs4"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_i1s7g"]
+resource_name = "attack"
+length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("visuals/body:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.4),
+"transitions": PackedFloat32Array(0.15932018, 4.2870927, 1, 1),
 "update": 0,
-"values": [Vector2(0, -8)]
+"values": [Vector2(0, -8), Vector2(-15, -14), Vector2(0, -8), Vector2(0, -8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("visuals/body:rotation")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("visuals/body:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0, -0.7853981633974483, 0.17453292519943295, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fscs4"]
 _data = {
 &"RESET": SubResource("Animation_fscs4"),
+&"attack_headslam": SubResource("Animation_i1s7g"),
 &"walk": SubResource("Animation_rvuhp")
 }
 
@@ -124,13 +155,23 @@ owner_node = NodePath("../visuals")
 [node name="attack_manager" parent="." index="6"]
 ATTACK_RANGE = 25.0
 
+[node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node") instance=ExtResource("6_vvwbs")]
+cast_range = 25.0
+hitbox_collision_shape = NodePath("../../hitbox/collision_shape_2d")
+follow_node = NodePath("../../visuals/body")
+
+[node name="hitbox" parent="." index="7"]
+damage_amount = 1.0
+
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_rvuhp")
+debug_color = Color(0.5137255, 0.5764706, 0, 0.6901961)
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_rvuhp")
+debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="9"]
 position = Vector2(0, -8)

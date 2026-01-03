@@ -3,16 +3,17 @@ class_name EnemySkill
 
 enum SKILL_TYPE 
 {
-	melee,
-	charge,
-	lightning_strike,
-	poison_explosion_attack,
-	shockwave,
+	headslam = 0,
+	melee = 1,
+	charge = 2,
+	lightning_strike = 3,
+	poison_explosion_attack =4,
+	shockwave = 5,
 }
 
 @onready var cooldown_timer: Timer = $cooldown_timer
 
-@export var explo_prefab: PackedScene
+@export var cooldown_duration: float = 3.0
 @export var delay_duration: float = 0.0
 @export var recover_duration: float = 0.0
 
