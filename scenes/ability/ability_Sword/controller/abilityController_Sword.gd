@@ -1,15 +1,19 @@
 extends Node
 class_name AbilityController_Sword
 
+@export var is_disabled: bool = false
+
 @export var sword_ability_scene: PackedScene
-@onready var timer: Timer = $timer
 
 @export var damage: float = 5.0
 @export var max_range: float = 50.0
 @export var offset: float = 16.0
 
+@onready var timer: Timer = $timer
 var base_wait_time: float
+
 var reduction_rate: float = .1
+
 
 func _ready() -> void:
 	base_wait_time = timer.wait_time
@@ -18,6 +22,7 @@ func _ready() -> void:
 
 
 func _on_ability_timer_finished():
+	if (is_disabled): return
 	var player = get_tree().get_first_node_in_group("Player") as Node2D
 	if (player == null): return
 
