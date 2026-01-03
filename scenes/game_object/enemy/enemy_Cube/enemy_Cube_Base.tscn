@@ -149,10 +149,10 @@ die_decor_texture = ExtResource("5_i1s7g")
 [node name="health" parent="." index="1"]
 max_health = 1.0
 
-[node name="look" parent="." index="4" node_paths=PackedStringArray("owner_node")]
+[node name="look" parent="." index="3" node_paths=PackedStringArray("owner_node")]
 owner_node = NodePath("../visuals")
 
-[node name="attack_manager" parent="." index="6"]
+[node name="attack_manager" parent="." index="5"]
 ATTACK_RANGE = 25.0
 
 [node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node") instance=ExtResource("6_vvwbs")]
@@ -162,7 +162,7 @@ follow_node = NodePath("../../visuals/body")
 delay_duration = 0.5
 recover_duration = 1.0
 
-[node name="hitbox" parent="." index="7"]
+[node name="hitbox" parent="." index="6"]
 damage_amount = 1.0
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
@@ -175,6 +175,14 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_rvuhp")
 debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
+[node name="body" type="Sprite2D" parent="visuals" index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("3_i1s7g")
+
+[node name="face_decor" type="Sprite2D" parent="visuals/body" index="0"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("4_vvwbs")
+
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="9"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_fscs4")
@@ -184,11 +192,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_fscs4")
 }
 autoplay = "walk"
-
-[node name="body" type="Sprite2D" parent="visuals" index="0"]
-position = Vector2(0, -8)
-texture = ExtResource("3_i1s7g")
-
-[node name="face_decor" type="Sprite2D" parent="visuals/body" index="0"]
-modulate = Color(0, 0, 0, 1)
-texture = ExtResource("4_vvwbs")

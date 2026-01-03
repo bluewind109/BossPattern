@@ -19,5 +19,6 @@ func cast():
 
 
 func is_in_cast_range(_target_pos: Vector2) -> bool:
-	var distance = _target_pos.distance_to(global_position)
+	var owner_node = owner as Node2D
+	var distance = _target_pos.distance_to(owner_node.global_position)
 	return distance <= cast_range

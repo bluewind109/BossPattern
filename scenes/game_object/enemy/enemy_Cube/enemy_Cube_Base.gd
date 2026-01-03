@@ -2,6 +2,13 @@ extends EnemyBase
 class_name Enemy_Cube_Base
 
 enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
+enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
+
+var anim_dict: Dictionary[ANIM_STATE, String] = {
+	ANIM_STATE.RESET: "RESET",
+	ANIM_STATE.walk: "walk",
+	ANIM_STATE.attack: "attack_headslam",
+}
 
 @onready var animation_player: AnimationPlayer = $animation_player
 @onready var skill_head_slam: EnemySkill_HeadSlam = $attack_manager/enemy_skill_HeadSlam
@@ -114,28 +121,33 @@ func _physics_process(delta: float) -> void:
 
 # NORMAL STATE
 func _on_enter_normal_state():
-	animation_player.play("RESET")
+	animation_player.play(anim_dict[ANIM_STATE.RESET])
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
 
 func _on_normal_state(_delta: float):
 	if (velocity == Vector2.ZERO):
-		animation_player.play("RESET")
+		animation_player.play(anim_dict[ANIM_STATE.RESET])
 	else:
-		animation_player.play("walk")
+		animation_player.play(anim_dict[ANIM_STATE.walk])
 
 	component_velocity.accelerate_to_player()
 	component_velocity.move(self)
 
-	if (attack_manager.is_in_attack_range(player_ref.global_position)):
+	var player = get_tree().get_first_node_in_group("Player")
+	var is_in_attack_range = attack_manager.is_in_attack_range(player.global_position)
+	if (is_in_attack_range):
 		component_velocity.set_max_speed(speed_dict[SPEED_STATE.idle])
 	else:
 		# follow the player
 		component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
 
 	super.look_at_player()
-	if (!attack_manager.can_attack()): return
+	var can_attack = attack_manager.can_attack()
+	if (!can_attack): return
 
-	if (skill_head_slam.is_in_cast_range(player_ref.global_position) and skill_head_slam.can_cast()):
+	var is_in_cast_range = skill_head_slam.is_in_cast_range(player.global_position)
+	var can_cast = skill_head_slam.can_cast()
+	if (is_in_cast_range and can_cast):
 		attack_manager.set_next_skill(skill_head_slam)
 		set_state(STATE.WindUp)
 		return
@@ -146,7 +158,8 @@ func _on_leave_normal_state():
 
 # WIND UP STATE
 func _on_enter_wind_up_state():
-	animation_player.play("RESET")
+	print("_on_enter_wind_up_state")
+	animation_player.play(anim_dict[ANIM_STATE.RESET])
 	attack_manager.start_delay(attack_manager.get_wind_up_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.wind_up])
 	# pulse_effect.start_pulse(anim_ss)
@@ -161,7 +174,7 @@ func _on_leave_wind_up_state():
 
 # ATTACK STATE
 func _on_enter_attack_state():
-	animation_player.play("attack_headslam")
+	animation_player.play(anim_dict[ANIM_STATE.attack])
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
 	# melee_attack.cast_at(player_ref)
 
@@ -174,7 +187,7 @@ func _on_leave_attack_state():
 
 # RECOVER STATE
 func _on_enter_recover_state():
-	animation_player.play("RESET")
+	animation_player.play(anim_dict[ANIM_STATE.RESET])
 	attack_manager.start_recover(attack_manager.get_recover_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.recover])
 
@@ -189,7 +202,7 @@ func _on_leave_recover_state():
 func _on_enter_die_state():
 	_disable_collision()
 	face_decor_sprite.texture = die_decor_texture
-	animation_player.play("RESET")
+	animation_player.play(anim_dict[ANIM_STATE.RESET])
 	# anim_ss.play_anim("die", false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
 	_play_dissolve_effect()
@@ -232,7 +245,7 @@ func _on_die():
 	super._on_die()
 
 func _on_animation_finished(_anim_name: StringName):
-	if (_anim_name == "attack_headslam"):
+	if (_anim_name == anim_dict[ANIM_STATE.attack]):
 		set_state(STATE.Recover)
 	# elif (_anim_name == animation_player.get_anim_id("die")):
 	# 	super._on_die()
