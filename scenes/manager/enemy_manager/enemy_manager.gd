@@ -3,15 +3,18 @@ class_name EnemyManager
 
 const SPAWN_RADIUS: float = 375
 
-@export var enemy_scene: PackedScene
+@export var enemy_cube_base_scene: PackedScene
+@export var enemy_cube_wizard_scene: PackedScene
 @export var game_time_manager: GameTimeManager
 
 @onready var spawn_timer: Timer = $%spawn_timer
 
 var base_spawn_time = 0
+var enemy_table = WeightedTable.new()
 
 
 func _ready() -> void:
+	enemy_table.add_item(enemy_cube_base_scene, 10)
 	base_spawn_time = spawn_timer.wait_time
 	game_time_manager.arena_difficulty_increased.connect(_on_arena_difficulty_increased)
 	spawn_timer.timeout.connect(_on_spawn_timeout)	
@@ -48,6 +51,7 @@ func _on_spawn_timeout():
 	var player = get_tree().get_first_node_in_group("Player") as Player
 	if (player == null): return
 
+	var enemy_scene = enemy_table.pick_item()
 	var enemy_instance = enemy_scene.instantiate() as EnemyBase
 	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 	if (entities_layer == null): return
@@ -60,3 +64,6 @@ func _on_arena_difficulty_increased(arena_difficulty: int):
 	time_off = min(time_off, 0.7)
 	print("_on_arena_difficulty_increased: ", time_off)
 	spawn_timer.wait_time = max(base_spawn_time - time_off, 0.1)
+
+	if (arena_difficulty == 6):
+		enemy_table.add_item(enemy_cube_wizard_scene, 20)
