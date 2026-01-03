@@ -7,6 +7,6 @@
 script = ExtResource("2_6b1u2")
 CHARGE_RANGE = 200.0
 CHARGE_DISTANCE = 300.0
-cooldown_duration = 3.0
 delay_duration = 2.0
 recover_duration = 1.0
+cast_range = 200.0

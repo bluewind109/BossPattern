@@ -20,6 +20,11 @@ func _ready() -> void:
 	cooldown_timer.wait_time = cooldown_duration
 	is_casting = false
 
+func get_owner_position() -> Vector2:
+	var owner_node = owner as Node2D
+	if (owner_node == null): return Vector2.ZERO
+	return owner_node.global_position
+
 func attack():
 	is_casting = true
 
@@ -27,7 +32,7 @@ func can_attack() -> bool:
 	return cooldown_timer.is_stopped()
 
 func is_in_attack_range(_target_pos: Vector2) -> bool:
-	var distance = _target_pos.distance_to(get_parent().global_position)
+	var distance = _target_pos.distance_to(get_owner_position())
 	return distance <= ATTACK_RANGE
 
 func set_next_skill(_skill: EnemySkill):

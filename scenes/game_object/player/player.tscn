@@ -95,6 +95,7 @@ anim_player = NodePath("character_sprite/animation_player")
 [node name="abilities" type="Node" parent="."]
 
 [node name="abilityController_Sword" parent="abilities" instance=ExtResource("5_gbew5")]
+is_disabled = true
 
 [node name="look" parent="." instance=ExtResource("5_8t03j")]
 

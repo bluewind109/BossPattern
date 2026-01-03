@@ -17,6 +17,8 @@ enum SKILL_TYPE
 @export var delay_duration: float = 0.0
 @export var recover_duration: float = 0.0
 
+@export var cast_range: float = 300.0
+
 var skill_type: SKILL_TYPE
 
 var on_skill_ready_callback: Callable
@@ -39,6 +41,15 @@ func cast_at(_target: Node2D):
 
 func can_cast() -> bool:
 	return cooldown_timer.is_stopped()
+
+func is_in_cast_range(_target_pos: Vector2) -> bool:
+	var distance = _target_pos.distance_to(get_owner_position())
+	return distance <= cast_range
+
+func get_owner_position() -> Vector2:
+	var owner_node = owner as Node2D
+	if (owner_node == null): return Vector2.ZERO
+	return owner_node.global_position
 
 func _start_cooldown():
 	cooldown_timer.start()

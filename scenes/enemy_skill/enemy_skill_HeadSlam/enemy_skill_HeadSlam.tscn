@@ -7,3 +7,4 @@
 script = ExtResource("2_qas2j")
 delay_duration = 1.0
 recover_duration = 2.0
+cast_range = 25.0

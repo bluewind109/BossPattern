@@ -103,6 +103,7 @@ func _on_normal_state(_delta: float):
 
 	if (attack_manager.is_in_attack_range(player_ref.global_position)):
 		component_velocity.set_max_speed(speed_dict[SPEED_STATE.idle])
+		component_velocity.stop(self)
 	else:
 		# follow the player
 		component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])

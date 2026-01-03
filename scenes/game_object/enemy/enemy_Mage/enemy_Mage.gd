@@ -4,7 +4,7 @@ class_name Enemy_Mage
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
-@onready var lightning_strike: EnemySkill_LightningStrike = $attack_manager/enemy_skill_LightningStrike
+@onready var skill_lightning_strike: EnemySkill_LightningStrike = $attack_manager/enemy_skill_LightningStrike
 
 enum RANGE {lightning_strike}
 var range_dict: Dictionary[int, Vector2] = {
@@ -119,6 +119,7 @@ func _on_normal_state(_delta: float):
 
 	if (attack_manager.is_in_attack_range(player_ref.global_position)):
 		component_velocity.set_max_speed(speed_dict[SPEED_STATE.idle])
+		component_velocity.stop(self)
 	else:
 		# follow the player
 		component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
@@ -128,10 +129,10 @@ func _on_normal_state(_delta: float):
 	if (!attack_manager.can_attack()): return
 
 	if (
-		lightning_strike.is_in_cast_range(player_ref.global_position) and 
-		lightning_strike.can_cast()
+		skill_lightning_strike.is_in_cast_range(player_ref.global_position) and 
+		skill_lightning_strike.can_cast()
 	):
-		attack_manager.set_next_skill(lightning_strike)
+		attack_manager.set_next_skill(skill_lightning_strike)
 		set_state(STATE.WindUp)
 		return
 
@@ -155,7 +156,7 @@ func _on_leave_wind_up_state():
 func _on_enter_pea_state():
 	anim_ss.play_anim("summon", false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.lightning_strike])
-	lightning_strike.cast_at(player_ref)
+	skill_lightning_strike.cast_at(player_ref)
 
 func _on_pea_state(_delta: float):
 	super.look_at_player()

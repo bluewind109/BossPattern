@@ -7,7 +7,10 @@
 [node name="enemy_skill_PoisonExplosion" instance=ExtResource("1_uyvag")]
 script = ExtResource("2_wd0h1")
 explo_prefab = ExtResource("3_ywk33")
-cast_range = null
+explo_range = Vector2(5, 125)
+explosion_delay_duration = 1.5
+explosion_count = 6
 cooldown_duration = null
 delay_duration = 2.0
 recover_duration = 1.0
+cast_range = 200.0

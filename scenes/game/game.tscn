@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dturn24adh3lf" path="res://scenes/manager/upgrade_manager/upgrade_manager.tscn" id="5_ftsea"]
 [ext_resource type="PackedScene" uid="uid://byl6awhgih8kh" path="res://scenes/ui/experience_bar/experience_bar.tscn" id="6_5jirj"]
 [ext_resource type="PackedScene" uid="uid://b8a8w5nfrr16x" path="res://scenes/manager/game_time_manager/game_time_manager.tscn" id="6_vaxfo"]
-[ext_resource type="PackedScene" uid="uid://dwasuhvibmu61" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.tscn" id="13_vaxfo"]
+[ext_resource type="PackedScene" uid="uid://brlsjsn1ddh0y" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/enemy_Cube_Wizard.tscn" id="12_5jirj"]
 
 [node name="game" type="Node2D"]
 y_sort_enabled = true
@@ -52,8 +52,8 @@ y_sort_enabled = true
 unique_name_in_owner = true
 position = Vector2(302, 184)
 
-[node name="enemy_Cube_Base" parent="entities" instance=ExtResource("13_vaxfo")]
-position = Vector2(186, 175)
+[node name="enemy_Cube_Wizard" parent="entities" instance=ExtResource("12_5jirj")]
+position = Vector2(570, 63)
 
 [node name="foreground" type="Node2D" parent="." groups=["foreground_layer"]]
 

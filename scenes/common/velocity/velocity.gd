@@ -33,9 +33,11 @@ func move(character_body: CharacterBody2D):
 	velocity = character_body.velocity
 
 
+func stop(character_body: CharacterBody2D):
+	character_body.velocity = Vector2.ZERO
+	character_body.move_and_slide()
+	velocity = character_body.velocity
+
+
 func set_max_speed(val: float):
 	max_speed = val
-
-
-func set_direction(val: Vector2):
-	pass

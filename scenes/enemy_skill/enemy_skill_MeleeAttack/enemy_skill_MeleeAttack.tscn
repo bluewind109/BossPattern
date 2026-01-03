@@ -6,8 +6,8 @@
 
 [node name="enemy_skill_MeleeAttack" instance=ExtResource("1_4fswe")]
 script = ExtResource("2_dm2nq")
-cast_range = 25.0
-explo_range = Vector2(25, 50)
-cooldown_duration = 3.0
 explo_prefab = ExtResource("3_dm2nq")
+explo_range = Vector2(25, 50)
+delay_duration = 0.25
 recover_duration = 2.0
+cast_range = 25.0
