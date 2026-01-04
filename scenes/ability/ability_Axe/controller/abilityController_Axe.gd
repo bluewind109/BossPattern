@@ -9,10 +9,15 @@ class_name AbilityController_Axe
 @export var offset: float = 16.0
 
 var base_wait_time: float
+
+var base_damage: float = 1.0
+var additional_damage_percent: float = 1
+
 var reduction_rate: float = .1
 
 
 func _ready() -> void:
+	base_damage = damage
 	base_wait_time = timer.wait_time
 	timer.timeout.connect(_on_ability_timer_finished)
 	GameEvents.ability_upgrade_added.connect(_on_ability_upgraded)
@@ -41,15 +46,18 @@ func _on_ability_timer_finished():
 	if (foreground_layer == null): return
 	foreground_layer.add_child(axe_instance)
 
-	axe_instance.hitbox.set_damage.call_deferred(damage)
+	axe_instance.hitbox.set_damage.call_deferred(base_damage * additional_damage_percent)
 	axe_instance.global_position = player.global_position
 
 
 func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary):
-	return
-	if (upgrade.id != "sword_rate"): return
-
-	var percent_reduction = current_upgrades["sword_rate"]["quantity"] * reduction_rate
-	timer.wait_time = base_wait_time * (1 - percent_reduction)
-	timer.start()
-	print(timer.wait_time)
+	match upgrade.id:
+		# "axe_rate":
+		# 	var percent_reduction = current_upgrades["axe_rate"]["quantity"] * reduction_rate
+		# 	timer.wait_time = base_wait_time * (1 - percent_reduction)
+		# 	timer.start()
+		# 	print(timer.wait_time)
+		"axe_damage":
+			additional_damage_percent = 1 + (current_upgrades["axe_damage"]["quantity"] * 0.1)
+		_:
+			pass

@@ -10,12 +10,18 @@ class_name AbilityController_Sword
 @export var offset: float = 16.0
 
 @onready var timer: Timer = $timer
+
 var base_wait_time: float
+
+var base_damage: float = 1.0
+var additional_damage_percent: float = 1
 
 var reduction_rate: float = .1
 
 
+
 func _ready() -> void:
+	base_damage = damage
 	base_wait_time = timer.wait_time
 	timer.timeout.connect(_on_ability_timer_finished)
 	GameEvents.ability_upgrade_added.connect(_on_ability_upgraded)
@@ -48,7 +54,7 @@ func _on_ability_timer_finished():
 	if (foreground_layer == null): return
 	foreground_layer.add_child(sword_instance)
 
-	sword_instance.hitbox.set_damage.call_deferred(damage)
+	sword_instance.hitbox.set_damage.call_deferred(base_damage * additional_damage_percent)
 	sword_instance.global_position = enemies[0].global_position
 	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * offset
 	var enemy_direction = (enemies[0].global_position - sword_instance.global_position).normalized() 
@@ -57,9 +63,13 @@ func _on_ability_timer_finished():
 
 
 func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary):
-	if (upgrade.id != "sword_rate"): return
-
-	var percent_reduction = current_upgrades["sword_rate"]["quantity"] * reduction_rate
-	timer.wait_time = base_wait_time * (1 - percent_reduction)
-	timer.start()
-	print(timer.wait_time)
+	match upgrade.id:
+		"sword_rate":
+			var percent_reduction = current_upgrades["sword_rate"]["quantity"] * reduction_rate
+			timer.wait_time = base_wait_time * (1 - percent_reduction)
+			timer.start()
+			print(timer.wait_time)
+		"sword_damage":
+			additional_damage_percent = 1 + (current_upgrades["sword_damage"]["quantity"] * 0.15)
+		_:
+			pass

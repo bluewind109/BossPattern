@@ -2,13 +2,23 @@ extends Node
 class_name UpgradeManager
 
 @export var level_up_popup: PackedScene
-@export var upgrade_pool: Array[Res_AbilityUpgrade]
 @export var experience_manager: ExperienceManager
+
+@export var upgrade_axe: Res_AbilityUpgrade
+@export var upgrade_axe_damage: Res_AbilityUpgrade
+@export var upgrade_sword_rate: Res_AbilityUpgrade
+@export var upgrade_sword_damage: Res_AbilityUpgrade
 
 var current_upgrades = {}
 var current_popup: LevelUpPopup
+var upgrade_pool: WeightedTable = WeightedTable.new()
+
 
 func _ready() -> void:
+	upgrade_pool.add_item(upgrade_axe, 10)
+	upgrade_pool.add_item(upgrade_sword_rate, 10)
+	upgrade_pool.add_item(upgrade_sword_damage, 10)
+
 	experience_manager.level_up.connect(_on_level_up)
 
 
@@ -26,23 +36,23 @@ func _apply_upgrade(upgrade: Res_AbilityUpgrade):
 	if (upgrade.max_quantity > 0):
 		var current_quantity = current_upgrades[upgrade.id]["quantity"]
 		if (current_quantity == upgrade.max_quantity):
-			upgrade_pool = upgrade_pool.filter(func(_upgrade):
-				return _upgrade.id != upgrade.id
-			)
+			upgrade_pool.remove_item(upgrade)
 			
+	_update_upgrade_pool(upgrade)
 	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
+
+
+func _update_upgrade_pool(chosen_upgrade: Res_AbilityUpgrade):
+	if (chosen_upgrade.id == upgrade_axe.id):
+		upgrade_pool.add_item(upgrade_axe_damage, 10)
 
 
 func _pick_upgrades() -> Array[Res_AbilityUpgrade]:
 	var chosen_upgrades: Array[Res_AbilityUpgrade] = []
-	var filtered_upgrades: Array[Res_AbilityUpgrade] = upgrade_pool.duplicate()
 	for i in 3:
-		if (filtered_upgrades.size() == 0): break
-		var chosen_upgrade: Res_AbilityUpgrade = filtered_upgrades.pick_random()
+		if (upgrade_pool.items.size() == chosen_upgrades.size()): break
+		var chosen_upgrade: Res_AbilityUpgrade = upgrade_pool.pick_item(chosen_upgrades)
 		chosen_upgrades.append(chosen_upgrade)
-		filtered_upgrades = filtered_upgrades.filter(func(upgrade):
-			return upgrade.id != chosen_upgrade.id
-		) 
 	return chosen_upgrades
 
 

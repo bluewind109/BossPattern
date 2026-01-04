@@ -19,4 +19,8 @@ func take_damage(amount: float) -> void:
 	var floating_text = floating_text_scene.instantiate() as FloatingText
 	get_tree().get_first_node_in_group("foreground_layer").add_child(floating_text)
 	floating_text.global_position = global_position + Vector2.UP * 16
-	floating_text.start(str(amount))
+
+	var format_damage_string = "%0.2f"
+	if (round(amount) == amount):
+		format_damage_string = "%0.0f"
+	floating_text.start(format_damage_string % amount)
