@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8a8w5nfrr16x"]
+[gd_scene load_steps=3 format=3 uid="uid://b8a8w5nfrr16x"]
 
 [ext_resource type="Script" uid="uid://dra6rlhln3i45" path="res://scenes/manager/game_time_manager/game_time_manager.gd" id="1_23r0d"]
 [ext_resource type="PackedScene" uid="uid://bxcdcnb2upyhd" path="res://scenes/ui/end_screen/end_screen.tscn" id="2_kfncy"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_23r0d"]
-font_size = 32
 
 [node name="game_time_manager" type="CanvasLayer"]
 script = ExtResource("1_23r0d")
@@ -23,12 +20,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/margin_top = 15
 
 [node name="label_game_time" type="Label" parent="margin_container"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
 text = "00:00"
-label_settings = SubResource("LabelSettings_23r0d")
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -50,6 +50,10 @@ folder_colors={
 "res://scenes/game_object/": "yellow"
 }
 
+[gui]
+
+theme/custom="uid://bxsgjv76mi2dx"
+
 [input]
 
 up={
