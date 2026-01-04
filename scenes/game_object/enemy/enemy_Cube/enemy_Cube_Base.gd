@@ -183,8 +183,9 @@ func _on_leave_recover_state():
 # DIE STATE
 func _on_enter_die_state():
 	_disable_collision()
-	anim_ss.play_anim(ANIM_STATE.die, false)
+	anim_ss.play_anim(ANIM_STATE.RESET)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
+	_play_dissolve_effect()
 
 func _on_die_state(_delta: float):
 	pass
@@ -194,9 +195,9 @@ func _on_leave_die_state():
 
 
 func _play_dissolve_effect():
+	if (body_sprite == null): return
 	body_sprite.material = dissolve_shader
 	body_sprite.material.resource_local_to_scene = true
-	body_sprite.material.set_shader_parameter("progress", 0.0)
 	body_sprite.material.set_shader_parameter("progress", 0.0)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
