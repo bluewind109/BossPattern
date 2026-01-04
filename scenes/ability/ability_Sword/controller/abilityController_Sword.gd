@@ -29,8 +29,10 @@ func _on_ability_timer_finished():
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 
 	# only enemies inside max range
-	enemies = enemies.filter(func(enemy: Node2D): 
-		return enemy.global_position.distance_squared_to(player.global_position) < pow(max_range, 2.0)
+	enemies = enemies.filter(func(enemy: EnemyBase): 
+		var is_in_range = enemy.global_position.distance_squared_to(player.global_position) < pow(max_range, 2.0)
+		var not_dead = !enemy.is_dead
+		return is_in_range and not_dead
 	)
 	if (enemies.size() == 0): return
 
