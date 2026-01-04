@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbsmy8l7srlc1"]
+[gd_scene load_steps=11 format=3 uid="uid://cbsmy8l7srlc1"]
 
 [ext_resource type="Script" uid="uid://b4ynji4ptgobk" path="res://scenes/game_object/enemy/enemy_Base.gd" id="1_5wlh4"]
 [ext_resource type="PackedScene" uid="uid://c8qiyb0hv14it" path="res://scenes/common/health/health.tscn" id="2_6w35g"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://djd68yuw8h6mi" path="res://scenes/game_object/enemy/attack_manager/attack_manager.tscn" id="3_faccg"]
 [ext_resource type="PackedScene" uid="uid://ba5chyifcbwsv" path="res://scenes/common/hurtbox/hurtbox.tscn" id="4_jw7fl"]
 [ext_resource type="PackedScene" uid="uid://qaynjrl1psp" path="res://scenes/common/vial_drop/vial_drop.tscn" id="5_v4efm"]
+[ext_resource type="PackedScene" uid="uid://c7v2yyjnq7kqm" path="res://scenes/common/hit_flash/hit_flash.tscn" id="7_v4efm"]
 [ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://scenes/common/velocity/velocity.tscn" id="7_vg5so"]
 [ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://scenes/common/look/look.tscn" id="8_faccg"]
 
@@ -25,6 +26,9 @@ script = ExtResource("1_5wlh4")
 
 [node name="vial_drop" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_v4efm")]
 health_component = NodePath("../health")
+
+[node name="hit_flash" parent="." node_paths=PackedStringArray("comp_health") instance=ExtResource("7_v4efm")]
+comp_health = NodePath("../health")
 
 [node name="attack_manager" parent="." instance=ExtResource("3_faccg")]
 
