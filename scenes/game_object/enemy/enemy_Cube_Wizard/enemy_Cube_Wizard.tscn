@@ -77,10 +77,9 @@ _data = {
 &"RESET": SubResource("Animation_ctqlp")
 }
 
-[node name="enemy_Cube_Wizard" node_paths=PackedStringArray("body_sprite", "face_decor_sprite") instance=ExtResource("1_yxguv")]
+[node name="enemy_Cube_Wizard" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_yxguv")]
 script = ExtResource("2_ccck5")
 body_sprite = NodePath("visuals/body")
-face_decor_sprite = NodePath("")
 dissolve_shader = SubResource("ShaderMaterial_ek8e0")
 
 [node name="health" parent="." index="1"]
