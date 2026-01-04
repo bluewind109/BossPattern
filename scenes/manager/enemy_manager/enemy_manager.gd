@@ -44,7 +44,6 @@ func get_spawn_position() -> Vector2:
 			random_direction = random_direction.rotated(deg_to_rad(90))
 	return spawn_position
 
-
 func _on_spawn_timeout():
 	spawn_timer.start()
 	
