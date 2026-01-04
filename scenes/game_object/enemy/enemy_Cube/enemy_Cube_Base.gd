@@ -183,9 +183,8 @@ func _on_leave_recover_state():
 # DIE STATE
 func _on_enter_die_state():
 	_disable_collision()
-	anim_ss.play_anim(ANIM_STATE.RESET)
+	anim_ss.play_anim(ANIM_STATE.die, false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
-	_play_dissolve_effect()
 
 func _on_die_state(_delta: float):
 	pass
