@@ -90,7 +90,7 @@ body_sprite = NodePath("visuals/body")
 dissolve_shader = SubResource("ShaderMaterial_28axu")
 
 [node name="health" parent="." index="1"]
-max_health = 20.0
+max_health = 5.0
 
 [node name="look" parent="." index="3" node_paths=PackedStringArray("owner_node")]
 owner_node = NodePath("../visuals")

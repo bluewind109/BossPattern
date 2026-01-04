@@ -82,9 +82,6 @@ script = ExtResource("2_ccck5")
 body_sprite = NodePath("visuals/body")
 dissolve_shader = SubResource("ShaderMaterial_ek8e0")
 
-[node name="health" parent="." index="1"]
-max_health = 2.0
-
 [node name="velocity" parent="." index="2"]
 max_speed = 25.0
 acceleration = 2.5

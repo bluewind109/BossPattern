@@ -17,9 +17,9 @@ var health: float = 10.0:
 		on_max_health_changed.emit(max_health)
 
 
-func init(_max_health: float, _health: float):
+func init(_max_health: float):
 	max_health = _max_health
-	health = _health
+	health = _max_health
 
 
 func take_damage(amount: float):
