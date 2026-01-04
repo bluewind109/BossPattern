@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b84r6voagpeu7"
-path="res://.godot/imported/enemy_Cube_Wizard-Body.png-db88b1400a37351a587680501078d281.ctex"
+uid="uid://dma6g2xrgmont"
+path="res://.godot/imported/enemy_Cube_Wizard-1.png-83a6ad8aadae92ea76ecafad40745670.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-Body.png"
-dest_files=["res://.godot/imported/enemy_Cube_Wizard-Body.png-db88b1400a37351a587680501078d281.ctex"]
+source_file="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-1.png"
+dest_files=["res://.godot/imported/enemy_Cube_Wizard-1.png-83a6ad8aadae92ea76ecafad40745670.ctex"]
 
 [params]
 

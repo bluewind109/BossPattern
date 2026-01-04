@@ -1,14 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://brlsjsn1ddh0y"]
+[gd_scene load_steps=18 format=3 uid="uid://brlsjsn1ddh0y"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_yxguv"]
 [ext_resource type="Script" uid="uid://ja7om25tofsl" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/enemy_Cube_Wizard.gd" id="2_ccck5"]
-[ext_resource type="Texture2D" uid="uid://b84r6voagpeu7" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-Body.png" id="3_c88ib"]
 [ext_resource type="Shader" uid="uid://w060hrtgv5k0" path="res://shader/dissolve.gdshader" id="3_ctqlp"]
 [ext_resource type="PackedScene" uid="uid://dn567e2bat71b" path="res://scenes/enemy_skill/enemy_skill_LightningStrike/enemy_skill_LightningStrike.tscn" id="3_d3a4f"]
-[ext_resource type="Texture2D" uid="uid://bcd356lgyunfu" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-Face_Decor.png" id="4_l1smh"]
 [ext_resource type="Texture2D" uid="uid://x7ij5csehon5" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-Hat.png" id="5_d3a4f"]
-[ext_resource type="Texture2D" uid="uid://xdf6do20w81t" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-Face_Decor-Sad.png" id="5_k25jn"]
 [ext_resource type="Texture2D" uid="uid://d3181lfg2l35a" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/water_wand.png" id="6_l1smh"]
+[ext_resource type="Texture2D" uid="uid://bwcdt3ghetoto" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-2.png" id="7_ctqlp"]
 [ext_resource type="AnimationLibrary" uid="uid://cp5w68p7nqbk8" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/animation/enemy_cube_wizard_lib.res" id="10_ek8e0"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/common/anim_spritesheet/anim_spritesheet.tscn" id="10_k25jn"]
 
@@ -19,6 +17,25 @@ shader_parameter/float_dist = 6.0
 shader_parameter/progress_rand_range = 0.2
 shader_parameter/texture_size = Vector2(16, 16)
 
+[sub_resource type="Shader" id="Shader_ek8e0"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float lerp_percent: hint_range(0.0, 1.0);
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	vec4 final_color = mix(texture_color, vec4(1.0, 1.0, 1.0, texture_color.a), lerp_percent);
+	COLOR = final_color;
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ulnpn"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ek8e0")
+shader_parameter/lerp_percent = 0.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3a4f"]
 size = Vector2(16, 16)
 
@@ -28,13 +45,43 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1smh"]
 size = Vector2(16, 16)
 
+[sub_resource type="Animation" id="Animation_ctqlp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k25jn"]
+_data = {
+&"RESET": SubResource("Animation_ctqlp")
+}
+
 [node name="enemy_Cube_Wizard" node_paths=PackedStringArray("body_sprite", "face_decor_sprite") instance=ExtResource("1_yxguv")]
 script = ExtResource("2_ccck5")
 body_sprite = NodePath("visuals/body")
-face_decor_sprite = NodePath("visuals/body/face_decor")
+face_decor_sprite = NodePath("")
 dissolve_shader = SubResource("ShaderMaterial_ek8e0")
-normal_decor_texture = ExtResource("4_l1smh")
-die_decor_texture = ExtResource("5_k25jn")
 
 [node name="health" parent="." index="1"]
 max_health = 2.0
@@ -45,6 +92,10 @@ acceleration = 2.5
 
 [node name="look" parent="." index="3" node_paths=PackedStringArray("owner_node")]
 owner_node = NodePath("../visuals")
+
+[node name="hit_flash" parent="." index="5" node_paths=PackedStringArray("sprite")]
+hit_flash_material = SubResource("ShaderMaterial_ulnpn")
+sprite = NodePath("../visuals/body")
 
 [node name="enemy_skill_LightningStrike" parent="attack_manager" index="3" instance=ExtResource("3_d3a4f")]
 explo_range = Vector2(5, 125)
@@ -63,23 +114,6 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_yvvxf")
 debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
-[node name="body" type="Sprite2D" parent="visuals" index="0"]
-position = Vector2(0, -8)
-texture = ExtResource("3_c88ib")
-
-[node name="face_decor" type="Sprite2D" parent="visuals/body" index="0"]
-modulate = Color(0, 0, 0, 1)
-texture = ExtResource("4_l1smh")
-
-[node name="hat" type="Sprite2D" parent="visuals/body" index="1"]
-position = Vector2(0, -16)
-texture = ExtResource("5_d3a4f")
-
-[node name="wand" type="Sprite2D" parent="visuals/body" index="2"]
-position = Vector2(-11.999999, -3.0000005)
-rotation = 0.481404
-texture = ExtResource("6_l1smh")
-
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="9"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_l1smh")
@@ -90,5 +124,20 @@ debug_color = Color(0, 0.6, 0.69803923, 0)
 [node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
 root_node = NodePath("../..")
 libraries = {
+&"": SubResource("AnimationLibrary_k25jn"),
 &"enemy_cube_wizard_lib": ExtResource("10_ek8e0")
 }
+
+[node name="body" type="Sprite2D" parent="visuals" index="0"]
+position = Vector2(8, 0)
+texture = ExtResource("7_ctqlp")
+offset = Vector2(-8, -8)
+
+[node name="hat" type="Sprite2D" parent="visuals/body" index="0"]
+position = Vector2(-8, -23)
+texture = ExtResource("5_d3a4f")
+
+[node name="wand" type="Sprite2D" parent="visuals/body" index="1"]
+position = Vector2(-20, -11)
+rotation = 0.481404
+texture = ExtResource("6_l1smh")

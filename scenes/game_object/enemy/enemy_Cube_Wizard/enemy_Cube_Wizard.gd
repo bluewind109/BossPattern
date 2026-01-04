@@ -10,11 +10,7 @@ var anim_dict: Dictionary[int, AnimationInfo] = {}
 @onready var skill_lightning_strike: EnemySkill_LightningStrike = $attack_manager/enemy_skill_LightningStrike
 
 @export var body_sprite: Sprite2D
-@export var face_decor_sprite: Sprite2D
 @export var dissolve_shader: Material
-
-@export var normal_decor_texture: Texture2D
-@export var die_decor_texture: Texture2D
 
 
 func _ready() -> void:
@@ -25,12 +21,6 @@ func _ready() -> void:
 	init_anim_dict("enemy_cube_wizard_lib")
 	bind_signals()
 	add_states()
-
-	body_sprite.material = dissolve_shader
-	body_sprite.material.resource_local_to_scene = true
-	body_sprite.material.set_shader_parameter("progress", 0.0)
-
-	face_decor_sprite.texture = normal_decor_texture
 
 
 func init_states():
@@ -61,6 +51,7 @@ func init_anim_dict(_lib_name: String):
 		ANIM_STATE.RESET: AnimationInfo.new(lib_name + "RESET", true),
 		ANIM_STATE.walk: AnimationInfo.new(lib_name + "walk", true),
 		ANIM_STATE.attack: AnimationInfo.new(lib_name + "attack", false),
+		ANIM_STATE.die: AnimationInfo.new(lib_name + "die", false),
 	}
 	anim_ss.init_anim_data(anim_dict)
 
@@ -200,11 +191,8 @@ func _on_leave_recover_state():
 # DIE STATE
 func _on_enter_die_state():
 	_disable_collision()
-	face_decor_sprite.texture = die_decor_texture
-	anim_ss.play_anim(ANIM_STATE.RESET)
-	# anim_ss.play_anim("die", false)
+	anim_ss.play_anim(ANIM_STATE.die, false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
-	_play_dissolve_effect()
 
 
 func _on_die_state(_delta: float):
@@ -216,11 +204,14 @@ func _on_leave_die_state():
 
 
 func _play_dissolve_effect():
+	if (body_sprite == null): return
+	body_sprite.material = dissolve_shader
+	body_sprite.material.resource_local_to_scene = true
 	body_sprite.material.set_shader_parameter("progress", 0.0)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(body_sprite.material, "shader_parameter/progress", 1.0, 1.0)
-	tween.tween_callback(queue_free)	
+	tween.tween_callback(queue_free)		
 
 
 func _on_wind_up_finished():
@@ -252,5 +243,5 @@ func _on_die():
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == anim_dict[ANIM_STATE.attack]["name"]):
 		set_state(STATE.Recover)
-	# elif (_anim_name == animation_player.get_anim_id("die")):
-	# 	super._on_die()
+	elif (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
+		_play_dissolve_effect()
