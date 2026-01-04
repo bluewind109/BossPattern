@@ -43,6 +43,7 @@ func _reset_cards() -> void:
 func set_ability_upgrades(upgrades: Array[Res_AbilityUpgrade]):
 	card_pool = []
 	for upgrade in upgrades:
+		if (upgrade == null): continue
 		var card_instance = card_prefab.instantiate() as CardLevelUp
 		card_instance.popup_ref = self
 		card_instance.init(upgrade)
