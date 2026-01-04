@@ -1,6 +1,11 @@
 extends EnemyBase
 class_name Enemy_SwampAbomination
 
+enum SPEED_STATE {idle, normal, wind_up, attack_charge, attack_poison_explosion, recover, die}
+enum ANIM_STATE{RESET = 0, idle, walk, attack_1, attack_2, attack_3, attack_4, special, die}
+
+var anim_dict: Dictionary[int, AnimationInfo] = {}
+
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
@@ -14,7 +19,6 @@ var range_dict: Dictionary[int, float] = {
 	RANGE.poison_explosion: 350,
 }
 
-enum SPEED_STATE {idle, normal, wind_up, charge, poison_explosion_attack, recover, die}
 
 func _ready() -> void:
 	super._ready()
@@ -41,42 +45,27 @@ func init_speed_dict():
 		SPEED_STATE.idle: 0.0,
 		SPEED_STATE.normal: 50.0,
 		SPEED_STATE.wind_up: 0.0,
-		SPEED_STATE.charge: 350.0,
-		SPEED_STATE.poison_explosion_attack: 0.0,
+		SPEED_STATE.attack_charge: 350.0,
+		SPEED_STATE.attack_poison_explosion: 0.0,
 		SPEED_STATE.recover: 0.0,
 		SPEED_STATE.die: 0.0,
 	}
 
 func init_anim_dict(_lib_name: String):
-	var lib_name = _lib_name
-	anim_ss.init_anim_data(
-		{		
-			"idle": {
-				"anim_id": lib_name + "/" + "idle",
-			},
-			"walk": {
-				"anim_id": lib_name + "/" + "walk",
-			},
-			"attack1": {
-				"anim_id": lib_name + "/" + "attack1",
-			},
-			"attack2": {
-				"anim_id": lib_name + "/" + "attack2",
-			},
-			"attack3": {
-				"anim_id": lib_name + "/" + "attack3",
-			},
-			"attack4": {
-				"anim_id": lib_name + "/" + "attack4",
-			},
-			"special": {
-				"anim_id": lib_name + "/" + "special",
-			},
-			"die": {
-				"anim_id": lib_name + "/" + "die",
-			},
-		}
-	)
+	var lib_name = _lib_name + "/"
+	anim_dict = {
+		ANIM_STATE.RESET: AnimationInfo.new(lib_name + "RESET", true),
+		ANIM_STATE.idle: AnimationInfo.new(lib_name + "idle", true),
+		ANIM_STATE.walk: AnimationInfo.new(lib_name + "walk", true),
+		ANIM_STATE.attack_1: AnimationInfo.new(lib_name + "attack1", false),
+		ANIM_STATE.attack_2: AnimationInfo.new(lib_name + "attack2", false),
+		ANIM_STATE.attack_3: AnimationInfo.new(lib_name + "attack3", false),
+		ANIM_STATE.attack_4: AnimationInfo.new(lib_name + "attack4", false),
+		ANIM_STATE.special: AnimationInfo.new(lib_name + "special", false),
+		ANIM_STATE.die: AnimationInfo.new(lib_name + "die", false),
+	}
+	anim_ss.init_anim_data(anim_dict)
+
 
 func bind_signals():
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
@@ -128,14 +117,14 @@ func _physics_process(delta: float) -> void:
 
 # NORMAL STATE
 func _on_enter_normal_state():
-	anim_ss.play_anim("idle")
+	anim_ss.play_anim(ANIM_STATE.idle)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
 
 func _on_normal_state(_delta: float):
 	if (velocity == Vector2.ZERO):
-		anim_ss.play_anim("idle")
+		anim_ss.play_anim(ANIM_STATE.idle)
 	else:
-		anim_ss.play_anim("attack3")
+		anim_ss.play_anim(ANIM_STATE.attack_3)
 
 	component_velocity.accelerate_to_player()
 	component_velocity.move(self)
@@ -173,7 +162,7 @@ func _on_leave_normal_state():
 
 # WIND UP STATE
 func _on_enter_wind_up_state():
-	anim_ss.play_anim("special")
+	anim_ss.play_anim(ANIM_STATE.special)
 	attack_manager.start_delay(attack_manager.get_wind_up_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.wind_up])
 	pulse_effect.start_pulse(anim_ss)
@@ -186,8 +175,8 @@ func _on_leave_wind_up_state():
 
 # CHARGE STATE
 func _on_enter_charge_state():
-	anim_ss.play_anim("attack4")
-	component_velocity.set_max_speed(speed_dict[SPEED_STATE.charge])
+	anim_ss.play_anim(ANIM_STATE.attack_4)
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack_charge])
 	skill_charge.cast_at(player_ref)
 
 func _on_charge_state(_delta: float):
@@ -198,8 +187,8 @@ func _on_leave_charge_state():
 
 # POISON EXPLOSION ATTACK STATE
 func _on_enter_pea_state():
-	anim_ss.play_anim("idle")
-	component_velocity.set_max_speed(speed_dict[SPEED_STATE.poison_explosion_attack])
+	anim_ss.play_anim(ANIM_STATE.idle)
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack_poison_explosion])
 	skill_poison_explosion.cast_at(player_ref)
 
 func _on_pea_state(_delta: float):
@@ -210,7 +199,7 @@ func _on_leave_pea_state():
 
 # RECOVER STATE
 func _on_enter_recover_state():
-	anim_ss.play_anim("idle")
+	anim_ss.play_anim(ANIM_STATE.idle)
 	attack_manager.start_recover(attack_manager.get_recover_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.recover])
 
@@ -223,7 +212,7 @@ func _on_leave_recover_state():
 # DIE STATE
 func _on_enter_die_state():
 	_disable_collision()
-	anim_ss.play_anim("die", false)
+	anim_ss.play_anim(ANIM_STATE.die, false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
 
 func _on_die_state(_delta: float):
@@ -256,5 +245,5 @@ func _on_die():
 	super._on_die()
 
 func _on_animation_finished(_anim_name: StringName):
-	if (_anim_name == anim_ss.get_anim_id("die")):
+	if (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
 		queue_free()

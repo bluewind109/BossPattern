@@ -1,6 +1,11 @@
 extends EnemyBase
 class_name Enemy_Mage
 
+enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
+enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
+
+var anim_dict: Dictionary[int, AnimationInfo] = {}
+
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
@@ -11,7 +16,6 @@ var range_dict: Dictionary[int, Vector2] = {
 	RANGE.lightning_strike: Vector2(300, 350),
 }
 
-enum SPEED_STATE{idle, normal, wind_up, lightning_strike, recover, die}
 
 func _ready() -> void:
 	super._ready()
@@ -22,50 +26,47 @@ func _ready() -> void:
 	add_states()
 	super.init_component_look(anim_ss)
 
+
 func init_states():
 	STATE = {
 		"Idle": "Idle",
 		"Normal": "Normal",
 		"WindUp": "WindUp",
-		"LightningStrike": "LightningStrike",
+		"Attack": "Attack",
 		"Recover": "Recover",
 		"Die": "Die",
 	}
 
+
 func init_speed_dict():	
 	speed_dict = {
-		SPEED_STATE.idle: 75.0,
+		SPEED_STATE.idle: 0.0,
 		SPEED_STATE.normal: 75.0,
-		SPEED_STATE.wind_up: 75.0,
-		SPEED_STATE.lightning_strike: 75.0,
-		SPEED_STATE.recover: 75.0,
-		SPEED_STATE.die: 75.0,
+		SPEED_STATE.wind_up: 0.0,
+		SPEED_STATE.attack: 0.0,
+		SPEED_STATE.recover: 0.0,
+		SPEED_STATE.die: 0.0,
 	}
 
+
 func init_anim_dict(_lib_name: String):
-	var lib_name = _lib_name
-	anim_ss.init_anim_data(
-		{
-			"idle": {
-				"anim_id": lib_name + "/" + "idle",
-			},
-			"move": {
-				"anim_id": lib_name + "/" + "move",
-			},
-			"summon": {
-				"anim_id": lib_name + "/" + "summon",
-			},
-			"die": {
-				"anim_id": lib_name + "/" + "die",
-			},
-		}
-	)
+	var lib_name = _lib_name + "/"
+	anim_dict = {
+		ANIM_STATE.RESET: AnimationInfo.new(lib_name + "RESET", true),
+		ANIM_STATE.idle: AnimationInfo.new(lib_name + "idle", true),
+		ANIM_STATE.walk: AnimationInfo.new(lib_name + "move", true),
+		ANIM_STATE.attack: AnimationInfo.new(lib_name + "summon", false),
+		ANIM_STATE.die: AnimationInfo.new(lib_name + "die", false),
+	}
+	anim_ss.init_anim_data(anim_dict)
+
 
 func bind_signals():
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
 	attack_manager.on_attack_finished.connect(_on_attack_finished)
 	attack_manager.delay_timer.timeout.connect(_on_wind_up_finished)
 	attack_manager.recover_timer.timeout.connect(_on_recover_finished)
+
 
 func add_states():
 	state_machine.add_states(STATE.Normal, CallableState.new(
@@ -80,10 +81,10 @@ func add_states():
 		_on_leave_wind_up_state
 	))
 
-	state_machine.add_states(STATE.LightningStrike, CallableState.new(
-		_on_pea_state,
-		_on_enter_pea_state,
-		_on_leave_pea_state
+	state_machine.add_states(STATE.Attack, CallableState.new(
+		_on_attack_state,
+		_on_enter_attack_state,
+		_on_leave_attack_state
 	))
 
 	state_machine.add_states(STATE.Recover, CallableState.new(
@@ -100,19 +101,22 @@ func add_states():
 
 	state_machine.set_initial_state(STATE.Normal)
 
+
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
 
+
 # NORMAL STATE
 func _on_enter_normal_state():
-	anim_ss.play_anim("idle")
+	anim_ss.play_anim(ANIM_STATE.idle)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
+
 
 func _on_normal_state(_delta: float):
 	if (velocity == Vector2.ZERO):
-		anim_ss.play_anim("idle")
+		anim_ss.play_anim(ANIM_STATE.idle)
 	else:
-		anim_ss.play_anim("move")
+		anim_ss.play_anim(ANIM_STATE.walk)
 
 	component_velocity.accelerate_to_player()
 	component_velocity.move(self)
@@ -136,81 +140,99 @@ func _on_normal_state(_delta: float):
 		set_state(STATE.WindUp)
 		return
 
+
 func _on_leave_normal_state():
 	pass
 
+
 # WIND UP STATE
 func _on_enter_wind_up_state():
-	anim_ss.play_anim("idle")
+	anim_ss.play_anim(ANIM_STATE.idle)
 	attack_manager.start_delay(attack_manager.get_wind_up_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.wind_up])
 	pulse_effect.start_pulse(anim_ss)
 
+
 func _on_wind_up_state(_delta: float):
 	super.look_at_player()
+
 
 func _on_leave_wind_up_state():
 	pulse_effect.stop_pulse()
 
+
 # LIGHTNING STRIKE ATTACK STATE
-func _on_enter_pea_state():
-	anim_ss.play_anim("summon", false)
-	component_velocity.set_max_speed(speed_dict[SPEED_STATE.lightning_strike])
+func _on_enter_attack_state():
+	anim_ss.play_anim(ANIM_STATE.attack, false)
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
 	skill_lightning_strike.cast_at(player_ref)
 
-func _on_pea_state(_delta: float):
+
+func _on_attack_state(_delta: float):
 	super.look_at_player()
 
-func _on_leave_pea_state():
+
+func _on_leave_attack_state():
 	pass
+
 
 # RECOVER STATE
 func _on_enter_recover_state():
-	# anim_ss.play_anim("idle")
+	# anim_ss.play_anim(ANIM_STATE.idle)
 	attack_manager.start_recover(attack_manager.get_recover_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.recover])
+
 
 func _on_recover_state(_delta: float):
 	super.look_at_player()
 
+
 func _on_leave_recover_state():
 	pass
+
 
 # DIE STATE
 func _on_enter_die_state():
 	_disable_collision()
-	anim_ss.play_anim("die", false)
+	anim_ss.play_anim(ANIM_STATE.die, false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
+
 
 func _on_die_state(_delta: float):
 	pass
 
+
 func _on_leave_die_state():
 	pass
+
 
 #FUNCTIONS
 func _on_wind_up_finished():
 	match attack_manager.next_skill.skill_type:
 		EnemySkill.SKILL_TYPE.lightning_strike:
-			set_state(STATE.LightningStrike)
+			set_state(STATE.Attack)
 		_:
 			pass
 
+
 func _on_attack_finished():
 	set_state(STATE.Recover)
+
 
 func _on_recover_finished():
 	set_state(STATE.Normal)
 	attack_manager.start_cooldown()
 	# _on_die()
 
+
 func _on_die():
 	if (is_dead): return
 	set_state(STATE.Die)
 	super._on_die()
 
+
 func _on_animation_finished(_anim_name: StringName):
-	if (_anim_name == anim_ss.get_anim_id("summon")):
-		anim_ss.play_anim("idle")
-	if (_anim_name == anim_ss.get_anim_id("die")):
+	if (_anim_name == anim_dict[ANIM_STATE.attack]["name"]):
+		anim_ss.play_anim(ANIM_STATE.idle)
+	if (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
 		queue_free()
