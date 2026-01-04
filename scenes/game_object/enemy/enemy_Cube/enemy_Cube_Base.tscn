@@ -1,11 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwasuhvibmu61"]
+[gd_scene load_steps=15 format=3 uid="uid://dwasuhvibmu61"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_wxspj"]
 [ext_resource type="Script" uid="uid://p3rx5mm5eehr" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.gd" id="2_28axu"]
 [ext_resource type="Shader" uid="uid://w060hrtgv5k0" path="res://shader/dissolve.gdshader" id="3_28axu"]
-[ext_resource type="Texture2D" uid="uid://m18p7kd5di2o" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-Body.png" id="3_i1s7g"]
-[ext_resource type="Texture2D" uid="uid://c7s8muw44w5k1" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-Face_Decor.png" id="4_vvwbs"]
-[ext_resource type="Texture2D" uid="uid://cm3wg5xg3iltp" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-Face_Decor-Sad.png" id="5_i1s7g"]
+[ext_resource type="Texture2D" uid="uid://be8imx1ln4qfj" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-2.png" id="5_0gthn"]
 [ext_resource type="PackedScene" uid="uid://cqsedpf1ft2xq" path="res://scenes/enemy_skill/enemy_skill_HeadSlam/enemy_skill_HeadSlam.tscn" id="6_vvwbs"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/common/anim_spritesheet/anim_spritesheet.tscn" id="8_angwg"]
 [ext_resource type="AnimationLibrary" uid="uid://b5ihfl6qnyp5" path="res://scenes/game_object/enemy/enemy_Cube/animation/enemy_cube_base_lib.res" id="9_0gthn"]
@@ -17,27 +15,91 @@ shader_parameter/float_dist = 6.0
 shader_parameter/progress_rand_range = 0.2
 shader_parameter/texture_size = Vector2(16, 16)
 
+[sub_resource type="Shader" id="Shader_g34t7"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float lerp_percent: hint_range(0.0, 1.0);
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	vec4 final_color = mix(texture_color, vec4(1.0, 1.0, 1.0, texture_color.a), lerp_percent);
+	COLOR = final_color;
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_angwg"]
+resource_local_to_scene = true
+shader = SubResource("Shader_g34t7")
+shader_parameter/lerp_percent = 0.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvuhp"]
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fscs4"]
 size = Vector2(16, 16)
 
-[node name="enemy_Cube_Base" node_paths=PackedStringArray("body_sprite", "face_decor_sprite") instance=ExtResource("1_wxspj")]
+[sub_resource type="Animation" id="Animation_g34t7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/body:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_angwg"]
+_data = {
+&"RESET": SubResource("Animation_g34t7")
+}
+
+[node name="enemy_Cube_Base" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_wxspj")]
 script = ExtResource("2_28axu")
 body_sprite = NodePath("visuals/body")
-face_decor_sprite = NodePath("visuals/body/face_decor")
 dissolve_shader = SubResource("ShaderMaterial_28axu")
-normal_decor_texture = ExtResource("4_vvwbs")
-die_decor_texture = ExtResource("5_i1s7g")
 
 [node name="health" parent="." index="1"]
-max_health = 1.0
+max_health = 20.0
 
 [node name="look" parent="." index="3" node_paths=PackedStringArray("owner_node")]
 owner_node = NodePath("../visuals")
 
-[node name="attack_manager" parent="." index="5"]
+[node name="hit_flash" parent="." index="5" node_paths=PackedStringArray("sprite")]
+hit_flash_material = SubResource("ShaderMaterial_angwg")
+sprite = NodePath("../visuals/body")
+
+[node name="attack_manager" parent="." index="6"]
 ATTACK_RANGE = 25.0
 
 [node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node") instance=ExtResource("6_vvwbs")]
@@ -46,7 +108,7 @@ follow_node = NodePath("../../visuals/body")
 delay_duration = 0.5
 recover_duration = 1.0
 
-[node name="hitbox" parent="." index="6"]
+[node name="hitbox" parent="." index="7"]
 damage_amount = 1.0
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
@@ -59,14 +121,6 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_rvuhp")
 debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
-[node name="body" type="Sprite2D" parent="visuals" index="0"]
-position = Vector2(0, -8)
-texture = ExtResource("3_i1s7g")
-
-[node name="face_decor" type="Sprite2D" parent="visuals/body" index="0"]
-modulate = Color(0, 0, 0, 1)
-texture = ExtResource("4_vvwbs")
-
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="9"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_fscs4")
@@ -76,5 +130,10 @@ shape = SubResource("RectangleShape2D_fscs4")
 [node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
 root_node = NodePath("../..")
 libraries = {
+&"": SubResource("AnimationLibrary_angwg"),
 &"enemy_cube_base_lib": ExtResource("9_0gthn")
 }
+
+[node name="body" type="Sprite2D" parent="visuals" index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("5_0gthn")
