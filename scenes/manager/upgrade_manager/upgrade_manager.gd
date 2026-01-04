@@ -57,9 +57,13 @@ func _on_reroll_upgrades():
 
 func _on_level_up(current_level: int):
 	if (level_up_popup == null): return
+
+	var chosen_upgrades = _pick_upgrades()
+	if (chosen_upgrades.size() == 0): return
+
 	var popup_instance = level_up_popup.instantiate() as LevelUpPopup
 	current_popup = popup_instance
-	popup_instance.set_ability_upgrades(_pick_upgrades())
+	popup_instance.set_ability_upgrades(chosen_upgrades)
 	popup_instance.reroll_upgrades.connect(_on_reroll_upgrades)
 	popup_instance.upgrade_selected.connect(_on_upgrade_selected)
 	add_child(popup_instance)
