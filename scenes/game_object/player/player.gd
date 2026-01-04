@@ -52,7 +52,6 @@ func _ready() -> void:
 
 	state_machine.set_initial_state(STATE.Idle)
 
-	var health = max_health
 	comp_health.init.call_deferred(max_health)
 
 func _physics_process(delta: float) -> void:
