@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba5chyifcbwsv"]
+[gd_scene load_steps=3 format=3 uid="uid://ba5chyifcbwsv"]
 
 [ext_resource type="Script" uid="uid://dgf651lrvds2w" path="res://scenes/common/hurtbox/hurtbox.gd" id="1_mhcyh"]
+[ext_resource type="PackedScene" uid="uid://h18xop4xtvwp" path="res://scenes/ui/floating_text/floating_text.tscn" id="2_yfba3"]
 
 [node name="hurtbox" type="Area2D"]
 script = ExtResource("1_mhcyh")
+floating_text_scene = ExtResource("2_yfba3")
