@@ -222,7 +222,7 @@ func _on_die():
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == anim_dict[ANIM_STATE.attack]["name"]):
 		set_state(STATE.Recover)
-	if (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
+	elif (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
 		queue_free()
 
 

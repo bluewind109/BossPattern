@@ -234,5 +234,5 @@ func _on_die():
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == anim_dict[ANIM_STATE.attack]["name"]):
 		anim_ss.play_anim(ANIM_STATE.idle)
-	if (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
+	elif (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
 		queue_free()

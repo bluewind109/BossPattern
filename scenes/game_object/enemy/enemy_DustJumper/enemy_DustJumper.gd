@@ -1,13 +1,18 @@
 extends EnemyBase
 class_name Enemy_DustJumper
 
+enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
+enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
+
+var anim_dict: Dictionary[int, AnimationInfo] = {}
+
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
-enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
 
 func _ready() -> void:
 	pass
+
 
 func init_states():
 	STATE = {
@@ -19,6 +24,7 @@ func init_states():
 		"Die": "Die",
 	}
 
+
 func init_speed_dict():
 	speed_dict = {
 		SPEED_STATE.idle: 0.0,
@@ -29,30 +35,25 @@ func init_speed_dict():
 		SPEED_STATE.die: 0.0,
 	}
 
+
 func init_anim_dict(_lib_name: String):
-	var lib_name = _lib_name
-	anim_ss.init_anim_data(
-		{
-			"idle": {
-				"anim_id": lib_name + "/" + "idle",
-			},
-			"move": {
-				"anim_id": lib_name + "/" + "move",
-			},
-			"summon": {
-				"anim_id": lib_name + "/" + "summon",
-			},
-			"die": {
-				"anim_id": lib_name + "/" + "die",
-			},
-		}
-	)
+	var lib_name = _lib_name + "/"
+	anim_dict = {
+		ANIM_STATE.RESET: AnimationInfo.new(lib_name + "RESET", true),
+		ANIM_STATE.idle: AnimationInfo.new(lib_name + "idle", true),
+		ANIM_STATE.walk: AnimationInfo.new(lib_name + "move", true),
+		ANIM_STATE.attack: AnimationInfo.new(lib_name + "summon", false),
+		ANIM_STATE.die: AnimationInfo.new(lib_name + "die", false),
+	}
+	anim_ss.init_anim_data(anim_dict)
+
 
 func bind_signals():
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
 	attack_manager.on_attack_finished.connect(_on_attack_finished)
 	attack_manager.delay_timer.timeout.connect(_on_wind_up_finished)
 	attack_manager.recover_timer.timeout.connect(_on_recover_finished)
+
 
 func add_states():
 	state_machine.add_states(STATE.Normal, CallableState.new(
@@ -87,19 +88,22 @@ func add_states():
 
 	state_machine.set_initial_state(STATE.Normal)
 
+
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
 
+
 # NORMAL STATE
 func _on_enter_normal_state():
-	anim_ss.play_anim("idle")
+	anim_ss.play_anim(ANIM_STATE.idle)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
+
 
 func _on_normal_state(_delta: float):
 	if (velocity == Vector2.ZERO):
-		anim_ss.play_anim("idle")
+		anim_ss.play_anim(ANIM_STATE.idle)
 	else:
-		anim_ss.play_anim("move")
+		anim_ss.play_anim(ANIM_STATE.walk)
 
 	component_velocity.accelerate_to_player()
 	component_velocity.move(self)
@@ -121,7 +125,7 @@ func _on_leave_normal_state():
 
 # WIND UP STATE
 func _on_enter_wind_up_state():
-	anim_ss.play_anim("idle")
+	anim_ss.play_anim(ANIM_STATE.idle)
 	attack_manager.start_delay(attack_manager.get_wind_up_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.wind_up])
 	component_velocity.set_direction(Vector2.ZERO)
@@ -138,7 +142,7 @@ func _on_leave_wind_up_state():
 
 # RECOVER STATE
 func _on_enter_recover_state():
-	# anim_ss.play_anim("idle")
+	# anim_ss.play_anim(ANIM_STATE.idle)
 	attack_manager.start_recover(attack_manager.get_recover_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.recover])
 	component_velocity.set_direction(Vector2.ZERO)
@@ -155,7 +159,7 @@ func _on_leave_recover_state():
 # DIE STATE
 func _on_enter_die_state():
 	_disable_collision()
-	anim_ss.play_anim("die", false)
+	anim_ss.play_anim(ANIM_STATE.die, false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
 	component_velocity.set_direction(Vector2.ZERO)
 
@@ -194,7 +198,7 @@ func _on_die():
 
 
 func _on_animation_finished(_anim_name: StringName):
-	if (_anim_name == anim_ss.get_anim_id("summon")):
-		anim_ss.play_anim("idle")
-	if (_anim_name == anim_ss.get_anim_id("die")):
+	if (_anim_name == anim_dict[ANIM_STATE.attack]["name"]):
+		anim_ss.play_anim(ANIM_STATE.idle)
+	elif (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
 		queue_free()
