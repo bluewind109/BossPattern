@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkr80g22y78fw"]
+[gd_scene load_steps=8 format=3 uid="uid://bkr80g22y78fw"]
 
 [ext_resource type="Script" uid="uid://dbbb7vchxqmda" path="res://scenes/ui/level_up_popup/level_up_card.gd" id="1_ggdq3"]
 [ext_resource type="Texture2D" uid="uid://dg8vplvbg21n3" path="res://scenes/ui/level_up_popup/asset/sprite/Screenshot 2023-08-21 222316.png" id="2_t30hr"]
@@ -8,18 +8,15 @@
 [ext_resource type="StyleBox" uid="uid://daunxa0me1fis" path="res://scenes/ui/level_up_popup/res/button_style/card_button/level_up_card_hover.tres" id="5_gchq8"]
 [ext_resource type="AudioStream" uid="uid://c2r1k3c750unt" path="res://scenes/ui/level_up_popup/asset/sfx/switch-button-106349.mp3" id="5_qqdw6"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_sxins"]
-font_size = 24
-
 [node name="level_up_card" type="PanelContainer" node_paths=PackedStringArray("label_name", "label_description", "button_component", "sound_click")]
 clip_contents = true
-custom_minimum_size = Vector2(250, 300)
+custom_minimum_size = Vector2(300, 400)
 offset_right = 250.0
 offset_bottom = 300.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_ggdq3")
-label_name = NodePath("margin_container/v_box_container/label_name")
+label_name = NodePath("margin_container/v_box_container/panel_container/label_name")
 label_description = NodePath("margin_container/v_box_container/label_description")
 button_component = NodePath("button")
 sound_click = NodePath("audio_stream_player_click")
@@ -33,14 +30,23 @@ theme_override_constants/margin_bottom = 15
 
 [node name="v_box_container" type="VBoxContainer" parent="margin_container"]
 layout_mode = 2
+theme_override_constants/separation = 8
 alignment = 1
 
-[node name="label_name" type="Label" parent="margin_container/v_box_container"]
+[node name="panel_container" type="PanelContainer" parent="margin_container/v_box_container"]
 layout_mode = 2
+theme_type_variation = &"alternate_panel_container"
+
+[node name="label_name" type="Label" parent="margin_container/v_box_container/panel_container"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 40
 text = "Card Title"
-label_settings = SubResource("LabelSettings_sxins")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
 
 [node name="texture_rect" type="TextureRect" parent="margin_container/v_box_container"]
 layout_mode = 2
@@ -50,9 +56,12 @@ expand_mode = 2
 stretch_mode = 6
 
 [node name="label_description" type="Label" parent="margin_container/v_box_container"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
-text = "Card description here"
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 32
+text = "Increase sword damage by 15%"
 autowrap_mode = 2
 
 [node name="button" type="Button" parent="."]
