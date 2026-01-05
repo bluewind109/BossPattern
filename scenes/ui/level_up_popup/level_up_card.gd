@@ -1,7 +1,7 @@
 extends PanelContainer
 class_name CardLevelUp
 
-signal selected(upgrade: Res_AbilityUpgrade)
+signal card_selected(upgrade: Res_AbilityUpgrade)
 
 @export var label_name: Label
 @export var label_description: Label
@@ -69,4 +69,4 @@ func _on_button_toggled(_toggled_on: bool) -> void:
 		button_tween.tween_property(self, "scale", Vector2(1, 1), button_tween_duration)
 	
 	# popup_ref.on_card_selected.emit()
-	selected.emit(upgrade)
+	card_selected.emit(upgrade)

@@ -47,7 +47,7 @@ func set_ability_upgrades(upgrades: Array[Res_AbilityUpgrade]):
 		var card_instance = card_prefab.instantiate() as CardLevelUp
 		card_instance.popup_ref = self
 		card_instance.init(upgrade)
-		card_instance.selected.connect(_on_card_selected)
+		card_instance.card_selected.connect(_on_card_selected)
 		card_pool.append(card_instance)
 
 
