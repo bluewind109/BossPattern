@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://3tuxnqf0v3dh"]
+[gd_scene load_steps=9 format=3 uid="uid://3tuxnqf0v3dh"]
 
 [ext_resource type="Script" uid="uid://jraslb56h46o" path="res://scenes/ui/level_up_popup/level_up_popup.gd" id="1_tllgq"]
 [ext_resource type="PackedScene" uid="uid://bkr80g22y78fw" path="res://scenes/ui/level_up_popup/level_up_card.tscn" id="3_t6wr6"]
@@ -19,9 +19,6 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 corner_detail = 20
-
-[sub_resource type="LabelSettings" id="LabelSettings_qnpbd"]
-font_size = 64
 
 [node name="level_up_popup" type="CanvasLayer" node_paths=PackedStringArray("panel", "card_container", "button_container", "button_reroll", "button_ok", "sound_pop", "sound_ok")]
 process_mode = 3
@@ -78,8 +75,10 @@ alignment = 1
 
 [node name="label_title" type="Label" parent="margin_container/level_up_panel/margin_container/v_box_container"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 64
 text = "Level Up!"
-label_settings = SubResource("LabelSettings_qnpbd")
 horizontal_alignment = 1
 vertical_alignment = 1
 

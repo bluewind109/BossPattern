@@ -43,7 +43,10 @@ alignment = 1
 [node name="label_title" type="Label" parent="margin_container/panel_end/margin_container/v_box_container"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 48
 text = "Victory"
@@ -53,6 +56,11 @@ vertical_alignment = 1
 [node name="label_subtitle" type="Label" parent="margin_container/panel_end/margin_container/v_box_container"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 8
 text = "You won!"
 horizontal_alignment = 1
 vertical_alignment = 1

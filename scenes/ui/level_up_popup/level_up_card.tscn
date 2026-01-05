@@ -39,11 +39,11 @@ layout_mode = 2
 theme_type_variation = &"alternate_panel_container"
 
 [node name="label_name" type="Label" parent="margin_container/v_box_container/panel_container"]
-custom_minimum_size = Vector2(0, 45)
+custom_minimum_size = Vector2(0, 52.5)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 48
 text = "Card Title"
 horizontal_alignment = 1
 vertical_alignment = 2
