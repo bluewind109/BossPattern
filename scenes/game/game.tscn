@@ -35,6 +35,7 @@ game_time_manager = NodePath("../game_time_manager")
 experience_manager = NodePath("../experience_manager")
 
 [node name="game_camera" parent="." instance=ExtResource("4_j8tme")]
+zoom = Vector2(1, 1)
 
 [node name="Background" parent="." instance=ExtResource("2_h7iqs")]
 visible = false
