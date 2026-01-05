@@ -1,6 +1,8 @@
 extends CanvasLayer
 class_name LevelUpPopup
 
+@onready var dark_background: ColorRect = $%dark_background
+
 @export var card_prefab: PackedScene
 @export var panel: Panel
 @export var card_container: HBoxContainer
@@ -54,6 +56,7 @@ func set_ability_upgrades(upgrades: Array[Res_AbilityUpgrade]):
 func show_popup() -> void:
 	print("show_popup")
 	is_animation_done = false
+	dark_background.modulate.a = 0
 	card_container.modulate.a = 0
 	button_container.modulate.a = 0
 	button_ok.disabled = true
@@ -75,6 +78,7 @@ func _tween_show_panel() -> void:
 	tween.set_parallel(true)
 	tween.tween_property(panel, "position:y", 0, show_panel_duration).from(-250)
 	tween.tween_property(panel, "modulate:a", 1, show_panel_duration).from(0)
+	tween.tween_property(dark_background, "modulate:a", 1, show_panel_duration).from(0)
 	tween.tween_callback(func():
 		on_panel_shown.emit()
 	)
@@ -123,13 +127,13 @@ func _tween_hide_panel():
 	tween_hide_panel.set_trans(Tween.TRANS_SINE)
 	tween_hide_panel.set_ease(Tween.EASE_IN)
 	tween_hide_panel.tween_property(panel, "modulate:a", 0, hide_panel_duration)
+	tween_hide_panel.tween_property(dark_background, "modulate:a", 0, hide_panel_duration)
 
 
 func _on_button_reroll() -> void:
 	print("_on_button_reroll")
 	if (not is_animation_done): return
-	# TODO reroll cards with new stats
-
+	# reroll cards with new stats
 	sound_ok.pitch_scale = 0.8
 	sound_ok.play()
 	reroll_upgrades.emit()
@@ -150,7 +154,7 @@ func _on_button_ok() -> void:
 	tween_hide_panel.tween_callback(func():
 		print("hide done")
 		# TODO Whatever logic you want to put in
-		# TODO Unpause the game after tween animation is done
+		# Unpause the game after tween animation is done
 		get_tree().paused = false
 		queue_free()
 	)
