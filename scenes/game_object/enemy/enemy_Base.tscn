@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbsmy8l7srlc1"]
+[gd_scene load_steps=13 format=3 uid="uid://cbsmy8l7srlc1"]
 
 [ext_resource type="Script" uid="uid://b4ynji4ptgobk" path="res://scenes/game_object/enemy/enemy_Base.gd" id="1_5wlh4"]
 [ext_resource type="PackedScene" uid="uid://c8qiyb0hv14it" path="res://scenes/common/health/health.tscn" id="2_6w35g"]
@@ -10,6 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://c7v2yyjnq7kqm" path="res://scenes/common/hit_flash/hit_flash.tscn" id="7_v4efm"]
 [ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://scenes/common/velocity/velocity.tscn" id="7_vg5so"]
 [ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://scenes/common/look/look.tscn" id="8_faccg"]
+[ext_resource type="Shader" uid="uid://dd7xij77hfa8a" path="res://scenes/common/hit_flash/shader/hit_flash.gdshader" id="8_rx6up"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7g67l"]
+resource_local_to_scene = true
+shader = ExtResource("8_rx6up")
+shader_parameter/lerp_percent = 0.0
 
 [node name="enemy_Base" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 256
@@ -28,6 +34,7 @@ script = ExtResource("1_5wlh4")
 health_component = NodePath("../health")
 
 [node name="hit_flash" parent="." node_paths=PackedStringArray("comp_health") instance=ExtResource("7_v4efm")]
+hit_flash_material = SubResource("ShaderMaterial_7g67l")
 comp_health = NodePath("../health")
 
 [node name="attack_manager" parent="." instance=ExtResource("3_faccg")]
@@ -35,6 +42,7 @@ comp_health = NodePath("../health")
 [node name="hitbox" parent="." instance=ExtResource("3_8r14e")]
 collision_layer = 0
 collision_mask = 2
+damage_amount = 1.0
 
 [node name="hurtbox" parent="." node_paths=PackedStringArray("component_health") instance=ExtResource("4_jw7fl")]
 collision_layer = 256
