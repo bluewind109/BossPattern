@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://3tuxnqf0v3dh"]
+[gd_scene load_steps=6 format=3 uid="uid://3tuxnqf0v3dh"]
 
 [ext_resource type="Script" uid="uid://jraslb56h46o" path="res://scenes/ui/level_up_popup/level_up_popup.gd" id="1_tllgq"]
 [ext_resource type="PackedScene" uid="uid://bkr80g22y78fw" path="res://scenes/ui/level_up_popup/level_up_card.tscn" id="3_t6wr6"]
-[ext_resource type="StyleBox" uid="uid://8wu4ix1hxhyb" path="res://scenes/ui/level_up_popup/res/button_style/ui_button/ui_button_normal.tres" id="4_ur6ma"]
-[ext_resource type="StyleBox" uid="uid://cirhmqhrns8gi" path="res://scenes/ui/level_up_popup/res/button_style/ui_button/ui_button_pressed.tres" id="5_j5dja"]
-[ext_resource type="StyleBox" uid="uid://dac2yrv417xnt" path="res://scenes/ui/level_up_popup/res/button_style/ui_button/ui_button_hover.tres" id="6_x17t1"]
 [ext_resource type="AudioStream" uid="uid://bpm0xynrik268" path="res://scenes/ui/level_up_popup/asset/sfx/pop-402323.mp3" id="7_ur6ma"]
 [ext_resource type="AudioStream" uid="uid://8kbc14aqbptn" path="res://scenes/ui/level_up_popup/asset/sfx/523763__lilmati__select-granted-06.wav" id="8_j5dja"]
 
@@ -47,9 +44,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 30
+theme_override_constants/margin_left = 70
 theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
+theme_override_constants/margin_right = 70
 theme_override_constants/margin_bottom = 30
 
 [node name="level_up_panel" type="Panel" parent="margin_container"]
@@ -63,21 +60,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="v_box_container" type="VBoxContainer" parent="margin_container/level_up_panel/margin_container"]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="label_title" type="Label" parent="margin_container/level_up_panel/margin_container/v_box_container"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 64
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
 text = "Level Up!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -85,33 +82,33 @@ vertical_alignment = 1
 [node name="hb_card_container" type="HBoxContainer" parent="margin_container/level_up_panel/margin_container/v_box_container"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 60
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="level_up_card" parent="margin_container/level_up_panel/margin_container/v_box_container/hb_card_container" instance=ExtResource("3_t6wr6")]
 layout_mode = 2
 
+[node name="level_up_card2" parent="margin_container/level_up_panel/margin_container/v_box_container/hb_card_container" instance=ExtResource("3_t6wr6")]
+layout_mode = 2
+
+[node name="level_up_card3" parent="margin_container/level_up_panel/margin_container/v_box_container/hb_card_container" instance=ExtResource("3_t6wr6")]
+layout_mode = 2
+
 [node name="hb_button_container" type="HBoxContainer" parent="margin_container/level_up_panel/margin_container/v_box_container"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 8
 alignment = 2
 
 [node name="button_reroll" type="Button" parent="margin_container/level_up_panel/margin_container/v_box_container/hb_button_container"]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = ExtResource("4_ur6ma")
-theme_override_styles/pressed = ExtResource("5_j5dja")
-theme_override_styles/hover = ExtResource("6_x17t1")
+theme_override_font_sizes/font_size = 32
 text = "Reroll"
 
 [node name="button_ok" type="Button" parent="margin_container/level_up_panel/margin_container/v_box_container/hb_button_container"]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = ExtResource("4_ur6ma")
-theme_override_styles/pressed = ExtResource("5_j5dja")
-theme_override_styles/hover = ExtResource("6_x17t1")
+theme_override_font_sizes/font_size = 32
 text = "OK"
 
 [node name="audio_stream_player_pop" type="AudioStreamPlayer" parent="."]

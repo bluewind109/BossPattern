@@ -10,10 +10,10 @@
 
 [node name="level_up_card" type="PanelContainer" node_paths=PackedStringArray("label_name", "label_description", "button_component", "sound_click")]
 clip_contents = true
-custom_minimum_size = Vector2(300, 400)
-offset_right = 300.0
-offset_bottom = 400.0
-pivot_offset = Vector2(150, 200)
+custom_minimum_size = Vector2(150, 175)
+offset_right = 100.0
+offset_bottom = 163.0
+pivot_offset = Vector2(75, 87)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_ggdq3")
@@ -24,10 +24,10 @@ sound_click = NodePath("audio_stream_player_click")
 
 [node name="margin_container" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
 
 [node name="v_box_container" type="VBoxContainer" parent="margin_container"]
 layout_mode = 2
@@ -39,17 +39,21 @@ layout_mode = 2
 theme_type_variation = &"alternate_panel_container"
 
 [node name="label_name" type="Label" parent="margin_container/v_box_container/panel_container"]
-custom_minimum_size = Vector2(0, 52.5)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
 theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 48
-text = "Card Title"
+theme_override_font_sizes/font_size = 16
+text = "Sword Attack Rate"
 horizontal_alignment = 1
 vertical_alignment = 2
-autowrap_mode = 2
+clip_text = true
 
 [node name="texture_rect" type="TextureRect" parent="margin_container/v_box_container"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_t30hr")
@@ -57,13 +61,13 @@ expand_mode = 2
 stretch_mode = 6
 
 [node name="label_description" type="Label" parent="margin_container/v_box_container"]
-custom_minimum_size = Vector2(0, 125)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "Increase sword damage by 15%"
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="button" type="Button" parent="."]
 layout_mode = 2

@@ -76,5 +76,5 @@ func _on_level_up(current_level: int):
 	popup_instance.set_ability_upgrades(chosen_upgrades)
 	popup_instance.reroll_upgrades.connect(_on_reroll_upgrades)
 	popup_instance.upgrade_selected.connect(_on_upgrade_selected)
-	add_child(popup_instance)
+	get_tree().current_scene.add_child(popup_instance)
 	popup_instance.show_popup.call_deferred()

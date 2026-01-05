@@ -20,10 +20,11 @@ var can_select: bool = false
 
 
 func _ready() -> void:
+	self.name = "level_up_card"
+	pivot_offset = size / 2
 	button_component.toggled.connect(_on_button_toggled)
 	self.modulate.a = 0
 	can_select = false
-	pivot_offset = size * Vector2(0.5, 0.5)
 
 
 func init(_upgrade: Res_AbilityUpgrade):
@@ -57,6 +58,7 @@ func _tween_show_card() -> void:
 
 var button_tween_duration: float = 0.075
 func _on_button_toggled(_toggled_on: bool) -> void:
+	pivot_offset = size / 2
 	var button_tween = create_tween()
 	if (_toggled_on):
 		sound_click.play()
