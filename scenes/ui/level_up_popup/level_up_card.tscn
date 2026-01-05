@@ -11,8 +11,9 @@
 [node name="level_up_card" type="PanelContainer" node_paths=PackedStringArray("label_name", "label_description", "button_component", "sound_click")]
 clip_contents = true
 custom_minimum_size = Vector2(300, 400)
-offset_right = 250.0
-offset_bottom = 300.0
+offset_right = 300.0
+offset_bottom = 400.0
+pivot_offset = Vector2(150, 200)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_ggdq3")
