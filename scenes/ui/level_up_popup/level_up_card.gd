@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 class_name CardLevelUp
 
 signal selected(upgrade: Res_AbilityUpgrade)

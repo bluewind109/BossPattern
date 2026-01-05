@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkr80g22y78fw"]
+[gd_scene load_steps=9 format=3 uid="uid://bkr80g22y78fw"]
 
 [ext_resource type="Script" uid="uid://dbbb7vchxqmda" path="res://scenes/ui/level_up_popup/level_up_card.gd" id="1_ggdq3"]
 [ext_resource type="Texture2D" uid="uid://dg8vplvbg21n3" path="res://scenes/ui/level_up_popup/asset/sprite/Screenshot 2023-08-21 222316.png" id="2_t30hr"]
@@ -8,20 +8,16 @@
 [ext_resource type="StyleBox" uid="uid://daunxa0me1fis" path="res://scenes/ui/level_up_popup/res/button_style/card_button/level_up_card_hover.tres" id="5_gchq8"]
 [ext_resource type="AudioStream" uid="uid://c2r1k3c750unt" path="res://scenes/ui/level_up_popup/asset/sfx/switch-button-106349.mp3" id="5_qqdw6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggdq3"]
-bg_color = Color(0.686, 0.22, 0.122, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_sxins"]
 font_size = 24
 
-[node name="level_up_card" type="Panel" node_paths=PackedStringArray("label_name", "label_description", "button_component", "sound_click")]
+[node name="level_up_card" type="PanelContainer" node_paths=PackedStringArray("label_name", "label_description", "button_component", "sound_click")]
 clip_contents = true
 custom_minimum_size = Vector2(250, 300)
 offset_right = 250.0
 offset_bottom = 300.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_ggdq3")
 script = ExtResource("1_ggdq3")
 label_name = NodePath("margin_container/v_box_container/label_name")
 label_description = NodePath("margin_container/v_box_container/label_description")
@@ -29,12 +25,7 @@ button_component = NodePath("button")
 sound_click = NodePath("audio_stream_player_click")
 
 [node name="margin_container" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
@@ -65,12 +56,7 @@ text = "Card description here"
 autowrap_mode = 2
 
 [node name="button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_styles/normal = ExtResource("3_qqdw6")
 theme_override_styles/pressed = ExtResource("4_gchq8")
 theme_override_styles/hover = ExtResource("5_gchq8")
