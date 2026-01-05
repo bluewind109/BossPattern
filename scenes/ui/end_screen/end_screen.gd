@@ -15,6 +15,7 @@ signal on_panel_shown
 
 
 func _ready() -> void:
+	panel_end.pivot_offset = panel_end.size / 2
 	get_tree().paused = true
 	restart_button.pressed.connect(_on_restart_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)
