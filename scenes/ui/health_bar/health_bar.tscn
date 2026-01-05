@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2yb1w04fimn3"]
+[gd_scene load_steps=3 format=3 uid="uid://d2yb1w04fimn3"]
+
+[ext_resource type="Script" uid="uid://kuqfdevwt5jy" path="res://scenes/ui/health_bar/health_bar.gd" id="1_ruhgv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruhgv"]
 bg_color = Color(0.98039216, 0.007843138, 0.25882354, 1)
@@ -9,6 +11,7 @@ border_width_bottom = 4
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="health_bar" type="CanvasLayer"]
+script = ExtResource("1_ruhgv")
 
 [node name="margin_container" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -25,6 +28,7 @@ theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 25
 
 [node name="progress_bar" type="ProgressBar" parent="margin_container"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 19)
 layout_mode = 2
 size_flags_vertical = 8

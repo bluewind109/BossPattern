@@ -12,7 +12,7 @@ var run_texture: Texture2D = preload("./sprites/Player_run.png")
 @onready var player_control: ComponentFourWaysControl = $component_FourWaysControl
 @onready var abilities: Node = $abilities
 
-@export var max_health: float = 100.0
+@export var base_max_health: float = 100.0
 
 var STATE: Dictionary[String, String] = {
 	"Idle": "Idle",
@@ -52,7 +52,10 @@ func _ready() -> void:
 
 	state_machine.set_initial_state(STATE.Idle)
 
-	comp_health.init.call_deferred(max_health)
+	comp_health.health_changed.connect(_on_health_changed)
+	comp_health.max_health_changed.connect(_on_max_health_changed)
+	comp_health.init(base_max_health)
+
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
@@ -102,3 +105,11 @@ func _on_ability_upgrade_added(
 
 	var ability = ability_upgrade as Res_Ability
 	abilities.add_child(ability.ability_controller_scene.instantiate())
+
+
+func _on_health_changed(amount: float):
+	GameEvents.emit_update_player_health_bar(amount / comp_health.max_health)
+
+
+func _on_max_health_changed(amount: float):
+	GameEvents.emit_update_player_health_bar(comp_health.health / amount)
