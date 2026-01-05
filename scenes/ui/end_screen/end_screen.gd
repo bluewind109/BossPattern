@@ -21,6 +21,7 @@ func _ready() -> void:
 	quit_button.pressed.connect(_on_quit_button_pressed)
 	dark_background.modulate.a = 0
 	panel_end.modulate.a = 0
+	show_popup()
 
 
 func show_popup() -> void:
