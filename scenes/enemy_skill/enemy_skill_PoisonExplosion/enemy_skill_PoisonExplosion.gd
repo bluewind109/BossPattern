@@ -32,7 +32,7 @@ func cast_at(target: Node2D):
 		else:
 			explo_pos = Utils.get_random_position_around(result_pos, explo_range.x, explo_range.y)
 		var explo_instance = explo_prefab.instantiate() as Explosion
-		SignalManager.on_explosion_created.emit(explo_instance)
+		GameEvents.explosion_created.emit(explo_instance)
 		explo_instance.init.call_deferred(explo_pos, explosion_delay_duration)
 		explo_instance.activate_explosion.call_deferred()
 	on_skill_finished.emit()

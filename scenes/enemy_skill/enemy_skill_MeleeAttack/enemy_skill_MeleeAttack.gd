@@ -19,7 +19,7 @@ func cast_at(target: Node2D):
 		cast_range
 	)
 	var explo_instance = explo_prefab.instantiate() as Explosion
-	SignalManager.on_explosion_created.emit(explo_instance)
+	GameEvents.explosion_created.emit(explo_instance)
 	explo_instance.init.call_deferred(result_pos, delay_duration)
 	explo_instance.look.call_deferred(target)
 	explo_instance.activate_explosion.call_deferred()

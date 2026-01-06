@@ -1,10 +1,15 @@
 extends Node
 
+signal explosion_created(target: Explosion)
 signal exp_vial_collected(number: float)
 signal ability_upgrade_added(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary)
 signal update_player_health_bar(percent: float)
 signal player_damaged
 signal game_paused
+
+
+func emit_explosion_created(target: Explosion):
+	explosion_created.emit(target)
 
 
 func emit_exp_vial_collected(number: float):

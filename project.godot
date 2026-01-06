@@ -24,7 +24,6 @@ buses/default_bus_layout="res://resources/audio_bus_layout/default_bus_layout.tr
 Utils="*res://singleton/utils.gd"
 SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
 GameEvents="*res://scenes/autoload/game_events/game_events.tscn"
-SignalManager="*res://singleton/signal_manager.gd"
 BgmPlayer="*res://scenes/autoload/bgm_player/bgm_player.tscn"
 
 [debug]

@@ -9,7 +9,7 @@ class_name GameManager
 
 func _ready() -> void:
 	player.comp_health.died.connect(_on_player_died)
-	SignalManager.on_explosion_created.connect(_on_explosion_created)
+	GameEvents.explosion_created.connect(_on_explosion_created)
 	GameEvents.game_paused.connect(_on_game_paused)
 
 
