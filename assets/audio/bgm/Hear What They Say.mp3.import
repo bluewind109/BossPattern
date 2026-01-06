@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5pi6o01srtlf"
+path="res://.godot/imported/Hear What They Say.mp3-6b9d0957fc1c8dac12f2ec19f30c7886.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/bgm/Hear What They Say.mp3"
+dest_files=["res://.godot/imported/Hear What They Say.mp3-6b9d0957fc1c8dac12f2ec19f30c7886.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

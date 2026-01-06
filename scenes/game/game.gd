@@ -10,6 +10,7 @@ class_name GameManager
 func _ready() -> void:
 	player.comp_health.died.connect(_on_player_died)
 	SignalManager.on_explosion_created.connect(_on_explosion_created)
+	GameEvents.game_paused.connect(_on_game_paused)
 
 
 func _on_explosion_created(target: Explosion):
@@ -20,3 +21,7 @@ func _on_player_died():
 	var end_screen = end_screen_scene.instantiate() as EndScreen
 	add_child(end_screen)
 	end_screen.set_defeat.call_deferred()
+
+
+func _on_game_paused(val: bool):
+	BgmPlayer.set_pause_volume(val)

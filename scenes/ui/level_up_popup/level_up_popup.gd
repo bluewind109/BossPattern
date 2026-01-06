@@ -30,7 +30,7 @@ signal reroll_upgrades
 
 
 func _ready() -> void:
-	get_tree().paused = true
+	GameEvents.emit_game_paused(true)
 	# on_card_selected.connect(_on_card_selected)
 
 	if (button_reroll): button_reroll.pressed.connect(_on_button_reroll)
@@ -157,7 +157,7 @@ func _on_button_ok() -> void:
 		print("hide done")
 		# TODO Whatever logic you want to put in
 		# Unpause the game after tween animation is done
-		get_tree().paused = false
+		GameEvents.emit_game_paused(false)
 		queue_free()
 	)
 

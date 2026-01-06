@@ -19,7 +19,7 @@ signal on_panel_shown
 
 func _ready() -> void:
 	panel_end.pivot_offset = panel_end.size / 2
-	get_tree().paused = true
+	GameEvents.emit_game_paused(true)
 	restart_button.pressed.connect(_on_restart_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)
 	dark_background.modulate.a = 0
@@ -66,7 +66,7 @@ func play_sfx(defeat: bool = false):
 
 
 func _on_restart_button_pressed():
-	get_tree().paused = false
+	GameEvents.emit_game_paused(false)
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
 	
 
