@@ -8,11 +8,11 @@ class_name LevelUpPopup
 @export var card_container: HBoxContainer
 @export var button_container: HBoxContainer
 
-@export var button_reroll: Button
-@export var button_ok: Button
+@onready var button_reroll: SoundButton = $%button_reroll
+@onready var button_ok: SoundButton = $%button_ok
 
-@export var sound_pop: AudioStreamPlayer
-@export var sound_ok: AudioStreamPlayer
+@onready var sound_pop: AudioStreamPlayer = $audio_stream_player_pop
+#@export var sound_ok: AudioStreamPlayer
 
 var show_duration: float = 0.5
 var is_animation_done: bool = false
@@ -91,7 +91,7 @@ func _tween_show_card(callback: Callable = Callable()) -> void:
 	button_ok.disabled = true
 	_reset_cards()
 	card_container.modulate.a = 1
-	sound_pop.pitch_scale = 0.25
+	if (sound_pop): sound_pop.pitch_scale = 0.25
 	for i in card_pool.size():
 		card_container.add_child.call_deferred(card_pool[i])
 		card_pool[i].enable_selection(false)
@@ -134,8 +134,8 @@ func _on_button_reroll() -> void:
 	print("_on_button_reroll")
 	if (not is_animation_done): return
 	# reroll cards with new stats
-	sound_ok.pitch_scale = 0.8
-	sound_ok.play()
+	# sound_ok.pitch_scale = 0.8
+	# sound_ok.play()
 	reroll_upgrades.emit()
 	_tween_show_card(func(): is_animation_done = true)
 
@@ -148,8 +148,8 @@ func _on_button_ok() -> void:
 	_tween_hide_panel()
 	is_card_selected = false
 	is_animation_done = false
-	sound_ok.pitch_scale = 1.0
-	sound_ok.play()
+	# sound_ok.pitch_scale = 1.0
+	# sound_ok.play()
 	upgrade_selected.emit(selected_card)
 	tween_hide_panel.tween_callback(func():
 		print("hide done")

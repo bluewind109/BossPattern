@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxcdcnb2upyhd"]
+[gd_scene load_steps=3 format=3 uid="uid://bxcdcnb2upyhd"]
 
 [ext_resource type="Script" uid="uid://cc5go481ax8pg" path="res://scenes/ui/end_screen/end_screen.gd" id="1_e6goq"]
+[ext_resource type="PackedScene" uid="uid://cgvaqwloyyjlr" path="res://scenes/ui/sound_button/sound_button.tscn" id="2_s6fqt"]
 
 [node name="end_screen" type="CanvasLayer"]
 process_mode = 3
@@ -70,14 +71,16 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="button_restart" type="Button" parent="margin_container/panel_end/margin_container/v_box_container/v_box_container"]
+[node name="button_restart" parent="margin_container/panel_end/margin_container/v_box_container/v_box_container" instance=ExtResource("2_s6fqt")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "Restart"
+metadata/_custom_type_script = "uid://dumq23mlwhxbi"
 
-[node name="button_quit" type="Button" parent="margin_container/panel_end/margin_container/v_box_container/v_box_container"]
+[node name="button_quit" parent="margin_container/panel_end/margin_container/v_box_container/v_box_container" instance=ExtResource("2_s6fqt")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "Quit"
+metadata/_custom_type_script = "uid://dumq23mlwhxbi"

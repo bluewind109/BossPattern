@@ -5,8 +5,8 @@ class_name EndScreen
 @onready var panel_end: PanelContainer = $%panel_end
 @onready var title_label: Label =  $%label_title
 @onready var subtitle_label: Label =  $%label_subtitle
-@onready var restart_button: Button = $%button_restart
-@onready var quit_button: Button = $%button_quit
+@onready var restart_button: SoundButton = $%button_restart
+@onready var quit_button: SoundButton = $%button_quit
 
 var show_duration: float = 0.25
 var is_animation_done: bool = false

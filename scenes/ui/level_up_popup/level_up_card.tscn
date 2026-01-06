@@ -6,9 +6,9 @@
 [ext_resource type="ButtonGroup" uid="uid://bysaf8n2psac0" path="res://scenes/ui/level_up_popup/res/button_group/button_group_level_up_card.tres" id="3_t30hr"]
 [ext_resource type="StyleBox" uid="uid://dpoygmxsuwowv" path="res://scenes/ui/level_up_popup/res/button_style/card_button/level_up_card_pressed.tres" id="4_gchq8"]
 [ext_resource type="StyleBox" uid="uid://daunxa0me1fis" path="res://scenes/ui/level_up_popup/res/button_style/card_button/level_up_card_hover.tres" id="5_gchq8"]
-[ext_resource type="AudioStream" uid="uid://c2r1k3c750unt" path="res://scenes/ui/level_up_popup/asset/sfx/switch-button-106349.mp3" id="5_qqdw6"]
+[ext_resource type="AudioStream" uid="uid://c2r1k3c750unt" path="res://scenes/ui/level_up_popup/asset/sfx/switch-button.mp3" id="5_qqdw6"]
 
-[node name="level_up_card" type="PanelContainer" node_paths=PackedStringArray("label_name", "label_description", "button_component", "sound_click")]
+[node name="level_up_card" type="PanelContainer" node_paths=PackedStringArray("label_name", "label_description", "button_component")]
 clip_contents = true
 custom_minimum_size = Vector2(150, 175)
 offset_right = 100.0
@@ -20,7 +20,6 @@ script = ExtResource("1_ggdq3")
 label_name = NodePath("margin_container/v_box_container/panel_container/label_name")
 label_description = NodePath("margin_container/v_box_container/label_description")
 button_component = NodePath("button")
-sound_click = NodePath("audio_stream_player_click")
 
 [node name="margin_container" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -79,3 +78,4 @@ button_group = ExtResource("3_t30hr")
 
 [node name="audio_stream_player_click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qqdw6")
+bus = &"SFX"

@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://bg2my4o151rdv" path="res://scenes/game_object/experience_vial/experience_vial.gd" id="1_jmuu1"]
 [ext_resource type="Texture2D" uid="uid://blsx6vvjli4ii" path="res://scenes/game_object/experience_vial/sprites/experience_vial.png" id="1_ldku8"]
 [ext_resource type="PackedScene" uid="uid://2uyf81565djh" path="res://scenes/components/random_audio_player_2d/random_audio_player_2d.tscn" id="2_orspf"]
-[ext_resource type="AudioStream" uid="uid://cc14dovgn6vgj" path="res://assets/audio/impactGeneric_light_000.ogg" id="3_4w5ru"]
-[ext_resource type="AudioStream" uid="uid://b888yj4t025pe" path="res://assets/audio/impactGeneric_light_001.ogg" id="4_2rrn7"]
-[ext_resource type="AudioStream" uid="uid://bq7vjusu0hbg3" path="res://assets/audio/impactGeneric_light_002.ogg" id="5_3wn1x"]
-[ext_resource type="AudioStream" uid="uid://x3snljvuphuc" path="res://assets/audio/impactGeneric_light_003.ogg" id="6_bscgk"]
-[ext_resource type="AudioStream" uid="uid://b484ccpujd67g" path="res://assets/audio/impactGeneric_light_004.ogg" id="7_r5rcv"]
+[ext_resource type="AudioStream" uid="uid://cc14dovgn6vgj" path="res://assets/audio/sfx/combat/impactGeneric_light_000.ogg" id="3_4w5ru"]
+[ext_resource type="AudioStream" uid="uid://b888yj4t025pe" path="res://assets/audio/sfx/combat/impactGeneric_light_001.ogg" id="4_2rrn7"]
+[ext_resource type="AudioStream" uid="uid://bq7vjusu0hbg3" path="res://assets/audio/sfx/combat/impactGeneric_light_002.ogg" id="5_3wn1x"]
+[ext_resource type="AudioStream" uid="uid://x3snljvuphuc" path="res://assets/audio/sfx/combat/impactGeneric_light_003.ogg" id="6_bscgk"]
+[ext_resource type="AudioStream" uid="uid://b484ccpujd67g" path="res://assets/audio/sfx/combat/impactGeneric_light_004.ogg" id="7_r5rcv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krkhv"]
 radius = 16.0

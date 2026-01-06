@@ -3,10 +3,11 @@ class_name CardLevelUp
 
 signal card_selected(upgrade: Res_AbilityUpgrade)
 
+@onready var sound_click: AudioStreamPlayer = $audio_stream_player_click
+
 @export var label_name: Label
 @export var label_description: Label
 @export var button_component: Button
-@export var sound_click: AudioStreamPlayer
 
 var popup_ref: LevelUpPopup
 var upgrade: Res_AbilityUpgrade
