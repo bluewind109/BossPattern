@@ -1,16 +1,23 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbsmy8l7srlc1"]
+[gd_scene load_steps=20 format=3 uid="uid://cbsmy8l7srlc1"]
 
 [ext_resource type="Script" uid="uid://b4ynji4ptgobk" path="res://scenes/game_object/enemy/enemy_Base.gd" id="1_5wlh4"]
-[ext_resource type="PackedScene" uid="uid://c8qiyb0hv14it" path="res://scenes/common/health/health.tscn" id="2_6w35g"]
+[ext_resource type="PackedScene" uid="uid://c8qiyb0hv14it" path="res://scenes/components/health/health.tscn" id="2_6w35g"]
 [ext_resource type="PackedScene" uid="uid://bojlohyvov773" path="res://scenes/callable_state_machine/callable_state_machine.tscn" id="2_8r14e"]
-[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/common/hitbox/hitbox.tscn" id="3_8r14e"]
+[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/components/hitbox/hitbox.tscn" id="3_8r14e"]
 [ext_resource type="PackedScene" uid="uid://djd68yuw8h6mi" path="res://scenes/game_object/enemy/attack_manager/attack_manager.tscn" id="3_faccg"]
-[ext_resource type="PackedScene" uid="uid://ba5chyifcbwsv" path="res://scenes/common/hurtbox/hurtbox.tscn" id="4_jw7fl"]
-[ext_resource type="PackedScene" uid="uid://qaynjrl1psp" path="res://scenes/common/vial_drop/vial_drop.tscn" id="5_v4efm"]
-[ext_resource type="PackedScene" uid="uid://c7v2yyjnq7kqm" path="res://scenes/common/hit_flash/hit_flash.tscn" id="7_v4efm"]
-[ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://scenes/common/velocity/velocity.tscn" id="7_vg5so"]
-[ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://scenes/common/look/look.tscn" id="8_faccg"]
-[ext_resource type="Shader" uid="uid://dd7xij77hfa8a" path="res://scenes/common/hit_flash/shader/hit_flash.gdshader" id="8_rx6up"]
+[ext_resource type="PackedScene" uid="uid://ba5chyifcbwsv" path="res://scenes/components/hurtbox/hurtbox.tscn" id="4_jw7fl"]
+[ext_resource type="PackedScene" uid="uid://qaynjrl1psp" path="res://scenes/components/vial_drop/vial_drop.tscn" id="5_v4efm"]
+[ext_resource type="PackedScene" uid="uid://c7v2yyjnq7kqm" path="res://scenes/components/hit_flash/hit_flash.tscn" id="7_v4efm"]
+[ext_resource type="PackedScene" uid="uid://kwq7kkbhdepp" path="res://scenes/components/velocity/velocity.tscn" id="7_vg5so"]
+[ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://scenes/components/look/look.tscn" id="8_faccg"]
+[ext_resource type="Shader" uid="uid://dd7xij77hfa8a" path="res://scenes/components/hit_flash/shader/hit_flash.gdshader" id="8_rx6up"]
+[ext_resource type="PackedScene" uid="uid://2uyf81565djh" path="res://scenes/components/random_audio_player_2d/random_audio_player_2d.tscn" id="12_7g67l"]
+[ext_resource type="AudioStream" uid="uid://dypijo8lhff6r" path="res://assets/audio/footstep_carpet_000.ogg" id="13_2iash"]
+[ext_resource type="AudioStream" uid="uid://1xkm38s6x4dx" path="res://assets/audio/footstep_carpet_001.ogg" id="14_44g7e"]
+[ext_resource type="AudioStream" uid="uid://dqv6uta2xxor" path="res://assets/audio/footstep_carpet_002.ogg" id="15_b5cng"]
+[ext_resource type="AudioStream" uid="uid://dlsaxg4jthg41" path="res://assets/audio/footstep_carpet_003.ogg" id="16_1mvnh"]
+[ext_resource type="AudioStream" uid="uid://crktohgv8bagm" path="res://assets/audio/footstep_carpet_004.ogg" id="17_3cxg8"]
+[ext_resource type="PackedScene" uid="uid://cf3da8fvmbcq2" path="res://scenes/components/death/death.tscn" id="18_44g7e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7g67l"]
 resource_local_to_scene = true
@@ -38,6 +45,13 @@ hit_flash_material = SubResource("ShaderMaterial_7g67l")
 comp_health = NodePath("../health")
 
 [node name="attack_manager" parent="." instance=ExtResource("3_faccg")]
+
+[node name="death" parent="." node_paths=PackedStringArray("comp_health") instance=ExtResource("18_44g7e")]
+comp_health = NodePath("../health")
+
+[node name="hit_random_audio_player_2d" parent="." instance=ExtResource("12_7g67l")]
+max_distance = 300.0
+streams = Array[AudioStream]([ExtResource("13_2iash"), ExtResource("14_44g7e"), ExtResource("15_b5cng"), ExtResource("16_1mvnh"), ExtResource("17_3cxg8")])
 
 [node name="hitbox" parent="." instance=ExtResource("3_8r14e")]
 collision_layer = 0
