@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://x0xpt5ix1x63"]
 
 [ext_resource type="Script" uid="uid://cklv0i360e6o4" path="res://scenes/common/weapon/weapon.gd" id="1_188md"]
-[ext_resource type="Texture2D" uid="uid://byc20yaqx3c0w" path="res://assets/Updated_ZombiePack_AssetPack/SpriteSheets/Weapons sprites (32x32).png" id="2_56nyi"]
+[ext_resource type="Texture2D" uid="uid://byc20yaqx3c0w" path="res://assets/sprites/Updated_ZombiePack_AssetPack/SpriteSheets/Weapons sprites (32x32).png" id="2_56nyi"]
 
 [node name="component_Weapon" type="Node2D" node_paths=PackedStringArray("pivot", "weapon_sprite", "bullet_spawn_position")]
 script = ExtResource("1_188md")

@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://6vofakptbxdi"]
 
-[ext_resource type="Texture2D" uid="uid://biixhphejrs5g" path="res://assets/STRANDED/Stranded 08 - Swamps/Swamp Tileset.png" id="1_0vrc3"]
+[ext_resource type="Texture2D" uid="uid://biixhphejrs5g" path="res://assets/sprites/STRANDED/Stranded 08 - Swamps/Swamp Tileset.png" id="1_i20ic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l0i2t"]
-texture = ExtResource("1_0vrc3")
+texture = ExtResource("1_i20ic")
 3:1/0 = 0
 3:1/0/terrain_set = 0
 3:1/0/terrain = 0
