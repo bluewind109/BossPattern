@@ -12,6 +12,7 @@ var run_texture: Texture2D = preload("./sprites/Player_run.png")
 @onready var player_control: ComponentFourWaysControl = $component_FourWaysControl
 @onready var abilities: Node = $abilities
 @onready var hurtbox: ComponentHurtbox = $hurtbox
+@onready var hit_sfx: RandomAudioPlayer2D = $%hit_sfx
 
 @export var base_max_health: float = 100.0
 @export var base_speed: float = 100.0
@@ -138,3 +139,4 @@ func _on_max_health_changed(amount: float):
 func _on_damaged(amount: float):
 	if (amount > 0):
 		GameEvents.emit_player_damaged()
+		if (hit_sfx): hit_sfx.play_random()
