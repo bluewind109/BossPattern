@@ -89,7 +89,8 @@ func get_direction_to_player() -> Vector2:
 
 
 func _on_damaged(amount: float):
-	hit_audio_player.play_random()
+	if (hit_audio_player != null):
+		hit_audio_player.play_random()
 
 
 func _on_die():

@@ -26,7 +26,8 @@ func _on_died():
 	entities.add_child(self)
 	global_position = spawn_pos
 	
-	hit_audio_player.play_random()
+	if (hit_audio_player != null): 
+		hit_audio_player.play_random()
 	# TODO play death animation
 	
 	#animation_player.play("default")
