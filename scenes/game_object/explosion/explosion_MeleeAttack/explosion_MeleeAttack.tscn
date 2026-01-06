@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dfays8guerdto" path="res://scenes/game_object/explosion/explosion.tscn" id="1_gsxsk"]
 [ext_resource type="Script" uid="uid://durum7n32sim1" path="res://scenes/game_object/explosion/explosion_MeleeAttack/explosion_MeleeAttack.gd" id="2_g63qp"]
 [ext_resource type="Texture2D" uid="uid://cnq0dj2aptr2c" path="res://scenes/game_object/explosion/explosion_MeleeAttack/sprites/SlashFX 5A v1_4.png" id="2_jg0qy"]
-[ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://scenes/common/look/look.tscn" id="3_1yq3c"]
+[ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://scenes/components/look/look.tscn" id="3_1yq3c"]
 [ext_resource type="AnimationLibrary" uid="uid://cidqtr2cgwax6" path="res://scenes/game_object/explosion/explosion_MeleeAttack/animation/explosion_MeleeAttack.res" id="3_4r3bb"]
 
 [sub_resource type="Animation" id="Animation_g63qp"]

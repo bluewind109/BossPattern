@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfays8guerdto"]
 
 [ext_resource type="Script" uid="uid://b8najat4v8gcq" path="res://scenes/game_object/explosion/explosion.gd" id="1_echoh"]
-[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/common/hitbox/hitbox.tscn" id="2_pim3w"]
+[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/components/hitbox/hitbox.tscn" id="2_pim3w"]
 [ext_resource type="Texture2D" uid="uid://76s6d6ifyqgx" path="res://assets/circle_filled_100x100.png" id="3_mp546"]
 [ext_resource type="Texture2D" uid="uid://dj3xb008n48qr" path="res://assets/sprites/Pixel Art Skill Animations - Lightning/VFX3/Sprite-sheet/Sprite-sheet.png" id="4_tic5l"]
 [ext_resource type="AnimationLibrary" uid="uid://bqdrdjqe62lgk" path="res://scenes/game_object/explosion/explosion_PoisonBomb/animation/explosion_PoisonBomb.res" id="5_ran55"]

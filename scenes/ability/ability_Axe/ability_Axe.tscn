@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://21qvnr8ney5f" path="res://scenes/ability/ability_Axe/ability_Axe.gd" id="1_b7yiv"]
 [ext_resource type="Texture2D" uid="uid://7np0kabu3wsh" path="res://scenes/ability/ability_Axe/sprites/axe.png" id="1_idb6h"]
-[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/common/hitbox/hitbox.tscn" id="3_12qok"]
+[ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/components/hitbox/hitbox.tscn" id="3_12qok"]
 
 [sub_resource type="Animation" id="Animation_12qok"]
 resource_name = "default"

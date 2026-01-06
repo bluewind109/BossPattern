@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d3181lfg2l35a" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/water_wand.png" id="6_l1smh"]
 [ext_resource type="Texture2D" uid="uid://bwcdt3ghetoto" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-2.png" id="7_ctqlp"]
 [ext_resource type="AnimationLibrary" uid="uid://cp5w68p7nqbk8" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/animation/enemy_cube_wizard_lib.res" id="10_ek8e0"]
-[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/common/anim_spritesheet/anim_spritesheet.tscn" id="10_k25jn"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="10_k25jn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ek8e0"]
 shader = ExtResource("3_ctqlp")
