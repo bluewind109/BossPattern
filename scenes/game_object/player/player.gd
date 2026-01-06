@@ -13,6 +13,8 @@ var run_texture: Texture2D = preload("./sprites/Player_run.png")
 @onready var abilities: Node = $abilities
 
 @export var base_max_health: float = 100.0
+@export var base_speed: float = 100.0
+@export var curve: Curve
 
 var STATE: Dictionary[String, String] = {
 	"Idle": "Idle",
@@ -55,6 +57,8 @@ func _ready() -> void:
 	comp_health.health_changed.connect(_on_health_changed)
 	comp_health.max_health_changed.connect(_on_max_health_changed)
 	comp_health.init(base_max_health)
+
+	player_control.set_max_speed(base_speed)
 
 
 func _physics_process(delta: float) -> void:
@@ -101,11 +105,11 @@ func _on_ability_upgrade_added(
 	ability_upgrade: Res_AbilityUpgrade, 
 	current_upgrades: Dictionary
 ):
-	if (not ability_upgrade is Res_Ability): return
-
-	var ability = ability_upgrade as Res_Ability
-	abilities.add_child(ability.ability_controller_scene.instantiate())
-
+	if (ability_upgrade is Res_Ability):
+		var ability = ability_upgrade as Res_Ability
+		abilities.add_child(ability.ability_controller_scene.instantiate())
+	elif (ability_upgrade.id == "player_speed"):
+		player_control.max_speed = base_speed + (base_speed * current_upgrades["player_speed"]["quantity"] * 0.1)
 
 func _on_health_changed(amount: float):
 	GameEvents.emit_update_player_health_bar(amount / comp_health.max_health)

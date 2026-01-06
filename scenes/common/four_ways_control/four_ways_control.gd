@@ -14,7 +14,7 @@ var input_action_down: InputEventAction
 var input_action_left: InputEventAction
 var input_action_right: InputEventAction
 
-var max_speed: float = 200.0
+var max_speed: float = 100.0
 
 
 func _ready() -> void:
@@ -29,6 +29,10 @@ func _ready() -> void:
 
 	if (null == input_action_right):
 		reset_action_right()
+
+
+func set_max_speed(amount: float):
+	max_speed = max(0, amount)
 
 
 func _process(_delta: float) -> void:

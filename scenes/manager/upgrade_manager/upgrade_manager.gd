@@ -8,6 +8,8 @@ class_name UpgradeManager
 @export var upgrade_axe_damage: Res_AbilityUpgrade
 @export var upgrade_sword_rate: Res_AbilityUpgrade
 @export var upgrade_sword_damage: Res_AbilityUpgrade
+@export var upgrade_player_speed: Res_AbilityUpgrade
+
 
 var current_upgrades = {}
 var current_popup: LevelUpPopup
@@ -18,6 +20,7 @@ func _ready() -> void:
 	upgrade_pool.add_item(upgrade_axe, 10)
 	upgrade_pool.add_item(upgrade_sword_rate, 10)
 	upgrade_pool.add_item(upgrade_sword_damage, 10)
+	upgrade_pool.add_item(upgrade_player_speed, 5)
 
 	experience_manager.level_up.connect(_on_level_up)
 

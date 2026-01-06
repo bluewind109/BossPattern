@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://v67gpa0c2rdm"]
+[gd_scene load_steps=20 format=3 uid="uid://v67gpa0c2rdm"]
 
 [ext_resource type="Script" uid="uid://c7fml14t62ej7" path="res://scenes/game_object/player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://bojlohyvov773" path="res://scenes/callable_state_machine/callable_state_machine.tscn" id="2_rgyib"]
@@ -11,6 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://x0xpt5ix1x63" path="res://scenes/common/weapon/weapon.tscn" id="6_2ieo8"]
 [ext_resource type="Script" uid="uid://bb5c06xlmd0fb" path="res://scenes/common/exp/exp.gd" id="6_boad6"]
 [ext_resource type="PackedScene" uid="uid://bp71esg3p5br1" path="res://scenes/common/four_ways_control/four_ways_control.tscn" id="7_rgyib"]
+
+[sub_resource type="Curve" id="Curve_gbew5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(2e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+metadata/_snap_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ieo8"]
 radius = 7.0
@@ -84,6 +89,8 @@ texture_filter = 1
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_oul6g")
+base_max_speed = 75.0
+curve = SubResource("Curve_gbew5")
 anim_player = NodePath("character_sprite/animation_player")
 
 [node name="callable_state_machine" parent="." instance=ExtResource("2_rgyib")]
