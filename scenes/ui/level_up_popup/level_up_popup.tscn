@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://3tuxnqf0v3dh"]
+[gd_scene load_steps=7 format=3 uid="uid://3tuxnqf0v3dh"]
 
 [ext_resource type="Script" uid="uid://jraslb56h46o" path="res://scenes/ui/level_up_popup/level_up_popup.gd" id="1_tllgq"]
 [ext_resource type="PackedScene" uid="uid://cgvaqwloyyjlr" path="res://scenes/ui/sound_button/sound_button.tscn" id="3_f7xac"]
 [ext_resource type="PackedScene" uid="uid://bkr80g22y78fw" path="res://scenes/ui/level_up_popup/level_up_card.tscn" id="3_t6wr6"]
+[ext_resource type="AudioStream" uid="uid://dchuj4lxjgdy1" path="res://assets/audio/sfx/ui/popup/8bit_jingles_level_up.ogg" id="5_f7xac"]
 [ext_resource type="AudioStream" uid="uid://bpm0xynrik268" path="res://scenes/ui/level_up_popup/asset/sfx/pop.mp3" id="7_ur6ma"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isxfx"]
@@ -111,6 +112,11 @@ theme_override_font_sizes/font_size = 32
 text = "OK"
 metadata/_custom_type_script = "uid://dumq23mlwhxbi"
 
-[node name="audio_stream_player_pop" type="AudioStreamPlayer" parent="."]
+[node name="pop_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ur6ma")
+bus = &"SFX"
+
+[node name="level_up_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_f7xac")
+volume_db = -10.0
 bus = &"SFX"

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxcdcnb2upyhd"]
+[gd_scene load_steps=5 format=3 uid="uid://bxcdcnb2upyhd"]
 
 [ext_resource type="Script" uid="uid://cc5go481ax8pg" path="res://scenes/ui/end_screen/end_screen.gd" id="1_e6goq"]
 [ext_resource type="PackedScene" uid="uid://cgvaqwloyyjlr" path="res://scenes/ui/sound_button/sound_button.tscn" id="2_s6fqt"]
+[ext_resource type="AudioStream" uid="uid://c8rurc8twyr4g" path="res://assets/audio/sfx/ui/popup/8bit_jingles_victory.ogg" id="3_7t06w"]
+[ext_resource type="AudioStream" uid="uid://cx6o6tynswnxh" path="res://assets/audio/sfx/ui/popup/8bit_jingles_defeat.ogg" id="4_kyrhy"]
 
 [node name="end_screen" type="CanvasLayer"]
 process_mode = 3
@@ -84,3 +86,13 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "Quit"
 metadata/_custom_type_script = "uid://dumq23mlwhxbi"
+
+[node name="victory_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7t06w")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="defeat_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kyrhy")
+volume_db = -10.0
+bus = &"SFX"

@@ -8,6 +8,9 @@ class_name EndScreen
 @onready var restart_button: SoundButton = $%button_restart
 @onready var quit_button: SoundButton = $%button_quit
 
+@onready var victory_sfx: AudioStreamPlayer = $victory_sfx
+@onready var defeat_sfx: AudioStreamPlayer = $defeat_sfx
+
 var show_duration: float = 0.25
 var is_animation_done: bool = false
 
@@ -52,6 +55,14 @@ func _tween_show_panel() -> void:
 func set_defeat():
 	title_label.text = "Defeat"
 	subtitle_label.text = "You lost!"
+	play_sfx(true)
+
+
+func play_sfx(defeat: bool = false):
+	if (defeat):
+		if (defeat_sfx): defeat_sfx.play()
+	else:
+		if (victory_sfx): victory_sfx.play()
 
 
 func _on_restart_button_pressed():

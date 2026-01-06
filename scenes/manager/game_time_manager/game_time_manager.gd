@@ -37,8 +37,9 @@ func update_game_time():
 
 func _on_count_down_finished():
 	_increase_difficulty()
-	#var end_screen = end_screen_scene.instantiate()
-	#add_child(end_screen)
+	# var end_screen = end_screen_scene.instantiate() as EndScreen
+	# add_child(end_screen)
+	# end_screen.play_sfx()
 
 
 func _increase_difficulty():

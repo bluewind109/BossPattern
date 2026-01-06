@@ -11,7 +11,8 @@ class_name LevelUpPopup
 @onready var button_reroll: SoundButton = $%button_reroll
 @onready var button_ok: SoundButton = $%button_ok
 
-@onready var sound_pop: AudioStreamPlayer = $audio_stream_player_pop
+@onready var pop_sfx: AudioStreamPlayer = $pop_sfx
+@onready var level_up_sfx: AudioStreamPlayer = $level_up_sfx
 #@export var sound_ok: AudioStreamPlayer
 
 var show_duration: float = 0.5
@@ -34,6 +35,7 @@ func _ready() -> void:
 
 	if (button_reroll): button_reroll.pressed.connect(_on_button_reroll)
 	if (button_ok): button_ok.pressed.connect(_on_button_ok)
+	if (level_up_sfx): level_up_sfx.play()
 	
 
 func _reset_cards() -> void:
@@ -91,15 +93,15 @@ func _tween_show_card(callback: Callable = Callable()) -> void:
 	button_ok.disabled = true
 	_reset_cards()
 	card_container.modulate.a = 1
-	if (sound_pop): sound_pop.pitch_scale = 0.25
+	if (pop_sfx): pop_sfx.pitch_scale = 0.25
 	for i in card_pool.size():
 		card_container.add_child.call_deferred(card_pool[i])
 		card_pool[i].enable_selection(false)
 	
 	for i in card_pool.size():
 		card_pool[i].show_card.call_deferred()
-		sound_pop.play()
-		sound_pop.pitch_scale += 0.25
+		pop_sfx.play()
+		pop_sfx.pitch_scale += 0.25
 		await get_tree().create_timer(card_pool[i].tween_duration).timeout
 
 	for i in card_pool.size():
