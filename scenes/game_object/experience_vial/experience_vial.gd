@@ -3,6 +3,7 @@ class_name ExperienceVial
 
 @onready var collision_shape: CollisionShape2D = $area_2d/collision_shape_2d
 @onready var sprite: Sprite2D = $sprite_2d
+@onready var collect_vial_sfx: RandomAudioPlayer2D = $collect_vial_sfx
 
 
 func _ready() -> void:
@@ -43,5 +44,9 @@ func _on_area_entered(other_area: Area2D):
 	tween.chain()
 	tween.tween_callback(func():
 		GameEvents.emit_exp_vial_collected(1)
+		if (collect_vial_sfx != null):
+			collect_vial_sfx.play_random()
+			await collect_vial_sfx.finished # if there is error, move the play_random outside of callback
 		queue_free()
 	)
+	
