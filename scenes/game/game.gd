@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name GameManager
 
 @export var end_screen_scene: PackedScene

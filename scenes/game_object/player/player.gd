@@ -11,6 +11,7 @@ var run_texture: Texture2D = preload("./sprites/Player_run.png")
 @onready var comp_look: ComponentLook = $look
 @onready var player_control: ComponentFourWaysControl = $component_FourWaysControl
 @onready var abilities: Node = $abilities
+@onready var hurtbox: ComponentHurtbox = $hurtbox
 
 @export var base_max_health: float = 100.0
 @export var base_speed: float = 100.0
@@ -36,9 +37,22 @@ var anim_dict: Dictionary [String, Variant] = {
 }
 var current_anim: String = ""
 
+
 func _ready() -> void:
 	GameEvents.ability_upgrade_added.connect(_on_ability_upgrade_added)
-	if (comp_look): comp_look.owner_node = character_sprite
+	if (comp_look): 
+		comp_look.owner_node = character_sprite
+
+	if (comp_health):
+		comp_health.health_changed.connect(_on_health_changed)
+		comp_health.max_health_changed.connect(_on_max_health_changed)
+		comp_health.init(base_max_health)
+
+	if (player_control):
+		player_control.set_max_speed(base_speed)
+
+	if (hurtbox):
+		hurtbox.damaged.connect(_on_damaged)
 
 	state_machine.add_states(STATE.Idle, CallableState.new(
 		on_idle_state,
@@ -54,18 +68,13 @@ func _ready() -> void:
 
 	state_machine.set_initial_state(STATE.Idle)
 
-	comp_health.health_changed.connect(_on_health_changed)
-	comp_health.max_health_changed.connect(_on_max_health_changed)
-	comp_health.init(base_max_health)
-
-	player_control.set_max_speed(base_speed)
-
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
 
 	var target_pos = get_global_mouse_position()
 	comp_look.look(target_pos)
+
 
 func _play_anim(anim_name: String):
 	if (not anim_dict.has(anim_name)): return
@@ -80,22 +89,28 @@ func _play_anim(anim_name: String):
 	anim_player.speed_scale = 0.25
 	current_anim = anim_name
 
+
 func on_enter_idle_state():
 	_play_anim("idle")
+
 
 func on_idle_state(_delta: float):
 	if (velocity != Vector2.ZERO):
 		state_machine.change_state(STATE.Run)
 
+
 func on_leave_idle_state():
 	pass
+
 
 func on_enter_run_state():
 	_play_anim("run")
 
+
 func on_run_state(_delta: float):
 	if (velocity == Vector2.ZERO):
 		state_machine.change_state(STATE.Idle)
+
 
 func on_leave_run_state():
 	pass
@@ -111,9 +126,15 @@ func _on_ability_upgrade_added(
 	elif (ability_upgrade.id == "player_speed"):
 		player_control.max_speed = base_speed + (base_speed * current_upgrades["player_speed"]["quantity"] * 0.1)
 
+
 func _on_health_changed(amount: float):
 	GameEvents.emit_update_player_health_bar(amount / comp_health.max_health)
 
 
 func _on_max_health_changed(amount: float):
 	GameEvents.emit_update_player_health_bar(comp_health.health / amount)
+
+
+func _on_damaged(amount: float):
+	if (amount > 0):
+		GameEvents.emit_player_damaged()

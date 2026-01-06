@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://s35lmfixqjns"]
+[gd_scene load_steps=14 format=4 uid="uid://s35lmfixqjns"]
 
 [ext_resource type="Script" uid="uid://cpl63vx0dh74g" path="res://scenes/game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://cmetek8tl6wgi" path="res://scenes/manager/experience_manager/experience_manager.tscn" id="2_5jirj"]
@@ -10,13 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://dturn24adh3lf" path="res://scenes/manager/upgrade_manager/upgrade_manager.tscn" id="5_ftsea"]
 [ext_resource type="PackedScene" uid="uid://d2yb1w04fimn3" path="res://scenes/ui/health_bar/health_bar.tscn" id="5_vaxfo"]
 [ext_resource type="PackedScene" uid="uid://byl6awhgih8kh" path="res://scenes/ui/experience_bar/experience_bar.tscn" id="6_5jirj"]
+[ext_resource type="PackedScene" uid="uid://bxqhxclk73slc" path="res://scenes/ui/vignette/vignette.tscn" id="6_ftsea"]
 [ext_resource type="PackedScene" uid="uid://b8a8w5nfrr16x" path="res://scenes/manager/game_time_manager/game_time_manager.tscn" id="6_vaxfo"]
 [ext_resource type="PackedScene" uid="uid://brlsjsn1ddh0y" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/enemy_Cube_Wizard.tscn" id="12_5jirj"]
 
-[node name="game" type="Node2D"]
-y_sort_enabled = true
+[node name="game" type="Node"]
 script = ExtResource("1_l1rk1")
 end_screen_scene = ExtResource("2_vaxfo")
+
+[node name="vignette" parent="." instance=ExtResource("6_ftsea")]
 
 [node name="game_time_manager" parent="." instance=ExtResource("6_vaxfo")]
 
