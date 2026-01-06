@@ -3,7 +3,8 @@ class_name CardLevelUp
 
 signal card_selected(upgrade: Res_AbilityUpgrade)
 
-@onready var sound_click: AudioStreamPlayer = $audio_stream_player_click
+@onready var hover_sfx: RandomAudioPlayer = $hover_sfx
+@onready var click_sfx: RandomAudioPlayer = $click_sfx
 
 @export var label_name: Label
 @export var label_description: Label
@@ -24,6 +25,7 @@ func _ready() -> void:
 	self.name = "level_up_card"
 	pivot_offset = size / 2
 	button_component.toggled.connect(_on_button_toggled)
+	button_component.mouse_entered.connect(_on_mouse_entered)
 	self.modulate.a = 0
 	can_select = false
 
@@ -62,7 +64,7 @@ func _on_button_toggled(_toggled_on: bool) -> void:
 	pivot_offset = size / 2
 	var button_tween = create_tween()
 	if (_toggled_on):
-		sound_click.play()
+		if (click_sfx): click_sfx.play_random()
 		button_tween.set_trans(Tween.TRANS_SINE)
 		button_tween.set_ease(Tween.EASE_IN)
 		button_tween.tween_property(self, "scale", Vector2(1.1, 1.1), button_tween_duration)
@@ -73,3 +75,7 @@ func _on_button_toggled(_toggled_on: bool) -> void:
 	
 	# popup_ref.on_card_selected.emit()
 	card_selected.emit(upgrade)
+
+
+func _on_mouse_entered():
+	if (hover_sfx): hover_sfx.play_random()

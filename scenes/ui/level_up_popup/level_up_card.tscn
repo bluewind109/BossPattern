@@ -1,12 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkr80g22y78fw"]
+[gd_scene load_steps=18 format=3 uid="uid://bkr80g22y78fw"]
 
 [ext_resource type="Script" uid="uid://dbbb7vchxqmda" path="res://scenes/ui/level_up_popup/level_up_card.gd" id="1_ggdq3"]
 [ext_resource type="Texture2D" uid="uid://dg8vplvbg21n3" path="res://scenes/ui/level_up_popup/asset/sprite/Screenshot 2023-08-21 222316.png" id="2_t30hr"]
+[ext_resource type="PackedScene" uid="uid://bt4mu8hnmk1ya" path="res://scenes/components/random_audio_player/random_audio_player.tscn" id="2_yh70y"]
+[ext_resource type="AudioStream" uid="uid://8by28wjrad31" path="res://assets/audio/sfx/ui/switch1.ogg" id="3_oavln"]
 [ext_resource type="StyleBox" uid="uid://5fy4l7hmdqsa" path="res://scenes/ui/level_up_popup/res/button_style/card_button/level_up_card_normal.tres" id="3_qqdw6"]
 [ext_resource type="ButtonGroup" uid="uid://bysaf8n2psac0" path="res://scenes/ui/level_up_popup/res/button_group/button_group_level_up_card.tres" id="3_t30hr"]
 [ext_resource type="StyleBox" uid="uid://dpoygmxsuwowv" path="res://scenes/ui/level_up_popup/res/button_style/card_button/level_up_card_pressed.tres" id="4_gchq8"]
+[ext_resource type="AudioStream" uid="uid://di5ma6w1g7pxd" path="res://assets/audio/sfx/ui/switch2.ogg" id="4_vwjcq"]
 [ext_resource type="StyleBox" uid="uid://daunxa0me1fis" path="res://scenes/ui/level_up_popup/res/button_style/card_button/level_up_card_hover.tres" id="5_gchq8"]
-[ext_resource type="AudioStream" uid="uid://c2r1k3c750unt" path="res://scenes/ui/level_up_popup/asset/sfx/switch-button.mp3" id="5_qqdw6"]
+[ext_resource type="AudioStream" uid="uid://mu127gpj7b28" path="res://assets/audio/sfx/ui/switch3.ogg" id="5_u22ey"]
+[ext_resource type="AudioStream" uid="uid://us7nva5otu37" path="res://assets/audio/sfx/ui/switch4.ogg" id="6_8y0e8"]
+[ext_resource type="AudioStream" uid="uid://cspjth66pdt0t" path="res://assets/audio/sfx/ui/switch5.ogg" id="7_srf3o"]
+[ext_resource type="AudioStream" uid="uid://b675llqglidue" path="res://assets/audio/sfx/ui/switch6.ogg" id="8_1oc2t"]
+[ext_resource type="AudioStream" uid="uid://dk3skpuxrqxqr" path="res://assets/audio/sfx/ui/switch7.ogg" id="9_cen1y"]
+[ext_resource type="AudioStream" uid="uid://dfyee6mx4vsp1" path="res://assets/audio/sfx/ui/switch8.ogg" id="10_rgboi"]
+[ext_resource type="AudioStream" uid="uid://od5c8nenoroe" path="res://assets/audio/sfx/ui/switch9.ogg" id="11_yjxs2"]
+[ext_resource type="AudioStream" uid="uid://cxxjbatsthl01" path="res://assets/audio/sfx/ui/switch10.ogg" id="12_moiss"]
 
 [node name="level_up_card" type="PanelContainer" node_paths=PackedStringArray("label_name", "label_description", "button_component")]
 clip_contents = true
@@ -20,6 +30,13 @@ script = ExtResource("1_ggdq3")
 label_name = NodePath("margin_container/v_box_container/panel_container/label_name")
 label_description = NodePath("margin_container/v_box_container/label_description")
 button_component = NodePath("button")
+
+[node name="hover_sfx" parent="." instance=ExtResource("2_yh70y")]
+volume_db = -8.0
+streams = Array[AudioStream]([ExtResource("3_oavln"), ExtResource("4_vwjcq"), ExtResource("5_u22ey"), ExtResource("6_8y0e8"), ExtResource("7_srf3o"), ExtResource("8_1oc2t"), ExtResource("9_cen1y"), ExtResource("10_rgboi"), ExtResource("11_yjxs2"), ExtResource("12_moiss")])
+
+[node name="click_sfx" parent="." instance=ExtResource("2_yh70y")]
+streams = Array[AudioStream]([ExtResource("3_oavln"), ExtResource("4_vwjcq"), ExtResource("5_u22ey"), ExtResource("6_8y0e8"), ExtResource("7_srf3o"), ExtResource("8_1oc2t"), ExtResource("9_cen1y"), ExtResource("10_rgboi"), ExtResource("11_yjxs2"), ExtResource("12_moiss")])
 
 [node name="margin_container" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -75,7 +92,3 @@ theme_override_styles/pressed = ExtResource("4_gchq8")
 theme_override_styles/hover = ExtResource("5_gchq8")
 toggle_mode = true
 button_group = ExtResource("3_t30hr")
-
-[node name="audio_stream_player_click" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_qqdw6")
-bus = &"SFX"
