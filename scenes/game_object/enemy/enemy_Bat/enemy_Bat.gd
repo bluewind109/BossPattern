@@ -3,8 +3,7 @@ class_name Enemy_Bat
 
 enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
 enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
-
-var anim_dict: Dictionary[int, AnimationInfo] = {}
+enum STATE {Normal, WindUp, Attack, Recover, Die}
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
@@ -20,16 +19,6 @@ func _ready() -> void:
 	bind_signals()
 	add_states()
 	super.init_component_look(anim_ss)
-
-
-func init_states():
-	STATE = {
-		"Normal": "Normal",
-		"WindUp": "WindUp",
-		"Attack": "Attack",
-		"Recover": "Recover",
-		"Die": "Die",
-	}
 
 
 func init_speed_dict():

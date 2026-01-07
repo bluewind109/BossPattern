@@ -3,8 +3,7 @@ class_name Enemy_DustJumper
 
 enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
 enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
-
-var anim_dict: Dictionary[int, AnimationInfo] = {}
+enum STATE {Normal, WindUp, Attack, Recover, Die}
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
@@ -12,17 +11,6 @@ var anim_dict: Dictionary[int, AnimationInfo] = {}
 
 func _ready() -> void:
 	pass
-
-
-func init_states():
-	STATE = {
-		"Idle": "Idle",
-		"Normal": "Normal",
-		"WindUp": "WindUp",
-		"Attack": "Attack",
-		"Recover": "Recover",
-		"Die": "Die",
-	}
 
 
 func init_speed_dict():
@@ -176,7 +164,7 @@ func _on_leave_die_state():
 func _on_wind_up_finished():
 	match attack_manager.next_skill.skill_type:
 		EnemySkill.SKILL_TYPE.lightning_strike:
-			set_state(STATE.LightningStrike)
+			pass
 		_:
 			pass
 

@@ -3,8 +3,8 @@ class_name Enemy_SwampAbomination
 
 enum SPEED_STATE {idle, normal, wind_up, attack_charge, attack_poison_explosion, recover, die}
 enum ANIM_STATE{RESET = 0, idle, walk, attack_1, attack_2, attack_3, attack_4, special, die}
+enum STATE {Normal, WindUp, Charge, PoisonExplosionAttack, Recover, Die}
 
-var anim_dict: Dictionary[int, AnimationInfo] = {}
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
@@ -29,16 +29,6 @@ func _ready() -> void:
 	add_states()
 	super.init_component_look(anim_ss)
 
-func init_states():
-	STATE = {
-		"Idle": "Idle",
-		"Normal": "Normal",
-		"WindUp": "WindUp",
-		"Charge": "Charge",
-		"PoisonExplosionAttack": "PoisonExplosionAttack",
-		"Recover": "Recover",
-		"Die": "Die",
-	}
 
 func init_speed_dict():
 	speed_dict = {
@@ -50,6 +40,7 @@ func init_speed_dict():
 		SPEED_STATE.recover: 0.0,
 		SPEED_STATE.die: 0.0,
 	}
+
 
 func init_anim_dict(_lib_name: String):
 	var lib_name = _lib_name + "/"

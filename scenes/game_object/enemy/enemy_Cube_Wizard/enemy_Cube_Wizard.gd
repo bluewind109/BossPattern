@@ -3,8 +3,7 @@ class_name Enemy_Cube_Wizard
 
 enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
 enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
-
-var anim_dict: Dictionary[int, AnimationInfo] = {}
+enum STATE {Normal, WindUp, Attack, Recover, Die}
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var skill_lightning_strike: EnemySkill_LightningStrike = $attack_manager/enemy_skill_LightningStrike
@@ -21,17 +20,6 @@ func _ready() -> void:
 	init_anim_dict("enemy_cube_wizard_lib")
 	bind_signals()
 	add_states()
-
-
-func init_states():
-	STATE = {
-		"Idle": "Idle",
-		"Normal": "Normal",
-		"WindUp": "WindUp",
-		"Attack": "Attack",
-		"Recover": "Recover",
-		"Die": "Die",
-	}
 
 
 func init_speed_dict():

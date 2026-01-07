@@ -3,7 +3,7 @@ class_name EnemyBase
 
 var player_ref: CharacterBody2D
 
-var STATE: Dictionary[String, String] = {}
+var anim_dict: Dictionary[int, AnimationInfo] = {}
 var speed_dict: Dictionary[int, float] = {}
 
 @onready var state_machine: CallableStateMachine = $callable_state_machine
@@ -71,9 +71,9 @@ func look_at_player():
 	component_look.look(target_pos)
 
 
-func set_state(state_name: String):
+func set_state(state_id: int):
 	if (is_dead): return
-	state_machine.change_state(state_name)
+	state_machine.change_state(state_id)
 
 
 func get_player_position():
@@ -86,6 +86,10 @@ func get_direction_to_player() -> Vector2:
 	var player_node = get_tree().get_first_node_in_group("Player") as Node2D
 	if (player_node == null): return Vector2.ZERO
 	return (player_node.global_position - global_position).normalized()
+
+
+func get_anim_name(_anim_state: int) -> String:
+	return anim_dict[_anim_state]["name"]
 
 
 func _on_damaged(amount: float):

@@ -3,8 +3,8 @@ class_name EnemyGolem
 
 enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
 enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
+enum STATE {Normal, WindUp, Attack, Recover, Die}
 
-var anim_dict: Dictionary[int, AnimationInfo] = {}
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
@@ -28,15 +28,6 @@ func _ready() -> void:
 	# get_tree().current_scene.add_child.call_deferred(die_timer)
 	# die_timer.start.call_deferred(10.0)
 
-func init_states():
-	STATE = {
-		"Idle": "Idle",
-		"Normal": "Normal",
-		"WindUp": "WindUp",
-		"Attack": "Attack", # release shockwave on attack
-		"Recover": "Recover",
-		"Die": "Die",
-	}
 
 func init_speed_dict():
 	speed_dict = {
@@ -47,6 +38,7 @@ func init_speed_dict():
 		SPEED_STATE.recover: 0.0,
 		SPEED_STATE.die: 0.0,
 	}
+
 
 func init_anim_dict(_lib_name: String):
 	var lib_name = _lib_name + "/"

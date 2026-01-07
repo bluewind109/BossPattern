@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+enum STATE {Idle, Run, Attack, Die}
+
 @onready var state_machine: CallableStateMachine = $callable_state_machine
 
 @onready var character_sprite: Sprite2D = $character_sprite
@@ -17,11 +19,6 @@ var run_texture: Texture2D = preload("./sprites/Player_run.png")
 @export var base_max_health: float = 100.0
 @export var base_speed: float = 100.0
 @export var curve: Curve
-
-var STATE: Dictionary[String, String] = {
-	"Idle": "Idle",
-	"Run": "Run",
-}
 
 @export var anim_player: AnimationPlayer
 var anim_dict: Dictionary [String, Variant] = {

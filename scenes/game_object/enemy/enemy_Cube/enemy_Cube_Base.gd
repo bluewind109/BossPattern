@@ -2,9 +2,8 @@ extends EnemyBase
 class_name Enemy_Cube_Base
 
 enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
-enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
-
-var anim_dict: Dictionary[int, AnimationInfo] = {}
+enum ANIM_STATE {RESET = 0, idle, walk, attack, die}
+enum STATE {Normal, WindUp, Attack, Recover, Die}
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var skill_head_slam: EnemySkill_HeadSlam = $attack_manager/enemy_skill_HeadSlam
@@ -21,17 +20,6 @@ func _ready() -> void:
 	init_anim_dict("enemy_cube_base_lib")
 	bind_signals()
 	add_states()
-
-
-func init_states():
-	STATE = {
-		"Idle": "Idle",
-		"Normal": "Normal",
-		"WindUp": "WindUp",
-		"Attack": "Attack",
-		"Recover": "Recover",
-		"Die": "Die",
-	}
 
 
 func init_speed_dict():
@@ -229,7 +217,7 @@ func _on_die():
 
 
 func _on_animation_finished(_anim_name: StringName):
-	if (_anim_name == anim_dict[ANIM_STATE.attack]["name"]):
+	if (get_anim_name(ANIM_STATE.attack)):
 		set_state(STATE.Recover)
-	elif (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
+	elif (get_anim_name(ANIM_STATE.die)):
 		_play_dissolve_effect()
