@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=4 uid="uid://cvqfsjxwqx2f5"]
+[gd_scene load_steps=5 format=4 uid="uid://cvqfsjxwqx2f5"]
 
 [ext_resource type="Script" uid="uid://xrxejfhq410v" path="res://scenes/ui/options_menu/options_menu.gd" id="1_kyv63"]
+[ext_resource type="PackedScene" uid="uid://bxqhxclk73slc" path="res://scenes/ui/vignette/vignette.tscn" id="2_hyg8v"]
 [ext_resource type="TileSet" uid="uid://6vofakptbxdi" path="res://resources/tilemap/swamp_tileset.tres" id="2_jogn4"]
 [ext_resource type="PackedScene" uid="uid://cgvaqwloyyjlr" path="res://scenes/ui/sound_button/sound_button.tscn" id="3_6vr1v"]
 
 [node name="options_menu" type="CanvasLayer"]
 layer = 2
 script = ExtResource("1_kyv63")
+
+[node name="vignette" parent="." instance=ExtResource("2_hyg8v")]
+layer = 3
 
 [node name="terrain_layers" type="Node2D" parent="."]
 
@@ -50,6 +54,7 @@ theme_override_constants/separation = 24
 
 [node name="label_game_title" type="Label" parent="margin_container/panel_container/margin_container/v_box_container"]
 layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
 theme_override_font_sizes/font_size = 48
 text = "Options"
 horizontal_alignment = 1
@@ -64,6 +69,7 @@ layout_mode = 2
 
 [node name="label_sfx_volume" type="Label" parent="margin_container/panel_container/margin_container/v_box_container/v_box_container/sfx_options_container"]
 layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
 text = "SFX Volume"
 
 [node name="sfx_slider" type="HSlider" parent="margin_container/panel_container/margin_container/v_box_container/v_box_container/sfx_options_container"]
@@ -77,6 +83,7 @@ layout_mode = 2
 
 [node name="label_bgm_volume" type="Label" parent="margin_container/panel_container/margin_container/v_box_container/v_box_container/bgm_options_container"]
 layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
 text = "BGM Volume"
 
 [node name="bgm_slider" type="HSlider" parent="margin_container/panel_container/margin_container/v_box_container/v_box_container/bgm_options_container"]
@@ -84,12 +91,14 @@ unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.01
+value = 0.5
 
 [node name="window_options_container" type="VBoxContainer" parent="margin_container/panel_container/margin_container/v_box_container/v_box_container"]
 layout_mode = 2
 
 [node name="label_window_mode" type="Label" parent="margin_container/panel_container/margin_container/v_box_container/v_box_container/window_options_container"]
 layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
 text = "Window Mode"
 
 [node name="window_mode_button" parent="margin_container/panel_container/margin_container/v_box_container/v_box_container/window_options_container" instance=ExtResource("3_6vr1v")]

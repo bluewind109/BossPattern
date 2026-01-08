@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=4 uid="uid://dtrnobu8tbaur"]
+[gd_scene load_steps=6 format=4 uid="uid://dtrnobu8tbaur"]
 
 [ext_resource type="TileSet" uid="uid://6vofakptbxdi" path="res://resources/tilemap/swamp_tileset.tres" id="1_1ch07"]
 [ext_resource type="Script" uid="uid://n78trw1hnr07" path="res://scenes/ui/main_menu/main_menu.gd" id="1_qt1dd"]
 [ext_resource type="PackedScene" uid="uid://cgvaqwloyyjlr" path="res://scenes/ui/sound_button/sound_button.tscn" id="2_e8t4i"]
+[ext_resource type="PackedScene" uid="uid://bxqhxclk73slc" path="res://scenes/ui/vignette/vignette.tscn" id="3_r70wa"]
 [ext_resource type="PackedScene" uid="uid://cvqfsjxwqx2f5" path="res://scenes/ui/options_menu/options_menu.tscn" id="4_cmwxi"]
 
 [node name="main_menu" type="CanvasLayer"]
 script = ExtResource("1_qt1dd")
 options_menu_scene = ExtResource("4_cmwxi")
+
+[node name="vignette" parent="." instance=ExtResource("3_r70wa")]
+layer = 2
 
 [node name="terrain_layers" type="Node2D" parent="."]
 
@@ -49,6 +53,7 @@ size_flags_vertical = 4
 
 [node name="label_game_title" type="Label" parent="margin_container/panel_container/margin_container/v_box_container"]
 layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
 theme_override_font_sizes/font_size = 48
 text = "Cube Slayer"
 
