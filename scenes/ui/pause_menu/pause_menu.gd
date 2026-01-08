@@ -37,7 +37,6 @@ func _process(delta: float) -> void:
 
 
 func show_popup():
-	print("show_popup")
 	is_animation_done = false
 	dark_background.modulate.a = 0
 	panel.modulate.a = 0
@@ -47,7 +46,6 @@ func show_popup():
 
 
 func _tween_show_panel() -> void:
-	print("_tween_show_panel")
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
@@ -61,6 +59,7 @@ func _tween_show_panel() -> void:
 
 
 func hide_popup():
+	if (!is_animation_done): return
 	is_animation_done = false
 	_tween_hide_panel()
 	await on_panel_hidden
