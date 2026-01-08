@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://s35lmfixqjns"]
+[gd_scene load_steps=15 format=4 uid="uid://s35lmfixqjns"]
 
 [ext_resource type="Script" uid="uid://cpl63vx0dh74g" path="res://scenes/game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://cmetek8tl6wgi" path="res://scenes/manager/experience_manager/experience_manager.tscn" id="2_5jirj"]
+[ext_resource type="PackedScene" uid="uid://cm82t1bny8bri" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="2_ftsea"]
 [ext_resource type="PackedScene" uid="uid://v67gpa0c2rdm" path="res://scenes/game_object/player/player.tscn" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://bxcdcnb2upyhd" path="res://scenes/ui/end_screen/end_screen.tscn" id="2_vaxfo"]
 [ext_resource type="TileSet" uid="uid://6vofakptbxdi" path="res://resources/tilemap/swamp_tileset.tres" id="3_l8g03"]
@@ -16,6 +17,7 @@
 
 [node name="game" type="Node"]
 script = ExtResource("1_l1rk1")
+pause_menu_scene = ExtResource("2_ftsea")
 end_screen_scene = ExtResource("2_vaxfo")
 
 [node name="vignette" parent="." instance=ExtResource("6_ftsea")]

@@ -4,7 +4,7 @@ class_name LevelUpPopup
 @onready var dark_background: ColorRect = $%dark_background
 
 @export var card_prefab: PackedScene
-@export var panel: Panel
+@export var panel: PanelContainer
 @export var card_container: HBoxContainer
 @export var button_container: HBoxContainer
 
@@ -56,7 +56,6 @@ func set_ability_upgrades(upgrades: Array[Res_AbilityUpgrade]):
 
 
 func show_popup() -> void:
-	print("show_popup")
 	is_animation_done = false
 	dark_background.modulate.a = 0
 	card_container.modulate.a = 0
