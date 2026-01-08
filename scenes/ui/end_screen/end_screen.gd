@@ -66,6 +66,10 @@ func play_sfx(defeat: bool = false):
 
 
 func _on_restart_button_pressed():
+	if (!is_animation_done): return
+	is_animation_done = false
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
 	GameEvents.emit_game_paused(false)
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
 	

@@ -7,6 +7,8 @@ class_name MainMenu
 
 @export var options_menu_scene: PackedScene
 
+var is_animation_done: bool = true
+
 
 func _ready() -> void:
 	play_button.pressed.connect(_on_play_pressed)
@@ -15,11 +17,14 @@ func _ready() -> void:
 
 
 func _on_play_pressed():
+	if (!is_animation_done): return
+	is_animation_done = false
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
 
 
 func _on_options_pressed():
-	# TODO add options menu
 	var options_menu = options_menu_scene.instantiate() as OptionsMenu
 	add_child(options_menu)
 	options_menu.back_pressed.connect(_on_back_pressed.bind(options_menu))

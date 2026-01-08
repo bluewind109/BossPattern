@@ -82,6 +82,7 @@ func _tween_hide_panel():
 		on_panel_hidden.emit()
 	)
 
+
 func _on_resume_pressed():
 	if (!is_animation_done): return
 	hide_popup()
@@ -97,10 +98,12 @@ func _on_options_pressed():
 
 func _on_quit_pressed():
 	if (!is_animation_done): return
+	is_animation_done = false
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
 	GameEvents.emit_game_paused(false)
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu/main_menu.tscn")
 
-
-func _on_back_pressed(options_menu: OptionsMenu):
+func _on_back_pressed(_options_menu: OptionsMenu):
 	options_menu.queue_free()
 	options_menu = null
