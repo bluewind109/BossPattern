@@ -13,6 +13,8 @@ var show_panel_duration: float = 0.25
 var hide_panel_duration: float = 0.125
 var is_animation_done: bool = false
 
+var options_menu: OptionsMenu = null
+
 var tween_hide_panel: Tween
 
 signal on_panel_shown
@@ -32,7 +34,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if (Input.is_action_just_pressed("escape")):
+	if (Input.is_action_just_pressed("escape") && options_menu == null):
 		hide_popup()
 
 
@@ -87,7 +89,8 @@ func _on_resume_pressed():
 
 func _on_options_pressed():
 	if (!is_animation_done): return
-	var options_menu = options_menu_scene.instantiate() as OptionsMenu
+	if (options_menu != null): return
+	options_menu = options_menu_scene.instantiate() as OptionsMenu
 	add_child(options_menu)
 	options_menu.back_pressed.connect(_on_back_pressed.bind(options_menu))
 	
@@ -100,3 +103,4 @@ func _on_quit_pressed():
 
 func _on_back_pressed(options_menu: OptionsMenu):
 	options_menu.queue_free()
+	options_menu = null
