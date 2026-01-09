@@ -28,7 +28,7 @@ func save():
 	file.store_var(save_data)
 
 
-func add_meta_upgrade(upgrade: MetaUpgrade):
+func add_meta_upgrade(upgrade: Res_MetaUpgrade):
 	if (not save_data["meta_upgrades"].has(upgrade.id)):
 		save_data["meta_upgrades"][upgrade.id] = {
 			"quantity": 0

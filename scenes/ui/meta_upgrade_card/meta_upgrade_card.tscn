@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://4k4mbl7v83ur"]
+
+[ext_resource type="Script" uid="uid://b50uirsywfvsw" path="res://scenes/ui/meta_upgrade_card/meta_upgrade_card.gd" id="1_my4ps"]
+[ext_resource type="PackedScene" uid="uid://bt4mu8hnmk1ya" path="res://scenes/components/random_audio_player/random_audio_player.tscn" id="2_1nnoq"]
+[ext_resource type="AudioStream" uid="uid://8by28wjrad31" path="res://assets/audio/sfx/ui/switch1.ogg" id="3_usr4t"]
+[ext_resource type="AudioStream" uid="uid://di5ma6w1g7pxd" path="res://assets/audio/sfx/ui/switch2.ogg" id="4_7d2rj"]
+[ext_resource type="AudioStream" uid="uid://mu127gpj7b28" path="res://assets/audio/sfx/ui/switch3.ogg" id="5_ssewk"]
+[ext_resource type="AudioStream" uid="uid://us7nva5otu37" path="res://assets/audio/sfx/ui/switch4.ogg" id="6_f4cil"]
+[ext_resource type="AudioStream" uid="uid://cspjth66pdt0t" path="res://assets/audio/sfx/ui/switch5.ogg" id="7_b3tx1"]
+[ext_resource type="AudioStream" uid="uid://b675llqglidue" path="res://assets/audio/sfx/ui/switch6.ogg" id="8_hkmvu"]
+[ext_resource type="AudioStream" uid="uid://dk3skpuxrqxqr" path="res://assets/audio/sfx/ui/switch7.ogg" id="9_3pe30"]
+[ext_resource type="AudioStream" uid="uid://dfyee6mx4vsp1" path="res://assets/audio/sfx/ui/switch8.ogg" id="10_x0whd"]
+[ext_resource type="AudioStream" uid="uid://od5c8nenoroe" path="res://assets/audio/sfx/ui/switch9.ogg" id="11_q2yl2"]
+[ext_resource type="AudioStream" uid="uid://cxxjbatsthl01" path="res://assets/audio/sfx/ui/switch10.ogg" id="12_gbe5y"]
+[ext_resource type="Texture2D" uid="uid://kb8y5457kgij" path="res://scenes/ui/meta_upgrade_card/sprites/experience_vial.png" id="13_lic55"]
+[ext_resource type="PackedScene" uid="uid://cgvaqwloyyjlr" path="res://scenes/ui/sound_button/sound_button.tscn" id="13_my4ps"]
+
+[node name="meta_upgrade_card" type="PanelContainer" node_paths=PackedStringArray("label_name", "label_description")]
+clip_contents = true
+custom_minimum_size = Vector2(150, 175)
+offset_right = 100.0
+offset_bottom = 163.0
+pivot_offset = Vector2(75, 87)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_my4ps")
+label_name = NodePath("margin_container/v_box_container/panel_container/label_name")
+label_description = NodePath("margin_container/v_box_container/label_description")
+
+[node name="click_sfx" parent="." instance=ExtResource("2_1nnoq")]
+streams = Array[AudioStream]([ExtResource("3_usr4t"), ExtResource("4_7d2rj"), ExtResource("5_ssewk"), ExtResource("6_f4cil"), ExtResource("7_b3tx1"), ExtResource("8_hkmvu"), ExtResource("9_3pe30"), ExtResource("10_x0whd"), ExtResource("11_q2yl2"), ExtResource("12_gbe5y")])
+
+[node name="margin_container" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="panel_container" type="PanelContainer" parent="margin_container/v_box_container"]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"alternate_panel_container"
+
+[node name="label_name" type="Label" parent="margin_container/v_box_container/panel_container"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
+theme_override_font_sizes/font_size = 16
+text = "Sword Attack Rate"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+
+[node name="label_description" type="Label" parent="margin_container/v_box_container"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"BlueOutlineLabel"
+theme_override_font_sizes/font_size = 16
+text = "Increase sword damage by 15%"
+autowrap_mode = 3
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container/v_box_container"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container/v_box_container"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="upgrade_icon" type="TextureRect" parent="margin_container/v_box_container/v_box_container/h_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("13_lic55")
+
+[node name="label_progress" type="Label" parent="margin_container/v_box_container/v_box_container/h_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_type_variation = &"BlueOutlineLabel"
+text = "50/200"
+vertical_alignment = 1
+
+[node name="upgrade_progress_bar" type="ProgressBar" parent="margin_container/v_box_container/v_box_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 2
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="purchase_button" parent="margin_container/v_box_container" instance=ExtResource("13_my4ps")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Purchase"

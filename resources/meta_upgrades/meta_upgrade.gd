@@ -1,5 +1,5 @@
 extends Resource
-class_name MetaUpgrade
+class_name Res_MetaUpgrade
 
 @export var id: String
 @export var max_quantity: int = 1
