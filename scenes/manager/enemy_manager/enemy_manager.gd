@@ -28,11 +28,12 @@ func get_spawn_position() -> Vector2:
 	var spawn_position: Vector2 = Vector2.ZERO
 	for i in 4:
 		spawn_position = player.global_position + (random_direction * SPAWN_RADIUS)
+		var additional_check_offset = random_direction * 20
 		
 		# create a raycast between player and enemy's spawn position
 		var query_parameters: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(
 			player.global_position, 
-			spawn_position,
+			spawn_position + additional_check_offset,
 			1 << 0
 		)
 		var result: Dictionary = get_tree().root.world_2d.direct_space_state.intersect_ray(query_parameters)
