@@ -10,7 +10,7 @@
 process_mode = 3
 script = ExtResource("1_tllgq")
 card_prefab = ExtResource("3_t6wr6")
-panel = NodePath("")
+panel = NodePath("margin_container/level_up_panel")
 card_container = NodePath("margin_container/level_up_panel/margin_container/v_box_container/hb_card_container")
 button_container = NodePath("margin_container/level_up_panel/margin_container/v_box_container/hb_button_container")
 

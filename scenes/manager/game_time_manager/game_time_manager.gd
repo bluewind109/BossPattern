@@ -17,6 +17,7 @@ var previous_time: float = 0
 
 
 func _ready() -> void:
+	game_timer.timeout.connect(_on_game_timer_finished)
 	difficulty_timer.wait_time = DIFFICULTY_INTERVAL
 	difficulty_timer.timeout.connect(_on_count_down_finished)
 	current_time = 0.0
@@ -35,11 +36,15 @@ func update_game_time():
 	label_game_time.text = "%02d:%02d" % [total_minutes, total_seconds]
 
 
+func _on_game_timer_finished():
+	var end_screen = end_screen_scene.instantiate() as EndScreen
+	get_tree().current_scene.add_child(end_screen)
+	end_screen.play_sfx()
+	MetaProgression.save()
+
+
 func _on_count_down_finished():
 	_increase_difficulty()
-	# var end_screen = end_screen_scene.instantiate() as EndScreen
-	# add_child(end_screen)
-	# end_screen.play_sfx()
 
 
 func _increase_difficulty():

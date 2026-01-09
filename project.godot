@@ -10,8 +10,10 @@ config_version=5
 
 [application]
 
-config/name="BossPattern"
+config/name="CubeSlayer"
 run/main_scene="uid://dtrnobu8tbaur"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="CubeSlayer"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
