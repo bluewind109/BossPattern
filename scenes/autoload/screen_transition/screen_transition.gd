@@ -14,6 +14,12 @@ func transition():
 	animation_player.play_backwards("default")
 
 
+func start_transition(cb: Callable = Callable()):
+	transition()
+	await transitioned_halfway
+	if (cb != Callable()): cb.call()
+
+
 func emit_transitioned_halfway():
 	if (skip_emit ==  true): 
 		skip_emit = false

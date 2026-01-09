@@ -5,7 +5,7 @@ class_name EndScreen
 @onready var panel_end: PanelContainer = $%panel_end
 @onready var title_label: Label =  $%label_title
 @onready var subtitle_label: Label =  $%label_subtitle
-@onready var restart_button: SoundButton = $%button_restart
+@onready var continue_button: SoundButton = $%button_continue
 @onready var quit_button: SoundButton = $%button_quit
 
 @onready var victory_sfx: AudioStreamPlayer = $victory_sfx
@@ -20,7 +20,7 @@ signal on_panel_shown
 func _ready() -> void:
 	panel_end.pivot_offset = panel_end.size / 2
 	GameEvents.emit_game_paused(true)
-	restart_button.pressed.connect(_on_restart_button_pressed)
+	continue_button.pressed.connect(_on_continue_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)
 	dark_background.modulate.a = 0
 	panel_end.modulate.a = 0
@@ -31,11 +31,11 @@ func show_popup() -> void:
 	is_animation_done = false
 	dark_background.modulate.a = 0
 	panel_end.modulate.a = 0
-	restart_button.disabled = true
+	continue_button.disabled = true
 	quit_button.disabled = true
 	_tween_show_panel()
 	await on_panel_shown
-	restart_button.disabled = false
+	continue_button.disabled = false
 	quit_button.disabled = false
 	is_animation_done = true
 
@@ -65,14 +65,17 @@ func play_sfx(defeat: bool = false):
 		if (victory_sfx): victory_sfx.play()
 
 
-func _on_restart_button_pressed():
+func _on_continue_button_pressed():
 	if (!is_animation_done): return
 	is_animation_done = false
-	ScreenTransition.transition()
-	await ScreenTransition.transitioned_halfway
-	GameEvents.emit_game_paused(false)
-	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
+	ScreenTransition.start_transition(func(): 
+		GameEvents.emit_game_paused(false)
+		get_tree().change_scene_to_file("res://scenes/ui/meta_menu/meta_menu.tscn")
+	)
 	
 
 func _on_quit_button_pressed():
-	get_tree().quit()
+	ScreenTransition.start_transition(func(): 
+		GameEvents.emit_game_paused(false)
+		get_tree().change_scene_to_file("res://scenes/ui/main_menu/main_menu.tscn")
+	)

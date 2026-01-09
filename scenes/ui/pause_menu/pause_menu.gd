@@ -99,10 +99,11 @@ func _on_options_pressed():
 func _on_quit_pressed():
 	if (!is_animation_done): return
 	is_animation_done = false
-	ScreenTransition.transition()
-	await ScreenTransition.transitioned_halfway
-	GameEvents.emit_game_paused(false)
-	get_tree().change_scene_to_file("res://scenes/ui/main_menu/main_menu.tscn")
+	ScreenTransition.start_transition(func(): 
+		GameEvents.emit_game_paused(false)
+		get_tree().change_scene_to_file("res://scenes/ui/main_menu/main_menu.tscn")
+	)
+
 
 func _on_back_pressed(_options_menu: OptionsMenu):
 	options_menu.queue_free()

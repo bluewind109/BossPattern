@@ -21,3 +21,14 @@ func _ready() -> void:
 		card_container.add_child(meta_upgrade_card)
 		meta_upgrade_card.init(upgrade)
 		meta_upgrade_card.show_card()
+
+
+func _process(delta: float) -> void:
+	if (Input.is_action_just_pressed("escape")):
+		_on_back_button_pressed()
+
+
+func _on_back_button_pressed():
+	ScreenTransition.start_transition(func():
+		get_tree().change_scene_to_file("res://scenes/ui/main_menu/main_menu.tscn")
+	)
