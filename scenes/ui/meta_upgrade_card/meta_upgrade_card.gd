@@ -60,7 +60,8 @@ func update_progress():
 	var percent = currency /  upgrade.experience_cost
 	percent = min(percent, 1)
 	progress_bar.value = percent
-	purchase_button.disabled = percent < 1 || is_upgrade_maxed
+	var is_enough_to_upgrade = percent < 1
+	purchase_button.disabled = is_enough_to_upgrade || is_upgrade_maxed
 	label_progress.text = "%d/%d" % [floori(currency), upgrade.experience_cost]
 	label_purchase_count.text = "x%d" % current_quantity
 	if (is_upgrade_maxed):

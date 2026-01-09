@@ -15,7 +15,8 @@ func _ready() -> void:
 	
 	for child in card_container.get_children():
 		child.queue_free()
-	
+		#(child as MetaUpgradeCard).show_card()
+	#
 	for upgrade in upgrades:
 		var meta_upgrade_card = meta_upgrade_card_scene.instantiate() as MetaUpgradeCard
 		card_container.add_child(meta_upgrade_card)

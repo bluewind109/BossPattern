@@ -45,26 +45,50 @@ theme_override_constants/margin_bottom = 16
 [node name="v_box_container" type="VBoxContainer" parent="margin_container"]
 layout_mode = 2
 
-[node name="back_button" parent="margin_container/v_box_container" instance=ExtResource("2_y36uw")]
+[node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container"]
+layout_mode = 2
+
+[node name="back_button" parent="margin_container/v_box_container/h_box_container" instance=ExtResource("2_y36uw")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
 text = "Back"
 metadata/_custom_type_script = "uid://dumq23mlwhxbi"
 
-[node name="card_grid_container" type="GridContainer" parent="margin_container/v_box_container"]
+[node name="label_title" type="Label" parent="margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
+theme_override_font_sizes/font_size = 32
+text = "Upgrades"
+
+[node name="scroll_container" type="ScrollContainer" parent="margin_container/v_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="card_grid_container" type="GridContainer" parent="margin_container/v_box_container/scroll_container"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
 columns = 3
 
-[node name="meta_upgrade_card" parent="margin_container/v_box_container/card_grid_container" instance=ExtResource("2_vq5vi")]
+[node name="meta_upgrade_card" parent="margin_container/v_box_container/scroll_container/card_grid_container" instance=ExtResource("2_vq5vi")]
 layout_mode = 2
 
-[node name="meta_upgrade_card2" parent="margin_container/v_box_container/card_grid_container" instance=ExtResource("2_vq5vi")]
+[node name="meta_upgrade_card2" parent="margin_container/v_box_container/scroll_container/card_grid_container" instance=ExtResource("2_vq5vi")]
 layout_mode = 2
 
-[node name="meta_upgrade_card3" parent="margin_container/v_box_container/card_grid_container" instance=ExtResource("2_vq5vi")]
+[node name="meta_upgrade_card3" parent="margin_container/v_box_container/scroll_container/card_grid_container" instance=ExtResource("2_vq5vi")]
+layout_mode = 2
+
+[node name="meta_upgrade_card4" parent="margin_container/v_box_container/scroll_container/card_grid_container" instance=ExtResource("2_vq5vi")]
+layout_mode = 2
+
+[node name="meta_upgrade_card5" parent="margin_container/v_box_container/scroll_container/card_grid_container" instance=ExtResource("2_vq5vi")]
+layout_mode = 2
+
+[node name="meta_upgrade_card6" parent="margin_container/v_box_container/scroll_container/card_grid_container" instance=ExtResource("2_vq5vi")]
 layout_mode = 2
