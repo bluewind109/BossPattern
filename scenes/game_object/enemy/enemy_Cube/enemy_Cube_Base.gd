@@ -217,7 +217,7 @@ func _on_die():
 
 
 func _on_animation_finished(_anim_name: StringName):
-	if (get_anim_name(ANIM_STATE.attack)):
+	if (_anim_name == get_anim_name(ANIM_STATE.attack)):
 		set_state(STATE.Recover)
-	elif (get_anim_name(ANIM_STATE.die)):
+	elif (_anim_name == get_anim_name(ANIM_STATE.die)):
 		_play_dissolve_effect()
