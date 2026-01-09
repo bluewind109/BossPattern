@@ -37,6 +37,21 @@ func add_meta_upgrade(upgrade: Res_MetaUpgrade):
 	save()
 
 
+func get_upgrade_count(upgrade_id: String) -> int: 
+	if (!save_data["meta_upgrades"].has(upgrade_id)): return 0
+	return save_data["meta_upgrades"][upgrade_id]["quantity"]
+
+
+func get_currency() -> float:
+	if (!save_data.has("meta_upgrade_currency")): return 0.0
+	return save_data["meta_upgrade_currency"]
+
+
+func update_currency(val: float):
+	save_data["meta_upgrade_currency"] += val
+	save()
+
+
 func _on_exp_vial_collected(number: float):
 	save_data["meta_upgrade_currency"] += number
 	save()

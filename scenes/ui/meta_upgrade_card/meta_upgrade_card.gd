@@ -7,6 +7,7 @@ signal card_selected(upgrade: Res_AbilityUpgrade)
 
 @onready var upgrade_icon: TextureRect = $%upgrade_icon
 @onready var label_progress: Label = $%label_progress
+@onready var label_purchase_count: Label = $%label_purchase_count
 @onready var purchase_button: SoundButton = $%purchase_button
 @onready var progress_bar: ProgressBar = $%upgrade_progress_bar
 
@@ -53,12 +54,17 @@ func set_card_info(_upgrade: Res_MetaUpgrade) -> void:
 
 func update_progress():
 	if (upgrade == null): return
-	var currency = MetaProgression.save_data["meta_upgrade_currency"]
+	var current_quantity: int = MetaProgression.get_upgrade_count(upgrade.id)
+	var is_upgrade_maxed = current_quantity >= upgrade["max_quantity"]
+	var currency = MetaProgression.get_currency()
 	var percent = currency /  upgrade.experience_cost
 	percent = min(percent, 1)
 	progress_bar.value = percent
-	purchase_button.disabled = percent < 1
-	label_progress.text = str(floori(currency)) + "/" + str(upgrade.experience_cost)
+	purchase_button.disabled = percent < 1 || is_upgrade_maxed
+	label_progress.text = "%d/%d" % [floori(currency), upgrade.experience_cost]
+	label_purchase_count.text = "x%d" % current_quantity
+	if (is_upgrade_maxed):
+		purchase_button.text = "Max"
 
 
 func show_card() -> void:
@@ -76,7 +82,8 @@ func _tween_show_card() -> void:
 
 func _on_purchase_pressed():
 	if (upgrade == null): return
-	if (MetaProgression.save_data["meta_upgrade_currency"] < upgrade.experience_cost): return
+	var currency = MetaProgression.get_currency()
+	if (currency < upgrade.experience_cost): return
+	MetaProgression.update_currency(upgrade.experience_cost)
 	MetaProgression.add_meta_upgrade(upgrade)
-	MetaProgression.save_data["meta_upgrade_currency"] -= upgrade.experience_cost
 	get_tree().call_group("meta_upgrade_card", "update_progress")

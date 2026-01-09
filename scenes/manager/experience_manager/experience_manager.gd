@@ -16,6 +16,7 @@ func _ready() -> void:
 
 
 func _increase_exp(number: float):
+	print("_increase_exp: ", number)
 	current_exp = min(current_exp + number, target_exp)
 	print("current exp: ", current_exp)
 	exp_updated.emit(current_exp, target_exp)

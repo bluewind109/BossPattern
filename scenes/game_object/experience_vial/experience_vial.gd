@@ -5,6 +5,8 @@ class_name ExperienceVial
 @onready var sprite: Sprite2D = $sprite_2d
 @onready var collect_vial_sfx: RandomAudioPlayer2D = $collect_vial_sfx
 
+var base_exp_gain: float = 1.0
+
 
 func _ready() -> void:
 	self.name = "ExperienceVial"
@@ -43,7 +45,9 @@ func _on_area_entered(other_area: Area2D):
 	tween.tween_property(sprite, "scale", Vector2.ZERO, duration_2).set_delay(duration_1 - duration_2)
 	tween.chain()
 	tween.tween_callback(func():
-		GameEvents.emit_exp_vial_collected(1)
+		var	exp_gain_upgrade_quantity = MetaProgression.get_upgrade_count("experience_gain")
+		var final_exp_gain = base_exp_gain + base_exp_gain * exp_gain_upgrade_quantity * 0.1
+		GameEvents.emit_exp_vial_collected(final_exp_gain)
 		if (collect_vial_sfx != null):
 			collect_vial_sfx.play_random()
 			await collect_vial_sfx.finished # if there is error, move the play_random outside of callback

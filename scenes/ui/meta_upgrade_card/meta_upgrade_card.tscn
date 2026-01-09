@@ -84,9 +84,18 @@ texture = ExtResource("13_lic55")
 [node name="label_progress" type="Label" parent="margin_container/v_box_container/v_box_container/h_box_container"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_type_variation = &"BlueOutlineLabel"
 text = "50/200"
+vertical_alignment = 1
+
+[node name="label_purchase_count" type="Label" parent="margin_container/v_box_container/v_box_container/h_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_type_variation = &"BlueOutlineLabel"
+text = "x0"
 vertical_alignment = 1
 
 [node name="upgrade_progress_bar" type="ProgressBar" parent="margin_container/v_box_container/v_box_container"]
