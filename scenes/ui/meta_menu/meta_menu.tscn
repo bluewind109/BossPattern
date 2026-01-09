@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuq0vp5kjt23a"]
+
+[ext_resource type="Script" uid="uid://cemjjs4yy2lp8" path="res://scenes/ui/meta_menu/meta_menu.gd" id="1_q20vd"]
+[ext_resource type="PackedScene" uid="uid://4k4mbl7v83ur" path="res://scenes/ui/meta_upgrade_card/meta_upgrade_card.tscn" id="2_vq5vi"]
+[ext_resource type="Script" uid="uid://ieexsgfyqi77" path="res://resources/meta_upgrades/meta_upgrade.gd" id="3_ojqlf"]
+[ext_resource type="Resource" uid="uid://ibj3hh5a262k" path="res://resources/meta_upgrades/experience_gain.tres" id="4_x87wq"]
+
+[node name="meta_menu" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_q20vd")
+meta_upgrade_card_scene = ExtResource("2_vq5vi")
+upgrades = Array[ExtResource("3_ojqlf")]([ExtResource("4_x87wq")])
+
+[node name="margin_container" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="card_grid_container" type="GridContainer" parent="margin_container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 16
+columns = 3

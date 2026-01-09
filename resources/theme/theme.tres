@@ -111,6 +111,7 @@ default_font_size = 16
 BlueOutlineLabel/base_type = &"Label"
 BlueOutlineLabel/colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
 BlueOutlineLabel/colors/font_shadow_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+BlueOutlineLabel/constants/line_spacing = 2
 BlueOutlineLabel/constants/outline_size = 8
 BlueOutlineLabel/constants/shadow_offset_x = 0
 BlueOutlineLabel/constants/shadow_offset_y = 0

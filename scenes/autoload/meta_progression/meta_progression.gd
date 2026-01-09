@@ -6,7 +6,7 @@ var save_data: Dictionary = {
 	"win_count": 0,
 	"loss_count": 0,
 	"meta_upgrade_currency": 0,
-	"upgrades": {}
+	"meta_upgrades": {}
 }
 
 
@@ -34,6 +34,7 @@ func add_meta_upgrade(upgrade: Res_MetaUpgrade):
 			"quantity": 0
 		}
 	save_data["meta_upgrades"][upgrade.id]["quantity"] += 1
+	save()
 
 
 func _on_exp_vial_collected(number: float):

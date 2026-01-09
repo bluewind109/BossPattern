@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://kb8y5457kgij" path="res://scenes/ui/meta_upgrade_card/sprites/experience_vial.png" id="13_lic55"]
 [ext_resource type="PackedScene" uid="uid://cgvaqwloyyjlr" path="res://scenes/ui/sound_button/sound_button.tscn" id="13_my4ps"]
 
-[node name="meta_upgrade_card" type="PanelContainer" node_paths=PackedStringArray("label_name", "label_description")]
+[node name="meta_upgrade_card" type="PanelContainer" node_paths=PackedStringArray("label_name", "label_description") groups=["meta_upgrade_card"]]
 clip_contents = true
 custom_minimum_size = Vector2(150, 175)
 offset_right = 100.0
