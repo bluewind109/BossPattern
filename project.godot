@@ -15,7 +15,10 @@ run/main_scene="uid://dtrnobu8tbaur"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="CubeSlayer"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.10980392, 0.10980392, 0.10980392, 1)
+boot_splash/image="uid://ka27qycefy6q"
+config/icon="uid://ka27qycefy6q"
+config/windows_native_icon="res://icon.ico"
 
 [audio]
 
@@ -39,9 +42,11 @@ gdscript/warnings/unused_signal=0
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+window/size/mode.debug=3
 
 [editor]
 
