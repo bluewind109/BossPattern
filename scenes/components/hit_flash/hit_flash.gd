@@ -9,7 +9,7 @@ var hit_flash_tween: Tween
 
 func _ready():
 	comp_health.health_changed.connect(_on_health_changed)
-	sprite.material = hit_flash_material
+	if (sprite != null): sprite.material = hit_flash_material
 
 
 func _on_health_changed(health: float):
