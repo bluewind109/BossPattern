@@ -24,9 +24,9 @@ func _ready() -> void:
 func init_speed_dict():
 	speed_dict = {
 		SPEED_STATE.idle: 0.0,
-		SPEED_STATE.normal: 40.0,
+		SPEED_STATE.normal: 90.0,
 		SPEED_STATE.wind_up: 0.0,
-		SPEED_STATE.attack: 350.0,
+		SPEED_STATE.attack: 1000.0,
 		SPEED_STATE.recover: 0.0,
 		SPEED_STATE.die: 0.0,
 	}
@@ -99,19 +99,24 @@ func _on_normal_state(_delta: float):
 		# TODO add anim for following player
 		anim_ss.play_anim(ANIM_STATE.walk)
 
-	if (attack_manager.is_in_attack_range(player_ref.global_position)):
+	component_velocity.accelerate_to_player()
+	component_velocity.move(self)
+
+	var player = get_tree().get_first_node_in_group("Player")
+	var is_in_attack_range = attack_manager.is_in_attack_range(player.global_position)
+	if (is_in_attack_range):
 		component_velocity.set_max_speed(speed_dict[SPEED_STATE.idle])
 		component_velocity.stop(self)
 	else:
-		# follow the player
 		component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
 
 	super.look_at_player()
+	var can_attack = attack_manager.can_attack()
+	if (!can_attack): return
 
-	if (!attack_manager.can_attack()): return
-	# attack_manager.attack()
-
-	if (skill_charge.is_in_charge_range(player_ref.global_position) and skill_charge.can_cast()):
+	var is_in_cast_range = skill_charge.is_in_charge_range(player.global_position)
+	var can_cast = skill_charge.can_cast()
+	if (is_in_cast_range and can_cast):
 		attack_manager.set_next_skill(skill_charge)
 		set_state(STATE.WindUp)
 		return
@@ -139,11 +144,13 @@ func _on_leave_wind_up_state():
 func _on_enter_charge_state():
 	anim_ss.play_anim(ANIM_STATE.attack)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
-	skill_charge.cast_at(player_ref)
+	var player = get_tree().get_first_node_in_group("Player")
+	skill_charge.cast_at(player)
 
 
 func _on_charge_state(_delta: float):
-	velocity = skill_charge.update(component_velocity.max_speed)
+	component_velocity.accelerate_to_player()
+	component_velocity.move(self)
 
 
 func _on_leave_charge_state():
@@ -207,5 +214,5 @@ func _on_die():
 
 
 func _on_animation_finished(_anim_name: StringName):
-	if (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
+	if (_anim_name == get_anim_name(ANIM_STATE.die)):
 		queue_free()

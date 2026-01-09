@@ -27,14 +27,14 @@ func cast_at(_target: Node2D):
 	if (is_charging): return
 	is_charging = true
 	target_pos = _target.global_position
-	charge_position = global_position
-	charge_direction = global_position.direction_to(target_pos)
+	charge_position = get_owner_position()
+	charge_direction = get_owner_position().direction_to(target_pos)
 
 func is_in_charge_range(_target_pos: Vector2) -> bool:
 	target_pos = _target_pos
-	var distance = target_pos.distance_to(global_position)
+	var distance = target_pos.distance_to(get_owner_position())
 	return distance <= CHARGE_RANGE
 
 func is_charge_distance_reached() -> bool:
-	var distance = charge_position.distance_to(global_position)
+	var distance = charge_position.distance_to(get_owner_position())
 	return distance >= CHARGE_DISTANCE
