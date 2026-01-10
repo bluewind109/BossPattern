@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dturn24adh3lf"]
+[gd_scene load_steps=10 format=3 uid="uid://dturn24adh3lf"]
 
 [ext_resource type="Script" uid="uid://c52i76ilcbtgu" path="res://scenes/manager/upgrade_manager/upgrade_manager.gd" id="1_hi0so"]
 [ext_resource type="PackedScene" uid="uid://3tuxnqf0v3dh" path="res://scenes/ui/level_up_popup/level_up_popup.tscn" id="2_rdlwp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://blvptb2lnk6gr" path="res://resources/upgrades/sword_damage.tres" id="6_5tea3"]
 [ext_resource type="Resource" uid="uid://b8w1qr8jsd7s6" path="res://resources/upgrades/player_speed.tres" id="7_5tea3"]
 [ext_resource type="Resource" uid="uid://bh1jskag53b3m" path="res://resources/upgrades/ability_Anvil.tres" id="8_h5n8k"]
+[ext_resource type="Resource" uid="uid://dcy72b8oa00fw" path="res://resources/upgrades/anvil_amount.tres" id="9_gqm6y"]
 
 [node name="upgrade_manager" type="Node"]
 script = ExtResource("1_hi0so")
@@ -18,3 +19,4 @@ upgrade_sword_rate = ExtResource("3_rdlwp")
 upgrade_sword_damage = ExtResource("6_5tea3")
 upgrade_player_speed = ExtResource("7_5tea3")
 upgrade_anvil = ExtResource("8_h5n8k")
+upgrade_anvil_amount = ExtResource("9_gqm6y")

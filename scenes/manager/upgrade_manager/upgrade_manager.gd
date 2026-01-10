@@ -10,6 +10,7 @@ class_name UpgradeManager
 @export var upgrade_sword_damage: Res_AbilityUpgrade
 @export var upgrade_player_speed: Res_AbilityUpgrade
 @export var upgrade_anvil: Res_AbilityUpgrade
+@export var upgrade_anvil_amount: Res_AbilityUpgrade
 
 
 var current_upgrades = {}
@@ -50,6 +51,8 @@ func _apply_upgrade(upgrade: Res_AbilityUpgrade):
 func _update_upgrade_pool(chosen_upgrade: Res_AbilityUpgrade):
 	if (chosen_upgrade.id == upgrade_axe.id):
 		upgrade_pool.add_item(upgrade_axe_damage, 10)
+	elif (chosen_upgrade.id == upgrade_anvil.id):
+		upgrade_pool.add_item(upgrade_anvil_amount, 5)
 
 
 func _pick_upgrades() -> Array[Res_AbilityUpgrade]:
