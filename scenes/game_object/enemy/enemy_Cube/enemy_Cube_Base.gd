@@ -99,6 +99,7 @@ func _physics_process(delta: float) -> void:
 
 # SPAWN STATE
 func _on_enter_spawn_state():
+	component_hitbox.toggle_collision(false)
 	component_hurtbox.toggle_collision(false)
 	is_spawning = true
 	anim_ss.play_anim(ANIM_STATE.RESET)
@@ -117,6 +118,7 @@ func _on_leave_spawn_state():
 
 # NORMAL STATE
 func _on_enter_normal_state():
+	component_hitbox.toggle_collision(true)
 	component_hurtbox.toggle_collision(true)
 	is_spawning = false
 	hit_flash.reset_material()
