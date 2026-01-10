@@ -37,7 +37,7 @@ func add_meta_upgrade(upgrade: Res_MetaUpgrade):
 	save()
 
 
-func get_upgrade_count(upgrade_id: String) -> int: 
+func get_upgrade_count(upgrade_id: UpgradeDefine.META_UPGRADE_ID) -> int: 
 	if (!save_data["meta_upgrades"].has(upgrade_id)): return 0
 	return save_data["meta_upgrades"][upgrade_id]["quantity"]
 
