@@ -66,7 +66,7 @@ func _on_arena_difficulty_increased(arena_difficulty: int):
 	print("_on_arena_difficulty_increased: ", time_off)
 	spawn_timer.wait_time = max(base_spawn_time - time_off, 0.1)
 
-	if (arena_difficulty == 3):
-		enemy_table.add_item(enemy_bat_scene, 10)
-	elif (arena_difficulty == 6):
+	#if (arena_difficulty == 3):
+		#enemy_table.add_item(enemy_bat_scene, 10)
+	if (arena_difficulty == 6):
 		enemy_table.add_item(enemy_cube_wizard_scene, 15)

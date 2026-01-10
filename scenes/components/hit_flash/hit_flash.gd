@@ -8,11 +8,11 @@ class_name HitFlash
 var hit_flash_tween: Tween
 
 func _ready():
-	comp_health.health_changed.connect(_on_health_changed)
+	comp_health.health_decreased.connect(_on_health_decreased)
 	if (sprite != null): sprite.material = hit_flash_material
 
 
-func _on_health_changed(health: float):
+func _on_health_decreased(health: float):
 	if (sprite == null): return
 	if (hit_flash_tween != null and hit_flash_tween.is_valid()): 
 		hit_flash_tween.kill()

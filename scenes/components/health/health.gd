@@ -5,6 +5,7 @@ class_name ComponentHealth
 
 signal died
 signal health_changed(amount: float)
+signal health_decreased(amount: float)
 signal max_health_changed(amount: float)
 
 var health: float = 10.0:
@@ -25,8 +26,14 @@ func init(_max_health: float):
 
 func take_damage(amount: float):
 	if (is_dead()): return
-	health = max(health - amount, 0)
+	health = clampf(health - amount, 0, max_health)
+	if (amount > 0): health_decreased.emit(amount)
 	if (health <= 0): died.emit()
+
+
+func heal(heal_amount: float):
+	print("heal: ", heal_amount)
+	take_damage(heal_amount * -1)
 
 
 func is_dead() -> bool:

@@ -35,9 +35,14 @@ var anim_dict: Dictionary [String, Variant] = {
 }
 var current_anim: String = ""
 
+@export var game_time_manager: GameTimeManager
+
 
 func _ready() -> void:
 	GameEvents.ability_upgrade_added.connect(_on_ability_upgrade_added)
+	if (game_time_manager):
+		game_time_manager.arena_difficulty_increased.connect(_on_arena_difficulty_increased)
+
 	if (comp_look): 
 		comp_look.owner_node = character_sprite
 
@@ -137,3 +142,11 @@ func _on_damaged(amount: float):
 	if (amount > 0):
 		GameEvents.emit_player_damaged()
 		if (hit_sfx): hit_sfx.play_random()
+
+
+func _on_arena_difficulty_increased(difficulty: int):
+	var health_regen_quantity =  MetaProgression.get_upgrade_count("health_regeneration")
+	if (health_regen_quantity <= 0): return
+	var is_thirty_seconds_interval = (difficulty % 1) == 0
+	if (is_thirty_seconds_interval):
+		comp_health.heal(health_regen_quantity)

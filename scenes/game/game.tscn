@@ -63,9 +63,10 @@ position = Vector2(-260, -119)
 [node name="entities" type="Node2D" parent="." groups=["entities_layer"]]
 y_sort_enabled = true
 
-[node name="player" parent="entities" instance=ExtResource("2_vasa2")]
+[node name="player" parent="entities" node_paths=PackedStringArray("game_time_manager") instance=ExtResource("2_vasa2")]
 unique_name_in_owner = true
 position = Vector2(302, 184)
+game_time_manager = NodePath("../../game_time_manager")
 
 [node name="enemy_Cube_Wizard" parent="entities" instance=ExtResource("12_5jirj")]
 position = Vector2(570, 63)
