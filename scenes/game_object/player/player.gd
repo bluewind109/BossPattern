@@ -44,7 +44,7 @@ func _ready() -> void:
 		game_time_manager.arena_difficulty_increased.connect(_on_arena_difficulty_increased)
 
 	if (comp_look): 
-		comp_look.owner_node = character_sprite
+		comp_look.visual_node = character_sprite
 
 	if (comp_health):
 		comp_health.health_changed.connect(_on_health_changed)

@@ -109,7 +109,8 @@ anim_player = NodePath("character_sprite/animation_player")
 [node name="abilityController_Sword" parent="abilities" instance=ExtResource("5_gbew5")]
 max_range = 100.0
 
-[node name="look" parent="." instance=ExtResource("5_8t03j")]
+[node name="look" parent="." node_paths=PackedStringArray("visual_node") instance=ExtResource("5_8t03j")]
+visual_node = NodePath("../character_sprite")
 
 [node name="exp" parent="." instance=ExtResource("5_g6k8r")]
 script = ExtResource("6_boad6")

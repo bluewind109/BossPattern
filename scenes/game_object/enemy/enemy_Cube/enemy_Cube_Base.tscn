@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_wxspj"]
 [ext_resource type="Script" uid="uid://p3rx5mm5eehr" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.gd" id="2_28axu"]
 [ext_resource type="Shader" uid="uid://w060hrtgv5k0" path="res://shader/dissolve.gdshader" id="3_28axu"]
-[ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-1.png" id="4_angwg"]
 [ext_resource type="PackedScene" uid="uid://cqsedpf1ft2xq" path="res://scenes/enemy_skill/enemy_skill_HeadSlam/enemy_skill_HeadSlam.tscn" id="6_vvwbs"]
+[ext_resource type="Texture2D" uid="uid://be8imx1ln4qfj" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-2.png" id="7_vvwbs"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="8_angwg"]
 [ext_resource type="AnimationLibrary" uid="uid://b5ihfl6qnyp5" path="res://scenes/game_object/enemy/enemy_Cube/animation/enemy_cube_base_lib.res" id="9_0gthn"]
 
@@ -92,8 +92,8 @@ dissolve_shader = SubResource("ShaderMaterial_28axu")
 [node name="health" parent="." index="1"]
 max_health = 5.0
 
-[node name="look" parent="." index="3" node_paths=PackedStringArray("owner_node")]
-owner_node = NodePath("../visuals")
+[node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
+visual_node = NodePath("../visuals")
 
 [node name="hit_flash" parent="." index="5" node_paths=PackedStringArray("sprite")]
 hit_flash_material = SubResource("ShaderMaterial_angwg")
@@ -133,6 +133,6 @@ debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
 [node name="body" type="Sprite2D" parent="visuals" index="0"]
 position = Vector2(0, -8)
-texture = ExtResource("4_angwg")
+texture = ExtResource("7_vvwbs")
 
 [editable path="hurtbox"]

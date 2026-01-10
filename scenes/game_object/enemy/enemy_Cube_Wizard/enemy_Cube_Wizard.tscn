@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dn567e2bat71b" path="res://scenes/enemy_skill/enemy_skill_LightningStrike/enemy_skill_LightningStrike.tscn" id="3_d3a4f"]
 [ext_resource type="Texture2D" uid="uid://x7ij5csehon5" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-Hat.png" id="5_d3a4f"]
 [ext_resource type="Texture2D" uid="uid://d3181lfg2l35a" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/water_wand.png" id="6_l1smh"]
-[ext_resource type="Texture2D" uid="uid://bwcdt3ghetoto" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-2.png" id="7_ctqlp"]
+[ext_resource type="Texture2D" uid="uid://dma6g2xrgmont" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-1.png" id="7_ctqlp"]
 [ext_resource type="AnimationLibrary" uid="uid://cp5w68p7nqbk8" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/animation/enemy_cube_wizard_lib.res" id="10_ek8e0"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="10_k25jn"]
 
@@ -36,12 +36,6 @@ resource_local_to_scene = true
 shader = SubResource("Shader_ek8e0")
 shader_parameter/lerp_percent = 0.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3a4f"]
-size = Vector2(16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvvxf"]
-size = Vector2(16, 16)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1smh"]
 size = Vector2(16, 16)
 
@@ -50,7 +44,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("visuals/body:position")
+tracks/0/path = NodePath("visuals/main_sprite/body:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,7 +56,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("visuals/body:rotation")
+tracks/1/path = NodePath("visuals/main_sprite/body:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -71,27 +65,117 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/main_sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("visuals/main_sprite/hat:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -23)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("visuals/main_sprite/wand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, -10.999999)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("visuals/main_sprite/body:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("visuals/main_sprite/hat:offset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("visuals/main_sprite/hat:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("visuals/main_sprite/wand:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.48140404]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k25jn"]
 _data = {
 &"RESET": SubResource("Animation_ctqlp")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3a4f"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvvxf"]
+size = Vector2(16, 16)
+
 [node name="enemy_Cube_Wizard" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_yxguv")]
 script = ExtResource("2_ccck5")
-body_sprite = NodePath("visuals/body")
+body_sprite = NodePath("visuals/main_sprite/body")
 dissolve_shader = SubResource("ShaderMaterial_ek8e0")
 
 [node name="velocity" parent="." index="2"]
 max_speed = 25.0
 acceleration = 2.5
 
-[node name="look" parent="." index="3" node_paths=PackedStringArray("owner_node")]
-owner_node = NodePath("../visuals")
+[node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
+visual_node = NodePath("../visuals")
 
 [node name="hit_flash" parent="." index="5" node_paths=PackedStringArray("sprite")]
 hit_flash_material = SubResource("ShaderMaterial_ulnpn")
-sprite = NodePath("../visuals/body")
+sprite = NodePath("../visuals/main_sprite/body")
 
 [node name="enemy_skill_LightningStrike" parent="attack_manager" index="3" instance=ExtResource("3_d3a4f")]
 explo_range = Vector2(5, 125)
@@ -99,16 +183,6 @@ explosion_delay_duration = 1.0
 explosion_count = 1
 delay_duration = 0.5
 cast_range = 150.0
-
-[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_d3a4f")
-debug_color = Color(0.5137255, 0.5764706, 0, 0.6901961)
-
-[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_yvvxf")
-debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="9"]
 position = Vector2(0, -8)
@@ -124,16 +198,29 @@ libraries = {
 &"enemy_cube_wizard_lib": ExtResource("10_ek8e0")
 }
 
-[node name="body" type="Sprite2D" parent="visuals" index="0"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_d3a4f")
+debug_color = Color(0.5137255, 0.5764706, 0, 0.6901961)
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_yvvxf")
+debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
+
+[node name="main_sprite" type="Node2D" parent="visuals" index="0"]
+
+[node name="wand" type="Sprite2D" parent="visuals/main_sprite" index="0"]
+position = Vector2(-11, -10.999999)
+rotation = 0.48140404
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("6_l1smh")
+
+[node name="body" type="Sprite2D" parent="visuals/main_sprite" index="1"]
 position = Vector2(8, 0)
 texture = ExtResource("7_ctqlp")
-offset = Vector2(-8, -8)
+offset = Vector2(0, -8)
 
-[node name="hat" type="Sprite2D" parent="visuals/body" index="0"]
+[node name="hat" type="Sprite2D" parent="visuals/main_sprite" index="2"]
 position = Vector2(-8, -23)
 texture = ExtResource("5_d3a4f")
-
-[node name="wand" type="Sprite2D" parent="visuals/body" index="1"]
-position = Vector2(-20, -11)
-rotation = 0.481404
-texture = ExtResource("6_l1smh")

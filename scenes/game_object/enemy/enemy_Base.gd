@@ -62,7 +62,7 @@ func _disable_collision():
 
 func init_component_look(_target: Node2D):
 	if (not component_look): return
-	component_look.owner_node = _target
+	component_look.visual_node = _target
 
 
 func look_at_player():
