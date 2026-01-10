@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cruqr6ghkvt65"]
+
+[ext_resource type="Script" uid="uid://dpdawucrx53fw" path="res://scenes/autoload/upgrade_define/upgrade_define.gd" id="1_0sdmw"]
+
+[node name="upgrade_define" type="Node"]
+script = ExtResource("1_0sdmw")

@@ -51,13 +51,14 @@ func _on_ability_timer_finished():
 
 
 func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary):
+	if (upgrade == null): return
 	match upgrade.id:
 		# "axe_rate":
 		# 	var percent_reduction = current_upgrades["axe_rate"]["quantity"] * reduction_rate
 		# 	timer.wait_time = base_wait_time * (1 - percent_reduction)
 		# 	timer.start()
 		# 	print(timer.wait_time)
-		"axe_damage":
-			additional_damage_percent = 1 + (current_upgrades["axe_damage"]["quantity"] * 0.1)
+		UpgradeDefine.UPGRADE_ID.AXE_DAMAGE:
+			additional_damage_percent = 1 + (current_upgrades[upgrade.id]["quantity"] * 0.1)
 		_:
 			pass

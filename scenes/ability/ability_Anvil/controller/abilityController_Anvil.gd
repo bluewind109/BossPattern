@@ -46,8 +46,9 @@ func _on_timer_timeout():
 
 
 func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary):
+	if (upgrade == null): return
 	match upgrade.id:
-		"anvil_amount":
-			anvil_amount = base_anvil_amount + current_upgrades["anvil_amount"]["quantity"]
+		UpgradeDefine.UPGRADE_ID.ANVIL_AMOUNT:
+			anvil_amount = base_anvil_amount + current_upgrades[upgrade.id]["quantity"]
 		_:
 			pass

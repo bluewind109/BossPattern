@@ -1,8 +1,6 @@
 extends PanelContainer
 class_name MetaUpgradeCard
 
-signal card_selected(upgrade: Res_AbilityUpgrade)
-
 @onready var click_sfx: RandomAudioPlayer = $click_sfx
 
 @onready var upgrade_icon: TextureRect = $%upgrade_icon

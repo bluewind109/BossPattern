@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_04we8")
-id = "sword_damage"
+id = 40
 name = "Sword Damage"
 desc = "Increase sword damage by 15%."

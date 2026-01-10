@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ocgv3")
-id = "player_speed"
+id = 60
 max_quantity = 2
 name = "Move Speed"
 desc = "Increase player movement speed by 10%."

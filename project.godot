@@ -26,12 +26,13 @@ buses/default_bus_layout="res://resources/audio_bus_layout/default_bus_layout.tr
 
 [autoload]
 
+UpgradeDefine="*res://scenes/autoload/upgrade_define/upgrade_define.tscn"
 Utils="*res://scenes/autoload/utils.gd"
-SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
 GameEvents="*res://scenes/autoload/game_events/game_events.tscn"
 BgmPlayer="*res://scenes/autoload/bgm_player/bgm_player.tscn"
 ScreenTransition="*res://scenes/autoload/screen_transition/screen_transition.tscn"
 MetaProgression="*res://scenes/autoload/meta_progression/meta_progression.tscn"
+SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
 
 [debug]
 

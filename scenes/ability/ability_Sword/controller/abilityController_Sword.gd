@@ -63,13 +63,14 @@ func _on_ability_timer_finished():
 
 
 func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary):
+	if (upgrade == null): return
 	match upgrade.id:
-		"sword_rate":
-			var percent_reduction = current_upgrades["sword_rate"]["quantity"] * reduction_rate
+		UpgradeDefine.UPGRADE_ID.SWORD_RATE:
+			var percent_reduction = current_upgrades[upgrade.id]["quantity"] * reduction_rate
 			timer.wait_time = base_wait_time * (1 - percent_reduction)
 			timer.start()
 			print(timer.wait_time)
-		"sword_damage":
-			additional_damage_percent = 1 + (current_upgrades["sword_damage"]["quantity"] * 0.15)
+		UpgradeDefine.UPGRADE_ID.SWORD_DAMAGE:
+			additional_damage_percent = 1 + (current_upgrades[upgrade.id]["quantity"] * 0.15)
 		_:
 			pass
