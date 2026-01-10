@@ -9,6 +9,7 @@ class_name UpgradeManager
 @export var upgrade_sword_rate: Res_AbilityUpgrade
 @export var upgrade_sword_damage: Res_AbilityUpgrade
 @export var upgrade_player_speed: Res_AbilityUpgrade
+@export var upgrade_anvil: Res_AbilityUpgrade
 
 
 var current_upgrades = {}
@@ -18,6 +19,7 @@ var upgrade_pool: WeightedTable = WeightedTable.new()
 
 func _ready() -> void:
 	upgrade_pool.add_item(upgrade_axe, 10)
+	upgrade_pool.add_item(upgrade_anvil, 5)
 	upgrade_pool.add_item(upgrade_sword_rate, 10)
 	upgrade_pool.add_item(upgrade_sword_damage, 10)
 	upgrade_pool.add_item(upgrade_player_speed, 5)
