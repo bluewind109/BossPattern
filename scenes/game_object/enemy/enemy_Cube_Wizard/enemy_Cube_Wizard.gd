@@ -1,11 +1,12 @@
 extends EnemyBase
 class_name Enemy_Cube_Wizard
 
-enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
+enum SPEED_STATE {idle, spawn, normal, wind_up, attack, recover, die}
 enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
-enum STATE {Normal, WindUp, Attack, Recover, Die}
+enum STATE {Spawn, Normal, WindUp, Attack, Recover, Die}
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
+@onready var hit_flash: HitFlash = $hit_flash
 @onready var skill_lightning_strike: EnemySkill_LightningStrike = $attack_manager/enemy_skill_LightningStrike
 
 @export var body_sprite: Sprite2D
@@ -25,6 +26,7 @@ func _ready() -> void:
 func init_speed_dict():
 	speed_dict = {
 		SPEED_STATE.idle: 0.0,
+		SPEED_STATE.spawn: 0.0,
 		SPEED_STATE.normal: 25.0,
 		SPEED_STATE.wind_up: 0.0,
 		SPEED_STATE.attack: 0.0,
@@ -53,6 +55,12 @@ func bind_signals():
 
 
 func add_states():
+	state_machine.add_states(STATE.Spawn, CallableState.new(
+		_on_spawn_state,
+		_on_enter_spawn_state,
+		_on_leave_spawn_state
+	))
+
 	state_machine.add_states(STATE.Normal, CallableState.new(
 		_on_normal_state,
 		_on_enter_normal_state,
@@ -83,20 +91,43 @@ func add_states():
 		_on_leave_die_state
 	))
 
-	state_machine.set_initial_state(STATE.Normal)
+	state_machine.set_initial_state(STATE.Spawn)
 
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
 
 
+# SPAWN STATE
+func _on_enter_spawn_state():
+	component_hitbox.toggle_collision(false)
+	component_hurtbox.toggle_collision(false)
+	is_spawning = true
+	anim_ss.play_anim(ANIM_STATE.RESET)
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.spawn])
+	super.look_at_player()
+	_play_dissolve_effect_reverse()
+
+
+func _on_spawn_state(_delta: float):
+	pass
+
+
+func _on_leave_spawn_state():
+	pass
+
+
 # NORMAL STATE
 func _on_enter_normal_state():
+	component_hitbox.toggle_collision(true)
+	component_hurtbox.toggle_collision(true)
+	is_spawning = false
+	hit_flash.reset_material()
 	anim_ss.play_anim(ANIM_STATE.RESET)
+	component_velocity.set_max_speed(speed_dict[SPEED_STATE.normal])
 
 
 func _on_normal_state(_delta: float):
-	#var current_velocity = velocity
 	if (velocity == Vector2.ZERO):
 		anim_ss.play_anim(ANIM_STATE.RESET)
 	else:
@@ -200,6 +231,19 @@ func _play_dissolve_effect():
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(body_sprite.material, "shader_parameter/progress", 1.0, 1.0)
 	tween.tween_callback(queue_free)		
+
+
+func _play_dissolve_effect_reverse():
+	if (body_sprite == null): return
+	body_sprite.material = dissolve_shader
+	body_sprite.material.resource_local_to_scene = true
+	body_sprite.material.set_shader_parameter("progress", 1.0)
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(body_sprite.material, "shader_parameter/progress", 0.0, 1.5)
+	tween.tween_callback(func():
+		set_state(STATE.Normal)
+	)	
 
 
 func _on_wind_up_finished():
