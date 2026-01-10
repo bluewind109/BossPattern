@@ -1,7 +1,7 @@
 extends Node
 class_name EnemyManager
 
-const SPAWN_RADIUS: float = 50
+const SPAWN_RADIUS: float = 250
 
 @export var enemy_cube_base_scene: PackedScene
 @export var enemy_cube_wizard_scene: PackedScene
@@ -12,7 +12,7 @@ const SPAWN_RADIUS: float = 50
 
 var base_spawn_time = 0
 var enemy_table = WeightedTable.new()
-var number_to_spawn: int = 5
+var number_to_spawn: int = 1
 
 
 func _ready() -> void:
