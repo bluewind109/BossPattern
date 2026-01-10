@@ -12,7 +12,7 @@
 shader = ExtResource("3_28axu")
 shader_parameter/progress = 0.0
 shader_parameter/float_dist = 6.0
-shader_parameter/progress_rand_range = 0.2
+shader_parameter/progress_rand_range = 0.6
 shader_parameter/texture_size = Vector2(16, 16)
 
 [sub_resource type="Shader" id="Shader_g34t7"]
@@ -33,9 +33,6 @@ void fragment() {
 resource_local_to_scene = true
 shader = SubResource("Shader_g34t7")
 shader_parameter/lerp_percent = 0.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvuhp"]
-size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fscs4"]
 size = Vector2(16, 16)
@@ -84,6 +81,9 @@ _data = {
 &"RESET": SubResource("Animation_g34t7")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvuhp"]
+size = Vector2(16, 16)
+
 [node name="enemy_Cube_Base" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_wxspj")]
 script = ExtResource("2_28axu")
 body_sprite = NodePath("visuals/body")
@@ -108,19 +108,6 @@ follow_node = NodePath("../../visuals/body")
 delay_duration = 0.5
 recover_duration = 1.0
 
-[node name="hitbox" parent="." index="7"]
-damage_amount = 1.0
-
-[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_rvuhp")
-debug_color = Color(0.5137255, 0.5764706, 0, 0.6901961)
-
-[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_rvuhp")
-debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
-
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="9"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_fscs4")
@@ -134,6 +121,18 @@ libraries = {
 &"enemy_cube_base_lib": ExtResource("9_0gthn")
 }
 
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_rvuhp")
+debug_color = Color(0.5137255, 0.5764706, 0, 0.6901961)
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_rvuhp")
+debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
+
 [node name="body" type="Sprite2D" parent="visuals" index="0"]
 position = Vector2(0, -8)
 texture = ExtResource("4_angwg")
+
+[editable path="hurtbox"]

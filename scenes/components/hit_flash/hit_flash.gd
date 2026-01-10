@@ -12,6 +12,12 @@ func _ready():
 	if (sprite != null): sprite.material = hit_flash_material
 
 
+func reset_material():
+	if (sprite == null): return
+	if (sprite.material == hit_flash_material): return
+	sprite.material = hit_flash_material
+
+
 func _on_health_decreased(health: float):
 	if (sprite == null): return
 	if (hit_flash_tween != null and hit_flash_tween.is_valid()): 

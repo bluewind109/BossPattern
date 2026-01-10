@@ -23,6 +23,8 @@ var is_dead: bool = false
 
 func _ready() -> void:
 	component_hurtbox.damaged.connect(_on_damaged)
+	is_spawning = true
+	is_dead = false
 	player_ref = get_tree().get_first_node_in_group("Player")
 	if (component_health): 
 		component_health.died.connect(_on_die)

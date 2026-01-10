@@ -1,12 +1,12 @@
 extends Area2D
 class_name ComponentHitbox
 
-@export var damage_amount: float = 0.0
-
 signal hit(hurtbox: ComponentHurtbox, amount: float)
 
-var max_speed: float = 100.0
+@export var damage_amount: float = 0.0
 
+var collision_shape: CollisionShape2D = null
+var max_speed: float = 100.0
 var direction: Vector2 = Vector2.ZERO
 
 func _init() -> void:
@@ -14,7 +14,16 @@ func _init() -> void:
 	self.area_entered.connect(_on_hurtbox_entered)
 
 func _ready() -> void:
-	pass
+	if (get_child_count() > 0):
+		for child in get_children():
+			if (child is CollisionShape2D):
+				collision_shape = child
+
+
+func toggle_collision(val: bool):
+	if (collision_shape == null): return
+	collision_shape.disabled = !val
+
 
 func set_damage(val: float):
 	damage_amount = val

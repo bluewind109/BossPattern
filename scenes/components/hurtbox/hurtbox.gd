@@ -1,6 +1,8 @@
 extends Area2D
 class_name ComponentHurtbox
 
+signal damaged(amount: float)
+
 @onready var take_damage_timer: Timer = $%take_damage_timer
 
 @export var enable_take_damage_cooldown: bool = false
@@ -9,15 +11,25 @@ class_name ComponentHurtbox
 @export var component_health: ComponentHealth
 @export var floating_text_scene: PackedScene
 
+var collision_shape: CollisionShape2D = null
 var can_take_damage: bool = true
 
-signal damaged(amount: float)
 
 func _ready() -> void:
+	if (get_child_count() > 1):
+		for child in get_children():
+			if (child is CollisionShape2D):
+				collision_shape = child
 	if(enable_take_damage_cooldown): 
 		take_damage_timer.wait_time = take_damage_cooldown
 		take_damage_timer.timeout.connect(_on_take_damage_cooldown_finished)
 	assert(component_health, "No component_health:ComponentHealth specified in %s." % [str(get_path())])
+
+
+func toggle_collision(val: bool):
+	if (collision_shape == null): return
+	collision_shape.disabled = !val
+
 
 func take_damage(amount: float) -> void:
 	print(get_parent().name, " take_damage ", amount)

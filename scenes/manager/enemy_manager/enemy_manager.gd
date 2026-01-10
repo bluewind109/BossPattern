@@ -1,7 +1,7 @@
 extends Node
 class_name EnemyManager
 
-const SPAWN_RADIUS: float = 375
+const SPAWN_RADIUS: float = 50
 
 @export var enemy_cube_base_scene: PackedScene
 @export var enemy_cube_wizard_scene: PackedScene
