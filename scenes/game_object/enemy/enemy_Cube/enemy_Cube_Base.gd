@@ -2,7 +2,7 @@ extends EnemyBase
 class_name Enemy_Cube_Base
 
 enum SPEED_STATE {idle, spawn, normal, wind_up, attack, recover, die}
-enum ANIM_STATE {RESET = 0, spawn, idle, walk, attack, die}
+enum ANIM_STATE {RESET = 0, idle, walk, attack, die}
 enum STATE {Spawn, Normal, WindUp, Attack, Recover, Die}
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
@@ -39,7 +39,6 @@ func init_anim_dict(_lib_name: String):
 	var lib_name = _lib_name + "/"
 	anim_dict = {
 		ANIM_STATE.RESET: AnimationInfo.new(lib_name + "RESET", true),
-		ANIM_STATE.spawn: AnimationInfo.new(lib_name + "spawn", false),
 		ANIM_STATE.walk: AnimationInfo.new(lib_name + "walk", true),
 		ANIM_STATE.attack: AnimationInfo.new(lib_name + "attack_headslam", false),
 		ANIM_STATE.die: AnimationInfo.new(lib_name + "die", false),
