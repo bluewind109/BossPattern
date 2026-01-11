@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dfays8guerdto" path="res://scenes/game_object/explosion/explosion.tscn" id="1_b2ct0"]
 [ext_resource type="Script" uid="uid://chnt5s00g4o42" path="res://scenes/game_object/explosion/explosion_PoisonBomb/explosion_PoisonBomb.gd" id="2_p2r7l"]
 [ext_resource type="Texture2D" uid="uid://da86s65w3elp2" path="res://scenes/game_object/explosion/explosion_PoisonBomb/sprites/fx1_magic_puff_large_green/spritesheet.png" id="3_4j2tg"]
-[ext_resource type="AnimationLibrary" uid="uid://bqdrdjqe62lgk" path="res://scenes/game_object/explosion/explosion_PoisonBomb/animation/explosion_PoisonBomb.res" id="4_3k3vx"]
+[ext_resource type="AnimationLibrary" uid="uid://fivnshandva5" path="res://scenes/game_object/explosion/explosion_PoisonBomb/animation/explosion_PoisonBomb.tres" id="4_3paon"]
 
 [sub_resource type="Animation" id="Animation_rs537"]
 length = 0.001
@@ -77,7 +77,6 @@ _data = {
 script = ExtResource("2_p2r7l")
 
 [node name="skill_sprite" parent="." index="4"]
-position = Vector2(0, 0)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_4j2tg")
 hframes = 12
@@ -87,5 +86,5 @@ region_rect = Rect2(0, 0, 576, 80)
 [node name="animation_player" parent="skill_sprite" index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_hxfoj"),
-&"explosion_PoisonBomb": ExtResource("4_3k3vx")
+&"explosion_PoisonBomb": ExtResource("4_3paon")
 }
