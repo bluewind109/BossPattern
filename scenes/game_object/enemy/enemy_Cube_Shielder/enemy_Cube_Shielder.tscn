@@ -1,0 +1,135 @@
+[gd_scene load_steps=17 format=3 uid="uid://ef1bcl6w0dvy"]
+
+[ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_u8d58"]
+[ext_resource type="Shader" uid="uid://dd7xij77hfa8a" path="res://scenes/components/hit_flash/shader/hit_flash.gdshader" id="2_rbuo0"]
+[ext_resource type="Script" uid="uid://bnjrfbu6wbg1l" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/enemy_Cube_Shielder.gd" id="2_tqlaq"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="4_tqlaq"]
+[ext_resource type="Shader" uid="uid://8m2vl11guwmx" path="res://shader/explode.gdshader" id="5_6k0qr"]
+[ext_resource type="PackedScene" uid="uid://dr2vponw2jou3" path="res://scenes/components/barrier/barrier.tscn" id="5_dvman"]
+[ext_resource type="Texture2D" uid="uid://il3ihdhk3qv7" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-1.png" id="5_h8htr"]
+[ext_resource type="Texture2D" uid="uid://cwpabssj5242b" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-WoodeTowerShield.png" id="7_fugpu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7g67l"]
+resource_local_to_scene = true
+shader = ExtResource("2_rbuo0")
+shader_parameter/lerp_percent = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3f1jk"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8htr"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fugpu"]
+size = Vector2(16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6l8js"]
+resource_local_to_scene = true
+shader = ExtResource("5_6k0qr")
+shader_parameter/fragment_number = Vector2(20, 20)
+shader_parameter/dissolve_state = 1.0
+
+[sub_resource type="Animation" id="Animation_h8htr"]
+resource_name = "default"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/shield:material:shader_parameter/dissolve_state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.39229202, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/shield:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.39229202, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25)]
+}
+
+[sub_resource type="Animation" id="Animation_fugpu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/shield:material:shader_parameter/dissolve_state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/shield:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3f1jk"]
+_data = {
+&"RESET": SubResource("Animation_fugpu"),
+&"shatter": SubResource("Animation_h8htr")
+}
+
+[node name="enemy_Cube_Shielder" instance=ExtResource("1_u8d58")]
+script = ExtResource("2_tqlaq")
+dissolve_shader = null
+base_shield_hp = 10.0
+
+[node name="hit_flash" parent="." index="5"]
+hit_flash_material = SubResource("ShaderMaterial_7g67l")
+
+[node name="barrier" parent="." index="7" instance=ExtResource("5_dvman")]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="." index="10"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_3f1jk")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_h8htr")
+debug_color = Color(0.5137255, 0.5764706, 0, 0.6901961)
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="1"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_fugpu")
+debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
+
+[node name="body" type="Sprite2D" parent="visuals" index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("5_h8htr")
+
+[node name="shield" type="Sprite2D" parent="visuals" index="1"]
+material = SubResource("ShaderMaterial_6l8js")
+position = Vector2(9, -8)
+texture = ExtResource("7_fugpu")
+
+[node name="anim_spritesheet" parent="." index="14" instance=ExtResource("4_tqlaq")]
+
+[node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
+
+[node name="shield_animation_player" type="AnimationPlayer" parent="." index="15"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_3f1jk")
+}
