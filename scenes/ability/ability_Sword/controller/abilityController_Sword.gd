@@ -16,7 +16,7 @@ var base_wait_time: float
 var base_damage: float = 1.0
 var additional_damage_percent: float = 1
 
-var reduction_rate: float = .1
+var reduction_rate: float
 
 
 
@@ -66,6 +66,8 @@ func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Diction
 	if (upgrade == null): return
 	match upgrade.id:
 		UpgradeDefine.UPGRADE_ID.SWORD_RATE:
+			reduction_rate = upgrade.upgrade_value
+			print("reduction_rate: ", reduction_rate)
 			var percent_reduction = current_upgrades[upgrade.id]["quantity"] * reduction_rate
 			timer.wait_time = base_wait_time * (1 - percent_reduction)
 			timer.start()

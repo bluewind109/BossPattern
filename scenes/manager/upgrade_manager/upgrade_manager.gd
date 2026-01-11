@@ -30,13 +30,15 @@ func _ready() -> void:
 
 func _apply_upgrade(upgrade: Res_AbilityUpgrade):
 	var has_upgrade: bool = current_upgrades.has(upgrade.id)
+	var _quantity: int = 1
 	if (!has_upgrade):
 		current_upgrades[upgrade.id] = {
 			"resource": upgrade,
-			"quantity": 1
+			"quantity": _quantity,
+			"upgrade_value": upgrade.upgrade_value
 		}
 	else:
-		current_upgrades[upgrade.id]["quantity"] += 1
+		current_upgrades[upgrade.id]["quantity"] += _quantity
 	print("_on_level_up ", current_upgrades)
 
 	if (upgrade.max_quantity > 0):

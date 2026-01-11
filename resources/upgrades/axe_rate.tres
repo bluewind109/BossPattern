@@ -6,5 +6,6 @@
 script = ExtResource("1_6t6ff")
 id = 22
 max_quantity = 5
+upgrade_value = 0.1
 name = "Axe Attack Rate"
 desc = "Increase axe attack rate by 10%."
