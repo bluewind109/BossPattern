@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ialf7ur8mrxp"]
+
+[ext_resource type="PackedScene" uid="uid://d3uf4a4tnr4aa" path="res://scenes/enemy_skill/enemy_skill.tscn" id="1_4jcwu"]
+[ext_resource type="Script" uid="uid://beyqktn37iatb" path="res://scenes/enemy_skill/enemy_skill_ShieldSlam/enemy_skill_ShieldSlam.gd" id="2_7o0il"]
+
+[node name="enemy_skill_ShieldSlam" instance=ExtResource("1_4jcwu")]
+script = ExtResource("2_7o0il")
