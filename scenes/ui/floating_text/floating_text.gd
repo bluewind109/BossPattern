@@ -34,3 +34,8 @@ func start(text: String):
 	scale_tween.tween_property(self, "scale", Vector2.ONE, 0.15)\
 		.set_ease(Tween.EASE_IN)\
 		.set_trans(Tween.TRANS_CUBIC)
+
+
+func update_style(_font_color: Color, _outline_color: Color):
+	$label.add_theme_color_override("font_color", _font_color)
+	$label.add_theme_color_override("font_outline_color", _outline_color)
