@@ -8,10 +8,8 @@ enum STATE {Spawn, Normal, WindUp, Attack, Recover, Die}
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
 @onready var shield_anim_player: AnimationPlayer = $%shield_animation_player
 @onready var hit_flash: HitFlash = $hit_flash
-@onready var skill_lightning_strike: EnemySkill_LightningStrike = $attack_manager/enemy_skill_LightningStrike
+@onready var skill_shield_slam: EnemySkill_ShieldSlam = $attack_manager/enemy_skill_ShieldSlam
 @onready var barrier: Barrier = $barrier
-
-var skill_shield_slam: Node
 
 @export var body_sprite: Sprite2D
 @export var dissolve_shader: Material
@@ -161,10 +159,10 @@ func _on_normal_state(_delta: float):
 	var can_attack = attack_manager.can_attack()
 	if (!can_attack): return
 
-	var is_in_cast_range = skill_lightning_strike.is_in_cast_range(player.global_position)
-	var can_cast = skill_lightning_strike.can_cast()
+	var is_in_cast_range = skill_shield_slam.is_in_cast_range(player.global_position)
+	var can_cast = skill_shield_slam.can_cast()
 	if (is_in_cast_range and can_cast):
-		attack_manager.set_next_skill(skill_lightning_strike)
+		attack_manager.set_next_skill(skill_shield_slam)
 		set_state(STATE.WindUp)
 		return
 
@@ -194,7 +192,7 @@ func _on_leave_wind_up_state():
 func _on_enter_attack_state():
 	anim_ss.play_anim(ANIM_STATE.attack, false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
-	skill_lightning_strike.cast_at(player_ref)
+	skill_shield_slam.cast()
 
 
 func _on_attack_state(_delta: float):
@@ -239,6 +237,7 @@ func _play_dissolve_effect():
 	if (body_sprite == null): return
 	body_sprite.material = dissolve_shader
 	body_sprite.material.resource_local_to_scene = true
+	body_sprite.material.set_shader_parameter("is_horizontal", true)
 	body_sprite.material.set_shader_parameter("progress", 0.0)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -250,6 +249,7 @@ func _play_dissolve_effect_reverse():
 	if (body_sprite == null): return
 	body_sprite.material = dissolve_shader
 	body_sprite.material.resource_local_to_scene = true
+	body_sprite.material.set_shader_parameter("is_horizontal", false)
 	body_sprite.material.set_shader_parameter("progress", 1.0)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
@@ -286,9 +286,9 @@ func _on_damaged(amount: float):
 
 	barrier.take_damage(amount)
 	FloatingTextManager.spawn_damage_text_at(
-		global_position + Vector2.UP * 12, 
+		global_position + Vector2.UP * 12 + Vector2.LEFT * 4, 
 		amount,
-		Color(0.369, 0.694, 1.0),
+		Color(0.369, 0.694, 1.0, 1.0),
 		Color(1.0, 1.0, 1.0, 1.0)
 	)
 
