@@ -226,6 +226,7 @@ func _play_dissolve_effect():
 	if (body_sprite == null): return
 	body_sprite.material = dissolve_shader
 	body_sprite.material.resource_local_to_scene = true
+	body_sprite.material.set_shader_parameter("is_horizontal", true)
 	body_sprite.material.set_shader_parameter("progress", 0.0)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -237,6 +238,7 @@ func _play_dissolve_effect_reverse():
 	if (body_sprite == null): return
 	body_sprite.material = dissolve_shader
 	body_sprite.material.resource_local_to_scene = true
+	body_sprite.material.set_shader_parameter("is_horizontal", false)
 	body_sprite.material.set_shader_parameter("progress", 1.0)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
