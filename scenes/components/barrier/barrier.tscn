@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr2vponw2jou3"]
+
+[ext_resource type="Script" uid="uid://5fg5q7elja7e" path="res://scenes/components/barrier/barrier.gd" id="1_8p8kf"]
+
+[node name="barrier" type="Node"]
+script = ExtResource("1_8p8kf")
