@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_wxspj"]
 [ext_resource type="Script" uid="uid://p3rx5mm5eehr" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.gd" id="2_28axu"]
 [ext_resource type="Shader" uid="uid://w060hrtgv5k0" path="res://shader/dissolve.gdshader" id="3_28axu"]
+[ext_resource type="AnimationLibrary" uid="uid://d2girk0tlgf0p" path="res://scenes/game_object/enemy/enemy_Cube/animation/enemy_cube_base_lib.tres" id="6_g34t7"]
 [ext_resource type="PackedScene" uid="uid://cqsedpf1ft2xq" path="res://scenes/enemy_skill/enemy_skill_HeadSlam/enemy_skill_HeadSlam.tscn" id="6_vvwbs"]
 [ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-1.png" id="7_vvwbs"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="8_angwg"]
-[ext_resource type="AnimationLibrary" uid="uid://b5ihfl6qnyp5" path="res://scenes/game_object/enemy/enemy_Cube/animation/enemy_cube_base_lib.res" id="9_0gthn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_28axu"]
 shader = ExtResource("3_28axu")
@@ -119,7 +119,7 @@ shape = SubResource("RectangleShape2D_fscs4")
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_angwg"),
-&"enemy_cube_base_lib": ExtResource("9_0gthn")
+&"enemy_cube_base_lib": ExtResource("6_g34t7")
 }
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]

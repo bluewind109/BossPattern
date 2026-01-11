@@ -5,13 +5,14 @@
 [ext_resource type="Shader" uid="uid://w060hrtgv5k0" path="res://shader/dissolve.gdshader" id="3_ctqlp"]
 [ext_resource type="PackedScene" uid="uid://dn567e2bat71b" path="res://scenes/enemy_skill/enemy_skill_LightningStrike/enemy_skill_LightningStrike.tscn" id="3_d3a4f"]
 [ext_resource type="Texture2D" uid="uid://x7ij5csehon5" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-Hat.png" id="5_d3a4f"]
+[ext_resource type="AnimationLibrary" uid="uid://cfw0kj2idd2tv" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/animation/enemy_cube_wizard_lib.tres" id="6_ctqlp"]
 [ext_resource type="Texture2D" uid="uid://d3181lfg2l35a" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/water_wand.png" id="6_l1smh"]
 [ext_resource type="Texture2D" uid="uid://dma6g2xrgmont" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-1.png" id="7_ctqlp"]
-[ext_resource type="AnimationLibrary" uid="uid://cp5w68p7nqbk8" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/animation/enemy_cube_wizard_lib.res" id="10_ek8e0"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="10_k25jn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ek8e0"]
 shader = ExtResource("3_ctqlp")
+shader_parameter/is_horizontal = false
 shader_parameter/progress = 0.0
 shader_parameter/float_dist = 6.0
 shader_parameter/progress_rand_range = 0.6
@@ -195,7 +196,7 @@ debug_color = Color(0, 0.6, 0.69803923, 0)
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_k25jn"),
-&"enemy_cube_wizard_lib": ExtResource("10_ek8e0")
+&"enemy_cube_wizard_lib": ExtResource("6_ctqlp")
 }
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
