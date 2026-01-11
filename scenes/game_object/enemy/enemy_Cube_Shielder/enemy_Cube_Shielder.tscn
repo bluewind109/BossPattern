@@ -231,6 +231,9 @@ follow_node = NodePath("../../visuals/main_sprite/shield")
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_3f1jk")
 
+[node name="hitbox" parent="." index="12"]
+damage_amount = 10.0
+
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_h8htr")

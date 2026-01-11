@@ -61,7 +61,7 @@ streams = Array[AudioStream]([ExtResource("13_2iash"), ExtResource("14_44g7e"), 
 [node name="hitbox" parent="." instance=ExtResource("3_8r14e")]
 collision_layer = 0
 collision_mask = 2
-damage_amount = 1.0
+damage_amount = 5.0
 
 [node name="hurtbox" parent="." instance=ExtResource("4_jw7fl")]
 collision_layer = 256
