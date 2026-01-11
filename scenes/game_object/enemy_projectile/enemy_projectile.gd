@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		global_position += direction * speed * delta
 
 
-func _on_hit():
+func _on_hit(hurtbox: ComponentHurtbox, _damage: float):
 	queue_free()
 
 
