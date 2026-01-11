@@ -1,0 +1,212 @@
+{
+  "column_properties": {
+    "res://resources/": {
+      "BlueOutlineLabel/colors/font_outline_color": {
+        "visibility": 0.0
+      },
+      "BlueOutlineLabel/colors/font_shadow_color": {
+        "visibility": 0.0
+      },
+      "BlueOutlineLabel/constants/line_spacing": {
+        "visibility": 0.0
+      },
+      "BlueOutlineLabel/constants/outline_size": {
+        "visibility": 0.0
+      },
+      "BlueOutlineLabel/constants/shadow_offset_x": {
+        "visibility": 0.0
+      },
+      "BlueOutlineLabel/constants/shadow_offset_y": {
+        "visibility": 0.0
+      },
+      "Button/colors/font_color": {
+        "visibility": 0.0
+      },
+      "Button/colors/font_disabled_color": {
+        "visibility": 0.0
+      },
+      "Button/colors/font_focus_color": {
+        "visibility": 0.0
+      },
+      "Button/colors/font_hover_color": {
+        "visibility": 0.0
+      },
+      "Button/colors/font_pressed_color": {
+        "visibility": 0.0
+      },
+      "Button/styles/disabled": {
+        "visibility": 0.0
+      },
+      "Button/styles/focus": {
+        "visibility": 0.0
+      },
+      "Button/styles/hover": {
+        "visibility": 0.0
+      },
+      "Button/styles/normal": {
+        "visibility": 0.0
+      },
+      "Button/styles/pressed": {
+        "visibility": 0.0
+      },
+      "HSlider/icons/grabber": {
+        "visibility": 0.0
+      },
+      "HSlider/icons/grabber_highlight": {
+        "visibility": 0.0
+      },
+      "HSlider/styles/grabber_area": {
+        "visibility": 0.0
+      },
+      "HSlider/styles/grabber_area_highlight": {
+        "visibility": 0.0
+      },
+      "HSlider/styles/slider": {
+        "visibility": 0.0
+      },
+      "Label/colors/font_color": {
+        "visibility": 0.0
+      },
+      "Label/colors/font_outline_color": {
+        "visibility": 0.0
+      },
+      "Label/colors/font_shadow_color": {
+        "visibility": 0.0
+      },
+      "Label/constants/line_spacing": {
+        "visibility": 0.0
+      },
+      "Label/constants/outline_size": {
+        "visibility": 0.0
+      },
+      "Label/constants/shadow_offset_x": {
+        "visibility": 0.0
+      },
+      "Label/constants/shadow_offset_y": {
+        "visibility": 0.0
+      },
+      "Label/constants/shadow_outline_size": {
+        "visibility": 0.0
+      },
+      "Label/styles/focus": {
+        "visibility": 0.0
+      },
+      "Label/styles/normal": {
+        "visibility": 0.0
+      },
+      "PanelContainer/styles/panel": {
+        "visibility": 0.0
+      },
+      "ProgressBar/styles/background": {
+        "visibility": 0.0
+      },
+      "ProgressBar/styles/fill": {
+        "visibility": 0.0
+      },
+      "VScrollBar/styles/grabber": {
+        "visibility": 0.0
+      },
+      "VScrollBar/styles/grabber_highlight": {
+        "visibility": 0.0
+      },
+      "VScrollBar/styles/grabber_pressed": {
+        "visibility": 0.0
+      },
+      "VScrollBar/styles/scroll": {
+        "visibility": 0.0
+      },
+      "custom_data_layers": {
+        "visibility": 0.0
+      },
+      "description": {
+        "visibility": 1.0
+      },
+      "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "navigation_layers": {
+        "visibility": 0.0
+      },
+      "physics_layer_0/collision_layer": {
+        "visibility": 0.0
+      },
+      "physics_layer_0/collision_mask": {
+        "visibility": 0.0
+      },
+      "physics_layer_0/collision_priority": {
+        "visibility": 0.0
+      },
+      "physics_layer_0/physics_material": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      },
+      "resource_path": {
+        "visibility": 1.0
+      },
+      "terrain_set_0/mode": {
+        "visibility": 0.0
+      },
+      "terrain_set_0/terrain_0/color": {
+        "visibility": 0.0
+      },
+      "terrain_set_0/terrain_0/name": {
+        "visibility": 0.0
+      },
+      "terrain_set_0/terrain_1/color": {
+        "visibility": 0.0
+      },
+      "terrain_set_0/terrains": {
+        "visibility": 0.0
+      },
+      "title": {
+        "visibility": 1.0
+      }
+    },
+    "res://resources/audio_bus_layout/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    },
+    "res://resources/upgrades/": {
+      "ability_controller_scene": {
+        "visibility": 0.0
+      },
+      "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      },
+      "resource_path": {
+        "visibility": 1.0
+      }
+    }
+  },
+  "recent_paths": [
+    "res://resources/audio_bus_layout/",
+    "res://resources/",
+    "res://resources/upgrades/"
+  ],
+  "table_functions": {
+    "filter": [
+      "return true"
+    ],
+    "process": [
+      "return value"
+    ]
+  }
+}
