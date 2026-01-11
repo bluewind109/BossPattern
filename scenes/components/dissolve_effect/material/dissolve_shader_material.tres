@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://8dglug2e4y5r"]
+
+[ext_resource type="Shader" uid="uid://w060hrtgv5k0" path="res://scenes/components/dissolve_effect/shader/dissolve.gdshader" id="1_buxst"]
+
+[resource]
+shader = ExtResource("1_buxst")
+shader_parameter/is_horizontal = false
+shader_parameter/progress = 0.0
+shader_parameter/float_dist = 6.0
+shader_parameter/progress_rand_range = 0.6
+shader_parameter/texture_size = Vector2(16, 16)

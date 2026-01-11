@@ -14,6 +14,8 @@ var speed_dict: Dictionary[int, float] = {}
 @onready var component_look: ComponentLook = $look
 @onready var attack_manager: AttackManager = $attack_manager
 @onready var hit_audio_player: RandomAudioPlayer2D = $hit_random_audio_player_2d
+@onready var dissolve_effect: DissolveEffect= $%dissolve_effect
+@onready var hit_flash: HitFlash = $%hit_flash
 
 @export var mass: float = 20
 

@@ -6,11 +6,9 @@ enum ANIM_STATE {RESET = 0, idle, walk, attack, die}
 enum STATE {Spawn, Normal, WindUp, Attack, Recover, Die}
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var hit_flash: HitFlash = $hit_flash
 @onready var skill_head_slam: EnemySkill_HeadSlam = $attack_manager/enemy_skill_HeadSlam
 
 @export var body_sprite: Sprite2D
-@export var dissolve_shader: Material
 
 
 func _ready() -> void:
@@ -223,28 +221,12 @@ func _on_leave_die_state():
 
 func _play_dissolve_effect():
 	if (body_sprite == null): return
-	body_sprite.material = dissolve_shader
-	body_sprite.material.resource_local_to_scene = true
-	body_sprite.material.set_shader_parameter("is_horizontal", true)
-	body_sprite.material.set_shader_parameter("progress", 0.0)
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(body_sprite.material, "shader_parameter/progress", 1.0, 1.0)
-	tween.tween_callback(queue_free)	
+	dissolve_effect.start_dissolve(queue_free)
 
 
 func _play_dissolve_effect_reverse():
 	if (body_sprite == null): return
-	body_sprite.material = dissolve_shader
-	body_sprite.material.resource_local_to_scene = true
-	body_sprite.material.set_shader_parameter("is_horizontal", false)
-	body_sprite.material.set_shader_parameter("progress", 1.0)
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(body_sprite.material, "shader_parameter/progress", 0.0, 1.5)
-	tween.tween_callback(func():
-		set_state(STATE.Normal)
-	)	
+	dissolve_effect.reverse_dissolve(func(): set_state(STATE.Normal))
 
 
 func _on_wind_up_finished():

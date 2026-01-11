@@ -1,9 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://ef1bcl6w0dvy"]
+[gd_scene load_steps=21 format=3 uid="uid://ef1bcl6w0dvy"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_u8d58"]
 [ext_resource type="Shader" uid="uid://dd7xij77hfa8a" path="res://scenes/components/hit_flash/shader/hit_flash.gdshader" id="2_rbuo0"]
 [ext_resource type="Script" uid="uid://bnjrfbu6wbg1l" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/enemy_Cube_Shielder.gd" id="2_tqlaq"]
-[ext_resource type="Shader" uid="uid://w060hrtgv5k0" path="res://shader/dissolve.gdshader" id="3_3f1jk"]
 [ext_resource type="PackedScene" uid="uid://ialf7ur8mrxp" path="res://scenes/enemy_skill/enemy_skill_ShieldSlam/enemy_skill_ShieldSlam.tscn" id="4_fugpu"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="4_tqlaq"]
 [ext_resource type="Shader" uid="uid://8m2vl11guwmx" path="res://shader/explode.gdshader" id="5_6k0qr"]
@@ -11,14 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://il3ihdhk3qv7" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-1.png" id="5_h8htr"]
 [ext_resource type="Texture2D" uid="uid://cwpabssj5242b" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-WoodeTowerShield.png" id="7_fugpu"]
 [ext_resource type="AnimationLibrary" uid="uid://cg7t287wui7ei" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/animation/enemy_cube_shielder_lib.tres" id="11_uoqil"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uoqil"]
-shader = ExtResource("3_3f1jk")
-shader_parameter/is_horizontal = false
-shader_parameter/progress = 0.0
-shader_parameter/float_dist = 6.0
-shader_parameter/progress_rand_range = 0.6
-shader_parameter/texture_size = Vector2(16, 16)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7g67l"]
 resource_local_to_scene = true
@@ -33,12 +24,6 @@ size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fugpu"]
 size = Vector2(16, 16)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6l8js"]
-resource_local_to_scene = true
-shader = ExtResource("5_6k0qr")
-shader_parameter/fragment_number = Vector2(20, 20)
-shader_parameter/dissolve_state = 1.0
 
 [sub_resource type="Animation" id="Animation_uoqil"]
 resource_name = "RESET"
@@ -208,11 +193,16 @@ _data = {
 &"explode": SubResource("Animation_h8htr")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6l8js"]
+resource_local_to_scene = true
+shader = ExtResource("5_6k0qr")
+shader_parameter/fragment_number = Vector2(20, 20)
+shader_parameter/dissolve_state = 1.0
+
 [node name="enemy_Cube_Shielder" node_paths=PackedStringArray("body_sprite", "shield_sprite") instance=ExtResource("1_u8d58")]
 script = ExtResource("2_tqlaq")
 body_sprite = NodePath("visuals/main_sprite/body")
 shield_sprite = NodePath("visuals/main_sprite/shield")
-dissolve_shader = SubResource("ShaderMaterial_uoqil")
 base_shield_hp = 10.0
 
 [node name="velocity" parent="." index="2"]
@@ -221,18 +211,21 @@ max_speed = 25.0
 [node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
 visual_node = NodePath("../visuals")
 
-[node name="hit_flash" parent="." index="5" node_paths=PackedStringArray("sprite")]
+[node name="dissolve_effect" parent="." index="5" node_paths=PackedStringArray("sprite")]
+sprite = NodePath("../visuals/main_sprite/body")
+
+[node name="hit_flash" parent="." index="6" node_paths=PackedStringArray("sprite")]
 hit_flash_material = SubResource("ShaderMaterial_7g67l")
 sprite = NodePath("../visuals/main_sprite/body")
 
-[node name="attack_manager" parent="." index="6"]
+[node name="barrier" parent="." index="7" instance=ExtResource("5_dvman")]
+
+[node name="attack_manager" parent="." index="8"]
 ATTACK_RANGE = 25.0
 
 [node name="enemy_skill_ShieldSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node") instance=ExtResource("4_fugpu")]
 hitbox_collision_shape = NodePath("../../hitbox/collision_shape_2d")
 follow_node = NodePath("../../visuals/main_sprite/shield")
-
-[node name="barrier" parent="." index="7" instance=ExtResource("5_dvman")]
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="10"]
 position = Vector2(0, -8)
@@ -248,17 +241,6 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_fugpu")
 debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
-[node name="main_sprite" type="Node2D" parent="visuals" index="0"]
-
-[node name="body" type="Sprite2D" parent="visuals/main_sprite" index="0"]
-position = Vector2(0, -8)
-texture = ExtResource("5_h8htr")
-
-[node name="shield" type="Sprite2D" parent="visuals/main_sprite" index="1"]
-material = SubResource("ShaderMaterial_6l8js")
-position = Vector2(9, -8)
-texture = ExtResource("7_fugpu")
-
 [node name="anim_spritesheet" parent="." index="14" instance=ExtResource("4_tqlaq")]
 
 [node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
@@ -272,3 +254,14 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_3f1jk")
 }
+
+[node name="main_sprite" type="Node2D" parent="visuals" index="0"]
+
+[node name="body" type="Sprite2D" parent="visuals/main_sprite" index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("5_h8htr")
+
+[node name="shield" type="Sprite2D" parent="visuals/main_sprite" index="1"]
+material = SubResource("ShaderMaterial_6l8js")
+position = Vector2(9, -8)
+texture = ExtResource("7_fugpu")

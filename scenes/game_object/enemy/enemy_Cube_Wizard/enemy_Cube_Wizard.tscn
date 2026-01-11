@@ -1,22 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://brlsjsn1ddh0y"]
+[gd_scene load_steps=16 format=3 uid="uid://brlsjsn1ddh0y"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_yxguv"]
 [ext_resource type="Script" uid="uid://ja7om25tofsl" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/enemy_Cube_Wizard.gd" id="2_ccck5"]
-[ext_resource type="Shader" uid="uid://w060hrtgv5k0" path="res://shader/dissolve.gdshader" id="3_ctqlp"]
 [ext_resource type="PackedScene" uid="uid://dn567e2bat71b" path="res://scenes/enemy_skill/enemy_skill_LightningStrike/enemy_skill_LightningStrike.tscn" id="3_d3a4f"]
 [ext_resource type="Texture2D" uid="uid://x7ij5csehon5" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-Hat.png" id="5_d3a4f"]
 [ext_resource type="AnimationLibrary" uid="uid://cfw0kj2idd2tv" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/animation/enemy_cube_wizard_lib.tres" id="6_ctqlp"]
 [ext_resource type="Texture2D" uid="uid://d3181lfg2l35a" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/water_wand.png" id="6_l1smh"]
 [ext_resource type="Texture2D" uid="uid://dma6g2xrgmont" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-1.png" id="7_ctqlp"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="10_k25jn"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ek8e0"]
-shader = ExtResource("3_ctqlp")
-shader_parameter/is_horizontal = false
-shader_parameter/progress = 0.0
-shader_parameter/float_dist = 6.0
-shader_parameter/progress_rand_range = 0.6
-shader_parameter/texture_size = Vector2(16, 16)
 
 [sub_resource type="Shader" id="Shader_ek8e0"]
 resource_local_to_scene = true
@@ -165,7 +156,6 @@ size = Vector2(16, 16)
 [node name="enemy_Cube_Wizard" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_yxguv")]
 script = ExtResource("2_ccck5")
 body_sprite = NodePath("visuals/main_sprite/body")
-dissolve_shader = SubResource("ShaderMaterial_ek8e0")
 
 [node name="velocity" parent="." index="2"]
 max_speed = 25.0
@@ -174,7 +164,10 @@ acceleration = 2.5
 [node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
 visual_node = NodePath("../visuals")
 
-[node name="hit_flash" parent="." index="5" node_paths=PackedStringArray("sprite")]
+[node name="dissolve_effect" parent="." index="5" node_paths=PackedStringArray("sprite")]
+sprite = NodePath("../visuals/main_sprite/body")
+
+[node name="hit_flash" parent="." index="6" node_paths=PackedStringArray("sprite")]
 hit_flash_material = SubResource("ShaderMaterial_ulnpn")
 sprite = NodePath("../visuals/main_sprite/body")
 
