@@ -12,7 +12,6 @@ class_name UpgradeManager
 @export var upgrade_anvil: Res_AbilityUpgrade
 @export var upgrade_anvil_amount: Res_AbilityUpgrade
 
-
 var current_upgrades = {}
 var current_popup: LevelUpPopup
 var upgrade_pool: WeightedTable = WeightedTable.new()

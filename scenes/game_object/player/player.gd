@@ -120,14 +120,15 @@ func on_leave_run_state():
 
 
 func _on_ability_upgrade_added(
-	ability_upgrade: Res_AbilityUpgrade, 
+	_upgrade: Res_AbilityUpgrade, 
 	current_upgrades: Dictionary
 ):
-	if (ability_upgrade is Res_Ability):
-		var ability = ability_upgrade as Res_Ability
+	if (_upgrade is Res_Ability):
+		var ability = _upgrade as Res_Ability
 		abilities.add_child(ability.ability_controller_scene.instantiate())
-	elif (ability_upgrade.id == UpgradeDefine.UPGRADE_ID.PLAYER_SPEED):
-		player_control.max_speed = base_speed + (base_speed * current_upgrades[ability_upgrade.id]["quantity"] * 0.1)
+	elif (_upgrade.id == UpgradeDefine.UPGRADE_ID.PLAYER_SPEED):
+		var upgrade_val = current_upgrades[_upgrade.id]["upgrade_value"]
+		player_control.max_speed = base_speed + (base_speed * current_upgrades[_upgrade.id]["quantity"] * upgrade_val)
 
 
 func _on_health_changed(amount: float):

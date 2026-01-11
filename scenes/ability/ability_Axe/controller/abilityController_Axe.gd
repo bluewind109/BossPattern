@@ -59,6 +59,7 @@ func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Diction
 		# 	timer.start()
 		# 	print(timer.wait_time)
 		UpgradeDefine.UPGRADE_ID.AXE_DAMAGE:
-			additional_damage_percent = 1 + (current_upgrades[upgrade.id]["quantity"] * 0.1)
+			var upgrade_val = current_upgrades[upgrade.id]["upgrade_value"]
+			additional_damage_percent = 1 + (current_upgrades[upgrade.id]["quantity"] * upgrade_val)
 		_:
 			pass

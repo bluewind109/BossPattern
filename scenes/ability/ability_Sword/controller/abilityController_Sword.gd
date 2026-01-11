@@ -67,12 +67,12 @@ func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Diction
 	match upgrade.id:
 		UpgradeDefine.UPGRADE_ID.SWORD_RATE:
 			reduction_rate = upgrade.upgrade_value
-			print("reduction_rate: ", reduction_rate)
 			var percent_reduction = current_upgrades[upgrade.id]["quantity"] * reduction_rate
 			timer.wait_time = base_wait_time * (1 - percent_reduction)
 			timer.start()
 			print(timer.wait_time)
 		UpgradeDefine.UPGRADE_ID.SWORD_DAMAGE:
-			additional_damage_percent = 1 + (current_upgrades[upgrade.id]["quantity"] * 0.15)
+			var upgrade_val = current_upgrades[upgrade.id]["upgrade_value"]
+			additional_damage_percent = 1 + (current_upgrades[upgrade.id]["quantity"] * upgrade_val)
 		_:
 			pass
