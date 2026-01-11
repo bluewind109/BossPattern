@@ -166,8 +166,10 @@ func _on_enter_wind_up_state():
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.wind_up])
 	# pulse_effect.start_pulse(anim_ss)
 
+
 func _on_wind_up_state(_delta: float):
 	super.look_at_player()
+
 
 func _on_leave_wind_up_state():
 	# pulse_effect.stop_pulse()
@@ -180,8 +182,10 @@ func _on_enter_attack_state():
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
 	skill_head_slam.cast()
 
+
 func _on_attack_state(_delta: float):
 	super.look_at_player()
+
 
 func _on_leave_attack_state():
 	pass
@@ -193,8 +197,10 @@ func _on_enter_recover_state():
 	attack_manager.start_recover(attack_manager.get_recover_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.recover])
 
+
 func _on_recover_state(_delta: float):
 	super.look_at_player()
+
 
 func _on_leave_recover_state():
 	pass
@@ -206,8 +212,10 @@ func _on_enter_die_state():
 	anim_ss.play_anim(ANIM_STATE.die, false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.die])
 
+
 func _on_die_state(_delta: float):
 	pass
+
 
 func _on_leave_die_state():
 	pass
@@ -217,6 +225,7 @@ func _play_dissolve_effect():
 	if (body_sprite == null): return
 	body_sprite.material = dissolve_shader
 	body_sprite.material.resource_local_to_scene = true
+	body_sprite.material.set_shader_parameter("is_horizontal", true)
 	body_sprite.material.set_shader_parameter("progress", 0.0)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -228,6 +237,7 @@ func _play_dissolve_effect_reverse():
 	if (body_sprite == null): return
 	body_sprite.material = dissolve_shader
 	body_sprite.material.resource_local_to_scene = true
+	body_sprite.material.set_shader_parameter("is_horizontal", false)
 	body_sprite.material.set_shader_parameter("progress", 1.0)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
@@ -235,7 +245,6 @@ func _play_dissolve_effect_reverse():
 	tween.tween_callback(func():
 		set_state(STATE.Normal)
 	)	
-
 
 
 func _on_wind_up_finished():
