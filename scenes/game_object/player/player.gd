@@ -141,6 +141,7 @@ func _on_max_health_changed(amount: float):
 
 func _on_damaged(amount: float):
 	comp_health.take_damage(amount)
+	FloatingTextManager.spawn_damage_text_at(global_position + Vector2.UP * 16, amount)
 	if (amount > 0):
 		GameEvents.emit_player_damaged()
 		if (hit_sfx): hit_sfx.play_random()

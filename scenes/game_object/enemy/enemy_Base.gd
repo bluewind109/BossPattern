@@ -98,6 +98,7 @@ func _on_damaged(amount: float):
 	if (hit_audio_player != null):
 		hit_audio_player.play_random()
 	component_health.take_damage(amount)
+	FloatingTextManager.spawn_damage_text_at(global_position + Vector2.UP * 16, amount)
 
 
 func _on_die():
