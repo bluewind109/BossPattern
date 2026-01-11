@@ -249,7 +249,7 @@ func _play_dissolve_effect_reverse():
 
 func _on_wind_up_finished():
 	match attack_manager.next_skill.skill_type:
-		EnemySkill.SKILL_TYPE.headslam:
+		EnemySkill.SKILL_TYPE.head_slam:
 			set_state(STATE.Attack)
 		_:
 			pass
