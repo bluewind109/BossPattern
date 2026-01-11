@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_yxguv"]
 [ext_resource type="Script" uid="uid://ja7om25tofsl" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/enemy_Cube_Wizard.gd" id="2_ccck5"]
-[ext_resource type="PackedScene" uid="uid://dn567e2bat71b" path="res://scenes/enemy_skill/enemy_skill_LightningStrike/enemy_skill_LightningStrike.tscn" id="3_d3a4f"]
+[ext_resource type="PackedScene" uid="uid://qujucpuemwtw" path="res://scenes/enemy_skill/enemy_skill_MagicBall/enemy_skill_MagicBall.tscn" id="4_ctqlp"]
 [ext_resource type="Texture2D" uid="uid://x7ij5csehon5" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-Hat.png" id="5_d3a4f"]
 [ext_resource type="AnimationLibrary" uid="uid://cfw0kj2idd2tv" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/animation/enemy_cube_wizard_lib.tres" id="6_ctqlp"]
 [ext_resource type="Texture2D" uid="uid://d3181lfg2l35a" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/water_wand.png" id="6_l1smh"]
@@ -171,12 +171,8 @@ sprite = NodePath("../visuals/main_sprite/body")
 hit_flash_material = SubResource("ShaderMaterial_ulnpn")
 sprite = NodePath("../visuals/main_sprite/body")
 
-[node name="enemy_skill_LightningStrike" parent="attack_manager" index="3" instance=ExtResource("3_d3a4f")]
-explo_range = Vector2(5, 125)
-explosion_delay_duration = 1.0
-explosion_count = 1
-delay_duration = 0.5
-cast_range = 150.0
+[node name="enemy_skill_MagicBall" parent="attack_manager" index="3" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_ctqlp")]
+spawn_node = NodePath("../../visuals/main_sprite/wand/magic_ball_spawn")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="9"]
 position = Vector2(0, -8)
@@ -209,6 +205,9 @@ position = Vector2(-11, -10.999999)
 rotation = 0.48140404
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("6_l1smh")
+
+[node name="magic_ball_spawn" type="Node2D" parent="visuals/main_sprite/wand" index="0"]
+position = Vector2(-5.9002066, -4.8153486)
 
 [node name="body" type="Sprite2D" parent="visuals/main_sprite" index="1"]
 position = Vector2(8, 0)

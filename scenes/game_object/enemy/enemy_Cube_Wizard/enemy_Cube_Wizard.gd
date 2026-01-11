@@ -6,7 +6,7 @@ enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
 enum STATE {Spawn, Normal, WindUp, Attack, Recover, Die}
 
 @onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
-@onready var skill_lightning_strike: EnemySkill_LightningStrike = $attack_manager/enemy_skill_LightningStrike
+@onready var skill_magic_ball: EnemySkill_MagicBall = $attack_manager/enemy_skill_MagicBall
 
 @export var body_sprite: Sprite2D
 
@@ -146,10 +146,10 @@ func _on_normal_state(_delta: float):
 	var can_attack = attack_manager.can_attack()
 	if (!can_attack): return
 
-	var is_in_cast_range = skill_lightning_strike.is_in_cast_range(player.global_position)
-	var can_cast = skill_lightning_strike.can_cast()
+	var is_in_cast_range = skill_magic_ball.is_in_cast_range(player.global_position)
+	var can_cast = skill_magic_ball.can_cast()
 	if (is_in_cast_range and can_cast):
-		attack_manager.set_next_skill(skill_lightning_strike)
+		attack_manager.set_next_skill(skill_magic_ball)
 		set_state(STATE.WindUp)
 		return
 
@@ -179,7 +179,7 @@ func _on_leave_wind_up_state():
 func _on_enter_attack_state():
 	anim_ss.play_anim(ANIM_STATE.attack, false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
-	skill_lightning_strike.cast_at(player_ref)
+	skill_magic_ball.cast_at(player_ref)
 
 
 func _on_attack_state(_delta: float):
@@ -232,7 +232,7 @@ func _play_dissolve_effect_reverse():
 
 func _on_wind_up_finished():
 	match attack_manager.next_skill.skill_type:
-		EnemySkill.SKILL_TYPE.lightning_strike:
+		EnemySkill.SKILL_TYPE.magic_ball:
 			set_state(STATE.Attack)
 		_:
 			pass
