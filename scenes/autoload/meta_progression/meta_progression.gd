@@ -31,7 +31,8 @@ func save():
 func add_meta_upgrade(upgrade: Res_MetaUpgrade):
 	if (not save_data["meta_upgrades"].has(upgrade.id)):
 		save_data["meta_upgrades"][upgrade.id] = {
-			"quantity": 0
+			"quantity": 0,
+			"upgrade_value": upgrade.upgrade_value,
 		}
 	save_data["meta_upgrades"][upgrade.id]["quantity"] += 1
 	save()
@@ -40,6 +41,17 @@ func add_meta_upgrade(upgrade: Res_MetaUpgrade):
 func get_upgrade_count(upgrade_id: UpgradeDefine.META_UPGRADE_ID) -> int: 
 	if (!save_data["meta_upgrades"].has(upgrade_id)): return 0
 	return save_data["meta_upgrades"][upgrade_id]["quantity"]
+
+
+func get_upgrade_value(upgrade_id: UpgradeDefine.META_UPGRADE_ID) -> float:
+	if (!save_data["meta_upgrades"].has(upgrade_id)): return 0.0
+	if (!save_data["meta_upgrades"][upgrade_id].has("upgrade_value")):
+		match upgrade_id:
+			UpgradeDefine.META_UPGRADE_ID.EXPERIENCE_GAIN:
+				return 0.1
+			UpgradeDefine.META_UPGRADE_ID.HEALTH_REGEN:
+				return 1.0
+	return save_data["meta_upgrades"][upgrade_id]["upgrade_value"]
 
 
 func get_currency() -> float:

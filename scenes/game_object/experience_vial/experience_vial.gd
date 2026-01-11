@@ -46,7 +46,8 @@ func _on_area_entered(other_area: Area2D):
 	tween.chain()
 	tween.tween_callback(func():
 		var	exp_gain_upgrade_quantity = MetaProgression.get_upgrade_count(UpgradeDefine.META_UPGRADE_ID.EXPERIENCE_GAIN)
-		var final_exp_gain = base_exp_gain + base_exp_gain * exp_gain_upgrade_quantity * 0.1
+		var exp_gain_value = MetaProgression.get_upgrade_value(UpgradeDefine.META_UPGRADE_ID.EXPERIENCE_GAIN)
+		var final_exp_gain = base_exp_gain + base_exp_gain * exp_gain_upgrade_quantity * exp_gain_value
 		GameEvents.emit_exp_vial_collected(final_exp_gain)
 		if (collect_vial_sfx != null):
 			collect_vial_sfx.play_random()

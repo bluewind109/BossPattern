@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_j6tqy")
-id = "experience_gain"
 max_quantity = 50
 experience_cost = 4
+upgrade_value = 0.1
 title = "Increase Experience"
 description = "Increase experience gain by 10%."
 metadata/_custom_type_script = "uid://ieexsgfyqi77"

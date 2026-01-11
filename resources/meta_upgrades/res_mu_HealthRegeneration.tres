@@ -7,6 +7,7 @@ script = ExtResource("1_6pjjw")
 id = 1
 max_quantity = 3
 experience_cost = 100
+upgrade_value = 1.0
 title = "Health Regen"
 description = "Regenerate 1 health every 30 seconds."
 metadata/_custom_type_script = "uid://ieexsgfyqi77"

@@ -147,7 +147,8 @@ func _on_damaged(amount: float):
 
 func _on_arena_difficulty_increased(difficulty: int):
 	var health_regen_quantity =  MetaProgression.get_upgrade_count(UpgradeDefine.META_UPGRADE_ID.HEALTH_REGEN)
+	var health_regen_value = MetaProgression.get_upgrade_value(UpgradeDefine.META_UPGRADE_ID.HEALTH_REGEN)
 	if (health_regen_quantity <= 0): return
 	var is_thirty_seconds_interval = (difficulty % 1) == 0
 	if (is_thirty_seconds_interval):
-		comp_health.heal(health_regen_quantity)
+		comp_health.heal(health_regen_quantity * health_regen_value)
