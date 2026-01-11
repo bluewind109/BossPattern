@@ -9,9 +9,11 @@ var collision_shape: CollisionShape2D = null
 var max_speed: float = 100.0
 var direction: Vector2 = Vector2.ZERO
 
+
 func _init() -> void:
 	# self.body_entered.connect(_on_body_entered)
 	self.area_entered.connect(_on_hurtbox_entered)
+
 
 func _ready() -> void:
 	if (get_child_count() > 0):
@@ -28,8 +30,10 @@ func toggle_collision(val: bool):
 func set_damage(val: float):
 	damage_amount = val
 
+
 func get_damage():
 	return damage_amount
+
 
 func _on_hurtbox_entered(area: Area2D) -> void:
 	if (area is ComponentHurtbox):
