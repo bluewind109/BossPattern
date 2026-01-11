@@ -12,6 +12,7 @@ enum STATE {Spawn, Normal, WindUp, Attack, Recover, Die}
 @onready var barrier: Barrier = $barrier
 
 @export var body_sprite: Sprite2D
+@export var shield_sprite: Sprite2D
 @export var dissolve_shader: Material
 @export var base_shield_hp: float = 10.0
 
@@ -30,6 +31,7 @@ func _ready() -> void:
 func setup_stats():
 	if (barrier):
 		barrier.init(base_shield_hp)
+		hit_flash.sprite = shield_sprite
 
 
 func init_speed_dict():
@@ -282,22 +284,26 @@ func _on_recover_finished():
 
 
 func _on_damaged(amount: float):
-	amount = amount * barrier.absorb_ratio
-	if (amount - barrier.health > 0):
-		super._on_damaged(1.0)
-
-	barrier.take_damage(amount)
-	FloatingTextManager.spawn_damage_text_at(
-		global_position + Vector2.UP * 12 + Vector2.LEFT * 4, 
-		amount,
-		Color(0.369, 0.694, 1.0, 1.0),
-		Color(1.0, 1.0, 1.0, 1.0)
-	)
+	if (!barrier.is_destroyed()):
+		amount = amount * barrier.absorb_ratio
+		hit_flash._on_health_decreased(amount)
+		barrier.take_damage(amount)
+		FloatingTextManager.spawn_damage_text_at(
+			global_position + Vector2.UP * 12 + Vector2.LEFT * 4, 
+			amount,
+			Color(0.369, 0.694, 1.0, 1.0),
+			Color(1.0, 1.0, 1.0, 1.0)
+		)
+	else:
+		super._on_damaged(amount)
 
 
 func _on_barrier_destroyed():
 	# destroy shield when barrier broken
-	shield_anim_player.play("explode")
+	#shield_anim_player.play("explode")
+	shield_sprite.visible = false
+	hit_flash.sprite = body_sprite
+	hit_flash.reset_material()
 
 
 func _on_die():

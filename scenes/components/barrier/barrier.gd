@@ -26,9 +26,11 @@ func init(_max_health: float):
 
 func take_damage(amount: float):
 	if (is_destroyed()): return
-	health = clampf(health - amount, 0, max_health)
-	if (amount > 0): health_decreased.emit(amount)
-	if (health <= 0): destroyed.emit()
+	health = clampf(health - amount, 0.0, max_health)
+	if (amount > 0.0): 
+		health_decreased.emit(amount)
+	if (health <= 0.0): 
+		destroyed.emit()
 
 
 func is_destroyed() -> bool:

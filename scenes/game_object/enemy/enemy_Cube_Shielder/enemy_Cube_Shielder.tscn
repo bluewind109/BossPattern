@@ -208,9 +208,10 @@ _data = {
 &"explode": SubResource("Animation_h8htr")
 }
 
-[node name="enemy_Cube_Shielder" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_u8d58")]
+[node name="enemy_Cube_Shielder" node_paths=PackedStringArray("body_sprite", "shield_sprite") instance=ExtResource("1_u8d58")]
 script = ExtResource("2_tqlaq")
 body_sprite = NodePath("visuals/main_sprite/body")
+shield_sprite = NodePath("visuals/main_sprite/shield")
 dissolve_shader = SubResource("ShaderMaterial_uoqil")
 base_shield_hp = 10.0
 
