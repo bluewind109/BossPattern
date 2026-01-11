@@ -28,17 +28,16 @@ func _ready() -> void:
 	experience_manager.level_up.connect(_on_level_up)
 
 
-func _apply_upgrade(upgrade: Res_AbilityUpgrade):
+func _apply_upgrade(upgrade: Res_AbilityUpgrade, quantity: int = 1):
 	var has_upgrade: bool = current_upgrades.has(upgrade.id)
-	var _quantity: int = 1
 	if (!has_upgrade):
 		current_upgrades[upgrade.id] = {
 			"resource": upgrade,
-			"quantity": _quantity,
+			"quantity": quantity,
 			"upgrade_value": upgrade.upgrade_value
 		}
 	else:
-		current_upgrades[upgrade.id]["quantity"] += _quantity
+		current_upgrades[upgrade.id]["quantity"] += quantity
 	print("_on_level_up ", current_upgrades)
 
 	if (upgrade.max_quantity > 0):
