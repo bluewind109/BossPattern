@@ -7,10 +7,10 @@ uniform float progress: hint_range(0.0, 1.0);
 uniform float float_dist = 6.0;
 
 // Increase how far pixels can vertically differ from the "wave"
-uniform float progress_rand_range = 0.2;
+uniform float progress_rand_range = 0.6;
 
 // Size of current texture
-uniform vec2 texture_size;
+uniform vec2 texture_size = vec2(16, 16);
 
 float random(vec2 uv) {
 	return fract(sin(dot(uv, vec2(12.9898, 78.233))) * 438.5453);
