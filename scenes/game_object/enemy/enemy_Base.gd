@@ -97,6 +97,7 @@ func get_anim_name(_anim_state: int) -> String:
 func _on_damaged(amount: float):
 	if (hit_audio_player != null):
 		hit_audio_player.play_random()
+	component_health.take_damage(amount)
 
 
 func _on_die():

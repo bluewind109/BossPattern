@@ -8,7 +8,7 @@ signal damaged(amount: float)
 @export var enable_take_damage_cooldown: bool = false
 @export var take_damage_cooldown: float =  0.5
 
-@export var component_health: ComponentHealth
+# @export var component_health: ComponentHealth
 @export var floating_text_scene: PackedScene
 
 var collision_shape: CollisionShape2D = null
@@ -23,7 +23,7 @@ func _ready() -> void:
 	if(enable_take_damage_cooldown): 
 		take_damage_timer.wait_time = take_damage_cooldown
 		take_damage_timer.timeout.connect(_on_take_damage_cooldown_finished)
-	assert(component_health, "No component_health:ComponentHealth specified in %s." % [str(get_path())])
+	# assert(component_health, "No component_health:ComponentHealth specified in %s." % [str(get_path())])
 
 
 func toggle_collision(val: bool):
@@ -33,14 +33,14 @@ func toggle_collision(val: bool):
 
 func take_damage(amount: float) -> void:
 	print(get_parent().name, " take_damage ", amount)
-	if (component_health == null): return
+	# if (component_health == null): return
 	if (!can_take_damage): return
 
 	if (enable_take_damage_cooldown and can_take_damage):
 		take_damage_timer.start()
 		can_take_damage = false
 
-	component_health.take_damage(amount)
+	# component_health.take_damage(amount)
 	damaged.emit(amount)
 	
 	if (floating_text_scene == null): return
