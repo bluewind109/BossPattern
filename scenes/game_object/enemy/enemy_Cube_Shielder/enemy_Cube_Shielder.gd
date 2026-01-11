@@ -295,7 +295,7 @@ func _on_damaged(amount: float):
 
 func _on_barrier_destroyed():
 	# TODO destroy shield when barrier broken
-	shield_anim_player.play("shatter")
+	shield_anim_player.play("explode")
 
 
 func _on_die():
