@@ -83,6 +83,6 @@ func _on_purchase_pressed():
 	if (upgrade == null): return
 	var currency = MetaProgression.get_currency()
 	if (currency < upgrade.experience_cost): return
-	MetaProgression.update_currency(upgrade.experience_cost)
+	MetaProgression.update_currency(upgrade.experience_cost * -1)
 	MetaProgression.add_meta_upgrade(upgrade)
 	get_tree().call_group("meta_upgrade_card", "update_progress")
