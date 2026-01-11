@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b20o1b3sijcsr"]
+[gd_scene load_steps=6 format=3 uid="uid://b20o1b3sijcsr"]
 
 [ext_resource type="Script" uid="uid://cp77v570t73w0" path="res://scenes/manager/enemy_manager/enemy_manager.gd" id="1_ij5hy"]
 [ext_resource type="PackedScene" uid="uid://dwasuhvibmu61" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.tscn" id="2_a1uqj"]
 [ext_resource type="PackedScene" uid="uid://brlsjsn1ddh0y" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/enemy_Cube_Wizard.tscn" id="3_cg5kq"]
+[ext_resource type="PackedScene" uid="uid://ef1bcl6w0dvy" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/enemy_Cube_Shielder.tscn" id="4_4mqmi"]
 [ext_resource type="PackedScene" uid="uid://bk5q3wde4ijnu" path="res://scenes/game_object/enemy/enemy_Bat/enemy_Bat.tscn" id="4_kffme"]
 
 [node name="enemy_manager" type="Node"]
 script = ExtResource("1_ij5hy")
 enemy_cube_base_scene = ExtResource("2_a1uqj")
 enemy_cube_wizard_scene = ExtResource("3_cg5kq")
+enemy_cube_shielder_scene = ExtResource("4_4mqmi")
 enemy_bat_scene = ExtResource("4_kffme")
 
 [node name="spawn_timer" type="Timer" parent="."]

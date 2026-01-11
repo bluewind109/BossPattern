@@ -5,6 +5,7 @@ const SPAWN_RADIUS: float = 250
 
 @export var enemy_cube_base_scene: PackedScene
 @export var enemy_cube_wizard_scene: PackedScene
+@export var enemy_cube_shielder_scene: PackedScene
 @export var enemy_bat_scene: PackedScene
 @export var game_time_manager: GameTimeManager
 
