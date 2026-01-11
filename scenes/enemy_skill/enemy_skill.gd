@@ -10,6 +10,7 @@ enum SKILL_TYPE
 	poison_explosion_attack =4,
 	shockwave = 5,
 	shield_slam = 6,
+	magic_ball = 7,
 }
 
 signal on_skill_casted
