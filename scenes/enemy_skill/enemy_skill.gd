@@ -14,10 +14,10 @@ enum SKILL_TYPE
 @onready var cooldown_timer: Timer = $cooldown_timer
 
 @export var cooldown_duration: float = 3.0
-@export var delay_duration: float = 0.0
-@export var recover_duration: float = 0.0
+@export var delay_duration: float = 1.0
+@export var recover_duration: float = 2.0
 
-@export var cast_range: float = 300.0
+@export var cast_range: float = 25.0
 
 var skill_type: SKILL_TYPE
 
