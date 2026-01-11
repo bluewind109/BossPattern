@@ -5,6 +5,12 @@ class_name EnemySkill_HeadSlam
 @export var follow_node: Node2D
 
 
+func _ready() -> void:
+	skill_type = SKILL_TYPE.head_slam
+	cooldown_timer.wait_time = cooldown_duration
+	super._ready()
+
+
 func _process(delta: float) -> void:
 	if (hitbox_collision_shape == null): return
 	if (follow_node == null): return

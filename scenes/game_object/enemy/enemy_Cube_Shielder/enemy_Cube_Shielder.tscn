@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dr2vponw2jou3" path="res://scenes/components/barrier/barrier.tscn" id="5_dvman"]
 [ext_resource type="Texture2D" uid="uid://il3ihdhk3qv7" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-1.png" id="5_h8htr"]
 [ext_resource type="Texture2D" uid="uid://cwpabssj5242b" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-WoodeTowerShield.png" id="7_fugpu"]
-[ext_resource type="AnimationLibrary" uid="uid://dkn6l5yagvole" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/animation/enemy_cube_shielder_lib.res" id="11_uoqil"]
+[ext_resource type="AnimationLibrary" uid="uid://cg7t287wui7ei" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/animation/enemy_cube_shielder_lib.tres" id="11_uoqil"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uoqil"]
 shader = ExtResource("3_3f1jk")
@@ -47,7 +47,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../visuals:scale")
+tracks/0/path = NodePath("../visuals/main_sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -59,7 +59,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../visuals/body:offset")
+tracks/1/path = NodePath("../visuals/main_sprite/body:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -71,7 +71,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../visuals/body:position")
+tracks/2/path = NodePath("../visuals/main_sprite/body:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -83,7 +83,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../visuals/shield:position")
+tracks/3/path = NodePath("../visuals/main_sprite/shield:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -95,7 +95,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../visuals/body:texture")
+tracks/4/path = NodePath("../visuals/main_sprite/body:texture")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -107,7 +107,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../visuals/shield:scale")
+tracks/5/path = NodePath("../visuals/main_sprite/shield:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -115,6 +115,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../visuals/main_sprite/shield:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../visuals/main_sprite/body:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqof2"]
@@ -127,7 +151,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("visuals/shield:material:shader_parameter/dissolve_state")
+tracks/0/path = NodePath("visuals/main_sprite/shield:material:shader_parameter/dissolve_state")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -139,7 +163,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("visuals/shield:scale")
+tracks/1/path = NodePath("visuals/main_sprite/shield:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -156,7 +180,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("visuals/shield:material:shader_parameter/dissolve_state")
+tracks/0/path = NodePath("visuals/main_sprite/shield:material:shader_parameter/dissolve_state")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -168,7 +192,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("visuals/shield:scale")
+tracks/1/path = NodePath("visuals/main_sprite/shield:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -186,7 +210,7 @@ _data = {
 
 [node name="enemy_Cube_Shielder" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_u8d58")]
 script = ExtResource("2_tqlaq")
-body_sprite = NodePath("visuals/body")
+body_sprite = NodePath("visuals/main_sprite/body")
 dissolve_shader = SubResource("ShaderMaterial_uoqil")
 base_shield_hp = 10.0
 
@@ -198,11 +222,14 @@ visual_node = NodePath("../visuals")
 
 [node name="hit_flash" parent="." index="5" node_paths=PackedStringArray("sprite")]
 hit_flash_material = SubResource("ShaderMaterial_7g67l")
-sprite = NodePath("../visuals/body")
+sprite = NodePath("../visuals/main_sprite/body")
+
+[node name="attack_manager" parent="." index="6"]
+ATTACK_RANGE = 25.0
 
 [node name="enemy_skill_ShieldSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node") instance=ExtResource("4_fugpu")]
 hitbox_collision_shape = NodePath("../../hitbox/collision_shape_2d")
-follow_node = NodePath("../../visuals/shield")
+follow_node = NodePath("../../visuals/main_sprite/shield")
 
 [node name="barrier" parent="." index="7" instance=ExtResource("5_dvman")]
 
@@ -220,11 +247,13 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_fugpu")
 debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
-[node name="body" type="Sprite2D" parent="visuals" index="0"]
+[node name="main_sprite" type="Node2D" parent="visuals" index="0"]
+
+[node name="body" type="Sprite2D" parent="visuals/main_sprite" index="0"]
 position = Vector2(0, -8)
 texture = ExtResource("5_h8htr")
 
-[node name="shield" type="Sprite2D" parent="visuals" index="1"]
+[node name="shield" type="Sprite2D" parent="visuals/main_sprite" index="1"]
 material = SubResource("ShaderMaterial_6l8js")
 position = Vector2(9, -8)
 texture = ExtResource("7_fugpu")

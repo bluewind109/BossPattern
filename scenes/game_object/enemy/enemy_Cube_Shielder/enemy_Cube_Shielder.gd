@@ -49,7 +49,7 @@ func init_anim_dict(_lib_name: String):
 	anim_dict = {
 		ANIM_STATE.RESET: AnimationInfo.new(lib_name + "RESET", true),
 		ANIM_STATE.walk: AnimationInfo.new(lib_name + "walk", true),
-		ANIM_STATE.attack: AnimationInfo.new(lib_name + "attack", false),
+		ANIM_STATE.attack: AnimationInfo.new(lib_name + "attack_shield_slam", false),
 		ANIM_STATE.die: AnimationInfo.new(lib_name + "die", false),
 	}
 	anim_ss.init_anim_data(anim_dict)
@@ -57,6 +57,7 @@ func init_anim_dict(_lib_name: String):
 
 func bind_signals():
 	anim_ss.anim_player.animation_finished.connect(_on_animation_finished)
+	shield_anim_player.animation_finished.connect(_on_shield_animation_finished)
 
 	attack_manager.on_attack_finished.connect(_on_attack_finished)
 	attack_manager.delay_timer.timeout.connect(_on_wind_up_finished)
@@ -190,6 +191,7 @@ func _on_leave_wind_up_state():
 
 # ATTACK STATE
 func _on_enter_attack_state():
+	print("_on_enter_attack_state")
 	anim_ss.play_anim(ANIM_STATE.attack, false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
 	skill_shield_slam.cast()
@@ -261,7 +263,7 @@ func _play_dissolve_effect_reverse():
 
 func _on_wind_up_finished():
 	match attack_manager.next_skill.skill_type:
-		EnemySkill.SKILL_TYPE.lightning_strike:
+		EnemySkill.SKILL_TYPE.shield_slam:
 			set_state(STATE.Attack)
 		_:
 			pass
@@ -294,7 +296,7 @@ func _on_damaged(amount: float):
 
 
 func _on_barrier_destroyed():
-	# TODO destroy shield when barrier broken
+	# destroy shield when barrier broken
 	shield_anim_player.play("explode")
 
 
@@ -309,3 +311,9 @@ func _on_animation_finished(_anim_name: StringName):
 		set_state(STATE.Recover)
 	elif (_anim_name == get_anim_name(ANIM_STATE.die)):
 		_play_dissolve_effect()
+
+
+func _on_shield_animation_finished(_anim_name: StringName):
+	if (_anim_name == "explode"):
+		skill_shield_slam.is_casting = false
+		skill_shield_slam.reset_collision_shape()
