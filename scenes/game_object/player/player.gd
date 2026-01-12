@@ -5,7 +5,7 @@ enum STATE {Idle, Run, Attack, Die}
 
 @onready var state_machine: CallableStateMachine = $callable_state_machine
 
-@onready var character_sprite: Sprite2D = $character_sprite
+@onready var character_sprite: Sprite2D = $%character_sprite
 var idle_texture: Texture2D = preload("./sprites/Player_idle.png")
 var run_texture: Texture2D = preload("./sprites/Player_run.png")
 
@@ -42,9 +42,6 @@ func _ready() -> void:
 	GameEvents.ability_upgrade_added.connect(_on_ability_upgrade_added)
 	if (game_time_manager):
 		game_time_manager.arena_difficulty_increased.connect(_on_arena_difficulty_increased)
-
-	if (comp_look): 
-		comp_look.visual_node = character_sprite
 
 	if (comp_health):
 		comp_health.health_changed.connect(_on_health_changed)

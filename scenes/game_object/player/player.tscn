@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://v67gpa0c2rdm"]
+[gd_scene load_steps=27 format=3 uid="uid://v67gpa0c2rdm"]
 
 [ext_resource type="Script" uid="uid://c7fml14t62ej7" path="res://scenes/game_object/player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://bojlohyvov773" path="res://scenes/callable_state_machine/callable_state_machine.tscn" id="2_rgyib"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://scenes/components/look/look.tscn" id="5_8t03j"]
 [ext_resource type="PackedScene" uid="uid://c8vwlygwm1ac2" path="res://scenes/components/exp/exp.tscn" id="5_g6k8r"]
 [ext_resource type="PackedScene" uid="uid://chqcr7r1nl7w7" path="res://scenes/ability/ability_Sword/controller/abilityController_Sword.tscn" id="5_gbew5"]
-[ext_resource type="PackedScene" uid="uid://x0xpt5ix1x63" path="res://scenes/components/weapon/weapon.tscn" id="6_2ieo8"]
+[ext_resource type="PackedScene" uid="uid://x0xpt5ix1x63" path="res://scenes/components/ranged_weapon/ranged_weapon.tscn" id="6_2ieo8"]
 [ext_resource type="Script" uid="uid://bb5c06xlmd0fb" path="res://scenes/components/exp/exp.gd" id="6_boad6"]
 [ext_resource type="PackedScene" uid="uid://bp71esg3p5br1" path="res://scenes/components/four_ways_control/four_ways_control.tscn" id="7_rgyib"]
 [ext_resource type="PackedScene" uid="uid://2uyf81565djh" path="res://scenes/components/random_audio_player_2d/random_audio_player_2d.tscn" id="9_oxhc3"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://wtcu13wib54d" path="res://assets/audio/sfx/combat/impactMining_002.ogg" id="12_oxadg"]
 [ext_resource type="AudioStream" uid="uid://bbs3dtdc23crm" path="res://assets/audio/sfx/combat/impactMining_003.ogg" id="13_va4cl"]
 [ext_resource type="AudioStream" uid="uid://dfqkc118gryja" path="res://assets/audio/sfx/combat/impactMining_004.ogg" id="14_h0hb4"]
+[ext_resource type="PackedScene" uid="uid://d21n2muh2acff" path="res://scenes/components/sword_attack/sword_attack.tscn" id="18_3uig4"]
 
 [sub_resource type="Curve" id="Curve_gbew5"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(2e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -24,12 +25,12 @@ point_count = 5
 metadata/_snap_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ieo8"]
-radius = 7.0
-height = 26.0
+radius = 3.0
+height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oxhc3"]
-radius = 6.0
-height = 22.0
+radius = 3.0
+height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxhc3"]
 radius = 23.0
@@ -96,7 +97,7 @@ collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_oul6g")
 curve = SubResource("Curve_gbew5")
-anim_player = NodePath("character_sprite/animation_player")
+anim_player = NodePath("visuals/character_sprite/animation_player")
 
 [node name="callable_state_machine" parent="." instance=ExtResource("2_rgyib")]
 
@@ -107,11 +108,12 @@ anim_player = NodePath("character_sprite/animation_player")
 [node name="abilities" type="Node" parent="."]
 
 [node name="abilityController_Sword" parent="abilities" instance=ExtResource("5_gbew5")]
+is_disabled = true
 damage = 1.0
 max_range = 100.0
 
 [node name="look" parent="." node_paths=PackedStringArray("visual_node") instance=ExtResource("5_8t03j")]
-visual_node = NodePath("../character_sprite")
+visual_node = NodePath("../visuals")
 
 [node name="exp" parent="." instance=ExtResource("5_g6k8r")]
 script = ExtResource("6_boad6")
@@ -122,7 +124,7 @@ max_distance = 300.0
 streams = Array[AudioStream]([ExtResource("10_gme53"), ExtResource("11_3uig4"), ExtResource("12_oxadg"), ExtResource("13_va4cl"), ExtResource("14_h0hb4")])
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
-position = Vector2(0, -13)
+position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_2ieo8")
 
 [node name="hurtbox" parent="." instance=ExtResource("4_qjkh3")]
@@ -131,7 +133,7 @@ collision_mask = 0
 enable_take_damage_cooldown = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2(0, -11)
+position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_oxhc3")
 debug_color = Color(0.29411766, 0.5254902, 0.9019608, 0.2784314)
 
@@ -140,24 +142,32 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="lootbox"]
-position = Vector2(0, -10)
+position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_oxhc3")
-debug_color = Color(0.5764706, 0.5529412, 0.11764706, 0.078431375)
+debug_color = Color(0.58, 0.55679995, 0.11599999, 0)
 
-[node name="character_sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
+[node name="visuals" type="Node2D" parent="."]
+
+[node name="character_sprite" type="Sprite2D" parent="visuals"]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_hg6s5")
 hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 0, 192, 32)
 
-[node name="animation_player" type="AnimationPlayer" parent="character_sprite"]
+[node name="animation_player" type="AnimationPlayer" parent="visuals/character_sprite"]
 libraries = {
 &"": SubResource("AnimationLibrary_2ieo8")
 }
 
-[node name="weapon" parent="." instance=ExtResource("6_2ieo8")]
+[node name="ranged_weapon" parent="." instance=ExtResource("6_2ieo8")]
+visible = false
 position = Vector2(0, -10)
+
+[node name="sword_slash" parent="." instance=ExtResource("18_3uig4")]
+position = Vector2(0, -4)
 
 [node name="take_damage_timer" type="Timer" parent="."]
 unique_name_in_owner = true
