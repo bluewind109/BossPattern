@@ -8,12 +8,14 @@ class_name SwordSlash
 
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
-	look_at(get_global_mouse_position())
-	animation_player.play("slash")
 
 
 func set_damage(amount: float):
 	hitbox.set_damage(amount)
+
+
+func play_slash_anim():
+	animation_player.play("slash")
 
 
 func _on_animation_finished(_anim_name: StringName):

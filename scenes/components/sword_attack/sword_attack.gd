@@ -12,6 +12,7 @@ class_name SwordAttack
 var can_slash: bool = true
 var current_look_dir: String = "left"
 
+
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
 
@@ -32,6 +33,7 @@ func _physics_process(delta: float) -> void:
 
 
 func spawn_slash() -> void:
+	if (sword_slash_scene == null): return
 	var sword_slash = sword_slash_scene.instantiate() as SwordSlash
 
 	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
@@ -46,7 +48,9 @@ func spawn_slash() -> void:
 		sword_slash.slash_sprite.flip_v = true
 		
 	sword_slash.global_position = global_position
+	sword_slash.look_at(get_global_mouse_position())
 	sword_slash.set_damage(weapon_damage)
+	sword_slash.play_slash_anim()
 
 
 func _on_animation_finished(_anim_name: StringName):

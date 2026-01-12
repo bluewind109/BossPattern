@@ -166,7 +166,7 @@ libraries = {
 visible = false
 position = Vector2(0, -10)
 
-[node name="sword_slash" parent="." instance=ExtResource("18_3uig4")]
+[node name="sword_attack" parent="." instance=ExtResource("18_3uig4")]
 position = Vector2(0, -4)
 
 [node name="take_damage_timer" type="Timer" parent="."]
