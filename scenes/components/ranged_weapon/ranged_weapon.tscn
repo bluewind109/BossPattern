@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://x0xpt5ix1x63"]
+
+[ext_resource type="Script" uid="uid://cklv0i360e6o4" path="res://scenes/components/ranged_weapon/ranged_weapon.gd" id="1_bubg4"]
+[ext_resource type="Texture2D" uid="uid://byc20yaqx3c0w" path="res://assets/sprites/Updated_ZombiePack_AssetPack/SpriteSheets/Weapons sprites (32x32).png" id="2_t8a2i"]
+
+[node name="ranged_weapon" type="Node2D" node_paths=PackedStringArray("weapon_sprite", "bullet_spawn_position")]
+script = ExtResource("1_bubg4")
+weapon_sprite = NodePath("pivot/sprite_2d")
+bullet_spawn_position = NodePath("pivot/sprite_2d/bullet_spawn_position")
+
+[node name="pivot" type="Marker2D" parent="."]
+
+[node name="sprite_2d" type="Sprite2D" parent="pivot"]
+position = Vector2(10, -1)
+texture = ExtResource("2_t8a2i")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="bullet_spawn_position" type="Marker2D" parent="pivot/sprite_2d"]
+position = Vector2(11, -1)

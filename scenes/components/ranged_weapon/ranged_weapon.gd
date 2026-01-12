@@ -1,9 +1,9 @@
 extends Node2D
-class_name ComponentWeapon
+class_name RangedWeapon
 
-@export var pivot: Marker2D
-@export var weapon_sprite: Sprite2D
-@export var bullet_spawn_position: Marker2D
+@onready var pivot: Marker2D = $pivot
+@onready var weapon_sprite: Sprite2D = $pivot/sprite_2d
+@onready var bullet_spawn_position: Marker2D = $pivot/sprite_2d/bullet_spawn_position
 
 func _ready() -> void:
 	pass
