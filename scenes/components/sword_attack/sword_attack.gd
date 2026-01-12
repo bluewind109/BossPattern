@@ -29,7 +29,6 @@ func _physics_process(delta: float) -> void:
 		animation_player.get_animation("slash").length /  slash_time
 		animation_player.play("slash")
 		can_slash = false
-		spawn_slash()
 
 
 func spawn_slash() -> void:
