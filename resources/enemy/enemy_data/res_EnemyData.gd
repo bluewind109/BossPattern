@@ -7,3 +7,5 @@ class_name Res_EnemyData
 @export var health: float = 5.0
 @export var speed: float = 25.0
 @export var base_damage: float = 5.0
+
+@export var skills: Array[int]
