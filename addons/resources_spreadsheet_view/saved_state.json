@@ -178,6 +178,17 @@
         "visibility": 0.0
       }
     },
+    "res://resources/enemy_data/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
     "res://resources/upgrades/": {
       "ability_controller_scene": {
         "visibility": 0.0
@@ -199,7 +210,8 @@
   "recent_paths": [
     "res://resources/audio_bus_layout/",
     "res://resources/",
-    "res://resources/upgrades/"
+    "res://resources/upgrades/",
+    "res://resources/enemy_data/"
   ],
   "table_functions": {
     "filter": [
