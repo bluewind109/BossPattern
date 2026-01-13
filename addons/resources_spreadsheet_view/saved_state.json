@@ -180,6 +180,28 @@
     },
     "res://resources/enemy/": {
       "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    },
+    "res://resources/enemy/enemy_data/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
+    "res://resources/enemy/enemy_skill_data/": {
+      "metadata/_custom_type_script": {
         "visibility": 0
       },
       "resource_local_to_scene": {
@@ -191,13 +213,13 @@
     },
     "res://resources/enemy_data/": {
       "metadata/_custom_type_script": {
-        "visibility": 0
+        "visibility": 0.0
       },
       "resource_local_to_scene": {
-        "visibility": 0
+        "visibility": 0.0
       },
       "resource_name": {
-        "visibility": 0
+        "visibility": 0.0
       }
     },
     "res://resources/upgrades/": {
@@ -223,7 +245,9 @@
     "res://resources/",
     "res://resources/upgrades/",
     "res://resources/enemy_data/",
-    "res://resources/enemy/"
+    "res://resources/enemy/",
+    "res://resources/enemy/enemy_skill_data/",
+    "res://resources/enemy/enemy_data/"
   ],
   "table_functions": {
     "filter": [

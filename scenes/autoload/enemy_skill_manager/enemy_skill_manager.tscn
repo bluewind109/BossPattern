@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv4n7g0xwjr8o"]
+
+[ext_resource type="Script" uid="uid://8ieonyu3rdgv" path="res://scenes/autoload/enemy_skill_manager/enemy_skill_manager.gd" id="1_640u3"]
+[ext_resource type="Script" uid="uid://0mmf01wu51c2" path="res://resources/enemy/enemy_skill_data/res_EnemySkillData.gd" id="2_jjxty"]
+[ext_resource type="Resource" uid="uid://bca07h7sdj4ca" path="res://resources/enemy/enemy_skill_data/res_esd_HeadSlam.tres" id="3_4s184"]
+[ext_resource type="Resource" uid="uid://b8520gplsf30n" path="res://resources/enemy/enemy_skill_data/res_esd_MagicBall.tres" id="4_gaysh"]
+[ext_resource type="Resource" uid="uid://cqd23xdnrq41y" path="res://resources/enemy/enemy_skill_data/res_esd_ShieldSlam.tres" id="5_uiksc"]
+
+[node name="enemy_skill_manager" type="Node"]
+script = ExtResource("1_640u3")
+skills = Dictionary[int, ExtResource("2_jjxty")]({
+0: ExtResource("3_4s184"),
+6: ExtResource("5_uiksc"),
+7: ExtResource("4_gaysh")
+})

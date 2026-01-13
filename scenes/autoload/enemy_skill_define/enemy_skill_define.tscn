@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctu71dj7yqdfo"]
+
+[ext_resource type="Script" uid="uid://b2jl27jerv043" path="res://scenes/autoload/enemy_skill_define/enemy_skill_define.gd" id="1_llhlg"]
+
+[node name="enemy_skill_define" type="Node"]
+script = ExtResource("1_llhlg")

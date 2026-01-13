@@ -3,10 +3,10 @@ class_name EnemyManager
 
 const SPAWN_RADIUS: float = 200
 
+@export var enemies: Dictionary[EnemyDefine.ENEMY_ID, Res_EnemyData]
 @export var enemy_cube_base_scene: PackedScene
 @export var enemy_cube_wizard_scene: PackedScene
 @export var enemy_cube_shielder_scene: PackedScene
-@export var enemy_bat_scene: PackedScene
 @export var game_time_manager: GameTimeManager
 
 @onready var spawn_timer: Timer = $%spawn_timer
@@ -69,10 +69,10 @@ func _on_arena_difficulty_increased(arena_difficulty: int):
 	# print("_on_arena_difficulty_increased: ", time_off)
 	spawn_timer.wait_time = max(base_spawn_time - time_off, 0.1)
 
-	if (arena_difficulty == 6):
+	if (arena_difficulty == 3):
 		enemy_table.add_item(enemy_cube_wizard_scene, 5)
 		
-	if (arena_difficulty == 12):
+	if (arena_difficulty == 6):
 		enemy_table.add_item(enemy_cube_shielder_scene, 5)
 
 	if ((arena_difficulty % 6) == 0):

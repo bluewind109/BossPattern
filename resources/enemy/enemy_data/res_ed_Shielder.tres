@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Res_EnemyData_Shielder" load_steps=2 format=3 uid="uid://cr4ykpf2kejtl"]
+
+[ext_resource type="Script" uid="uid://du7tw2c7lcmg0" path="res://resources/enemy/enemy_data/res_ed_Shielder.gd" id="1_ll1g7"]
+
+[resource]
+script = ExtResource("1_ll1g7")
+id = 2
+name = "Cube Shielder"
+health = 10.0
+base_damage = 10.0
+skills = Array[int]([6])
+metadata/_custom_type_script = "uid://du7tw2c7lcmg0"

@@ -40,7 +40,9 @@ buses/default_bus_layout="res://resources/audio_bus_layout/default_bus_layout.tr
 [autoload]
 
 UpgradeDefine="*res://scenes/autoload/upgrade_define/upgrade_define.tscn"
+EnemySkillDefine="*res://scenes/autoload/enemy_skill_define/enemy_skill_define.tscn"
 EnemyDefine="*res://scenes/autoload/enemy_define/enemy_define.tscn"
+EnemySkillManager="*res://scenes/autoload/enemy_skill_manager/enemy_skill_manager.tscn"
 Utils="*res://scenes/autoload/utils.gd"
 GameEvents="*res://scenes/autoload/game_events/game_events.tscn"
 BgmPlayer="*res://scenes/autoload/bgm_player/bgm_player.tscn"

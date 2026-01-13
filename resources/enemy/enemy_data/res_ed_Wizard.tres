@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Res_EnemyData" load_steps=2 format=3 uid="uid://b6w8r68kdunm1"]
+[gd_resource type="Resource" script_class="Res_EnemyData_Wizard" load_steps=2 format=3 uid="uid://b6w8r68kdunm1"]
 
 [ext_resource type="Script" uid="uid://b5kjs4ghd82k2" path="res://resources/enemy/enemy_data/res_ed_Wizard.gd" id="1_d7rhm"]
 
@@ -6,4 +6,6 @@
 script = ExtResource("1_d7rhm")
 id = 1
 name = "Cube Wizard"
+health = 10.0
+skills = Array[int]([7])
 metadata/_custom_type_script = "uid://b5kjs4ghd82k2"

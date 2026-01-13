@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Res_EnemySkillData" load_steps=3 format=3 uid="uid://b8520gplsf30n"]
+
+[ext_resource type="Script" uid="uid://0mmf01wu51c2" path="res://resources/enemy/enemy_skill_data/res_EnemySkillData.gd" id="1_4usuo"]
+[ext_resource type="PackedScene" uid="uid://qujucpuemwtw" path="res://scenes/enemy_skill/enemy_skill_MagicBall/enemy_skill_MagicBall.tscn" id="2_w6d2o"]
+
+[resource]
+script = ExtResource("1_4usuo")
+skill_scene = ExtResource("2_w6d2o")
+id = 7
+name = "Magic Ball"
+cast_range = 150.0
+metadata/_custom_type_script = "uid://0mmf01wu51c2"

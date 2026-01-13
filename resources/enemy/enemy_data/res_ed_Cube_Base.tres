@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_inj6l")
 name = "Cube Base"
+skills = Array[int]([0])
 metadata/_custom_type_script = "uid://cmci7uxa50gcn"

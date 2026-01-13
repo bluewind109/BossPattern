@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Res_EnemySkillData" load_steps=3 format=3 uid="uid://cqd23xdnrq41y"]
+
+[ext_resource type="Script" uid="uid://0mmf01wu51c2" path="res://resources/enemy/enemy_skill_data/res_EnemySkillData.gd" id="1_2mfd0"]
+[ext_resource type="PackedScene" uid="uid://ialf7ur8mrxp" path="res://scenes/enemy_skill/enemy_skill_ShieldSlam/enemy_skill_ShieldSlam.tscn" id="2_ttnfm"]
+
+[resource]
+script = ExtResource("1_2mfd0")
+skill_scene = ExtResource("2_ttnfm")
+id = 6
+name = "Shield Slam"
+metadata/_custom_type_script = "uid://0mmf01wu51c2"
