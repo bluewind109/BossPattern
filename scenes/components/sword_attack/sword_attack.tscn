@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d21n2muh2acff"]
+[gd_scene load_steps=9 format=3 uid="uid://d21n2muh2acff"]
 
 [ext_resource type="Script" uid="uid://bk8xorwk75tyr" path="res://scenes/components/sword_attack/sword_attack.gd" id="1_08kf2"]
 [ext_resource type="PackedScene" uid="uid://bot5mxnj8w23n" path="res://scenes/components/sword_slash/sword_slash.tscn" id="2_n2civ"]
 [ext_resource type="Texture2D" uid="uid://8xiis3hryuqa" path="res://scenes/components/sword_attack/sprites/sword.png" id="3_a7wf4"]
+[ext_resource type="Texture2D" uid="uid://cjjh8mxa2gm7k" path="res://scenes/components/sword_attack/sprites/vfx_slash-Sheet.png" id="3_p6pl2"]
 
 [sub_resource type="Animation" id="Animation_sneei"]
 length = 0.001
@@ -30,11 +31,47 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("slash_sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("slash_sprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0738008]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("slash_sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_a7wf4"]
 resource_name = "slash"
-length = 0.3
-step = 0.05
+length = 0.5
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -72,6 +109,42 @@ tracks/2/keys = {
 "args": [],
 "method": &"spawn_slash"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("slash_sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.22500002, 0.275, 0.325, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 3, 4, 5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("slash_sprite:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.275),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0738008, 2.0738008]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("slash_sprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.22500001, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_rdgw1"]
@@ -118,6 +191,17 @@ sword_slash_scene = ExtResource("2_n2civ")
 libraries = {
 &"": SubResource("AnimationLibrary_ljfvw")
 }
+
+[node name="slash_sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(6, 5.0000005)
+rotation = 2.0738008
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_p6pl2")
+hframes = 6
+frame = 2
+region_enabled = true
+region_rect = Rect2(-96, 768, 576, 96)
 
 [node name="sword_sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
