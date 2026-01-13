@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Res_EnemyData_Shielder" load_steps=2 format=3 uid="uid://cr4ykpf2kejtl"]
+[gd_resource type="Resource" script_class="Res_EnemyData_Shielder" load_steps=3 format=3 uid="uid://cr4ykpf2kejtl"]
 
+[ext_resource type="PackedScene" uid="uid://ef1bcl6w0dvy" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/enemy_Cube_Shielder.tscn" id="1_2by4t"]
 [ext_resource type="Script" uid="uid://du7tw2c7lcmg0" path="res://resources/enemy/enemy_data/res_ed_Shielder.gd" id="1_ll1g7"]
 
 [resource]
 script = ExtResource("1_ll1g7")
+enemy_scene = ExtResource("1_2by4t")
 id = 2
 name = "Cube Shielder"
 health = 10.0

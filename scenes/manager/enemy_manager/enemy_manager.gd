@@ -4,20 +4,18 @@ class_name EnemyManager
 const SPAWN_RADIUS: float = 200
 
 @export var enemies: Dictionary[EnemyDefine.ENEMY_ID, Res_EnemyData]
-@export var enemy_cube_base_scene: PackedScene
-@export var enemy_cube_wizard_scene: PackedScene
-@export var enemy_cube_shielder_scene: PackedScene
 @export var game_time_manager: GameTimeManager
 
 @onready var spawn_timer: Timer = $%spawn_timer
 
 var base_spawn_time = 0
-var enemy_table = WeightedTable.new()
+var enemy_table = EnemyWeightedTable.new()
 var number_to_spawn: int = 1
 
 
 func _ready() -> void:
-	enemy_table.add_item(enemy_cube_base_scene, 10)
+	var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.BASE, 10)
+	enemy_table.add_item(enemy_weight)
 	base_spawn_time = spawn_timer.wait_time
 	game_time_manager.arena_difficulty_increased.connect(_on_arena_difficulty_increased)
 	spawn_timer.timeout.connect(_on_spawn_timeout)	
@@ -55,12 +53,13 @@ func _on_spawn_timeout():
 	if (player == null): return
 
 	for i in number_to_spawn:
-		var enemy_scene = enemy_table.pick_item()
-		var enemy_instance = enemy_scene.instantiate() as EnemyBase
-		var entities_layer = get_tree().get_first_node_in_group("entities_layer")
-		if (entities_layer == null): return
-		entities_layer.add_child(enemy_instance)
-		enemy_instance.global_position = get_spawn_position()
+		var enemy_id: EnemyDefine.ENEMY_ID = enemy_table.pick_item()
+		if enemies.has(enemy_id):
+			var enemy_instance = enemies[enemy_id].enemy_scene.instantiate() as EnemyBase
+			var entities_layer = get_tree().get_first_node_in_group("entities_layer")
+			if (entities_layer == null): return
+			entities_layer.add_child(enemy_instance)
+			enemy_instance.global_position = get_spawn_position()
 
 
 func _on_arena_difficulty_increased(arena_difficulty: int):
@@ -70,10 +69,12 @@ func _on_arena_difficulty_increased(arena_difficulty: int):
 	spawn_timer.wait_time = max(base_spawn_time - time_off, 0.1)
 
 	if (arena_difficulty == 3):
-		enemy_table.add_item(enemy_cube_wizard_scene, 5)
+		var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.WIZARD, 5)
+		enemy_table.add_item(enemy_weight)
 		
 	if (arena_difficulty == 6):
-		enemy_table.add_item(enemy_cube_shielder_scene, 5)
+		var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.SHIELDER, 5)
+		enemy_table.add_item(enemy_weight)
 
 	if ((arena_difficulty % 6) == 0):
 		number_to_spawn += 1
