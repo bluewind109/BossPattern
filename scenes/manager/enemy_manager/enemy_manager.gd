@@ -3,10 +3,11 @@ class_name EnemyManager
 
 const SPAWN_RADIUS: float = 200
 
-@export var enemies: Dictionary[EnemyDefine.ENEMY_ID, Res_EnemyData]
+@export var enemy_config: EnemyConfig
 @export var game_time_manager: GameTimeManager
-
 @onready var spawn_timer: Timer = $%spawn_timer
+
+var enemies: Dictionary[EnemyDefine.ENEMY_ID, Res_EnemyData]
 
 var base_spawn_time = 0
 var enemy_table = EnemyWeightedTable.new()
@@ -14,6 +15,7 @@ var number_to_spawn: int = 1
 
 
 func _ready() -> void:
+	enemies = enemy_config.enemies
 	var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.BASE, 10)
 	enemy_table.add_item(enemy_weight)
 	base_spawn_time = spawn_timer.wait_time
@@ -45,6 +47,7 @@ func get_spawn_position() -> Vector2:
 			# rotate 90 degrees
 			random_direction = random_direction.rotated(deg_to_rad(90))
 	return spawn_position
+
 
 func _on_spawn_timeout():
 	spawn_timer.start()

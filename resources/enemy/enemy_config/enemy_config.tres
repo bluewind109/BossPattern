@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=6 format=3 uid="uid://drwe0wevvtp6e"]
+
+[ext_resource type="Script" uid="uid://cmci7uxa50gcn" path="res://resources/enemy/enemy_data/res_EnemyData.gd" id="1_kwpky"]
+[ext_resource type="Script" uid="uid://so3dbbvfrqyl" path="res://resources/enemy/enemy_config/enemy_config.gd" id="2_3lqb5"]
+[ext_resource type="Resource" uid="uid://dr33jbeinrrbb" path="res://resources/enemy/enemy_data/res_ed_Cube_Base.tres" id="2_pepgg"]
+[ext_resource type="Resource" uid="uid://b6w8r68kdunm1" path="res://resources/enemy/enemy_data/res_ed_Wizard.tres" id="3_vnk6a"]
+[ext_resource type="Resource" uid="uid://cr4ykpf2kejtl" path="res://resources/enemy/enemy_data/res_ed_Shielder.tres" id="4_4u5sf"]
+
+[resource]
+script = ExtResource("2_3lqb5")
+enemies = Dictionary[int, ExtResource("1_kwpky")]({
+0: ExtResource("2_pepgg"),
+1: ExtResource("3_vnk6a"),
+2: ExtResource("4_4u5sf")
+})
+metadata/_custom_type_script = "uid://so3dbbvfrqyl"
