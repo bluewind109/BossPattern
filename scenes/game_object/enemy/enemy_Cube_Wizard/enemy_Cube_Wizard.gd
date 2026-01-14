@@ -12,7 +12,6 @@ enum STATE {Spawn, Normal, WindUp, Attack, Recover, Die}
 
 
 func _ready() -> void:
-	name = "enemy_Cube_Wizard"
 	super._ready()
 	init_states()
 	init_speed_dict()

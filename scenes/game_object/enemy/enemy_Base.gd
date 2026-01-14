@@ -34,6 +34,7 @@ func _ready() -> void:
 
 
 func apply_stat(res: Res_EnemyData):
+	name = res.name
 	component_health.init(res.health)
 	component_hitbox.set_damage(res.base_damage)
 
