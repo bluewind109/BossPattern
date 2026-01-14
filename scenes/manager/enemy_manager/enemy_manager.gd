@@ -15,7 +15,6 @@ var number_to_spawn: int = 1
 
 
 func _ready() -> void:
-	enemies = enemy_config.enemies.duplicate()
 	var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.BASE, 10)
 	enemy_table.add_item(enemy_weight)
 	base_spawn_time = spawn_timer.wait_time
@@ -57,7 +56,7 @@ func _on_spawn_timeout():
 
 	for i in number_to_spawn:
 		var enemy_id: EnemyDefine.ENEMY_ID = enemy_table.pick_item()
-		if enemies.has(enemy_id):
+		if enemy_config.enemies.has(enemy_id):
 			var enemy_instance = enemies[enemy_id].enemy_scene.instantiate() as EnemyBase
 			var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 			if (entities_layer == null): return
