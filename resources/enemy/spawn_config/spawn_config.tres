@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SpawnConfig" load_steps=4 format=3 uid="uid://c8r07a8xjt8su"]
+
+[ext_resource type="Script" uid="uid://c0ykol82ulve8" path="res://resources/enemy/spawn_config/res_spawn_data.gd" id="1_otf3x"]
+[ext_resource type="Script" uid="uid://feit3hlnb25t" path="res://resources/enemy/spawn_config/spawn_config.gd" id="1_t2nil"]
+
+[sub_resource type="Resource" id="Resource_otf3x"]
+script = ExtResource("1_otf3x")
+metadata/_custom_type_script = "uid://c0ykol82ulve8"
+
+[resource]
+script = ExtResource("1_t2nil")
+guideline = Array[ExtResource("1_otf3x")]([SubResource("Resource_otf3x")])
+metadata/_custom_type_script = "uid://feit3hlnb25t"

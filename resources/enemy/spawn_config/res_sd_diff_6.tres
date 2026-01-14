@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Res_SpawnData" load_steps=2 format=3 uid="uid://dp76mh0ckomrk"]
+
+[ext_resource type="Script" uid="uid://c0ykol82ulve8" path="res://resources/enemy/spawn_config/res_spawn_data.gd" id="1_lnibn"]
+
+[resource]
+script = ExtResource("1_lnibn")
+difficulty_level = 6
+enemy_id = 1001
+is_boss = true
+metadata/_custom_type_script = "uid://c0ykol82ulve8"

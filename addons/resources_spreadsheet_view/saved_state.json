@@ -211,6 +211,17 @@
         "visibility": 0.0
       }
     },
+    "res://resources/enemy/spawn_config/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    },
     "res://resources/enemy_data/": {
       "metadata/_custom_type_script": {
         "visibility": 0.0
@@ -247,7 +258,8 @@
     "res://resources/enemy_data/",
     "res://resources/enemy/",
     "res://resources/enemy/enemy_skill_data/",
-    "res://resources/enemy/enemy_data/"
+    "res://resources/enemy/enemy_data/",
+    "res://resources/enemy/spawn_config/"
   ],
   "table_functions": {
     "filter": [

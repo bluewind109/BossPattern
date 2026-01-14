@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Res_SpawnData" load_steps=2 format=3 uid="uid://c78h7o63xij55"]
+
+[ext_resource type="Script" uid="uid://c0ykol82ulve8" path="res://resources/enemy/spawn_config/res_spawn_data.gd" id="1_lg2cc"]
+
+[resource]
+script = ExtResource("1_lg2cc")
+difficulty_level = 12
+enemy_id = 2
+metadata/_custom_type_script = "uid://c0ykol82ulve8"
