@@ -63,6 +63,7 @@ func _on_spawn_timeout():
 			if (entities_layer == null): return
 			entities_layer.add_child(enemy_instance)
 			enemy_instance.global_position = get_spawn_position()
+			enemy_instance.apply_stat(enemies[enemy_id])
 
 
 func _on_arena_difficulty_increased(arena_difficulty: int):

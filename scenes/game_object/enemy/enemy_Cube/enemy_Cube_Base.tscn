@@ -81,7 +81,7 @@ script = ExtResource("2_28axu")
 body_sprite = NodePath("visuals/body")
 
 [node name="health" parent="." index="1"]
-max_health = 5.0
+max_health = 1.0
 
 [node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
 visual_node = NodePath("../visuals")
@@ -116,7 +116,7 @@ libraries = {
 }
 
 [node name="hitbox" parent="." index="12"]
-damage_amount = 5.0
+damage_amount = 1.0
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2(0, -8)

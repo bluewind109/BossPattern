@@ -30,7 +30,16 @@ func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("Player")
 	if (component_health): 
 		component_health.died.connect(_on_die)
-		component_health.init.call_deferred(component_health.max_health)
+		# component_health.init.call_deferred(component_health.max_health)
+
+
+func apply_stat(res: Res_EnemyData):
+	component_health.init(res.health)
+	component_hitbox.set_damage(res.base_damage)
+
+
+func add_skill():
+	pass
 
 
 func init_states():
