@@ -3,6 +3,7 @@ class_name EnemyManager
 
 const SPAWN_RADIUS: float = 200
 
+@export var spawn_config: SpawnConfig
 @export var enemy_config: EnemyConfig
 @export var game_time_manager: GameTimeManager
 @onready var spawn_timer: Timer = $%spawn_timer

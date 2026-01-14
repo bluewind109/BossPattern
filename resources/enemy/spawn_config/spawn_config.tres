@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="SpawnConfig" load_steps=4 format=3 uid="uid://c8r07a8xjt8su"]
+[gd_resource type="Resource" script_class="SpawnConfig" load_steps=7 format=3 uid="uid://c8r07a8xjt8su"]
 
 [ext_resource type="Script" uid="uid://c0ykol82ulve8" path="res://resources/enemy/spawn_config/res_spawn_data.gd" id="1_otf3x"]
 [ext_resource type="Script" uid="uid://feit3hlnb25t" path="res://resources/enemy/spawn_config/spawn_config.gd" id="1_t2nil"]
-
-[sub_resource type="Resource" id="Resource_otf3x"]
-script = ExtResource("1_otf3x")
-metadata/_custom_type_script = "uid://c0ykol82ulve8"
+[ext_resource type="Resource" uid="uid://s3npgtk8h253" path="res://resources/enemy/spawn_config/res_sd_diff_0.tres" id="2_ata4o"]
+[ext_resource type="Resource" uid="uid://b7n16qootgati" path="res://resources/enemy/spawn_config/res_sd_diff_3.tres" id="3_esgnj"]
+[ext_resource type="Resource" uid="uid://dp76mh0ckomrk" path="res://resources/enemy/spawn_config/res_sd_diff_6.tres" id="4_tmr3d"]
+[ext_resource type="Resource" uid="uid://c78h7o63xij55" path="res://resources/enemy/spawn_config/res_sd_diff_12.tres" id="5_3y01v"]
 
 [resource]
 script = ExtResource("1_t2nil")
-guideline = Array[ExtResource("1_otf3x")]([SubResource("Resource_otf3x")])
+guideline = Array[ExtResource("1_otf3x")]([ExtResource("2_ata4o"), ExtResource("3_esgnj"), ExtResource("4_tmr3d"), ExtResource("5_3y01v")])
 metadata/_custom_type_script = "uid://feit3hlnb25t"
