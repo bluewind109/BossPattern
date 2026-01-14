@@ -15,7 +15,7 @@ var number_to_spawn: int = 1
 
 
 func _ready() -> void:
-	enemies = enemy_config.enemies
+	enemies = enemy_config.enemies.duplicate()
 	var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.BASE, 10)
 	enemy_table.add_item(enemy_weight)
 	base_spawn_time = spawn_timer.wait_time
