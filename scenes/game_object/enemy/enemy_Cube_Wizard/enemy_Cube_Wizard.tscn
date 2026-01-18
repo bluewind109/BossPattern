@@ -28,9 +28,6 @@ resource_local_to_scene = true
 shader = SubResource("Shader_ek8e0")
 shader_parameter/lerp_percent = 0.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1smh"]
-size = Vector2(16, 16)
-
 [sub_resource type="Animation" id="Animation_ctqlp"]
 length = 0.001
 tracks/0/type = "value"
@@ -159,11 +156,14 @@ _data = {
 &"RESET": SubResource("Animation_ctqlp")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3a4f"]
-size = Vector2(16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_yvvxf"]
+radius = 7.071068
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvvxf"]
-size = Vector2(16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ctqlp"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k25jn"]
+radius = 2.236068
 
 [node name="enemy_Cube_Wizard" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_yxguv")]
 script = ExtResource("2_ccck5")
@@ -186,12 +186,7 @@ sprite = NodePath("../visuals/main_sprite/body")
 [node name="enemy_skill_MagicBall" parent="attack_manager" index="3" node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_ctqlp")]
 spawn_node = NodePath("../../visuals/main_sprite/wand/magic_ball_spawn")
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="." index="9"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_l1smh")
-debug_color = Color(0, 0.6, 0.69803923, 0)
-
-[node name="anim_spritesheet" parent="." index="10" instance=ExtResource("10_k25jn")]
+[node name="anim_spritesheet" parent="." index="9" instance=ExtResource("10_k25jn")]
 
 [node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
 root_node = NodePath("../..")
@@ -201,13 +196,13 @@ libraries = {
 }
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_d3a4f")
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_yvvxf")
 debug_color = Color(0.5137255, 0.5764706, 0, 0.6901961)
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_yvvxf")
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_ctqlp")
 debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
 [node name="main_sprite" type="Node2D" parent="visuals" index="0"]
@@ -229,3 +224,8 @@ offset = Vector2(0, -8)
 [node name="hat" type="Sprite2D" parent="visuals/main_sprite" index="2"]
 position = Vector2(-8, -23)
 texture = ExtResource("5_d3a4f")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="." index="14"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_k25jn")
+debug_color = Color(0, 0.6, 0.69803923, 0)
