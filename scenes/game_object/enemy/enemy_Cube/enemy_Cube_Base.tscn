@@ -155,5 +155,3 @@ debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 [node name="body" type="Sprite2D" parent="visuals" index="0"]
 position = Vector2(0, -8)
 texture = ExtResource("7_vvwbs")
-
-[editable path="hurtbox"]
