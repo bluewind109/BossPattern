@@ -1,7 +1,8 @@
-[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://d2girk0tlgf0p"]
+[gd_resource type="AnimationLibrary" load_steps=9 format=3 uid="uid://d2girk0tlgf0p"]
 
 [ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-1.png" id="1_picgs"]
 [ext_resource type="Texture2D" uid="uid://be8imx1ln4qfj" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-2.png" id="2_g2310"]
+[ext_resource type="Texture2D" uid="uid://cdt57nxcp48r8" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-3.png" id="2_v4fjp"]
 
 [sub_resource type="Animation" id="Animation_fscs4"]
 length = 0.001
@@ -104,7 +105,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_picgs")]
+"values": [ExtResource("2_v4fjp")]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -302,6 +303,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("visuals/body:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_picgs")]
 }
 
 [resource]

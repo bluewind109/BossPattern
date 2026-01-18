@@ -1,7 +1,8 @@
-[gd_resource type="AnimationLibrary" load_steps=7 format=3 uid="uid://cg7t287wui7ei"]
+[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://cg7t287wui7ei"]
 
 [ext_resource type="Texture2D" uid="uid://il3ihdhk3qv7" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-1.png" id="1_l8ic2"]
 [ext_resource type="Texture2D" uid="uid://j4cfsrf8lhm4" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-2.png" id="2_0lc7u"]
+[ext_resource type="Texture2D" uid="uid://cxrtdtak2brbf" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-3.png" id="2_1xoa2"]
 
 [sub_resource type="Animation" id="Animation_lqof2"]
 resource_name = "RESET"
@@ -106,6 +107,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../visuals/main_sprite/body:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_1xoa2")]
 }
 
 [sub_resource type="Animation" id="Animation_uwdmp"]
