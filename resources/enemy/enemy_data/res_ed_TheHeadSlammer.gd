@@ -1,0 +1,2 @@
+extends Res_EnemyData
+class_name Res_EnemyData_TheHeadSlammer

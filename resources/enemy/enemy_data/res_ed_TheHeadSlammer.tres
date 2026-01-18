@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Res_EnemyData_TheHeadSlammer" load_steps=3 format=3 uid="uid://dvd5hxt3pbxgm"]
+
+[ext_resource type="PackedScene" uid="uid://sc8gthbkjack" path="res://scenes/game_object/enemy/enemy_Boss1a_Square_TheHeadSlammer/enemy_Boss1a_Square_TheHeadSlammer.tscn" id="1_u0k8t"]
+[ext_resource type="Script" uid="uid://bx6q30mptli4" path="res://resources/enemy/enemy_data/res_ed_TheHeadSlammer.gd" id="1_u27dc"]
+
+[resource]
+script = ExtResource("1_u27dc")
+enemy_scene = ExtResource("1_u0k8t")
+id = 1001
+name = "The Head Slammer"
+health = 200.0
+speed = 35.0
+base_damage = 15.0
+skills = Array[int]([0])
+metadata/_custom_type_script = "uid://bx6q30mptli4"
