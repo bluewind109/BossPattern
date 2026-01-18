@@ -1,8 +1,8 @@
 [gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://cfw0kj2idd2tv"]
 
-[ext_resource type="Texture2D" uid="uid://dma6g2xrgmont" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-1.png" id="1_3hieq"]
-[ext_resource type="Texture2D" uid="uid://71ukdd42jled" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-3.png" id="2_gk2y6"]
-[ext_resource type="Texture2D" uid="uid://bwcdt3ghetoto" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-2.png" id="2_wxu58"]
+[ext_resource type="Texture2D" uid="uid://dma6g2xrgmont" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Triangle_Wizard-1.png" id="1_wxu58"]
+[ext_resource type="Texture2D" uid="uid://71ukdd42jled" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Triangle_Wizard-3.png" id="2_gk2y6"]
+[ext_resource type="Texture2D" uid="uid://bwcdt3ghetoto" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Triangle_Wizard-2.png" id="3_gk2y6"]
 
 [sub_resource type="Animation" id="Animation_810j5"]
 length = 0.4
@@ -52,7 +52,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_3hieq")]
+"values": [ExtResource("1_wxu58")]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -230,7 +230,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_wxu58")]
+"values": [ExtResource("3_gk2y6")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -380,7 +380,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_3hieq")]
+"values": [ExtResource("1_wxu58")]
 }
 tracks/4/type = "value"
 tracks/4/imported = false

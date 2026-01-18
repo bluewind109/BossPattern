@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://71ukdd42jled"
-path="res://.godot/imported/enemy_Cube_Wizard-3.png-875ccd86f94147777686564aa81ecf99.ctex"
+uid="uid://x7ij5csehon5"
+path="res://.godot/imported/enemy_Triangle_Wizard-Hat.png-f616f9d9bd5919fad3dc40719e22fd18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Cube_Wizard-3.png"
-dest_files=["res://.godot/imported/enemy_Cube_Wizard-3.png-875ccd86f94147777686564aa81ecf99.ctex"]
+source_file="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Triangle_Wizard-Hat.png"
+dest_files=["res://.godot/imported/enemy_Triangle_Wizard-Hat.png-f616f9d9bd5919fad3dc40719e22fd18.ctex"]
 
 [params]
 
