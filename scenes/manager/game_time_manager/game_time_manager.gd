@@ -3,7 +3,7 @@ class_name GameTimeManager
 
 signal arena_difficulty_increased(arena_difficulty: int)
 
-const DIFFICULTY_INTERVAL = 5 # seconds
+@export var DIFFICULTY_INTERVAL: float = 5 # seconds
 
 @export var end_screen_scene: PackedScene
 
