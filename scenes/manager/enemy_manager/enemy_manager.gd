@@ -14,10 +14,14 @@ var base_spawn_time = 0
 var enemy_table = EnemyWeightedTable.new()
 var number_to_spawn: int = 1
 
+var current_difficulty: int = 0
+
 
 func _ready() -> void:
-	var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.BASE, 10)
-	enemy_table.add_item(enemy_weight)
+	# var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.BASE, 10)
+	# enemy_table.add_item(enemy_weight)
+	update_spawn_pool_by_difficulty(current_difficulty)
+
 	base_spawn_time = spawn_timer.wait_time
 	game_time_manager.arena_difficulty_increased.connect(_on_arena_difficulty_increased)
 	spawn_timer.timeout.connect(_on_spawn_timeout)	
@@ -49,6 +53,16 @@ func get_spawn_position() -> Vector2:
 	return spawn_position
 
 
+func update_spawn_pool_by_difficulty(_diff: int):
+	var arr_new_spawns: Array[Res_SpawnData] = spawn_config.get_items_by_difficulty(_diff)
+	if (arr_new_spawns.is_empty()): return
+	for spawn in arr_new_spawns:
+		var _spawn_id = spawn.enemy_id
+		var _weight = spawn.weight
+		var enemy_weight = EnemyWeight.new(_spawn_id, _weight)
+		enemy_table.add_item(enemy_weight)
+
+
 func _on_spawn_timeout():
 	spawn_timer.start()
 	
@@ -58,12 +72,12 @@ func _on_spawn_timeout():
 	for i in number_to_spawn:
 		var enemy_id: EnemyDefine.ENEMY_ID = enemy_table.pick_item()
 		if enemy_config.enemies.has(enemy_id):
-			var enemy_instance = enemies[enemy_id].enemy_scene.instantiate() as EnemyBase
+			var enemy_instance = enemy_config.enemies[enemy_id].enemy_scene.instantiate() as EnemyBase
 			var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 			if (entities_layer == null): return
 			entities_layer.add_child(enemy_instance)
 			enemy_instance.global_position = get_spawn_position()
-			enemy_instance.apply_stat(enemies[enemy_id])
+			enemy_instance.apply_stat(enemy_config.enemies[enemy_id])
 
 
 func _on_arena_difficulty_increased(arena_difficulty: int):
@@ -72,13 +86,9 @@ func _on_arena_difficulty_increased(arena_difficulty: int):
 	# print("_on_arena_difficulty_increased: ", time_off)
 	spawn_timer.wait_time = max(base_spawn_time - time_off, 0.1)
 
-	if (arena_difficulty == 3):
-		var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.WIZARD, 5)
-		enemy_table.add_item(enemy_weight)
-		
-	if (arena_difficulty == 6):
-		var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.SHIELDER, 5)
-		enemy_table.add_item(enemy_weight)
-
 	if ((arena_difficulty % 6) == 0):
 		number_to_spawn += 1
+
+	if (arena_difficulty == current_difficulty): return
+	current_difficulty = arena_difficulty
+	update_spawn_pool_by_difficulty(current_difficulty)

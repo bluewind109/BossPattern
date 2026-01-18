@@ -19,7 +19,7 @@ var previous_time: float = 0
 func _ready() -> void:
 	game_timer.timeout.connect(_on_game_timer_finished)
 	difficulty_timer.wait_time = DIFFICULTY_INTERVAL
-	difficulty_timer.timeout.connect(_on_count_down_finished)
+	difficulty_timer.timeout.connect(_on_difficulty_timer_finished)
 	current_time = 0.0
 	update_game_time()
 
@@ -43,7 +43,7 @@ func _on_game_timer_finished():
 	MetaProgression.save()
 
 
-func _on_count_down_finished():
+func _on_difficulty_timer_finished():
 	_increase_difficulty()
 
 
