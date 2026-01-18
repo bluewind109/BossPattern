@@ -36,7 +36,7 @@ func init_anim_dict(_lib_name: String):
 	var lib_name = _lib_name + "/"
 	anim_dict = {
 		ANIM_STATE.RESET: AnimationInfo.new(lib_name + "RESET", true),
-		ANIM_STATE.walk: AnimationInfo.new(lib_name + "walk", true),
+		ANIM_STATE.walk: AnimationInfo.new(lib_name + "walk_alt", true),
 		ANIM_STATE.attack: AnimationInfo.new(lib_name + "attack_headslam", false),
 		ANIM_STATE.die: AnimationInfo.new(lib_name + "die", false),
 	}
