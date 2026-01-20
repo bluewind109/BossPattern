@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdt57nxcp48r8"
-path="res://.godot/imported/enemy_Cube_Base-3.png-ed5b7c851eb32250fc772db59b898694.ctex"
+uid="uid://cwpabssj5242b"
+path="res://.godot/imported/enemy_Square_Shielder-WoodeTowerShield.png-bfdf7d74a9d359c125fb558c54a0ce9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-3.png"
-dest_files=["res://.godot/imported/enemy_Cube_Base-3.png-ed5b7c851eb32250fc772db59b898694.ctex"]
+source_file="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Square_Shielder-WoodeTowerShield.png"
+dest_files=["res://.godot/imported/enemy_Square_Shielder-WoodeTowerShield.png-bfdf7d74a9d359c125fb558c54a0ce9f.ctex"]
 
 [params]
 

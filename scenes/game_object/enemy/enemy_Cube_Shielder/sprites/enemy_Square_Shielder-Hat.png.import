@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be8imx1ln4qfj"
-path="res://.godot/imported/enemy_Cube_Base-2.png-07838d9d22b6e113fdd0332d6afc428c.ctex"
+uid="uid://l1idh45y5cu4"
+path="res://.godot/imported/enemy_Square_Shielder-Hat.png-b9ed8cb0b35365099031b00992113c77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-2.png"
-dest_files=["res://.godot/imported/enemy_Cube_Base-2.png-07838d9d22b6e113fdd0332d6afc428c.ctex"]
+source_file="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Square_Shielder-Hat.png"
+dest_files=["res://.godot/imported/enemy_Square_Shielder-Hat.png-b9ed8cb0b35365099031b00992113c77.ctex"]
 
 [params]
 

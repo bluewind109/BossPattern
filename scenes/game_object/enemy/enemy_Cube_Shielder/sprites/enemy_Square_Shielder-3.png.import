@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxrtdtak2brbf"
-path="res://.godot/imported/enemy_Cube_Shielder-3.png-00a9ad53f28ae06f4b9fab00a47d0076.ctex"
+path="res://.godot/imported/enemy_Square_Shielder-3.png-da68bc358790638287f981359ef22178.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-3.png"
-dest_files=["res://.godot/imported/enemy_Cube_Shielder-3.png-00a9ad53f28ae06f4b9fab00a47d0076.ctex"]
+source_file="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Square_Shielder-3.png"
+dest_files=["res://.godot/imported/enemy_Square_Shielder-3.png-da68bc358790638287f981359ef22178.ctex"]
 
 [params]
 

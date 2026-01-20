@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bekse2jwwxb22"
-path="res://.godot/imported/enemy_Cube_Base-1.png-f2e3d9614bf6c1c127cd4ff537d45f07.ctex"
+uid="uid://cdt57nxcp48r8"
+path="res://.godot/imported/enemy_Square_Base-3.png-6a10adb3e0243736de5f0727d1ab39dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-1.png"
-dest_files=["res://.godot/imported/enemy_Cube_Base-1.png-f2e3d9614bf6c1c127cd4ff537d45f07.ctex"]
+source_file="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-3.png"
+dest_files=["res://.godot/imported/enemy_Square_Base-3.png-6a10adb3e0243736de5f0727d1ab39dc.ctex"]
 
 [params]
 

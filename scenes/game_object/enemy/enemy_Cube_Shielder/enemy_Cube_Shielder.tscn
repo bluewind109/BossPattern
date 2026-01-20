@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="4_tqlaq"]
 [ext_resource type="Shader" uid="uid://8m2vl11guwmx" path="res://shader/explode.gdshader" id="5_6k0qr"]
 [ext_resource type="PackedScene" uid="uid://dr2vponw2jou3" path="res://scenes/components/barrier/barrier.tscn" id="5_dvman"]
-[ext_resource type="Texture2D" uid="uid://il3ihdhk3qv7" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-1.png" id="5_h8htr"]
-[ext_resource type="Texture2D" uid="uid://cwpabssj5242b" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Cube_Shielder-WoodeTowerShield.png" id="7_fugpu"]
+[ext_resource type="Texture2D" uid="uid://il3ihdhk3qv7" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Square_Shielder-1.png" id="5_h8htr"]
+[ext_resource type="Texture2D" uid="uid://cwpabssj5242b" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Square_Shielder-WoodeTowerShield.png" id="7_fugpu"]
 [ext_resource type="AnimationLibrary" uid="uid://cg7t287wui7ei" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/animation/enemy_cube_shielder_lib.tres" id="11_uoqil"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7g67l"]

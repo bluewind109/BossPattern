@@ -1,8 +1,8 @@
 [gd_resource type="AnimationLibrary" load_steps=9 format=3 uid="uid://d2girk0tlgf0p"]
 
-[ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-1.png" id="1_picgs"]
-[ext_resource type="Texture2D" uid="uid://be8imx1ln4qfj" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-2.png" id="2_g2310"]
-[ext_resource type="Texture2D" uid="uid://cdt57nxcp48r8" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-3.png" id="2_v4fjp"]
+[ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-1.png" id="1_picgs"]
+[ext_resource type="Texture2D" uid="uid://be8imx1ln4qfj" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-2.png" id="2_g2310"]
+[ext_resource type="Texture2D" uid="uid://cdt57nxcp48r8" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-3.png" id="2_v4fjp"]
 
 [sub_resource type="Animation" id="Animation_fscs4"]
 length = 0.001

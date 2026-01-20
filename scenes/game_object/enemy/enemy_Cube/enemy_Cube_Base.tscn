@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://p3rx5mm5eehr" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.gd" id="2_28axu"]
 [ext_resource type="AnimationLibrary" uid="uid://d2girk0tlgf0p" path="res://scenes/game_object/enemy/enemy_Cube/animation/enemy_cube_base_lib.tres" id="6_g34t7"]
 [ext_resource type="PackedScene" uid="uid://cqsedpf1ft2xq" path="res://scenes/enemy_skill/enemy_skill_HeadSlam/enemy_skill_HeadSlam.tscn" id="6_vvwbs"]
-[ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Cube_Base-1.png" id="7_vvwbs"]
+[ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-1.png" id="7_vvwbs"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="8_angwg"]
 
 [sub_resource type="Shader" id="Shader_g34t7"]
@@ -116,9 +116,6 @@ sprite = NodePath("../visuals/body")
 [node name="hit_flash" parent="." index="6" node_paths=PackedStringArray("sprite")]
 hit_flash_material = SubResource("ShaderMaterial_angwg")
 sprite = NodePath("../visuals/body")
-
-[node name="attack_manager" parent="." index="7"]
-ATTACK_RANGE = 25.0
 
 [node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node") instance=ExtResource("6_vvwbs")]
 hitbox_collision_shape = NodePath("../../hitbox/collision_shape_2d")
