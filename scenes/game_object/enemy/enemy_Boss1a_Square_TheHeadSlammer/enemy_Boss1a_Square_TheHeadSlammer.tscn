@@ -37,9 +37,10 @@ sprite = NodePath("../visuals/body")
 hit_flash_material = SubResource("ShaderMaterial_7g67l")
 sprite = NodePath("../visuals/body")
 
-[node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node") instance=ExtResource("4_3clqf")]
+[node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node", "visual_node") instance=ExtResource("4_3clqf")]
 hitbox_collision_shape = NodePath("../../hitbox/collision_shape_2d")
 follow_node = NodePath("../../visuals/body")
+visual_node = NodePath("../../visuals")
 
 [node name="death" parent="." index="8" node_paths=PackedStringArray("sprite")]
 sprite = NodePath("../visuals/body")
@@ -55,16 +56,18 @@ shape = SubResource("RectangleShape2D_3clqf")
 debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
 [node name="body" type="Sprite2D" parent="visuals" index="0"]
+position = Vector2(0, -8)
 texture = ExtResource("3_u11kf")
-offset = Vector2(0, -8)
 
-[node name="anim_spritesheet" parent="." index="13" instance=ExtResource("4_tpr83")]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="." index="13"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_nxpb7")
 
-[node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
+[node name="animation_handler" parent="." index="14" node_paths=PackedStringArray("anim_player") instance=ExtResource("4_tpr83")]
+anim_player = NodePath("../animation_player")
+
+[node name="animation_player" type="AnimationPlayer" parent="." index="15"]
+root_node = NodePath("../animation_handler")
 libraries = {
 &"enemy_cube_base_lib": ExtResource("5_u11kf")
 }
-
-[node name="collision_shape_2d" type="CollisionShape2D" parent="." index="14"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_nxpb7")
