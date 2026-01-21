@@ -6,7 +6,7 @@ enum ANIM_STATE{RESET = 0, idle, walk, attack_1, attack_2, attack_3, attack_4, s
 enum STATE {Normal, WindUp, Charge, PoisonExplosionAttack, Recover, Die}
 
 
-@onready var anim_ss: AnimationHandler = $anim_spritesheet
+@onready var anim_ss: AnimationHandler = $animation_handler
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
 @onready var skill_charge: EnemySkill_Charge = $attack_manager/charge

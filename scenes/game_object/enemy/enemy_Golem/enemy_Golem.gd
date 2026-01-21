@@ -6,7 +6,7 @@ enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
 enum STATE {Normal, WindUp, Attack, Recover, Die}
 
 
-@onready var anim_ss: AnimationHandler = $anim_spritesheet
+@onready var anim_ss: AnimationHandler = $animation_handler
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
 @onready var skill_shockwave: ComponentShockwave = $attack_manager/shockwave

@@ -5,7 +5,7 @@ enum SPEED_STATE {idle, spawn, normal, wind_up, attack, recover, die}
 enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
 enum STATE {Spawn, Normal, WindUp, Attack, Recover, Die}
 
-@onready var anim_ss: AnimationHandler = $anim_spritesheet
+@onready var anim_ss: AnimationHandler = $animation_handler
 @onready var shield_anim_player: AnimationPlayer = $%shield_animation_player
 @onready var skill_shield_slam: EnemySkill_ShieldSlam = $attack_manager/enemy_skill_ShieldSlam
 @onready var barrier: Barrier = $barrier
