@@ -13,7 +13,6 @@ enum SKILL_TYPE
 	magic_ball = 7,
 }
 
-signal on_skill_casted
 signal on_skill_finished
 
 @onready var cooldown_timer: Timer = $cooldown_timer
@@ -35,13 +34,11 @@ func _ready() -> void:
 func cast():
 	if (not can_cast()): return
 	_start_cooldown()
-	on_skill_casted.emit()
 
 
 func cast_at(_target: Node2D):
 	if (not can_cast()): return
 	_start_cooldown()
-	on_skill_casted.emit()
 
 
 func can_cast() -> bool:
@@ -61,6 +58,10 @@ func get_owner_position() -> Vector2:
 
 func _start_cooldown():
 	cooldown_timer.start()
+
+
+func on_skill_casted():
+	pass
 
 
 func _on_skill_finished():

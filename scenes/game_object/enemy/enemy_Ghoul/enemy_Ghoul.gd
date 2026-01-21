@@ -49,7 +49,6 @@ func bind_signals():
 	attack_manager.on_attack_finished.connect(_on_attack_finished)
 	attack_manager.delay_timer.timeout.connect(_on_wind_up_finished)
 	attack_manager.recover_timer.timeout.connect(_on_recover_finished)
-	skill_melee_attack.on_skill_casted.connect(_on_melee_attack_casted)
 
 
 func add_states():
@@ -144,6 +143,7 @@ func _on_leave_wind_up_state():
 func _on_enter_attack_state():
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
 	skill_melee_attack.cast_at(player_ref)
+	anim_ss.play_anim(ANIM_STATE.attack, false)
 
 
 func _on_attack_state(_delta: float):
@@ -208,13 +208,8 @@ func _on_die():
 
 
 func _on_animation_finished(_anim_name: StringName):
-	if (_anim_name == anim_dict[ANIM_STATE.attack]["name"]):
+	if (_anim_name == get_anim_name(ANIM_STATE.attack)):
+		skill_melee_attack.on_skill_casted()
 		set_state(STATE.Recover)
-	elif (_anim_name == anim_dict[ANIM_STATE.die]["name"]):
+	elif (_anim_name == get_anim_name(ANIM_STATE.die)):
 		queue_free()
-
-
-func _on_melee_attack_casted():
-	if (is_dead): return
-	if (anim_ss == null): return
-	anim_ss.play_anim(ANIM_STATE.attack, false)
