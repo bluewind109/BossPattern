@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://s35lmfixqjns"]
+[gd_scene load_steps=15 format=4 uid="uid://s35lmfixqjns"]
 
 [ext_resource type="Script" uid="uid://cpl63vx0dh74g" path="res://scenes/game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://cmetek8tl6wgi" path="res://scenes/manager/experience_manager/experience_manager.tscn" id="2_5jirj"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://byl6awhgih8kh" path="res://scenes/ui/experience_bar/experience_bar.tscn" id="6_5jirj"]
 [ext_resource type="PackedScene" uid="uid://bxqhxclk73slc" path="res://scenes/ui/vignette/vignette.tscn" id="6_ftsea"]
 [ext_resource type="PackedScene" uid="uid://b8a8w5nfrr16x" path="res://scenes/manager/game_time_manager/game_time_manager.tscn" id="6_vaxfo"]
+[ext_resource type="PackedScene" uid="uid://dwasuhvibmu61" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.tscn" id="14_ftsea"]
 
 [node name="game" type="Node"]
 script = ExtResource("1_l1rk1")
@@ -66,5 +67,8 @@ y_sort_enabled = true
 unique_name_in_owner = true
 position = Vector2(302, 184)
 game_time_manager = NodePath("../../game_time_manager")
+
+[node name="enemy_Cube_Base" parent="entities" instance=ExtResource("14_ftsea")]
+position = Vector2(417, 182)
 
 [node name="foreground" type="Node2D" parent="." groups=["foreground_layer"]]

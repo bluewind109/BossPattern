@@ -177,7 +177,7 @@ func _on_leave_wind_up_state():
 func _on_enter_attack_state():
 	anim_ss.play_anim(ANIM_STATE.attack, false)
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.attack])
-	skill_head_slam.cast()
+	skill_head_slam.cast_at(player_ref)
 
 
 func _on_attack_state(_delta: float):
@@ -254,6 +254,7 @@ func _on_die():
 
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == get_anim_name(ANIM_STATE.attack)):
+		skill_head_slam.on_skill_casted()
 		set_state(STATE.Recover)
 	elif (_anim_name == get_anim_name(ANIM_STATE.die)):
 		_play_dissolve_effect()

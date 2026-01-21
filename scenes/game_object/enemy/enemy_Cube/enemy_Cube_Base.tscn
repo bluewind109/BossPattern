@@ -108,6 +108,7 @@ body_sprite = NodePath("visuals/body")
 max_health = 1.0
 
 [node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
+use_rotation = true
 visual_node = NodePath("../visuals")
 
 [node name="dissolve_effect" parent="." index="5" node_paths=PackedStringArray("sprite")]

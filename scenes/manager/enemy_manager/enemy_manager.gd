@@ -3,6 +3,7 @@ class_name EnemyManager
 
 const SPAWN_RADIUS: float = 200
 
+@export var is_disabled: bool = false
 @export var spawn_config: SpawnConfig
 @export var enemy_config: EnemyConfig
 @export var game_time_manager: GameTimeManager
@@ -64,6 +65,7 @@ func update_spawn_pool_by_difficulty(_diff: int):
 
 
 func _on_spawn_timeout():
+	if (is_disabled): return
 	spawn_timer.start()
 	
 	var player = get_tree().get_first_node_in_group("Player") as Player
