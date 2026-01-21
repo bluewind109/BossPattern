@@ -2,91 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_briyy"]
 [ext_resource type="Script" uid="uid://cpwjigdy3peav" path="res://scenes/game_object/enemy/enemy_Mage/enemy_Mage.gd" id="2_uixk6"]
+[ext_resource type="Shader" uid="uid://dd7xij77hfa8a" path="res://scenes/components/hit_flash/shader/hit_flash.gdshader" id="3_06fj0"]
 [ext_resource type="PackedScene" uid="uid://dn567e2bat71b" path="res://scenes/enemy_skill/enemy_skill_LightningStrike/enemy_skill_LightningStrike.tscn" id="3_glphd"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/animation_handler/animation_handler.tscn" id="3_vcj3g"]
 [ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://scenes/components/pulse_effect/pulse_effect.tscn" id="4_ree8f"]
 [ext_resource type="Texture2D" uid="uid://66dw8oiexphf" path="res://scenes/game_object/enemy/enemy_Mage/sprites/STRANDED - Relic Guardian 3/Guardian Sprite Sheets/Relic Guardian 3 Sprite Sheet 95x65 - No Shadow.png" id="5_glphd"]
-[ext_resource type="AnimationLibrary" uid="uid://rwvyrh05hhsi" path="res://scenes/game_object/enemy/enemy_Mage/animation/enemy_mage_lib.res" id="6_glphd"]
+[ext_resource type="AnimationLibrary" uid="uid://bnbrprdgr5y1f" path="res://scenes/game_object/enemy/enemy_Mage/animation/enemy_mage_lib.tres" id="8_06fj0"]
 
-[sub_resource type="Animation" id="Animation_2er04"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_glphd")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame_coords")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:region_rect")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 380, 65)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:hframes")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [16]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:vframes")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4pwfd"]
-_data = {
-&"RESET": SubResource("Animation_2er04")
-}
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7g67l"]
+resource_local_to_scene = true
+shader = ExtResource("3_06fj0")
+shader_parameter/lerp_percent = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_glphd"]
 radius = 9.0
@@ -94,24 +20,22 @@ radius = 9.0
 [node name="enemy_Mage" instance=ExtResource("1_briyy")]
 script = ExtResource("2_uixk6")
 
-[node name="attack_manager" parent="." index="1"]
+[node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
+is_base_sprite_looking_left = false
+visual_node = NodePath("../visuals")
+
+[node name="hit_flash" parent="." index="6" node_paths=PackedStringArray("sprite")]
+hit_flash_material = SubResource("ShaderMaterial_7g67l")
+sprite = NodePath("../visuals/sprite_2d")
+
+[node name="attack_manager" parent="." index="7"]
 ATTACK_RANGE = 200.0
 
 [node name="enemy_skill_LightningStrike" parent="attack_manager" index="3" instance=ExtResource("3_glphd")]
+explo_range = Vector2(5, 125)
+explosion_delay_duration = 1.5
+explosion_count = 6
 cast_range = 200.0
-
-[node name="anim_spritesheet" parent="." index="3" instance=ExtResource("3_vcj3g")]
-texture = ExtResource("5_glphd")
-offset = Vector2(3.32, -14.485)
-hframes = 16
-region_enabled = true
-region_rect = Rect2(0, 0, 380, 65)
-
-[node name="animation_player" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
-libraries = {
-&"": SubResource("AnimationLibrary_4pwfd"),
-&"enemy_mage_lib": ExtResource("6_glphd")
-}
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2(0, -15)
@@ -123,7 +47,18 @@ position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_glphd")
 debug_color = Color(0, 0.6, 0.7019608, 0.0627451)
 
-[node name="pulse_effect" parent="." index="8" instance=ExtResource("4_ree8f")]
+[node name="sprite_2d" type="Sprite2D" parent="visuals" index="0"]
+texture = ExtResource("5_glphd")
+hframes = 4
+region_rect = Rect2(0, 65, 380, 65)
 
-[node name="look" parent="." index="9"]
-is_base_sprite_looking_left = false
+[node name="pulse_effect" parent="." index="13" instance=ExtResource("4_ree8f")]
+
+[node name="animation_handler" parent="." index="14" node_paths=PackedStringArray("anim_player") instance=ExtResource("3_vcj3g")]
+anim_player = NodePath("../animation_player")
+
+[node name="animation_player" type="AnimationPlayer" parent="." index="15"]
+root_node = NodePath("../animation_handler")
+libraries = {
+&"enemy_mage_lib": ExtResource("8_06fj0")
+}

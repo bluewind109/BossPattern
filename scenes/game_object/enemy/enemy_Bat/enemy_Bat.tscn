@@ -35,8 +35,9 @@ acceleration = 1.0
 [node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
 visual_node = NodePath("../visuals")
 
-[node name="hit_flash" parent="." index="6"]
+[node name="hit_flash" parent="." index="6" node_paths=PackedStringArray("sprite")]
 hit_flash_material = SubResource("ShaderMaterial_7g67l")
+sprite = NodePath("../visuals/sprite_2d")
 
 [node name="charge" parent="attack_manager" index="1" instance=ExtResource("5_p1fpe")]
 cooldown_duration = 5.0

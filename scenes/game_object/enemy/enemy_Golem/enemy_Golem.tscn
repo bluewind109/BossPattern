@@ -1,12 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://cilp4lyahrv8p"]
+[gd_scene load_steps=12 format=3 uid="uid://cilp4lyahrv8p"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_0gnu6"]
 [ext_resource type="Script" uid="uid://qqh6nhuo4pf1" path="res://scenes/game_object/enemy/enemy_Golem/enemy_Golem.gd" id="2_787gj"]
 [ext_resource type="PackedScene" uid="uid://d4nfpxngruc6j" path="res://scenes/enemy_skill/enemy_skill_Shockwave/enemy_skill_Shockwave.tscn" id="3_76isr"]
+[ext_resource type="Shader" uid="uid://dd7xij77hfa8a" path="res://scenes/components/hit_flash/shader/hit_flash.gdshader" id="3_yadko"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/animation_handler/animation_handler.tscn" id="4_d7w4c"]
-[ext_resource type="AnimationLibrary" uid="uid://dqhy63gr4ub3i" path="res://scenes/game_object/enemy/enemy_Golem/animation/enemy_golem_anim_lib.res" id="4_g3mdy"]
-[ext_resource type="Texture2D" uid="uid://8k3meq8arpaq" path="res://scenes/game_object/enemy/enemy_Golem/sprites/Golem_1_attack.png" id="5_76isr"]
+[ext_resource type="Texture2D" uid="uid://dey5sbxosbar2" path="res://scenes/game_object/enemy/enemy_Golem/sprites/Golem_1_walk.png" id="5_3e4y7"]
 [ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://scenes/components/pulse_effect/pulse_effect.tscn" id="7_76isr"]
+[ext_resource type="AnimationLibrary" uid="uid://cgx2l36m32rf4" path="res://scenes/game_object/enemy/enemy_Golem/animation/enemy_golem_anim_lib.tres" id="7_yadko"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7g67l"]
+resource_local_to_scene = true
+shader = ExtResource("3_yadko")
+shader_parameter/lerp_percent = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787gj"]
 
@@ -14,6 +20,14 @@
 
 [node name="enemy_Golem" instance=ExtResource("1_0gnu6")]
 script = ExtResource("2_787gj")
+
+[node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
+is_base_sprite_looking_left = false
+visual_node = NodePath("../visuals")
+
+[node name="hit_flash" parent="." index="6" node_paths=PackedStringArray("sprite")]
+hit_flash_material = SubResource("ShaderMaterial_7g67l")
+sprite = NodePath("../visuals/sprite_2d")
 
 [node name="shockwave" parent="attack_manager" index="1" instance=ExtResource("3_76isr")]
 ATTACK_RANGE = 150.0
@@ -28,24 +42,19 @@ visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_787gj")
 
-[node name="anim_spritesheet" parent="." index="5" instance=ExtResource("4_d7w4c")]
-texture = ExtResource("5_76isr")
-offset = Vector2(0, -32)
-hframes = 11
-region_enabled = true
-region_rect = Rect2(0, 0, 990, 64)
+[node name="sprite_2d" type="Sprite2D" parent="visuals" index="0"]
+texture = ExtResource("5_3e4y7")
+hframes = 10
+region_rect = Rect2(0, 0, 900, 64)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="anim_spritesheet" index="0"]
+[node name="pulse_effect" parent="." index="13" instance=ExtResource("7_76isr")]
+
+[node name="animation_handler" parent="." index="14" node_paths=PackedStringArray("anim_player") instance=ExtResource("4_d7w4c")]
+anim_player = NodePath("../animation_player")
+
+[node name="animation_player" type="AnimationPlayer" parent="." index="15"]
+root_node = NodePath("../animation_handler")
 libraries = {
 &"": SubResource("AnimationLibrary_637kx"),
-&"enemy_golem_anim_lib": ExtResource("4_g3mdy")
+&"enemy_golem_anim_lib": ExtResource("7_yadko")
 }
-
-[node name="pulse_effect" parent="." index="6" instance=ExtResource("7_76isr")]
-
-[node name="look" parent="." index="9"]
-is_base_sprite_looking_left = false
-
-[node name="collision_shape_2d" parent="." index="10"]
-visible = true
-position = Vector2(0, -17)
