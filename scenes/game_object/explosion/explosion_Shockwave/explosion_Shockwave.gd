@@ -5,7 +5,7 @@ enum ANIM_STATE{RESET = 0, active}
 
 var anim_dict: Dictionary[int, AnimationInfo] = {}
 
-@onready var anim_ss: ComponentAnimSpriteSheet = $component_Anim_SpriteSheet
+@onready var anim_ss: AnimationHandler = $component_Anim_SpriteSheet
 
 func _ready() -> void:
 	self.name = "ExplosionShockwave"

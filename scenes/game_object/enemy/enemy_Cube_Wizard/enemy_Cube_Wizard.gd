@@ -5,7 +5,7 @@ enum SPEED_STATE {idle, spawn, normal, wind_up, attack, recover, die}
 enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
 enum STATE {Spawn, Normal, WindUp, Attack, Recover, Die}
 
-@onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
+@onready var anim_ss: AnimationHandler = $anim_spritesheet
 @onready var skill_magic_ball: EnemySkill_MagicBall = $attack_manager/enemy_skill_MagicBall
 
 @export var body_sprite: Sprite2D

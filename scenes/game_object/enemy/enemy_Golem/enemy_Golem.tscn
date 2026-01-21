@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_0gnu6"]
 [ext_resource type="Script" uid="uid://qqh6nhuo4pf1" path="res://scenes/game_object/enemy/enemy_Golem/enemy_Golem.gd" id="2_787gj"]
 [ext_resource type="PackedScene" uid="uid://d4nfpxngruc6j" path="res://scenes/enemy_skill/enemy_skill_Shockwave/enemy_skill_Shockwave.tscn" id="3_76isr"]
-[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="4_d7w4c"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/animation_handler/animation_handler.tscn" id="4_d7w4c"]
 [ext_resource type="AnimationLibrary" uid="uid://dqhy63gr4ub3i" path="res://scenes/game_object/enemy/enemy_Golem/animation/enemy_golem_anim_lib.res" id="4_g3mdy"]
 [ext_resource type="Texture2D" uid="uid://8k3meq8arpaq" path="res://scenes/game_object/enemy/enemy_Golem/sprites/Golem_1_attack.png" id="5_76isr"]
 [ext_resource type="PackedScene" uid="uid://cik3upi2rmml6" path="res://scenes/components/pulse_effect/pulse_effect.tscn" id="7_76isr"]

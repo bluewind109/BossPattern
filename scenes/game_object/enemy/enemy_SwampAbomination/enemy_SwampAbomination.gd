@@ -6,7 +6,7 @@ enum ANIM_STATE{RESET = 0, idle, walk, attack_1, attack_2, attack_3, attack_4, s
 enum STATE {Normal, WindUp, Charge, PoisonExplosionAttack, Recover, Die}
 
 
-@onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
+@onready var anim_ss: AnimationHandler = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
 @onready var skill_charge: EnemySkill_Charge = $attack_manager/charge
@@ -27,7 +27,7 @@ func _ready() -> void:
 	init_anim_dict("enemy_swamp_abomination_lib")
 	bind_signals()
 	add_states()
-	super.init_component_look(anim_ss)
+	# super.init_component_look(anim_ss)
 
 
 func init_speed_dict():
@@ -156,7 +156,7 @@ func _on_enter_wind_up_state():
 	anim_ss.play_anim(ANIM_STATE.special)
 	attack_manager.start_delay(attack_manager.get_wind_up_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.wind_up])
-	pulse_effect.start_pulse(anim_ss)
+	# pulse_effect.start_pulse(anim_ss)
 
 func _on_wind_up_state(_delta: float):
 	super.look_at_player()

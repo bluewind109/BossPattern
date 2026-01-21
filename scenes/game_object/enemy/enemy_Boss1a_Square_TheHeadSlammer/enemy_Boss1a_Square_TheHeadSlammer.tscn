@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://dd7xij77hfa8a" path="res://scenes/components/hit_flash/shader/hit_flash.gdshader" id="2_u276h"]
 [ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-1.png" id="3_u11kf"]
 [ext_resource type="PackedScene" uid="uid://cqsedpf1ft2xq" path="res://scenes/enemy_skill/enemy_skill_HeadSlam/enemy_skill_HeadSlam.tscn" id="4_3clqf"]
-[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/anim_spritesheet/anim_spritesheet.tscn" id="4_tpr83"]
+[ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/animation_handler/animation_handler.tscn" id="4_tpr83"]
 [ext_resource type="AnimationLibrary" uid="uid://6xn8vnesif65" path="res://scenes/game_object/enemy/enemy_Boss1a_Square_TheHeadSlammer/animation/enemy_boss1a_Square_TheHeadSlammer_lib.tres" id="5_u11kf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7g67l"]

@@ -5,7 +5,7 @@ enum SPEED_STATE {idle, normal, wind_up, attack, recover, die}
 enum ANIM_STATE{RESET = 0, idle, walk, attack, die}
 enum STATE {Normal, WindUp, Attack, Recover, Die}
 
-@onready var anim_ss: ComponentAnimSpriteSheet = $anim_spritesheet
+@onready var anim_ss: AnimationHandler = $anim_spritesheet
 @onready var pulse_effect: PulseEffect = $pulse_effect
 
 
@@ -117,7 +117,7 @@ func _on_enter_wind_up_state():
 	attack_manager.start_delay(attack_manager.get_wind_up_duration())
 	component_velocity.set_max_speed(speed_dict[SPEED_STATE.wind_up])
 	component_velocity.set_direction(Vector2.ZERO)
-	pulse_effect.start_pulse(anim_ss)
+	# pulse_effect.start_pulse(anim_ss)
 
 
 func _on_wind_up_state(_delta: float):
