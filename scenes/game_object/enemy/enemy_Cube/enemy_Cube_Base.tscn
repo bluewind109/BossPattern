@@ -31,19 +31,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("visuals/body:position")
+tracks/0/path = NodePath("visuals/pivot/body:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -8)]
+"values": [Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("visuals/body:rotation")
+tracks/1/path = NodePath("visuals/pivot/body:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -55,7 +55,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("visuals/body:offset")
+tracks/2/path = NodePath("visuals/pivot/body:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -67,7 +67,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("visuals/body:scale")
+tracks/3/path = NodePath("visuals/pivot/body:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -79,7 +79,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("visuals/body:texture")
+tracks/4/path = NodePath("visuals/pivot/body:texture")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -87,6 +87,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("7_vvwbs")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("visuals/pivot:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_angwg"]
@@ -102,25 +114,26 @@ size = Vector2(16, 16)
 
 [node name="enemy_Cube_Base" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_wxspj")]
 script = ExtResource("2_28axu")
-body_sprite = NodePath("visuals/body")
+body_sprite = NodePath("visuals/pivot/body")
 
 [node name="health" parent="." index="1"]
 max_health = 1.0
 
 [node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
-use_rotation = true
+is_base_sprite_looking_left = false
 visual_node = NodePath("../visuals")
 
 [node name="dissolve_effect" parent="." index="5" node_paths=PackedStringArray("sprite")]
-sprite = NodePath("../visuals/body")
+sprite = NodePath("../visuals/pivot/body")
 
 [node name="hit_flash" parent="." index="6" node_paths=PackedStringArray("sprite")]
 hit_flash_material = SubResource("ShaderMaterial_angwg")
-sprite = NodePath("../visuals/body")
+sprite = NodePath("../visuals/pivot/body")
 
-[node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node") instance=ExtResource("6_vvwbs")]
+[node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node", "pivot") instance=ExtResource("6_vvwbs")]
 hitbox_collision_shape = NodePath("../../hitbox/collision_shape_2d")
-follow_node = NodePath("../../visuals/body")
+follow_node = NodePath("../../visuals/pivot/body")
+pivot = NodePath("../../visuals/pivot")
 delay_duration = 0.5
 recover_duration = 1.0
 
@@ -150,6 +163,9 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_rvuhp")
 debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
-[node name="body" type="Sprite2D" parent="visuals" index="0"]
+[node name="pivot" type="Marker2D" parent="visuals" index="0"]
 position = Vector2(0, -8)
+
+[node name="body" type="Sprite2D" parent="visuals/pivot" index="0"]
 texture = ExtResource("7_vvwbs")
+flip_h = true

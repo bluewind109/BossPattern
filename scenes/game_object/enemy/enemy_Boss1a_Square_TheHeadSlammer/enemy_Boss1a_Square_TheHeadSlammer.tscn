@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://sc8gthbkjack"]
+[gd_scene load_steps=14 format=3 uid="uid://sc8gthbkjack"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_hjkyj"]
 [ext_resource type="Script" uid="uid://bmyebkbae3ddh" path="res://scenes/game_object/enemy/enemy_Boss1a_Square_TheHeadSlammer/enemy_Boss1a_Square_TheHeadSlammer.gd" id="2_nxpb7"]
 [ext_resource type="Shader" uid="uid://dd7xij77hfa8a" path="res://scenes/components/hit_flash/shader/hit_flash.gdshader" id="2_u276h"]
-[ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-1.png" id="3_u11kf"]
 [ext_resource type="PackedScene" uid="uid://cqsedpf1ft2xq" path="res://scenes/enemy_skill/enemy_skill_HeadSlam/enemy_skill_HeadSlam.tscn" id="4_3clqf"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/animation_handler/animation_handler.tscn" id="4_tpr83"]
+[ext_resource type="Texture2D" uid="uid://be8imx1ln4qfj" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-2.png" id="5_3clqf"]
 [ext_resource type="AnimationLibrary" uid="uid://6xn8vnesif65" path="res://scenes/game_object/enemy/enemy_Boss1a_Square_TheHeadSlammer/animation/enemy_boss1a_Square_TheHeadSlammer_lib.tres" id="5_u11kf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7g67l"]
@@ -22,28 +22,73 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxpb7"]
 size = Vector2(16, 16)
 
+[sub_resource type="Animation" id="Animation_3clqf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../visuals/pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../visuals/pivot/body:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, -8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../visuals/pivot/body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i2hsu"]
+_data = {
+&"RESET": SubResource("Animation_3clqf")
+}
+
 [node name="enemy_Boss1a_Square_TheHeadSlammer" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_hjkyj")]
 scale = Vector2(2, 2)
 script = ExtResource("2_nxpb7")
-body_sprite = NodePath("visuals/body")
+body_sprite = NodePath("visuals/pivot/body")
 
 [node name="look" parent="." index="3" node_paths=PackedStringArray("visual_node")]
+is_base_sprite_looking_left = false
 visual_node = NodePath("../visuals")
 
 [node name="dissolve_effect" parent="." index="5" node_paths=PackedStringArray("sprite")]
-sprite = NodePath("../visuals/body")
+sprite = NodePath("../visuals/pivot/body")
 
 [node name="hit_flash" parent="." index="6" node_paths=PackedStringArray("sprite")]
 hit_flash_material = SubResource("ShaderMaterial_7g67l")
-sprite = NodePath("../visuals/body")
+sprite = NodePath("../visuals/pivot/body")
 
-[node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node", "visual_node") instance=ExtResource("4_3clqf")]
+[node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node", "pivot") instance=ExtResource("4_3clqf")]
 hitbox_collision_shape = NodePath("../../hitbox/collision_shape_2d")
-follow_node = NodePath("../../visuals/body")
-visual_node = NodePath("../../visuals")
+follow_node = NodePath("../../visuals/pivot/body")
+pivot = NodePath("../../visuals/pivot")
 
 [node name="death" parent="." index="8" node_paths=PackedStringArray("sprite")]
-sprite = NodePath("../visuals/body")
+sprite = NodePath("../visuals/pivot/body")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2(0, -8)
@@ -55,9 +100,14 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_3clqf")
 debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
-[node name="body" type="Sprite2D" parent="visuals" index="0"]
+[node name="pivot" type="Marker2D" parent="visuals" index="0"]
 position = Vector2(0, -8)
-texture = ExtResource("3_u11kf")
+
+[node name="body" type="Sprite2D" parent="visuals/pivot" index="0"]
+position = Vector2(-8, 8)
+texture = ExtResource("5_3clqf")
+offset = Vector2(8, -8)
+flip_h = true
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="13"]
 position = Vector2(0, -8)
@@ -69,5 +119,6 @@ anim_player = NodePath("../animation_player")
 [node name="animation_player" type="AnimationPlayer" parent="." index="15"]
 root_node = NodePath("../animation_handler")
 libraries = {
+&"": SubResource("AnimationLibrary_i2hsu"),
 &"enemy_cube_base_lib": ExtResource("5_u11kf")
 }

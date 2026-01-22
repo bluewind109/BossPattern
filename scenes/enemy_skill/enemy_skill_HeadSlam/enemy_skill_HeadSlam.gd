@@ -3,6 +3,7 @@ class_name EnemySkill_HeadSlam
 
 @export var hitbox_collision_shape: CollisionShape2D
 @export var follow_node: Node2D
+@export var pivot: Marker2D
 
 
 func _ready() -> void:
@@ -19,14 +20,9 @@ func _process(delta: float) -> void:
 
 func cast_at(_target: Node2D):
 	super.cast_at(_target)
-	var owner_node = owner as Node2D
-	var direction: Vector2 = (_target.global_position - owner_node.global_position).normalized()
-	if (direction.x < 0):
-		owner_node.look_at(-_target.global_position)
-		return
-	owner_node.look_at(_target.global_position)
+	pivot.look_at(_target.global_position)
+
 
 func on_skill_casted():
 	super.on_skill_casted()
-	var owner_node = owner as Node2D
-	owner_node.rotation = deg_to_rad(0)
+	pivot.rotation_degrees = 0
