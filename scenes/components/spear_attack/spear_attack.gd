@@ -1,6 +1,8 @@
 extends Node2D
 class_name SpearAttack
 
+@export var start_pos: Vector2 = Vector2.ZERO
+
 @onready var pivot: Marker2D = $pivot
 @onready var hitbox: ComponentHitbox = $%hitbox
 @onready var animation_player: AnimationPlayer = $animation_player
@@ -18,6 +20,7 @@ const RETURN_ANIM = "return"
 
 
 func _ready() -> void:
+	position = start_pos
 	animation_player.animation_finished.connect(_on_animation_finished)
 	hitbox.set_damage(weapon_damage)
 
