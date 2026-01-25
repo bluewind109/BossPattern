@@ -222,7 +222,7 @@ _data = {
 [node name="sword_attack" type="Node2D"]
 script = ExtResource("1_08kf2")
 sword_slash_scene = ExtResource("2_n2civ")
-slash_time = 0.4
+attack_time = 0.4
 return_time = 0.4
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
