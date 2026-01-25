@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd0234djo8qpm"
-path="res://.godot/imported/107.png-a55736befbbfef099ef3d1f327185abf.ctex"
+uid="uid://wdj0ixsmfies"
+path="res://.godot/imported/bow_01_attack_03.png-1ede449e4eeb0ed67a7527f160bbb6e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/components/bow_attack/sprites/107.png"
-dest_files=["res://.godot/imported/107.png-a55736befbbfef099ef3d1f327185abf.ctex"]
+source_file="res://scenes/components/bow_attack/sprites/bow_01_attack_03.png"
+dest_files=["res://.godot/imported/bow_01_attack_03.png-1ede449e4eeb0ed67a7527f160bbb6e5.ctex"]
 
 [params]
 
