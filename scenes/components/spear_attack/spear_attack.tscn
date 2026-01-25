@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds3yfc4fykop0"]
+
+[ext_resource type="Texture2D" uid="uid://ctqgf2f2qnm1e" path="res://scenes/components/spear_attack/sprites/088.png" id="1_ylic7"]
+
+[node name="spear_attack" type="Node2D"]
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+
+[node name="pivot" type="Marker2D" parent="."]
+
+[node name="sprite_2d" type="Sprite2D" parent="pivot"]
+texture = ExtResource("1_ylic7")
