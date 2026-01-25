@@ -7,7 +7,7 @@ class_name SwordAttack
 
 @export var sword_slash_scene: PackedScene
 @export var slash_time: float = 0.2
-@export var sword_return_time: float = 0.5
+@export var return_time: float = 0.5
 @export var weapon_damage: float = 1.0
 
 var can_slash: bool = true
@@ -60,7 +60,7 @@ func spawn_slash() -> void:
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == "slash"):
 		animation_player.speed_scale =\
-		animation_player.get_animation("sword_return").length /  sword_return_time
+		animation_player.get_animation("sword_return").length /  return_time
 		animation_player.play("sword_return")
 	else:
 		can_slash = true
