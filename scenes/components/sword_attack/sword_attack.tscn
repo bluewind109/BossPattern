@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bk8xorwk75tyr" path="res://scenes/components/sword_attack/sword_attack.gd" id="1_08kf2"]
 [ext_resource type="PackedScene" uid="uid://bot5mxnj8w23n" path="res://scenes/components/sword_slash/sword_slash.tscn" id="2_n2civ"]
-[ext_resource type="Texture2D" uid="uid://8xiis3hryuqa" path="res://scenes/components/sword_attack/sprites/sword.png" id="3_a7wf4"]
 [ext_resource type="Texture2D" uid="uid://cjjh8mxa2gm7k" path="res://scenes/components/sword_attack/sprites/vfx_slash-Sheet.png" id="3_p6pl2"]
+[ext_resource type="Texture2D" uid="uid://d3dvvfkec0dsp" path="res://scenes/components/sword_attack/sprites/sword_01.png" id="4_p6pl2"]
 
 [sub_resource type="Animation" id="Animation_sneei"]
 length = 0.001
@@ -17,7 +17,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [-1.5707963267948966]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -94,7 +94,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(0.5, -2),
 "update": 0,
-"values": [0.0, 4.4505897]
+"values": [-1.5707964, 2.8797932657906435]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -185,7 +185,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3),
 "transitions": PackedFloat32Array(-2, -2, 0.5),
 "update": 0,
-"values": [4.4505897, 4.4505897, 0.0]
+"values": [2.8797932657906435, 2.8797932657906435, -1.5707963267948966]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -234,7 +234,7 @@ libraries = {
 
 [node name="slash_sprite" type="Sprite2D" parent="pivot"]
 visible = false
-position = Vector2(6, 5.0000005)
+position = Vector2(8, 7.0000005)
 rotation = 2.0738008
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_p6pl2")
@@ -246,8 +246,7 @@ region_rect = Rect2(-96, 768, 576, 96)
 [node name="sword_sprite" type="Sprite2D" parent="pivot"]
 unique_name_in_owner = true
 texture_filter = 1
-texture = ExtResource("3_a7wf4")
-offset = Vector2(-8, -8)
-hframes = 2
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 16)
+rotation = -1.5707964
+texture = ExtResource("4_p6pl2")
+offset = Vector2(8, -8)
+region_rect = Rect2(0, 0, 16, 16)
