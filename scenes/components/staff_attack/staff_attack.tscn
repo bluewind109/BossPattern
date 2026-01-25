@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dafwex3f4v7ui"]
+
+[ext_resource type="Script" uid="uid://c4e0eg4o2t2ph" path="res://scenes/components/staff_attack/staff_attack.gd" id="1_kkywp"]
+[ext_resource type="Texture2D" uid="uid://bfet4ba2xyg5o" path="res://scenes/components/staff_attack/sprites/staff_01.png" id="1_kquk7"]
+
+[node name="staff_attack" type="Node2D" node_paths=PackedStringArray("projectile_spawn")]
+script = ExtResource("1_kkywp")
+projectile_spawn = NodePath("pivot/weapon_sprite/projectile_spawn")
+attack_time = 0.4
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+
+[node name="pivot" type="Marker2D" parent="."]
+
+[node name="weapon_sprite" type="Sprite2D" parent="pivot"]
+unique_name_in_owner = true
+position = Vector2(0, -3.0000002)
+rotation = -0.7853982
+texture = ExtResource("1_kquk7")
+
+[node name="projectile_spawn" type="Node2D" parent="pivot/weapon_sprite"]
+unique_name_in_owner = true
+position = Vector2(2.8284273, -2.8284273)
