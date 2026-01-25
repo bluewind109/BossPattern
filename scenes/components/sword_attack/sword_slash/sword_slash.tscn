@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bot5mxnj8w23n"]
 
-[ext_resource type="Texture2D" uid="uid://6e641gd7xpkp" path="res://scenes/components/sword_slash/sprites/slash.png" id="1_7gxxe"]
-[ext_resource type="Script" uid="uid://crrhhodhettjh" path="res://scenes/components/sword_slash/sword_slash.gd" id="1_08kf2"]
+[ext_resource type="Texture2D" uid="uid://6e641gd7xpkp" path="res://scenes/components/sword_attack/sword_slash/sprites/slash.png" id="1_7gxxe"]
+[ext_resource type="Script" uid="uid://crrhhodhettjh" path="res://scenes/components/sword_attack/sword_slash/sword_slash.gd" id="1_08kf2"]
 [ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/components/hitbox/hitbox.tscn" id="2_chmg0"]
 
 [sub_resource type="Animation" id="Animation_nmeb3"]
