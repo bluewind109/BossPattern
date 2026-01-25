@@ -10,19 +10,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sword_sprite:rotation")
+tracks/0/path = NodePath("pivot/sword_sprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [1.5707963267948966]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sword_sprite:scale")
+tracks/1/path = NodePath("pivot/sword_sprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -34,7 +34,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("slash_sprite:frame")
+tracks/2/path = NodePath("pivot/slash_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,7 +46,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("slash_sprite:rotation")
+tracks/3/path = NodePath("pivot/slash_sprite:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -58,7 +58,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("slash_sprite:visible")
+tracks/4/path = NodePath("pivot/slash_sprite:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -67,31 +67,43 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("pivot/sword_sprite:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_a7wf4"]
 resource_name = "slash"
-length = 0.5
-step = 0.025
+length = 0.6
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sword_sprite:rotation")
+tracks/0/path = NodePath("pivot/sword_sprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(0.5, -2),
+"times": PackedFloat32Array(0, 0.1, 0.35),
+"transitions": PackedFloat32Array(0.2102241, 0.5, -2),
 "update": 0,
-"values": [0.0, 4.4505897]
+"values": [1.5707964, 0.0, 4.4505897]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sword_sprite:scale")
+tracks/1/path = NodePath("pivot/sword_sprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0.1, 0.4),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.8, 0.95)]
@@ -103,7 +115,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.05),
+"times": PackedFloat32Array(0.15),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -113,11 +125,11 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("slash_sprite:frame")
+tracks/3/path = NodePath("pivot/slash_sprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.22500002, 0.275, 0.325, 0.375),
+"times": PackedFloat32Array(0.1, 0.32500002, 0.375, 0.42499998, 0.47499996),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 2, 3, 4, 5]
@@ -125,11 +137,11 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("slash_sprite:rotation")
+tracks/4/path = NodePath("pivot/slash_sprite:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.275),
+"times": PackedFloat32Array(0.1, 0.375),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [2.0738008, 2.0738008]
@@ -137,43 +149,67 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("slash_sprite:visible")
+tracks/5/path = NodePath("pivot/slash_sprite:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.22500001, 0.5),
+"times": PackedFloat32Array(0.1, 0.32500002, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("pivot/sword_sprite:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_rdgw1"]
 resource_name = "sword_return"
-length = 0.65
+length = 0.3
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sword_sprite:rotation")
+tracks/0/path = NodePath("pivot/sword_sprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.65),
+"times": PackedFloat32Array(0, 0.1, 0.3),
 "transitions": PackedFloat32Array(-2, -2, 0.5),
 "update": 0,
-"values": [4.4505897, 4.4505897, 0.0]
+"values": [4.4505897, 4.4505897, 1.5707963267948966]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sword_sprite:scale")
+tracks/1/path = NodePath("pivot/sword_sprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.65),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [Vector2(0.8, 0.95), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pivot/sword_sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(8, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ljfvw"]
@@ -186,13 +222,17 @@ _data = {
 [node name="sword_attack" type="Node2D"]
 script = ExtResource("1_08kf2")
 sword_slash_scene = ExtResource("2_n2civ")
+slash_time = 0.4
+sword_return_time = 0.4
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ljfvw")
 }
 
-[node name="slash_sprite" type="Sprite2D" parent="."]
+[node name="pivot" type="Marker2D" parent="."]
+
+[node name="slash_sprite" type="Sprite2D" parent="pivot"]
 visible = false
 position = Vector2(6, 5.0000005)
 rotation = 2.0738008
@@ -203,9 +243,11 @@ frame = 2
 region_enabled = true
 region_rect = Rect2(-96, 768, 576, 96)
 
-[node name="sword_sprite" type="Sprite2D" parent="."]
+[node name="sword_sprite" type="Sprite2D" parent="pivot"]
 unique_name_in_owner = true
 texture_filter = 1
+position = Vector2(8, 0)
+rotation = 1.5707964
 texture = ExtResource("3_a7wf4")
 offset = Vector2(-8, -8)
 hframes = 2

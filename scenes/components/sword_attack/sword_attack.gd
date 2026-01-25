@@ -1,6 +1,7 @@
 extends Node2D
 class_name SwordAttack
 
+@onready var pivot: Marker2D = $pivot
 @onready var animation_player: AnimationPlayer = $animation_player
 @onready var sword_sprite: Sprite2D = $%sword_sprite
 
@@ -18,6 +19,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	var mouse_pos: Vector2 = get_global_mouse_position()
+	pivot.look_at(mouse_pos)
+
 	if (current_look_dir == "left" and get_global_mouse_position().x > global_position.x):
 		scale.x = 1
 		current_look_dir = "right"
