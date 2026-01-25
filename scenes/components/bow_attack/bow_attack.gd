@@ -54,7 +54,7 @@ func spawn_arrow() -> void:
 	if (arrow_spawn == null): 
 		arrow.global_position = global_position
 	else:
-		arrow.global_position = arrow_spawn
+		arrow.global_position = arrow_spawn.global_position
 	
 	if (get_global_mouse_position().x > global_position.x):
 		arrow.pivot.scale = Vector2(1, 1)
