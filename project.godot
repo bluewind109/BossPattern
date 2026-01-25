@@ -78,7 +78,8 @@ enabled=PackedStringArray("res://addons/resources_spreadsheet_view/plugin.cfg", 
 [file_customization]
 
 folder_colors={
-"res://scenes/game_object/": "yellow"
+"res://scenes/game_object/": "yellow",
+"res://scenes/game_object/player/": "blue"
 }
 
 [gui]

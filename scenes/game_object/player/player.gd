@@ -6,8 +6,6 @@ enum STATE {Idle, Run, Attack, Die}
 @onready var state_machine: CallableStateMachine = $callable_state_machine
 
 @onready var character_sprite: Sprite2D = $%character_sprite
-var idle_texture: Texture2D = preload("./sprites/Player_idle.png")
-var run_texture: Texture2D = preload("./sprites/Player_run.png")
 
 @onready var comp_health: ComponentHealth = $health
 @onready var comp_look: ComponentLook = $look
@@ -24,13 +22,11 @@ var run_texture: Texture2D = preload("./sprites/Player_run.png")
 var anim_dict: Dictionary [String, Variant] = {
 	"idle": {
 		"anim_id": "player_idle",
-		"texture": idle_texture,
-		"hframes": 6
+		"speed_scale": 1.0,
 	},
 	"run": {
-		"anim_id": "player_run",
-		"texture": run_texture,
-		"hframes": 8
+		"anim_id": "player_run_2",
+		"speed_scale": 2.0,
 	},
 }
 var current_anim: String = ""
@@ -80,13 +76,9 @@ func _play_anim(anim_name: String):
 	if (not anim_dict.has(anim_name)): return
 	if (current_anim == anim_name): return
 	# print("_play_anim: ", anim_name)
-	var sprite_size: float = 32
 	var anim_data: Variant = anim_dict[anim_name]
-	character_sprite.texture = anim_data.texture
-	character_sprite.hframes = anim_data.hframes
-	character_sprite.region_rect.size = Vector2(sprite_size * character_sprite.hframes, sprite_size)
 	anim_player.play(anim_dict[anim_name].anim_id)
-	anim_player.speed_scale = 0.25
+	anim_player.speed_scale = anim_dict[anim_name].speed_scale
 	current_anim = anim_name
 
 
