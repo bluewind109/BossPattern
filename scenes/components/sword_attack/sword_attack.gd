@@ -3,7 +3,7 @@ class_name SwordAttack
 
 @onready var pivot: Marker2D = $pivot
 @onready var animation_player: AnimationPlayer = $animation_player
-@onready var sword_sprite: Sprite2D = $%sword_sprite
+@onready var weapon_sprite: Sprite2D = $%weapon_sprite
 
 @export var sword_slash_scene: PackedScene
 @export var attack_time: float = 0.2
