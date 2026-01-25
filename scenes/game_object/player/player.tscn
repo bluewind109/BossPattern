@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://borku03gnfdcb" path="res://scenes/game_object/player/sprites/Idle2.png" id="16_3uig4"]
 [ext_resource type="Texture2D" uid="uid://bp8mpnic1julv" path="res://scenes/game_object/player/sprites/Walk.png" id="17_oxadg"]
 [ext_resource type="Texture2D" uid="uid://ksmt6b4abu8m" path="res://scenes/game_object/player/sprites/Jump.png" id="18_va4cl"]
-[ext_resource type="PackedScene" uid="uid://ds3yfc4fykop0" path="res://scenes/components/spear_attack/spear_attack.tscn" id="21_h0hb4"]
+[ext_resource type="PackedScene" uid="uid://bjpplgltrpw3w" path="res://scenes/components/bow_attack/bow_attack.tscn" id="20_va4cl"]
 
 [sub_resource type="Curve" id="Curve_gbew5"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(2e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -382,5 +382,4 @@ unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
-[node name="spear_attack" parent="." instance=ExtResource("21_h0hb4")]
-position = Vector2(0, -2)
+[node name="bow_attack" parent="." instance=ExtResource("20_va4cl")]
