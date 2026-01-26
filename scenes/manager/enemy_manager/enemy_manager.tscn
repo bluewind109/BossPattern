@@ -6,7 +6,6 @@
 
 [node name="enemy_manager" type="Node"]
 script = ExtResource("1_ij5hy")
-is_disabled = true
 spawn_config = ExtResource("2_cg5kq")
 enemy_config = ExtResource("2_a1uqj")
 

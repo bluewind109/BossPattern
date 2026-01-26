@@ -1,7 +1,7 @@
 extends Node
 class_name EnemyManager
 
-const SPAWN_RADIUS: float = 200
+const SPAWN_RADIUS: float = 150
 
 @export var is_disabled: bool = false
 @export var spawn_config: SpawnConfig
@@ -9,12 +9,9 @@ const SPAWN_RADIUS: float = 200
 @export var game_time_manager: GameTimeManager
 @onready var spawn_timer: Timer = $%spawn_timer
 
-var enemies: Dictionary[EnemyDefine.ENEMY_ID, Res_EnemyData]
-
 var base_spawn_time = 0
 var enemy_table = EnemyWeightedTable.new()
 var number_to_spawn: int = 1
-
 var current_difficulty: int = 0
 
 
