@@ -3,6 +3,8 @@ class_name Player
 
 enum STATE {Idle, Run, Attack, Die}
 
+@export var chosen_weapon_id: WeaponDefine.WEAPON_ID
+
 @onready var state_machine: CallableStateMachine = $callable_state_machine
 
 @onready var character_sprite: Sprite2D = $%character_sprite
@@ -48,7 +50,7 @@ func _ready() -> void:
 	if (player_control):
 		player_control.set_max_speed(base_speed)
 
-	var weapon_data = WeaponManager.get_weapon_by_id(WeaponDefine.WEAPON_ID.SPEAR)
+	var weapon_data = WeaponManager.get_weapon_by_id(chosen_weapon_id)
 	var weapon = weapon_data.weapon_scene.instantiate() as Weapon
 	weapons.add_child(weapon)
 	weapon.set_weapon_damage(weapon_data.base_damage)

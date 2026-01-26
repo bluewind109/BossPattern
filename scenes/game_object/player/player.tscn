@@ -308,6 +308,7 @@ texture_filter = 1
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_oul6g")
+chosen_weapon_id = 1
 curve = SubResource("Curve_gbew5")
 anim_player = NodePath("visuals/character_sprite/animation_player")
 
