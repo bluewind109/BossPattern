@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Res_WeaponData" load_steps=3 format=3 uid="uid://daeisnkuyax8c"]
+
+[ext_resource type="Script" uid="uid://bixgjtnk5wryv" path="res://resources/weapon/weapon_data/res_WeaponData.gd" id="1_rjl2f"]
+[ext_resource type="PackedScene" uid="uid://bjpplgltrpw3w" path="res://scenes/game_object/weapons/bow_attack/bow_attack.tscn" id="2_rjl2f"]
+
+[resource]
+script = ExtResource("1_rjl2f")
+weapon_scene = ExtResource("2_rjl2f")
+id = 2
+name = "Bow"
+metadata/_custom_type_script = "uid://bixgjtnk5wryv"

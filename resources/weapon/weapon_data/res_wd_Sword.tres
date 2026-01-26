@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Res_WeaponData" load_steps=3 format=3 uid="uid://i401vw3vkgkw"]
+
+[ext_resource type="Script" uid="uid://bixgjtnk5wryv" path="res://resources/weapon/weapon_data/res_WeaponData.gd" id="1_5jqsq"]
+[ext_resource type="PackedScene" uid="uid://d21n2muh2acff" path="res://scenes/game_object/weapons/sword_attack/sword_attack.tscn" id="2_rg1ab"]
+
+[resource]
+script = ExtResource("1_5jqsq")
+weapon_scene = ExtResource("2_rg1ab")
+name = "Sword"
+metadata/_custom_type_script = "uid://bixgjtnk5wryv"

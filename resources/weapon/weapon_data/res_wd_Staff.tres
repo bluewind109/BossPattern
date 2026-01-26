@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Res_WeaponData" load_steps=3 format=3 uid="uid://rccep7uu23an"]
+
+[ext_resource type="Script" uid="uid://bixgjtnk5wryv" path="res://resources/weapon/weapon_data/res_WeaponData.gd" id="1_uulkj"]
+[ext_resource type="PackedScene" uid="uid://dafwex3f4v7ui" path="res://scenes/game_object/weapons/staff_attack/staff_attack.tscn" id="2_uulkj"]
+
+[resource]
+script = ExtResource("1_uulkj")
+weapon_scene = ExtResource("2_uulkj")
+id = 3
+name = "Staff"
+metadata/_custom_type_script = "uid://bixgjtnk5wryv"

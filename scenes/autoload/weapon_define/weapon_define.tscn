@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://f25pghry87bn"]
+
+[ext_resource type="Script" uid="uid://bw80m3y2x7g1f" path="res://scenes/autoload/weapon_define/weapon_define.gd" id="1_wbp4t"]
+
+[node name="weapon_define" type="Node"]
+script = ExtResource("1_wbp4t")

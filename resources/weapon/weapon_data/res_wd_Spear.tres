@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Res_WeaponData" load_steps=3 format=3 uid="uid://bttl5kewrthm6"]
+
+[ext_resource type="Script" uid="uid://bixgjtnk5wryv" path="res://resources/weapon/weapon_data/res_WeaponData.gd" id="1_pvrsx"]
+[ext_resource type="PackedScene" uid="uid://ds3yfc4fykop0" path="res://scenes/game_object/weapons/spear_attack/spear_attack.tscn" id="2_pvrsx"]
+
+[resource]
+script = ExtResource("1_pvrsx")
+weapon_scene = ExtResource("2_pvrsx")
+id = 1
+name = "Spear"
+metadata/_custom_type_script = "uid://bixgjtnk5wryv"

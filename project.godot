@@ -39,6 +39,7 @@ buses/default_bus_layout="res://resources/audio_bus_layout/default_bus_layout.tr
 
 [autoload]
 
+WeaponDefine="*res://scenes/autoload/weapon_define/weapon_define.tscn"
 UpgradeDefine="*res://scenes/autoload/upgrade_define/upgrade_define.tscn"
 EnemySkillDefine="*res://scenes/autoload/enemy_skill_define/enemy_skill_define.tscn"
 EnemyDefine="*res://scenes/autoload/enemy_define/enemy_define.tscn"

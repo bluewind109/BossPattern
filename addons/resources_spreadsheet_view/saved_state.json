@@ -249,6 +249,17 @@
       "resource_path": {
         "visibility": 1.0
       }
+    },
+    "res://resources/weapon/weapon_data/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
     }
   },
   "recent_paths": [
@@ -259,7 +270,8 @@
     "res://resources/enemy/",
     "res://resources/enemy/enemy_skill_data/",
     "res://resources/enemy/enemy_data/",
-    "res://resources/enemy/spawn_config/"
+    "res://resources/enemy/spawn_config/",
+    "res://resources/weapon/weapon_data/"
   ],
   "table_functions": {
     "filter": [
