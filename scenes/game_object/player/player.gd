@@ -76,7 +76,6 @@ func _play_anim(anim_name: String):
 	if (not anim_dict.has(anim_name)): return
 	if (current_anim == anim_name): return
 	# print("_play_anim: ", anim_name)
-	var anim_data: Variant = anim_dict[anim_name]
 	anim_player.play(anim_dict[anim_name].anim_id)
 	anim_player.speed_scale = anim_dict[anim_name].speed_scale
 	current_anim = anim_name
