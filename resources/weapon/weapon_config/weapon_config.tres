@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=7 format=3 uid="uid://cbm2d20mroxkl"]
+
+[ext_resource type="Script" uid="uid://c75umii1cjqh2" path="res://resources/weapon/weapon_config/weapon_config.gd" id="1_gp6cm"]
+[ext_resource type="Script" uid="uid://bixgjtnk5wryv" path="res://resources/weapon/weapon_data/res_WeaponData.gd" id="2_1n3mi"]
+[ext_resource type="Resource" uid="uid://i401vw3vkgkw" path="res://resources/weapon/weapon_data/res_wd_Sword.tres" id="3_48xv3"]
+[ext_resource type="Resource" uid="uid://bttl5kewrthm6" path="res://resources/weapon/weapon_data/res_wd_Spear.tres" id="4_xrqut"]
+[ext_resource type="Resource" uid="uid://daeisnkuyax8c" path="res://resources/weapon/weapon_data/res_wd_Bow.tres" id="5_cicy6"]
+[ext_resource type="Resource" uid="uid://rccep7uu23an" path="res://resources/weapon/weapon_data/res_wd_Staff.tres" id="6_t2ygq"]
+
+[resource]
+script = ExtResource("1_gp6cm")
+weapons = Dictionary[int, ExtResource("2_1n3mi")]({
+0: ExtResource("3_48xv3"),
+1: ExtResource("4_xrqut"),
+2: ExtResource("5_cicy6"),
+3: ExtResource("6_t2ygq")
+})
+metadata/_custom_type_script = "uid://c75umii1cjqh2"
