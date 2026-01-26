@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgmespktf7cfc"]
+
+[ext_resource type="Script" uid="uid://dm1dc5sxxn002" path="res://scenes/spell/spell.gd" id="1_d5a3j"]
+
+[node name="spell" type="Node"]
+script = ExtResource("1_d5a3j")
+
+[node name="cooldown_timer" type="Timer" parent="."]
+one_shot = true

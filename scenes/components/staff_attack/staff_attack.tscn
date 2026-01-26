@@ -194,3 +194,6 @@ offset = Vector2(2, -2)
 [node name="projectile_spawn" type="Node2D" parent="pivot/weapon_sprite"]
 unique_name_in_owner = true
 position = Vector2(4.6961527, -3.866025)
+
+[node name="spells" type="Node" parent="."]
+unique_name_in_owner = true

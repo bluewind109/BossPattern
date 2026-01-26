@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0n0jst8xnct6"]
+
+[ext_resource type="PackedScene" uid="uid://dgmespktf7cfc" path="res://scenes/spell/spell.tscn" id="1_gpkx3"]
+[ext_resource type="Script" uid="uid://b8ot76qwdx0ey" path="res://scenes/spell/spell_LightningStrike/spell_LightningStrike.gd" id="2_g2ouk"]
+
+[node name="spell_LightningStrike" instance=ExtResource("1_gpkx3")]
+script = ExtResource("2_g2ouk")
