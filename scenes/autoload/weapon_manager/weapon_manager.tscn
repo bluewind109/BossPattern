@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7ldeox0vid0u"]
+
+[ext_resource type="Script" uid="uid://fvnx8hjhliu6" path="res://scenes/autoload/weapon_manager/weapon_manager.gd" id="1_dhem0"]
+[ext_resource type="Resource" uid="uid://cbm2d20mroxkl" path="res://resources/weapon/weapon_config/weapon_config.tres" id="2_lvmcu"]
+
+[node name="weapon_manager" type="Node"]
+script = ExtResource("1_dhem0")
+weapon_config = ExtResource("2_lvmcu")
