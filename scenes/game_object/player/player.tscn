@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://borku03gnfdcb" path="res://scenes/game_object/player/sprites/Idle2.png" id="16_3uig4"]
 [ext_resource type="Texture2D" uid="uid://bp8mpnic1julv" path="res://scenes/game_object/player/sprites/Walk.png" id="17_oxadg"]
 [ext_resource type="Texture2D" uid="uid://ksmt6b4abu8m" path="res://scenes/game_object/player/sprites/Jump.png" id="18_va4cl"]
-[ext_resource type="PackedScene" uid="uid://dafwex3f4v7ui" path="res://scenes/components/staff_attack/staff_attack.tscn" id="19_oxadg"]
+[ext_resource type="PackedScene" uid="uid://dafwex3f4v7ui" path="res://scenes/game_object/weapons/staff_attack/staff_attack.tscn" id="19_oxadg"]
 
 [sub_resource type="Curve" id="Curve_gbew5"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(2e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
