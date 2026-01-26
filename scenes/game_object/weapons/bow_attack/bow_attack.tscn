@@ -130,6 +130,7 @@ script = ExtResource("1_7n7qr")
 arrow_scene = ExtResource("2_yraui")
 start_pos = Vector2(0, -4)
 arrow_spawn = NodePath("pivot/weapon_sprite/arrow_spawn")
+original_scale = 1.5
 attack_time = 0.6
 return_time = 0.4
 arrow_speed = 450.0

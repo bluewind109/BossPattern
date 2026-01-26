@@ -6,6 +6,7 @@ class_name SwordAttack
 @onready var weapon_sprite: Sprite2D = $%weapon_sprite
 
 @export var sword_slash_scene: PackedScene
+@export var original_scale: float =  1.0
 @export var attack_time: float = 0.2
 @export var return_time: float = 0.5
 @export var weapon_damage: float = 1.0
@@ -13,12 +14,15 @@ class_name SwordAttack
 var can_attack: bool = true
 var current_look_dir: String = "left"
 
-const ATTACK_ANIM = "slash"
+const ATTACK_1_ANIM = "slash_1"
+const ATTACK_2_ANIM = "slash_2"
+const ATTACK_3_ANIM = "slash_3"
 const RETURN_ANIM = "sword_return"
 
 
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
+	scale = Vector2(original_scale, original_scale)
 
 
 func _physics_process(delta: float) -> void:
@@ -26,20 +30,21 @@ func _physics_process(delta: float) -> void:
 	pivot.look_at(mouse_pos)
 
 	if (current_look_dir == "left" and get_global_mouse_position().x > global_position.x):
-		scale.x = 1
+		scale.x = original_scale
 		current_look_dir = "right"
 	elif (current_look_dir == "right" and get_global_mouse_position().x < global_position.x):
-		scale.x = -1
+		scale.x = original_scale * -1
 		current_look_dir = "left"
 
 	if (Input.is_action_just_pressed("attack") and can_attack):
 		animation_player.speed_scale =\
-		animation_player.get_animation(ATTACK_ANIM).length /  attack_time
-		animation_player.play(ATTACK_ANIM)
+		animation_player.get_animation(ATTACK_1_ANIM).length /  attack_time
+		animation_player.play(ATTACK_1_ANIM)
 		can_attack = false
 
 
 func spawn_slash() -> void:
+	return
 	if (sword_slash_scene == null): return
 	var sword_slash = sword_slash_scene.instantiate() as SwordSlash
 
@@ -47,7 +52,7 @@ func spawn_slash() -> void:
 	if (entities_layer == null): return
 	entities_layer.add_child(sword_slash)
 	sword_slash.animation_player.speed_scale =\
-	sword_slash.animation_player.get_animation(ATTACK_ANIM).length /  attack_time
+	sword_slash.animation_player.get_animation(ATTACK_1_ANIM).length /  attack_time
 	
 	if (get_global_mouse_position().x > global_position.x):
 		sword_slash.slash_sprite.flip_v = false
@@ -61,7 +66,7 @@ func spawn_slash() -> void:
 
 
 func _on_animation_finished(_anim_name: StringName):
-	if (_anim_name == ATTACK_ANIM):
+	if (_anim_name == ATTACK_1_ANIM):
 		animation_player.speed_scale =\
 		animation_player.get_animation(RETURN_ANIM).length /  return_time
 		animation_player.play(RETURN_ANIM)

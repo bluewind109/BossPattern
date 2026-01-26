@@ -10,6 +10,7 @@ class_name StaffAttack
 @onready var weapon_sprite: Sprite2D = $%weapon_sprite
 @onready var spells_node: Node = $%spells
 
+@export var original_scale: float =  1.0
 @export var attack_time: float = 0.2
 @export var return_time: float = 0.5
 @export var weapon_damage: float = 1.0
@@ -27,6 +28,7 @@ const RETURN_2_ANIM = "return_2"
 func _ready() -> void:
 	position = start_pos
 	animation_player.animation_finished.connect(_on_animation_finished)
+	scale = Vector2(original_scale, original_scale)
 
 
 func _physics_process(delta: float) -> void:
@@ -34,10 +36,10 @@ func _physics_process(delta: float) -> void:
 	pivot.look_at(mouse_pos)
 
 	if (current_look_dir == "left" and get_global_mouse_position().x > global_position.x):
-		scale.x = 1
+		scale.x = original_scale
 		current_look_dir = "right"
 	elif (current_look_dir == "right" and get_global_mouse_position().x < global_position.x):
-		scale.x = -1
+		scale.x = original_scale * -1
 		current_look_dir = "left"
 
 	if (Input.is_action_just_pressed("attack") and can_attack):

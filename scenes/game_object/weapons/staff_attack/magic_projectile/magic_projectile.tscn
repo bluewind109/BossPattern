@@ -9,6 +9,7 @@
 radius = 3.0
 
 [node name="magic_projectile" type="Node2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_qc2ru")
 
 [node name="visible_on_screen_notifier_2d" type="VisibleOnScreenNotifier2D" parent="."]

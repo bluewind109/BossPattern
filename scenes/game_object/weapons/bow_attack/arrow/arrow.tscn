@@ -9,6 +9,7 @@
 radius = 4.0
 
 [node name="arrow" type="Node2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_heunv")
 
 [node name="visible_on_screen_notifier_2d" type="VisibleOnScreenNotifier2D" parent="."]
