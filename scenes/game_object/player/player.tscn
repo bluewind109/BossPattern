@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://v67gpa0c2rdm"]
+[gd_scene load_steps=28 format=3 uid="uid://v67gpa0c2rdm"]
 
 [ext_resource type="Script" uid="uid://c7fml14t62ej7" path="res://scenes/game_object/player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://bojlohyvov773" path="res://scenes/callable_state_machine/callable_state_machine.tscn" id="2_rgyib"]
@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://borku03gnfdcb" path="res://scenes/game_object/player/sprites/Idle2.png" id="16_3uig4"]
 [ext_resource type="Texture2D" uid="uid://bp8mpnic1julv" path="res://scenes/game_object/player/sprites/Walk.png" id="17_oxadg"]
 [ext_resource type="Texture2D" uid="uid://ksmt6b4abu8m" path="res://scenes/game_object/player/sprites/Jump.png" id="18_va4cl"]
-[ext_resource type="PackedScene" uid="uid://dafwex3f4v7ui" path="res://scenes/game_object/weapons/staff_attack/staff_attack.tscn" id="19_oxadg"]
 
 [sub_resource type="Curve" id="Curve_gbew5"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(2e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -382,5 +381,4 @@ shape = SubResource("CircleShape2D_oxhc3")
 debug_color = Color(0.58, 0.55679995, 0.11599999, 0)
 
 [node name="weapons" type="Node2D" parent="."]
-
-[node name="staff_attack" parent="weapons" instance=ExtResource("19_oxadg")]
+unique_name_in_owner = true

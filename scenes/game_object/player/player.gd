@@ -11,6 +11,7 @@ enum STATE {Idle, Run, Attack, Die}
 @onready var comp_look: ComponentLook = $look
 @onready var player_control: ComponentFourWaysControl = $component_FourWaysControl
 @onready var abilities: Node = $abilities
+@onready var weapons: Node2D = $%weapons
 @onready var hurtbox: ComponentHurtbox = $hurtbox
 @onready var hit_sfx: RandomAudioPlayer2D = $%hit_sfx
 
@@ -46,6 +47,11 @@ func _ready() -> void:
 
 	if (player_control):
 		player_control.set_max_speed(base_speed)
+
+	var weapon_data = WeaponManager.get_weapon_by_id(WeaponDefine.WEAPON_ID.SPEAR)
+	var weapon = weapon_data.weapon_scene.instantiate() as Weapon
+	weapons.add_child(weapon)
+	weapon.set_weapon_damage(weapon_data.base_damage)
 
 	if (hurtbox):
 		hurtbox.damaged.connect(_on_damaged)

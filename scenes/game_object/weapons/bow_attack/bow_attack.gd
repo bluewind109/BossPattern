@@ -1,4 +1,4 @@
-extends Node2D
+extends Weapon
 class_name BowAttack
 
 @export var arrow_scene: PackedScene
@@ -12,7 +12,6 @@ class_name BowAttack
 @export var original_scale: float =  1.0
 @export var attack_time: float = 0.2
 @export var return_time: float = 0.5
-@export var weapon_damage: float = 1.0
 @export var arrow_speed: float = 300.0
 
 var can_attack: bool = true

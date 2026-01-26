@@ -1,4 +1,4 @@
-extends Node2D
+extends Weapon
 class_name SwordAttack
 
 @onready var pivot: Marker2D = $pivot
@@ -9,7 +9,6 @@ class_name SwordAttack
 @export var original_scale: float =  1.0
 @export var attack_time: float = 0.2
 @export var return_time: float = 0.5
-@export var weapon_damage: float = 1.0
 
 var can_attack: bool = true
 var current_look_dir: String = "left"
