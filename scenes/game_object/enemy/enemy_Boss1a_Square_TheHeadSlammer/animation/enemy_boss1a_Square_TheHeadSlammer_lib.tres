@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=9 format=3 uid="uid://6xn8vnesif65"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://6xn8vnesif65"]
 
 [ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-1.png" id="1_6u0tr"]
 [ext_resource type="Texture2D" uid="uid://cdt57nxcp48r8" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-3.png" id="2_y7ihn"]

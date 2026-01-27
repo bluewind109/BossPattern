@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://6vofakptbxdi"]
+[gd_resource type="TileSet" format=3 uid="uid://6vofakptbxdi"]
 
 [ext_resource type="Texture2D" uid="uid://biixhphejrs5g" path="res://assets/sprites/STRANDED/Stranded 08 - Swamps/Swamp Tileset.png" id="1_i20ic"]
 

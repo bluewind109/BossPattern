@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://cg7t287wui7ei"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://cg7t287wui7ei"]
 
 [ext_resource type="Texture2D" uid="uid://il3ihdhk3qv7" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Square_Shielder-1.png" id="1_l8ic2"]
 [ext_resource type="Texture2D" uid="uid://j4cfsrf8lhm4" path="res://scenes/game_object/enemy/enemy_Cube_Shielder/sprites/enemy_Square_Shielder-2.png" id="2_0lc7u"]

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://cfw0kj2idd2tv"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://cfw0kj2idd2tv"]
 
 [ext_resource type="Texture2D" uid="uid://dma6g2xrgmont" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Triangle_Wizard-1.png" id="1_wxu58"]
 [ext_resource type="Texture2D" uid="uid://71ukdd42jled" path="res://scenes/game_object/enemy/enemy_Cube_Wizard/sprites/enemy_Triangle_Wizard-3.png" id="2_gk2y6"]

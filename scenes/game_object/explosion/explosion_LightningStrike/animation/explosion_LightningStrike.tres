@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=3 format=3 uid="uid://cf8kqcn15eht3"]
+[gd_resource type="AnimationLibrary" format=3 uid="uid://cf8kqcn15eht3"]
 
 [ext_resource type="Texture2D" uid="uid://cckdupodpglch" path="res://scenes/game_object/explosion/explosion_LightningStrike/sprites/fx1_electric_zap_large_blue/spritesheet.png" id="1_86204"]
 
