@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwasuhvibmu61"]
+[gd_scene format=3 uid="uid://dwasuhvibmu61"]
 
 [ext_resource type="PackedScene" uid="uid://cbsmy8l7srlc1" path="res://scenes/game_object/enemy/enemy_Base.tscn" id="1_wxspj"]
 [ext_resource type="Script" uid="uid://p3rx5mm5eehr" path="res://scenes/game_object/enemy/enemy_Cube/enemy_Cube_Base.gd" id="2_28axu"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bekse2jwwxb22" path="res://scenes/game_object/enemy/enemy_Cube/sprites/enemy_Square_Base-1.png" id="7_vvwbs"]
 [ext_resource type="PackedScene" uid="uid://diyefkios6nos" path="res://scenes/components/animation_handler/animation_handler.tscn" id="8_angwg"]
 
-[sub_resource type="Shader" id="Shader_g34t7"]
+[sub_resource type="Shader" id="Shader_i1s7g"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -21,9 +21,9 @@ void fragment() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_angwg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvwbs"]
 resource_local_to_scene = true
-shader = SubResource("Shader_g34t7")
+shader = SubResource("Shader_i1s7g")
 shader_parameter/lerp_percent = 0.0
 
 [sub_resource type="Animation" id="Animation_g34t7"]
@@ -112,7 +112,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvuhp"]
 size = Vector2(16, 16)
 
-[node name="enemy_Cube_Base" node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_wxspj")]
+[node name="enemy_Cube_Base" unique_id=1882309567 node_paths=PackedStringArray("body_sprite") instance=ExtResource("1_wxspj")]
 script = ExtResource("2_28axu")
 body_sprite = NodePath("visuals/pivot/body")
 
@@ -127,45 +127,43 @@ visual_node = NodePath("../visuals")
 sprite = NodePath("../visuals/pivot/body")
 
 [node name="hit_flash" parent="." index="6" node_paths=PackedStringArray("sprite")]
-hit_flash_material = SubResource("ShaderMaterial_angwg")
+hit_flash_material = SubResource("ShaderMaterial_vvwbs")
 sprite = NodePath("../visuals/pivot/body")
 
-[node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" node_paths=PackedStringArray("hitbox_collision_shape", "follow_node", "pivot") instance=ExtResource("6_vvwbs")]
+[node name="enemy_skill_HeadSlam" parent="attack_manager" index="3" unique_id=1803022430 node_paths=PackedStringArray("hitbox_collision_shape", "follow_node", "pivot") instance=ExtResource("6_vvwbs")]
 hitbox_collision_shape = NodePath("../../hitbox/collision_shape_2d")
 follow_node = NodePath("../../visuals/pivot/body")
 pivot = NodePath("../../visuals/pivot")
 delay_duration = 0.5
 recover_duration = 1.0
 
-[node name="animation_handler" parent="." index="9" node_paths=PackedStringArray("anim_player") instance=ExtResource("8_angwg")]
+[node name="animation_handler" parent="." index="9" unique_id=1079377369 node_paths=PackedStringArray("anim_player") instance=ExtResource("8_angwg")]
 anim_player = NodePath("../animation_player")
 
-[node name="animation_player" type="AnimationPlayer" parent="." index="10"]
-libraries = {
-&"": SubResource("AnimationLibrary_angwg"),
-&"enemy_cube_base_lib": ExtResource("6_g34t7")
-}
+[node name="animation_player" type="AnimationPlayer" parent="." index="10" unique_id=1732143023]
+libraries/ = SubResource("AnimationLibrary_angwg")
+libraries/enemy_cube_base_lib = ExtResource("6_g34t7")
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="." index="11"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="." index="11" unique_id=564168078]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_fscs4")
 
 [node name="hitbox" parent="." index="13"]
 damage_amount = 1.0
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hitbox" index="0" unique_id=1054649493]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_rvuhp")
 debug_color = Color(0.5137255, 0.5764706, 0, 0.6901961)
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="hurtbox" index="0" unique_id=1927471275]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_rvuhp")
 debug_color = Color(0.98039216, 0.27058825, 0.23529412, 0.78431374)
 
-[node name="pivot" type="Marker2D" parent="visuals" index="0"]
+[node name="pivot" type="Marker2D" parent="visuals" index="0" unique_id=1587582024]
 position = Vector2(0, -8)
 
-[node name="body" type="Sprite2D" parent="visuals/pivot" index="0"]
+[node name="body" type="Sprite2D" parent="visuals/pivot" index="0" unique_id=2101598568]
 texture = ExtResource("7_vvwbs")
 flip_h = true

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Res_EnemySkillData" load_steps=3 format=3 uid="uid://bca07h7sdj4ca"]
+[gd_resource type="Resource" script_class="Res_EnemySkillData" format=3 uid="uid://bca07h7sdj4ca"]
 
 [ext_resource type="Script" uid="uid://0mmf01wu51c2" path="res://resources/enemy/enemy_skill_data/res_EnemySkillData.gd" id="1_7el3y"]
 [ext_resource type="PackedScene" uid="uid://cqsedpf1ft2xq" path="res://scenes/enemy_skill/enemy_skill_HeadSlam/enemy_skill_HeadSlam.tscn" id="2_rb4hh"]
