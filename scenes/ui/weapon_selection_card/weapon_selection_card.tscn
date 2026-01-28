@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://4k4mbl7v83ur"]
+[gd_scene format=3 uid="uid://dr82538t77xyo"]
 
-[ext_resource type="Script" uid="uid://b50uirsywfvsw" path="res://scenes/ui/meta_upgrade_card/meta_upgrade_card.gd" id="1_my4ps"]
+[ext_resource type="Script" uid="uid://t3bjdlltsgth" path="res://scenes/ui/weapon_selection_card/weapon_selection_card.gd" id="1_5tvqo"]
 [ext_resource type="PackedScene" uid="uid://bt4mu8hnmk1ya" path="res://scenes/components/random_audio_player/random_audio_player.tscn" id="2_1nnoq"]
 [ext_resource type="AudioStream" uid="uid://8by28wjrad31" path="res://assets/audio/sfx/ui/switch1.ogg" id="3_usr4t"]
 [ext_resource type="AudioStream" uid="uid://di5ma6w1g7pxd" path="res://assets/audio/sfx/ui/switch2.ogg" id="4_7d2rj"]
@@ -14,8 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://cxxjbatsthl01" path="res://assets/audio/sfx/ui/switch10.ogg" id="12_gbe5y"]
 [ext_resource type="Texture2D" uid="uid://kb8y5457kgij" path="res://scenes/ui/meta_upgrade_card/sprites/experience_vial.png" id="13_lic55"]
 [ext_resource type="PackedScene" uid="uid://cgvaqwloyyjlr" path="res://scenes/ui/sound_button/sound_button.tscn" id="13_my4ps"]
+[ext_resource type="Texture2D" uid="uid://d3dvvfkec0dsp" path="res://scenes/game_object/weapons/sword_attack/sprites/sword_01.png" id="13_o87nl"]
 
-[node name="meta_upgrade_card" type="PanelContainer" unique_id=1371716096 node_paths=PackedStringArray("label_name", "label_description") groups=["meta_upgrade_card"]]
+[node name="weapon_selection_card" type="PanelContainer" unique_id=1371716096 node_paths=PackedStringArray("label_name", "label_description") groups=["meta_upgrade_card"]]
 clip_contents = true
 custom_minimum_size = Vector2(150, 175)
 offset_right = 100.0
@@ -23,7 +24,7 @@ offset_bottom = 163.0
 pivot_offset = Vector2(75, 87)
 size_flags_horizontal = 4
 size_flags_vertical = 3
-script = ExtResource("1_my4ps")
+script = ExtResource("1_5tvqo")
 label_name = NodePath("margin_container/v_box_container/panel_container/label_name")
 label_description = NodePath("margin_container/v_box_container/label_description")
 
@@ -53,12 +54,13 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_type_variation = &"BlueOutlineLabel"
 theme_override_font_sizes/font_size = 16
-text = "Sword Attack Rate"
+text = "Sword"
 horizontal_alignment = 1
 vertical_alignment = 2
 clip_text = true
 
 [node name="label_description" type="Label" parent="margin_container/v_box_container" unique_id=1488151134]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -66,6 +68,13 @@ theme_type_variation = &"BlueOutlineLabel"
 theme_override_font_sizes/font_size = 16
 text = "Increase sword damage by 15%"
 autowrap_mode = 3
+
+[node name="weapon_icon" type="TextureRect" parent="margin_container/v_box_container" unique_id=618663889]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("13_o87nl")
+stretch_mode = 5
 
 [node name="v_box_container" type="VBoxContainer" parent="margin_container/v_box_container" unique_id=825544991]
 layout_mode = 2
@@ -78,11 +87,13 @@ mouse_filter = 2
 
 [node name="upgrade_icon" type="TextureRect" parent="margin_container/v_box_container/v_box_container/h_box_container" unique_id=420950839]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 texture = ExtResource("13_lic55")
 
 [node name="label_progress" type="Label" parent="margin_container/v_box_container/v_box_container/h_box_container" unique_id=982221767]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
@@ -92,6 +103,7 @@ vertical_alignment = 1
 
 [node name="label_purchase_count" type="Label" parent="margin_container/v_box_container/v_box_container/h_box_container" unique_id=2085479171]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 8
 theme_type_variation = &"BlueOutlineLabel"
@@ -100,6 +112,7 @@ vertical_alignment = 1
 
 [node name="upgrade_progress_bar" type="ProgressBar" parent="margin_container/v_box_container/v_box_container" unique_id=136777189]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 mouse_filter = 2
@@ -109,5 +122,17 @@ show_percentage = false
 
 [node name="purchase_button" parent="margin_container/v_box_container" unique_id=224934897 instance=ExtResource("13_my4ps")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Purchase"
+
+[node name="upgrade_button" parent="margin_container/v_box_container" unique_id=136135281 instance=ExtResource("13_my4ps")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Upgrade"
+
+[node name="select_button" parent="margin_container/v_box_container" unique_id=2007675848 instance=ExtResource("13_my4ps")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Select"

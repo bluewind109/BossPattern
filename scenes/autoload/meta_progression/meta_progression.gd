@@ -6,7 +6,7 @@ var save_data: Dictionary = {
 	"win_count": 0,
 	"loss_count": 0,
 	"meta_upgrade_currency": 0,
-	"meta_upgrades": {}
+	"meta_upgrades": {},
 }
 
 
@@ -15,8 +15,13 @@ func _ready() -> void:
 	load_save_file()
 
 
+func init_save_file():
+	pass
+
+
 func load_save_file():
 	if (!FileAccess.file_exists(SAVE_FILE_PATH)):
+		init_save_file()
 		return
 	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
 	save_data = file.get_var()
@@ -67,3 +72,11 @@ func update_currency(val: float):
 func _on_exp_vial_collected(number: float):
 	save_data["meta_upgrade_currency"] += number
 	save()
+
+
+func _on_boss_killed(number: int):
+	pass
+
+
+func _on_enemy_killed(number_int):
+	pass
