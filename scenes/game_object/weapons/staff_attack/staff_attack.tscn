@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dafwex3f4v7ui"]
+[gd_scene format=3 uid="uid://dafwex3f4v7ui"]
 
 [ext_resource type="Script" uid="uid://c4e0eg4o2t2ph" path="res://scenes/game_object/weapons/staff_attack/staff_attack.gd" id="1_kkywp"]
 [ext_resource type="Texture2D" uid="uid://bfet4ba2xyg5o" path="res://scenes/game_object/weapons/staff_attack/sprites/staff_01.png" id="1_kquk7"]
@@ -170,31 +170,29 @@ _data = {
 &"return_2": SubResource("Animation_efy51")
 }
 
-[node name="staff_attack" type="Node2D" node_paths=PackedStringArray("projectile_spawn")]
+[node name="staff_attack" type="Node2D" unique_id=1087172617 node_paths=PackedStringArray("projectile_spawn")]
 script = ExtResource("1_kkywp")
 magic_projectile_scene = ExtResource("2_1eyw0")
-start_pos = Vector2(0, -5)
+start_pos = Vector2(0, -11)
 projectile_spawn = NodePath("pivot/weapon_sprite/projectile_spawn")
 original_scale = 1.5
 attack_time = 0.5
 
-[node name="animation_player" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_a0sdu")
-}
+[node name="animation_player" type="AnimationPlayer" parent="." unique_id=929718801]
+libraries/ = SubResource("AnimationLibrary_a0sdu")
 
-[node name="pivot" type="Marker2D" parent="."]
+[node name="pivot" type="Marker2D" parent="." unique_id=3946644]
 
-[node name="weapon_sprite" type="Sprite2D" parent="pivot"]
+[node name="weapon_sprite" type="Sprite2D" parent="pivot" unique_id=1450013412]
 unique_name_in_owner = true
 position = Vector2(-3, 0)
 rotation = -1.0471976
 texture = ExtResource("1_kquk7")
 offset = Vector2(2, -2)
 
-[node name="projectile_spawn" type="Node2D" parent="pivot/weapon_sprite"]
+[node name="projectile_spawn" type="Node2D" parent="pivot/weapon_sprite" unique_id=757098781]
 unique_name_in_owner = true
 position = Vector2(4.6961527, -3.866025)
 
-[node name="spells" type="Node" parent="."]
+[node name="spells" type="Node" parent="." unique_id=654208481]
 unique_name_in_owner = true

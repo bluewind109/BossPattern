@@ -1,6 +1,7 @@
 extends Weapon
 class_name SwordAttack
 
+@export var start_pos: Vector2 = Vector2.ZERO
 @onready var pivot: Marker2D = $pivot
 @onready var animation_player: AnimationPlayer = $animation_player
 @onready var weapon_sprite: Sprite2D = $%weapon_sprite
@@ -20,6 +21,7 @@ const RETURN_ANIM = "sword_return"
 
 
 func _ready() -> void:
+	position = start_pos
 	animation_player.animation_finished.connect(_on_animation_finished)
 	scale = Vector2(original_scale, original_scale)
 

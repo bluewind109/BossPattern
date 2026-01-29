@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d21n2muh2acff"]
+[gd_scene format=3 uid="uid://d21n2muh2acff"]
 
 [ext_resource type="Script" uid="uid://bk8xorwk75tyr" path="res://scenes/game_object/weapons/sword_attack/sword_attack.gd" id="1_08kf2"]
 [ext_resource type="PackedScene" uid="uid://bot5mxnj8w23n" path="res://scenes/game_object/weapons/sword_attack/sword_slash/sword_slash.tscn" id="2_n2civ"]
@@ -127,47 +127,6 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_rdgw1"]
-resource_name = "sword_return"
-length = 0.3
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("pivot/weapon_sprite:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(-2, -2, 0.5),
-"update": 0,
-"values": [3.490658503988659, 3.490658503988659, -1.5707963267948966]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("pivot/weapon_sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(0.8, 0.95), Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("pivot/weapon_sprite:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_a7wf4"]
@@ -436,6 +395,47 @@ tracks/9/keys = {
 "values": [Vector2(0.4, 0.4)]
 }
 
+[sub_resource type="Animation" id="Animation_rdgw1"]
+resource_name = "sword_return"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pivot/weapon_sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(-2, -2, 0.5),
+"update": 0,
+"values": [3.490658503988659, 3.490658503988659, -1.5707963267948966]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pivot/weapon_sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.8, 0.95), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pivot/weapon_sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ljfvw"]
 _data = {
 &"RESET": SubResource("Animation_sneei"),
@@ -447,21 +447,20 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqrji"]
 size = Vector2(16.25, 23.5)
 
-[node name="sword_attack" type="Node2D"]
+[node name="sword_attack" type="Node2D" unique_id=1214358038]
 script = ExtResource("1_08kf2")
+start_pos = Vector2(0, -6)
 sword_slash_scene = ExtResource("2_n2civ")
 original_scale = 1.5
 attack_time = 0.4
 return_time = 0.4
 
-[node name="animation_player" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ljfvw")
-}
+[node name="animation_player" type="AnimationPlayer" parent="." unique_id=536635953]
+libraries/ = SubResource("AnimationLibrary_ljfvw")
 
-[node name="pivot" type="Marker2D" parent="."]
+[node name="pivot" type="Marker2D" parent="." unique_id=170226888]
 
-[node name="slash_sprite" type="Sprite2D" parent="pivot"]
+[node name="slash_sprite" type="Sprite2D" parent="pivot" unique_id=1505814136]
 visible = false
 position = Vector2(8, 7.0000005)
 rotation = 2.0738008
@@ -473,7 +472,7 @@ frame = 2
 region_enabled = true
 region_rect = Rect2(-96, 1056, 576, 96)
 
-[node name="weapon_sprite" type="Sprite2D" parent="pivot"]
+[node name="weapon_sprite" type="Sprite2D" parent="pivot" unique_id=1433672564]
 unique_name_in_owner = true
 texture_filter = 1
 rotation = -1.5707964
@@ -481,12 +480,12 @@ texture = ExtResource("4_p6pl2")
 offset = Vector2(8, -8)
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="hitbox" parent="pivot" instance=ExtResource("5_kqrji")]
+[node name="hitbox" parent="pivot" unique_id=1443791153 instance=ExtResource("5_kqrji")]
 collision_layer = 0
 collision_mask = 256
 damage_amount = 1.0
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="pivot/hitbox"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="pivot/hitbox" unique_id=270256713]
 position = Vector2(10.625, 1.75)
 shape = SubResource("RectangleShape2D_kqrji")
 disabled = true

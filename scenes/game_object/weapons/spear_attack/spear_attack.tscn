@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds3yfc4fykop0"]
+[gd_scene format=3 uid="uid://ds3yfc4fykop0"]
 
 [ext_resource type="Script" uid="uid://o543drm4pnrt" path="res://scenes/game_object/weapons/spear_attack/spear_attack.gd" id="1_ohc3y"]
 [ext_resource type="Texture2D" uid="uid://ctqgf2f2qnm1e" path="res://scenes/game_object/weapons/spear_attack/sprites/088.png" id="1_ylic7"]
@@ -172,27 +172,25 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cm8ax"]
 size = Vector2(16, 8)
 
-[node name="spear_attack" type="Node2D"]
+[node name="spear_attack" type="Node2D" unique_id=391897471]
 script = ExtResource("1_ohc3y")
-start_pos = Vector2(0, -2)
+start_pos = Vector2(0, -8)
 original_scale = 1.5
 attack_time = 0.4
 return_time = 0.4
 
-[node name="animation_player" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ugkpk")
-}
+[node name="animation_player" type="AnimationPlayer" parent="." unique_id=1465734874]
+libraries/ = SubResource("AnimationLibrary_ugkpk")
 
-[node name="pivot" type="Marker2D" parent="."]
+[node name="pivot" type="Marker2D" parent="." unique_id=2011135971]
 
-[node name="weapon_sprite" type="Sprite2D" parent="pivot"]
+[node name="weapon_sprite" type="Sprite2D" parent="pivot" unique_id=1600272792]
 unique_name_in_owner = true
 position = Vector2(2, 0)
 rotation = 0.5235988
 texture = ExtResource("1_ylic7")
 
-[node name="impact_sprite" type="Sprite2D" parent="pivot/weapon_sprite"]
+[node name="impact_sprite" type="Sprite2D" parent="pivot/weapon_sprite" unique_id=1593560762]
 visible = false
 position = Vector2(-11.313708, 11.313709)
 rotation = -0.7853982
@@ -201,12 +199,12 @@ texture = ExtResource("3_kdbx6")
 offset = Vector2(38, -1.4305115e-06)
 hframes = 7
 
-[node name="hitbox" parent="pivot" instance=ExtResource("4_ugkpk")]
+[node name="hitbox" parent="pivot" unique_id=909116440 instance=ExtResource("4_ugkpk")]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 256
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="pivot/hitbox"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="pivot/hitbox" unique_id=1389863205]
 position = Vector2(20, 0)
 shape = SubResource("RectangleShape2D_cm8ax")
 disabled = true

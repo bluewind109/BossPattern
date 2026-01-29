@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjpplgltrpw3w"]
+[gd_scene format=3 uid="uid://bjpplgltrpw3w"]
 
 [ext_resource type="Script" uid="uid://o8bh0ja1y0ro" path="res://scenes/game_object/weapons/bow_attack/bow_attack.gd" id="1_7n7qr"]
 [ext_resource type="Texture2D" uid="uid://ctc1aqnrat5u3" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_01_idle.png" id="2_ivf3s"]
@@ -125,28 +125,26 @@ _data = {
 &"return": SubResource("Animation_38rky")
 }
 
-[node name="bow_attack" type="Node2D" node_paths=PackedStringArray("arrow_spawn")]
+[node name="bow_attack" type="Node2D" unique_id=338187465 node_paths=PackedStringArray("arrow_spawn")]
 script = ExtResource("1_7n7qr")
 arrow_scene = ExtResource("2_yraui")
-start_pos = Vector2(0, -4)
+start_pos = Vector2(-2, -10)
 arrow_spawn = NodePath("pivot/weapon_sprite/arrow_spawn")
 original_scale = 1.5
 attack_time = 0.6
 return_time = 0.4
 arrow_speed = 450.0
 
-[node name="animation_player" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_eg7nv")
-}
+[node name="animation_player" type="AnimationPlayer" parent="." unique_id=1443166583]
+libraries/ = SubResource("AnimationLibrary_eg7nv")
 
-[node name="pivot" type="Marker2D" parent="."]
+[node name="pivot" type="Marker2D" parent="." unique_id=1127700142]
 
-[node name="weapon_sprite" type="Sprite2D" parent="pivot"]
+[node name="weapon_sprite" type="Sprite2D" parent="pivot" unique_id=327531569]
 unique_name_in_owner = true
 position = Vector2(5, 0)
 rotation = 1.3089969
 texture = ExtResource("2_ivf3s")
 
-[node name="arrow_spawn" type="Node2D" parent="pivot/weapon_sprite"]
+[node name="arrow_spawn" type="Node2D" parent="pivot/weapon_sprite" unique_id=95553356]
 position = Vector2(-4.9497476, 4.9497476)

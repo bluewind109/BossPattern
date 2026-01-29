@@ -28,8 +28,8 @@ var anim_dict: Dictionary [String, Variant] = {
 		"speed_scale": 1.0,
 	},
 	"run": {
-		"anim_id": "player_run_2",
-		"speed_scale": 2.0,
+		"anim_id": "player_run",
+		"speed_scale": 1.5,
 	},
 }
 var current_anim: String = ""
