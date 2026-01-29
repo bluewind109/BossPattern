@@ -1,9 +1,9 @@
 extends Resource
 class_name WeaponUnlockTracking
 
-var id: WeaponDefine.WEAPON_ID
-var is_unlocked: bool = false
-var weapon_level: int = 0
+@export var id: WeaponDefine.WEAPON_ID
+@export var is_unlocked: bool = false
+@export var weapon_level: int = 0
 
 
 func init(_id: WeaponDefine.WEAPON_ID, _is_unlocked: bool, _level: int):
