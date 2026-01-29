@@ -195,9 +195,8 @@ height = 22.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxhc3"]
 radius = 23.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ieo8"]
-radius = 3.0
-height = 12.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_bfkik"]
+radius = 4.0
 
 [node name="player" type="CharacterBody2D" unique_id=1960226131 node_paths=PackedStringArray("anim_player") groups=["Player"]]
 texture_filter = 1
@@ -273,8 +272,8 @@ shape = SubResource("CircleShape2D_oxhc3")
 debug_color = Color(0.58, 0.55679995, 0.11599999, 0)
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." unique_id=313716091]
-position = Vector2(0, -6)
-shape = SubResource("CapsuleShape2D_2ieo8")
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_bfkik")
 
 [node name="weapons" type="Node2D" parent="." unique_id=586755471]
 unique_name_in_owner = true
