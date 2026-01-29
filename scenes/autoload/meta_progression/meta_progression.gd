@@ -1,82 +1,83 @@
 extends Node
 
-const SAVE_FILE_PATH = "user://game.save"
+const SAVE_FILE_PATH = "user://save/"
+const SAVE_FILE_NAME = "game_save.tres"
 
-var save_data: Dictionary = {
-	"win_count": 0,
-	"loss_count": 0,
-	"meta_upgrade_currency": 0,
-	"meta_upgrades": {},
-}
+var save_data: SaveData
 
 
 func _ready() -> void:
+	verify_save_directory(SAVE_FILE_PATH)
 	GameEvents.exp_vial_collected.connect(_on_exp_vial_collected)
 	load_save_file()
 
 
+func verify_save_directory(path: String):
+	DirAccess.make_dir_absolute(path)
+
+
 func init_save_file():
-	pass
+	print("init_save_file")
+	save_data = SaveData.new()
 
 
 func load_save_file():
-	if (!FileAccess.file_exists(SAVE_FILE_PATH)):
+	if (!ResourceLoader.exists(SAVE_FILE_PATH + SAVE_FILE_NAME)):
+	# if (!FileAccess.file_exists(SAVE_FILE_PATH + SAVE_FILE_NAME)):
 		init_save_file()
+		save()
 		return
-	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
-	save_data = file.get_var()
-	print("load_save_file: ", save_data)
+	# var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
+	# save_data = file.get_var(true)
+	# print("load_save_file: ", save_data)
+	save_data = ResourceLoader.load(SAVE_FILE_PATH + SAVE_FILE_NAME)
+	print("load_save_file: ", save_data.meta_upgrade_currency)
 
 
 func save():
-	var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
-	file.store_var(save_data)
+	# var file = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
+	# file.store_var(save_data)
+	ResourceSaver.save(save_data, SAVE_FILE_PATH + SAVE_FILE_NAME)
+	print("save")
 
 
 func add_meta_upgrade(upgrade: Res_MetaUpgrade):
-	if (not save_data["meta_upgrades"].has(upgrade.id)):
-		save_data["meta_upgrades"][upgrade.id] = {
-			"quantity": 0,
-			"upgrade_value": upgrade.upgrade_value,
-		}
-	save_data["meta_upgrades"][upgrade.id]["quantity"] += 1
+	save_data.add_meta_upgrade(upgrade)
 	save()
 
 
-func get_upgrade_count(upgrade_id: UpgradeDefine.META_UPGRADE_ID) -> int: 
-	if (!save_data["meta_upgrades"].has(upgrade_id)): return 0
-	return save_data["meta_upgrades"][upgrade_id]["quantity"]
+func get_upgrade_count(upgrade_id: UpgradeDefine.META_UPGRADE_ID) -> int:
+	return save_data.get_upgrade_count(upgrade_id)
 
 
 func get_upgrade_value(upgrade_id: UpgradeDefine.META_UPGRADE_ID) -> float:
-	if (!save_data["meta_upgrades"].has(upgrade_id)): return 0.0
-	if (!save_data["meta_upgrades"][upgrade_id].has("upgrade_value")):
-		match upgrade_id:
-			UpgradeDefine.META_UPGRADE_ID.EXPERIENCE_GAIN:
-				return 0.1
-			UpgradeDefine.META_UPGRADE_ID.HEALTH_REGEN:
-				return 1.0
-	return save_data["meta_upgrades"][upgrade_id]["upgrade_value"]
+	return save_data.get_upgrade_value(upgrade_id)
 
 
 func get_currency() -> float:
-	if (!save_data.has("meta_upgrade_currency")): return 0.0
-	return save_data["meta_upgrade_currency"]
+	return save_data.meta_upgrade_currency
 
 
-func update_currency(val: float):
-	save_data["meta_upgrade_currency"] += val
+func update_currency(number: float):
+	print("update_currency: ", number)
+	save_data.update_meta_currency(number)
 	save()
 
 
 func _on_exp_vial_collected(number: float):
-	save_data["meta_upgrade_currency"] += number
-	save()
+	update_currency(number)
 
 
 func _on_boss_killed(number: int):
-	pass
+	save_data.update_boss_killed(number)
+	save()
 
 
-func _on_enemy_killed(number_int):
-	pass
+func _on_enemy_killed(number: int):
+	save_data.update_enemy_killed(number)
+	save()
+
+
+func _on_unlock_weapon(_weapon_id: WeaponDefine.WEAPON_ID):
+	save_data.unlock_weapon(_weapon_id)
+	save()
