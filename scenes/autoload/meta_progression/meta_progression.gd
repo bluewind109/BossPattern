@@ -41,6 +41,10 @@ func save():
 	print("save")
 
 
+func get_weapon_progression() -> Dictionary[WeaponDefine.WEAPON_ID, WeaponUnlockTracking]:
+	return save_data.weapon_unlock_progress
+
+
 func add_meta_upgrade(upgrade: Res_MetaUpgrade):
 	save_data.add_meta_upgrade(upgrade)
 	save()
