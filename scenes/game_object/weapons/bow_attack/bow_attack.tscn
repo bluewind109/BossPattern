@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bjpplgltrpw3w"]
 
 [ext_resource type="Script" uid="uid://o8bh0ja1y0ro" path="res://scenes/game_object/weapons/bow_attack/bow_attack.gd" id="1_7n7qr"]
-[ext_resource type="Texture2D" uid="uid://ctc1aqnrat5u3" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_01_idle.png" id="2_ivf3s"]
+[ext_resource type="Texture2D" uid="uid://ctc1aqnrat5u3" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_idle.png" id="2_ivf3s"]
 [ext_resource type="PackedScene" uid="uid://b71m46v4bx5ir" path="res://scenes/game_object/weapons/bow_attack/arrow/arrow.tscn" id="2_yraui"]
-[ext_resource type="Texture2D" uid="uid://b1tk70snv1trs" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_01_attack_01.png" id="4_aatt0"]
-[ext_resource type="Texture2D" uid="uid://dd0234djo8qpm" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_01_attack_02.png" id="5_38rky"]
-[ext_resource type="Texture2D" uid="uid://wdj0ixsmfies" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_01_attack_03.png" id="6_6iibs"]
+[ext_resource type="Texture2D" uid="uid://b1tk70snv1trs" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_default_attack_01.png" id="4_aatt0"]
+[ext_resource type="Texture2D" uid="uid://dd0234djo8qpm" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_default_attack_02.png" id="5_38rky"]
+[ext_resource type="Texture2D" uid="uid://wdj0ixsmfies" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_default_attack_03.png" id="6_6iibs"]
 
 [sub_resource type="Animation" id="Animation_yraui"]
 length = 0.001

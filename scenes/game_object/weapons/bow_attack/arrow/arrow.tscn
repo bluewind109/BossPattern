@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b71m46v4bx5ir"]
+[gd_scene format=3 uid="uid://b71m46v4bx5ir"]
 
-[ext_resource type="Texture2D" uid="uid://dhnsdp4oplc6m" path="res://scenes/game_object/weapons/bow_attack/arrow/sprites/arrow_01.png" id="1_1fy38"]
+[ext_resource type="Texture2D" uid="uid://dhnsdp4oplc6m" path="res://scenes/game_object/weapons/bow_attack/arrow/sprites/arrow_default.png" id="1_1fy38"]
 [ext_resource type="Script" uid="uid://dhvl1g25xps3y" path="res://scenes/game_object/weapons/bow_attack/arrow/arrow.gd" id="1_heunv"]
 [ext_resource type="PackedScene" uid="uid://deglm4gc4ddcp" path="res://scenes/components/hitbox/hitbox.tscn" id="2_aml5w"]
 [ext_resource type="Material" uid="uid://cvcb4wwu1v7sl" path="res://scenes/game_object/weapons/bow_attack/arrow/material/arrow_particles_material.tres" id="4_dgjlo"]
