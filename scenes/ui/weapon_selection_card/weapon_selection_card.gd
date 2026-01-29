@@ -14,7 +14,7 @@ class_name WeaponSelectionCard
 @export var label_name: Label
 @export var label_description: Label
 
-var upgrade: Res_MetaUpgrade
+var unlock_tracking: WeaponUnlockTracking
 
 # short duration = game with fast level up for urgency
 # long duration = game with slower level up for more impact
@@ -34,20 +34,25 @@ func _ready() -> void:
 	update_progress.call_deferred()
 
 
-func init(_upgrade: Res_MetaUpgrade):
-	if (_upgrade == null): return
-	upgrade = _upgrade
-	label_name.text = _upgrade.title
-	label_description.text = _upgrade.description
+func init(tracking_data: WeaponUnlockTracking):
+	if (tracking_data == null): return
+	unlock_tracking = tracking_data
+	var weapon_data: Res_WeaponData = WeaponManager.get_weapon_by_id(unlock_tracking.id)
+	if (weapon_data == null): return
+	label_name.text = weapon_data.name
+	# weapon_icon.texture = 
+	# label_description.text = _data.description
 
 
 func enable_selection(val: bool) -> void:
 	can_select = val
 
 
-func set_card_info(_upgrade: Res_MetaUpgrade) -> void:
-	label_name.text = _upgrade.title
-	label_description.text = _upgrade.description
+func set_card_info(_data: WeaponUnlockTracking) -> void:
+	var weapon_data = WeaponManager.get_weapon_by_id(unlock_tracking.id)
+	if (weapon_data == null): return
+	label_name.text = weapon_data.name
+	# label_description.text = _data.description
 
 
 func update_progress():
@@ -82,7 +87,7 @@ func _tween_show_card() -> void:
 
 func _on_purchase_pressed():
 	return
-	if (upgrade == null): return
+	# if (upgrade == null): return
 	# var currency = MetaProgression.get_currency()
 	# if (currency < upgrade.experience_cost): return
 	# MetaProgression.update_currency(upgrade.experience_cost * -1)

@@ -3,7 +3,7 @@ class_name WeaponSelectionMenu
 
 signal back_pressed
 
-@export var meta_upgrade_card_scene: PackedScene
+@export var weapon_selection_card_scene: PackedScene
 @export var upgrades: Array[Res_MetaUpgrade]= []
 
 @onready var back_button: SoundButton = $%back_button
@@ -17,11 +17,16 @@ func _ready() -> void:
 		child.queue_free()
 		#(child as MetaUpgradeCard).show_card()
 	#
+	var weapons: Dictionary = MetaProgression.get_weapon_progression()
+	for weapon: WeaponUnlockTracking in weapons.values():
+		var weapon_selection_card = weapon_selection_card_scene.instantiate() as WeaponSelectionCard
+		card_container.add_child(weapon_selection_card)
+
 	for upgrade in upgrades:
-		var meta_upgrade_card = meta_upgrade_card_scene.instantiate() as MetaUpgradeCard
-		card_container.add_child(meta_upgrade_card)
-		meta_upgrade_card.init(upgrade)
-		meta_upgrade_card.show_card()
+		var weapon_selection_card = weapon_selection_card_scene.instantiate() as WeaponSelectionCard
+		card_container.add_child(weapon_selection_card)
+		weapon_selection_card.init(upgrade)
+		weapon_selection_card.show_card()
 
 
 func _process(delta: float) -> void:

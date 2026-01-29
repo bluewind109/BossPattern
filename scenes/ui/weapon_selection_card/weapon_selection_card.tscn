@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://cxxjbatsthl01" path="res://assets/audio/sfx/ui/switch10.ogg" id="12_gbe5y"]
 [ext_resource type="Texture2D" uid="uid://kb8y5457kgij" path="res://scenes/ui/meta_upgrade_card/sprites/experience_vial.png" id="13_lic55"]
 [ext_resource type="PackedScene" uid="uid://cgvaqwloyyjlr" path="res://scenes/ui/sound_button/sound_button.tscn" id="13_my4ps"]
-[ext_resource type="Texture2D" uid="uid://d3dvvfkec0dsp" path="res://scenes/game_object/weapons/sword_attack/sprites/sword_01.png" id="13_o87nl"]
+[ext_resource type="Texture2D" uid="uid://d3dvvfkec0dsp" path="res://scenes/game_object/weapons/sword_attack/sprites/sword_default.png" id="13_o87nl"]
 
 [node name="weapon_selection_card" type="PanelContainer" unique_id=1371716096 node_paths=PackedStringArray("label_name", "label_description") groups=["meta_upgrade_card"]]
 clip_contents = true
