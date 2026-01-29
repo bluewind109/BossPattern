@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4wu3f7oa12sv"
-path="res://.godot/imported/staff_05.png-4277118613cc9a81a24e90f8088c53d6.ctex"
+uid="uid://17mk1egshhy"
+path="res://.godot/imported/staff_03.png-9a084fc39006d84e24ba6529dd887f54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/weapons/staff_attack/sprites/staff_05.png"
-dest_files=["res://.godot/imported/staff_05.png-4277118613cc9a81a24e90f8088c53d6.ctex"]
+source_file="res://resources/weapon/weapon_unlock_data/sprites/staff/staff_03.png"
+dest_files=["res://.godot/imported/staff_03.png-9a084fc39006d84e24ba6529dd887f54.ctex"]
 
 [params]
 

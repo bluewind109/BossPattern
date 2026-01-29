@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bfet4ba2xyg5o"
-path="res://.godot/imported/staff_01.png-a07641c3263cfb3105f0a5a0e284d2b5.ctex"
+path="res://.godot/imported/staff_default.png-ce19e226473d8f29460fbd85e1bf84b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/weapons/staff_attack/sprites/staff_01.png"
-dest_files=["res://.godot/imported/staff_01.png-a07641c3263cfb3105f0a5a0e284d2b5.ctex"]
+source_file="res://scenes/game_object/weapons/staff_attack/sprites/staff_default.png"
+dest_files=["res://.godot/imported/staff_default.png-ce19e226473d8f29460fbd85e1bf84b8.ctex"]
 
 [params]
 

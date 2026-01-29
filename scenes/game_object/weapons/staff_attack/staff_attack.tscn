@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dafwex3f4v7ui"]
 
 [ext_resource type="Script" uid="uid://c4e0eg4o2t2ph" path="res://scenes/game_object/weapons/staff_attack/staff_attack.gd" id="1_kkywp"]
-[ext_resource type="Texture2D" uid="uid://bfet4ba2xyg5o" path="res://scenes/game_object/weapons/staff_attack/sprites/staff_01.png" id="1_kquk7"]
+[ext_resource type="Texture2D" uid="uid://bfet4ba2xyg5o" path="res://scenes/game_object/weapons/staff_attack/sprites/staff_default.png" id="1_kquk7"]
 [ext_resource type="PackedScene" uid="uid://jtum2r57fe2n" path="res://scenes/game_object/weapons/staff_attack/magic_projectile/magic_projectile.tscn" id="2_1eyw0"]
 
 [sub_resource type="Animation" id="Animation_1eyw0"]
