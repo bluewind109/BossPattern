@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponUnlockData" format=3 uid="uid://bpa0vthcilbas"]
+
+[ext_resource type="Texture2D" uid="uid://djt4remg00cc" path="res://resources/weapon/weapon_unlock_data/sprites/staff/staff_01.png" id="1_oncc2"]
+[ext_resource type="Texture2D" uid="uid://ysi1uq7bmjlm" path="res://resources/weapon/weapon_unlock_data/sprites/staff/staff_02.png" id="2_y0klu"]
+[ext_resource type="Texture2D" uid="uid://17mk1egshhy" path="res://resources/weapon/weapon_unlock_data/sprites/staff/staff_03.png" id="3_hsuvd"]
+[ext_resource type="Texture2D" uid="uid://d4ha5n1put28g" path="res://resources/weapon/weapon_unlock_data/sprites/staff/staff_04.png" id="4_qglxc"]
+[ext_resource type="Texture2D" uid="uid://1wsok0m4c3fj" path="res://resources/weapon/weapon_unlock_data/sprites/staff/staff_05.png" id="5_m0mtg"]
+[ext_resource type="Script" uid="uid://d3ov57r0hjqnh" path="res://resources/weapon/weapon_unlock_data/weapon_unlock_data.gd" id="5_qglxc"]
+
+[resource]
+script = ExtResource("5_qglxc")
+id = 3
+icons = Array[Texture2D]([ExtResource("1_oncc2"), ExtResource("2_y0klu"), ExtResource("3_hsuvd"), ExtResource("4_qglxc"), ExtResource("5_m0mtg")])
+metadata/_custom_type_script = "uid://d3ov57r0hjqnh"
