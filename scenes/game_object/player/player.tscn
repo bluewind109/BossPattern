@@ -129,7 +129,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_2ieo8"]
 resource_name = "player_run"
-length = 0.8
+length = 0.6
 loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
@@ -139,7 +139,7 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.20000002, 0.39999998, 0.6),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
@@ -184,12 +184,13 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ieo8"]
 _data = {
 &"RESET": SubResource("Animation_8t03j"),
-&"player_idle": SubResource("Animation_hg6s5"),
-&"player_run": SubResource("Animation_2ieo8")
+&"idle": SubResource("Animation_hg6s5"),
+&"run": SubResource("Animation_2ieo8")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oxadg"]
-radius = 8.062258
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfkik"]
+radius = 6.0
+height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxhc3"]
 radius = 23.0
@@ -203,7 +204,6 @@ texture_filter = 1
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_oul6g")
-chosen_weapon_id = 3
 curve = SubResource("Curve_gbew5")
 anim_player = NodePath("animation_player")
 
@@ -258,11 +258,12 @@ collision_mask = 0
 enable_take_damage_cooldown = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=426656512]
-position = Vector2(0, -8)
-shape = SubResource("CircleShape2D_oxadg")
+position = Vector2(0, -11)
+shape = SubResource("CapsuleShape2D_bfkik")
 debug_color = Color(0.297, 0.5281499, 0.9, 0)
 
 [node name="lootbox" type="Area2D" parent="." unique_id=33894276]
+visible = false
 collision_layer = 8
 collision_mask = 0
 

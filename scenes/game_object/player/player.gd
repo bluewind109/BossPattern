@@ -24,12 +24,12 @@ enum STATE {Idle, Run, Attack, Die}
 @export var anim_player: AnimationPlayer
 var anim_dict: Dictionary [String, Variant] = {
 	"idle": {
-		"anim_id": "player_idle",
+		"anim_id": "idle",
 		"speed_scale": 1.0,
 	},
 	"run": {
-		"anim_id": "player_run",
-		"speed_scale": 1.5,
+		"anim_id": "run",
+		"speed_scale": 1.0,
 	},
 }
 var current_anim: String = ""
