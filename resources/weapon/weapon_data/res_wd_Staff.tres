@@ -1,11 +1,17 @@
-[gd_resource type="Resource" script_class="Res_WeaponData" load_steps=3 format=3 uid="uid://rccep7uu23an"]
+[gd_resource type="Resource" script_class="Res_WeaponData" format=3 uid="uid://rccep7uu23an"]
 
+[ext_resource type="Texture2D" uid="uid://djt4remg00cc" path="res://resources/weapon/weapon_data/sprites/staff/staff_01.png" id="1_2hyey"]
 [ext_resource type="Script" uid="uid://bixgjtnk5wryv" path="res://resources/weapon/weapon_data/res_WeaponData.gd" id="1_uulkj"]
+[ext_resource type="Texture2D" uid="uid://ysi1uq7bmjlm" path="res://resources/weapon/weapon_data/sprites/staff/staff_02.png" id="2_8dx27"]
 [ext_resource type="PackedScene" uid="uid://dafwex3f4v7ui" path="res://scenes/game_object/weapons/staff_attack/staff_attack.tscn" id="2_uulkj"]
+[ext_resource type="Texture2D" uid="uid://17mk1egshhy" path="res://resources/weapon/weapon_data/sprites/staff/staff_03.png" id="3_68b8t"]
+[ext_resource type="Texture2D" uid="uid://d4ha5n1put28g" path="res://resources/weapon/weapon_data/sprites/staff/staff_04.png" id="4_6dvh6"]
+[ext_resource type="Texture2D" uid="uid://1wsok0m4c3fj" path="res://resources/weapon/weapon_data/sprites/staff/staff_05.png" id="5_2rofy"]
 
 [resource]
 script = ExtResource("1_uulkj")
 weapon_scene = ExtResource("2_uulkj")
 id = 3
 name = "Staff"
+icons = Array[Texture2D]([ExtResource("1_2hyey"), ExtResource("2_8dx27"), ExtResource("3_68b8t"), ExtResource("4_6dvh6"), ExtResource("5_2rofy")])
 metadata/_custom_type_script = "uid://bixgjtnk5wryv"

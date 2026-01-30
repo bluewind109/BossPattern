@@ -21,11 +21,7 @@ func _ready() -> void:
 	for weapon: WeaponUnlockTracking in weapons.values():
 		var weapon_selection_card = weapon_selection_card_scene.instantiate() as WeaponSelectionCard
 		card_container.add_child(weapon_selection_card)
-
-	for upgrade in upgrades:
-		var weapon_selection_card = weapon_selection_card_scene.instantiate() as WeaponSelectionCard
-		card_container.add_child(weapon_selection_card)
-		weapon_selection_card.init(upgrade)
+		weapon_selection_card.init(weapon)
 		weapon_selection_card.show_card()
 
 

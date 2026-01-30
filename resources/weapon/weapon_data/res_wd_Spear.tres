@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="Res_WeaponData" load_steps=3 format=3 uid="uid://bttl5kewrthm6"]
+[gd_resource type="Resource" script_class="Res_WeaponData" format=3 uid="uid://bttl5kewrthm6"]
 
+[ext_resource type="Texture2D" uid="uid://b3q32gxn6ag1d" path="res://resources/weapon/weapon_data/sprites/spear/spear_01.png" id="1_8utwt"]
 [ext_resource type="Script" uid="uid://bixgjtnk5wryv" path="res://resources/weapon/weapon_data/res_WeaponData.gd" id="1_pvrsx"]
+[ext_resource type="Texture2D" uid="uid://bvbww03ylh1t1" path="res://resources/weapon/weapon_data/sprites/spear/spear_02.png" id="2_d3ap4"]
 [ext_resource type="PackedScene" uid="uid://ds3yfc4fykop0" path="res://scenes/game_object/weapons/spear_attack/spear_attack.tscn" id="2_pvrsx"]
+[ext_resource type="Texture2D" uid="uid://bi74201smyih4" path="res://resources/weapon/weapon_data/sprites/spear/spear_03.png" id="3_sevaf"]
+[ext_resource type="Texture2D" uid="uid://b4ne1u5d3qh8l" path="res://resources/weapon/weapon_data/sprites/spear/spear_04.png" id="4_wcbfd"]
 
 [resource]
 script = ExtResource("1_pvrsx")
 weapon_scene = ExtResource("2_pvrsx")
 id = 1
 name = "Spear"
+icons = Array[Texture2D]([ExtResource("1_8utwt"), ExtResource("2_d3ap4"), ExtResource("3_sevaf"), ExtResource("4_wcbfd")])
 metadata/_custom_type_script = "uid://bixgjtnk5wryv"

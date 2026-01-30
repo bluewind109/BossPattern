@@ -1,11 +1,29 @@
-[gd_resource type="Resource" script_class="Res_WeaponData" load_steps=3 format=3 uid="uid://daeisnkuyax8c"]
+[gd_resource type="Resource" script_class="Res_WeaponData" format=3 uid="uid://daeisnkuyax8c"]
 
+[ext_resource type="Texture2D" uid="uid://cdny2ukheexog" path="res://resources/weapon/weapon_data/sprites/bow/arrow_01.png" id="1_iol54"]
 [ext_resource type="Script" uid="uid://bixgjtnk5wryv" path="res://resources/weapon/weapon_data/res_WeaponData.gd" id="1_rjl2f"]
+[ext_resource type="Texture2D" uid="uid://b022231gffu6n" path="res://resources/weapon/weapon_data/sprites/bow/arrow_02.png" id="2_5qcji"]
 [ext_resource type="PackedScene" uid="uid://bjpplgltrpw3w" path="res://scenes/game_object/weapons/bow_attack/bow_attack.tscn" id="2_rjl2f"]
+[ext_resource type="Texture2D" uid="uid://cp5rs87lggc22" path="res://resources/weapon/weapon_data/sprites/bow/arrow_03.png" id="3_xlmy8"]
+[ext_resource type="Texture2D" uid="uid://qgfd08oftxm4" path="res://resources/weapon/weapon_data/sprites/bow/arrow_04.png" id="4_5x7g4"]
+[ext_resource type="Texture2D" uid="uid://bw7deu1p56xnt" path="res://resources/weapon/weapon_data/sprites/bow/bow_01_attack_01.png" id="5_ixai3"]
+[ext_resource type="Texture2D" uid="uid://da2u76aamk15s" path="res://resources/weapon/weapon_data/sprites/bow/bow_01_attack_02.png" id="6_poib8"]
+[ext_resource type="Texture2D" uid="uid://h0th6btlm5go" path="res://resources/weapon/weapon_data/sprites/bow/bow_01_attack_03.png" id="7_qcqat"]
+[ext_resource type="Texture2D" uid="uid://choburhd85y0f" path="res://resources/weapon/weapon_data/sprites/bow/bow_02_attack_01.png" id="8_vqd8d"]
+[ext_resource type="Texture2D" uid="uid://o5jo5661q2cy" path="res://resources/weapon/weapon_data/sprites/bow/bow_02_attack_02.png" id="9_sa3k2"]
+[ext_resource type="Texture2D" uid="uid://cny614b3cvxv8" path="res://resources/weapon/weapon_data/sprites/bow/bow_02_attack_03.png" id="10_07xj7"]
+[ext_resource type="Texture2D" uid="uid://bx5ns4w63weeg" path="res://resources/weapon/weapon_data/sprites/bow/bow_03_attack_01.png" id="11_phuo4"]
+[ext_resource type="Texture2D" uid="uid://b53ymx8m8eurh" path="res://resources/weapon/weapon_data/sprites/bow/bow_03_attack_02.png" id="12_d1lsw"]
+[ext_resource type="Texture2D" uid="uid://bydc5bjp8jytt" path="res://resources/weapon/weapon_data/sprites/bow/bow_03_attack_03.png" id="13_u0x6u"]
+[ext_resource type="Texture2D" uid="uid://cfs1ks1vwua7y" path="res://resources/weapon/weapon_data/sprites/bow/bow_04_attack_01.png" id="14_v1cwu"]
+[ext_resource type="Texture2D" uid="uid://2dactrqgf5m0" path="res://resources/weapon/weapon_data/sprites/bow/bow_04_attack_02.png" id="15_tbqgp"]
+[ext_resource type="Texture2D" uid="uid://d02m31dlrdgf8" path="res://resources/weapon/weapon_data/sprites/bow/bow_04_attack_03.png" id="16_mq7wv"]
+[ext_resource type="Texture2D" uid="uid://dq6afmp3lc3eh" path="res://resources/weapon/weapon_data/sprites/bow/bow_idle.png" id="17_00wmc"]
 
 [resource]
 script = ExtResource("1_rjl2f")
 weapon_scene = ExtResource("2_rjl2f")
 id = 2
 name = "Bow"
+icons = Array[Texture2D]([ExtResource("1_iol54"), ExtResource("2_5qcji"), ExtResource("3_xlmy8"), ExtResource("4_5x7g4"), ExtResource("5_ixai3"), ExtResource("6_poib8"), ExtResource("7_qcqat"), ExtResource("8_vqd8d"), ExtResource("9_sa3k2"), ExtResource("10_07xj7"), ExtResource("11_phuo4"), ExtResource("12_d1lsw"), ExtResource("13_u0x6u"), ExtResource("14_v1cwu"), ExtResource("15_tbqgp"), ExtResource("16_mq7wv"), ExtResource("17_00wmc")])
 metadata/_custom_type_script = "uid://bixgjtnk5wryv"

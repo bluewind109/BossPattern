@@ -15,6 +15,7 @@ class_name WeaponSelectionCard
 @export var label_description: Label
 
 var unlock_tracking: WeaponUnlockTracking
+var data: Res_WeaponData
 
 # short duration = game with fast level up for urgency
 # long duration = game with slower level up for more impact
@@ -37,9 +38,13 @@ func _ready() -> void:
 func init(tracking_data: WeaponUnlockTracking):
 	if (tracking_data == null): return
 	unlock_tracking = tracking_data
-	var weapon_data: Res_WeaponData = WeaponManager.get_weapon_by_id(unlock_tracking.id)
-	if (weapon_data == null): return
-	label_name.text = weapon_data.name
+	data = WeaponManager.get_weapon_by_id(unlock_tracking.id)
+	if (data == null): return
+	label_name.text = data.name
+	if (unlock_tracking.is_unlocked):
+		purchase_button.visible = !unlock_tracking.is_unlocked
+		upgrade_button.visible = unlock_tracking.is_unlocked
+		select_button.visible = unlock_tracking.is_unlocked
 	# weapon_icon.texture = 
 	# label_description.text = _data.description
 
@@ -49,9 +54,9 @@ func enable_selection(val: bool) -> void:
 
 
 func set_card_info(_data: WeaponUnlockTracking) -> void:
-	var weapon_data = WeaponManager.get_weapon_by_id(unlock_tracking.id)
-	if (weapon_data == null): return
-	label_name.text = weapon_data.name
+	data = WeaponManager.get_weapon_by_id(unlock_tracking.id)
+	if (data == null): return
+	label_name.text = data.name
 	# label_description.text = _data.description
 
 
