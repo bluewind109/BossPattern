@@ -22,7 +22,8 @@ func _on_play_pressed():
 	if (!is_animation_done): return
 	is_animation_done = false
 	ScreenTransition.start_transition(func(): 
-		get_tree().change_scene_to_file("res://scenes/game/game.tscn")
+		# get_tree().change_scene_to_file("res://scenes/game/game.tscn")
+		get_tree().change_scene_to_file("res://scenes/ui/weapon_selection_menu/weapon_selection_menu.tscn")
 	)
 
 
