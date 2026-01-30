@@ -251,6 +251,9 @@
       }
     },
     "res://resources/weapon/weapon_data/": {
+      "icons": {
+        "visibility": 0
+      },
       "metadata/_custom_type_script": {
         "visibility": 0.0
       },

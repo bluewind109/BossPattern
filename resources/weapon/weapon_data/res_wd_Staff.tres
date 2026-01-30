@@ -13,5 +13,6 @@ script = ExtResource("1_uulkj")
 weapon_scene = ExtResource("2_uulkj")
 id = 3
 name = "Staff"
+max_level = 5
 icons = Array[Texture2D]([ExtResource("1_2hyey"), ExtResource("2_8dx27"), ExtResource("3_68b8t"), ExtResource("4_6dvh6"), ExtResource("5_2rofy")])
 metadata/_custom_type_script = "uid://bixgjtnk5wryv"

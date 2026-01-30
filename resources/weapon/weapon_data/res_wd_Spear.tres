@@ -12,5 +12,6 @@ script = ExtResource("1_pvrsx")
 weapon_scene = ExtResource("2_pvrsx")
 id = 1
 name = "Spear"
+max_level = 4
 icons = Array[Texture2D]([ExtResource("1_8utwt"), ExtResource("2_d3ap4"), ExtResource("3_sevaf"), ExtResource("4_wcbfd")])
 metadata/_custom_type_script = "uid://bixgjtnk5wryv"
