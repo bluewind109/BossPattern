@@ -41,11 +41,18 @@ func init(tracking_data: WeaponUnlockTracking):
 	data = WeaponManager.get_weapon_by_id(unlock_tracking.id)
 	if (data == null): return
 	label_name.text = data.name
+	weapon_icon.texture = data.icons[0]
 	if (unlock_tracking.is_unlocked):
-		purchase_button.visible = !unlock_tracking.is_unlocked
-		upgrade_button.visible = unlock_tracking.is_unlocked
-		select_button.visible = unlock_tracking.is_unlocked
-	# weapon_icon.texture = 
+		var search_string: String = data.name.to_lower() + "_0" + str(unlock_tracking.weapon_level)
+		print("weapon_level search_string: ", search_string)
+		var result_icon: Texture2D = data.search_icon(search_string)
+		if (result_icon != null): weapon_icon.texture = result_icon
+	purchase_button.visible = !unlock_tracking.is_unlocked
+	upgrade_button.visible = unlock_tracking.is_unlocked
+	select_button.visible = unlock_tracking.is_unlocked
+
+	upgrade_button.disabled = true
+	purchase_button.disabled = true
 	# label_description.text = _data.description
 
 
