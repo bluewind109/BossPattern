@@ -3,8 +3,6 @@ class_name Player
 
 enum STATE {Idle, Run, Attack, Die}
 
-@export var chosen_weapon_id: WeaponDefine.WEAPON_ID
-
 @onready var state_machine: CallableStateMachine = $callable_state_machine
 
 @onready var character_sprite: Sprite2D = $%character_sprite
@@ -12,9 +10,11 @@ enum STATE {Idle, Run, Attack, Die}
 @onready var comp_health: ComponentHealth = $health
 @onready var comp_look: ComponentLook = $look
 @onready var player_control: ComponentFourWaysControl = $component_FourWaysControl
+@onready var hurtbox: ComponentHurtbox = $hurtbox
+
 @onready var abilities: Node = $abilities
 @onready var weapons: Node2D = $%weapons
-@onready var hurtbox: ComponentHurtbox = $hurtbox
+
 @onready var hit_sfx: RandomAudioPlayer2D = $%hit_sfx
 
 @export var base_max_health: float = 100.0
@@ -50,7 +50,7 @@ func _ready() -> void:
 	if (player_control):
 		player_control.set_max_speed(base_speed)
 
-	var weapon_data = WeaponManager.get_weapon_by_id(chosen_weapon_id)
+	var weapon_data = WeaponManager.get_weapon_by_id(WeaponManager.current_weapon_id)
 	var weapon = weapon_data.weapon_scene.instantiate() as Weapon
 	weapons.add_child(weapon)
 	weapon.set_weapon_damage(weapon_data.base_damage)

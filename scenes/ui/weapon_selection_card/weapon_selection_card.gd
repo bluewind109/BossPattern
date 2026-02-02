@@ -28,6 +28,7 @@ var can_select: bool = false
 func _ready() -> void:
 	self.name = "weapon_selection_card"
 
+	select_button.pressed.connect(_on_select_pressed)
 	# purchase_button.pressed.connect(_on_purchase_pressed)
 	pivot_offset = size / 2
 	self.modulate.a = 0
@@ -42,11 +43,12 @@ func init(tracking_data: WeaponUnlockTracking):
 	if (data == null): return
 	label_name.text = data.name
 	weapon_icon.texture = data.icons[0]
-	if (unlock_tracking.is_unlocked):
-		var search_string: String = data.name.to_lower() + "_0" + str(unlock_tracking.weapon_level)
-		print("weapon_level search_string: ", search_string)
-		var result_icon: Texture2D = data.search_icon(search_string)
-		if (result_icon != null): weapon_icon.texture = result_icon
+	# if (unlock_tracking.is_unlocked):
+	var result_level = 1 if unlock_tracking.weapon_level == 0 else unlock_tracking.weapon_level
+	var search_string: String = data.name.to_lower() + "_0" + str(result_level)
+	print("weapon_level search_string: ", search_string)
+	var result_icon: Texture2D = data.search_icon(search_string)
+	if (result_icon != null): weapon_icon.texture = result_icon
 	purchase_button.visible = !unlock_tracking.is_unlocked
 	upgrade_button.visible = unlock_tracking.is_unlocked
 	select_button.visible = unlock_tracking.is_unlocked
@@ -105,3 +107,13 @@ func _on_purchase_pressed():
 	# MetaProgression.update_currency(upgrade.experience_cost * -1)
 	# MetaProgression.add_meta_upgrade(upgrade)
 	# get_tree().call_group("meta_upgrade_card", "update_progress")
+
+
+func _on_upgrade_pressed():
+	pass
+
+
+func _on_select_pressed():
+	# save the chosen weapon
+	WeaponManager.current_weapon_id = data.id
+	get_tree().change_scene_to_file("res://scenes/game/game.tscn")

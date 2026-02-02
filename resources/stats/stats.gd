@@ -1,6 +1,14 @@
 extends Resource
 class_name Stats
 
+enum BUFFABLE_STATS
+{
+	MAX_HEALTH,
+	ATTACK,
+	DEFENSE,
+	SPEED
+}
+
 signal health_depleted
 signal health_changed(cur_health: float, max_health: float)
 
