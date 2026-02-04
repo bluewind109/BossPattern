@@ -2,6 +2,8 @@ extends Node
 
 signal explosion_created(target: Explosion)
 signal exp_vial_collected(number: float)
+signal boss_killed(number: int)
+signal enemy_killed(number: int)
 signal ability_upgrade_added(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary)
 signal update_player_health_bar(percent: float)
 signal player_damaged
@@ -14,6 +16,14 @@ func emit_explosion_created(target: Explosion):
 
 func emit_exp_vial_collected(number: float):
 	exp_vial_collected.emit(number)
+
+
+func emit_boss_killed(number: int):
+	boss_killed.emit(number)
+
+
+func emit_enemy_killed(number: int):
+	enemy_killed.emit(number)
 
 
 func emit_ability_upgrade_added(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary):

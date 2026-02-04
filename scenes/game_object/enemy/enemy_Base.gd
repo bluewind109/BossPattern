@@ -19,6 +19,7 @@ var speed_dict: Dictionary[int, float] = {}
 
 @export var mass: float = 20
 
+var is_boss: bool = false
 var is_spawning: bool = false
 var is_dead: bool = false
 
@@ -116,3 +117,5 @@ func _on_damaged(amount: float):
 
 func _on_die():
 	is_dead = true
+	GameEvents.emit_enemy_killed(1)
+	if (is_boss): GameEvents.emit_boss_killed(1)

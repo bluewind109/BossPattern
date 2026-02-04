@@ -9,6 +9,7 @@ var save_data: SaveData
 func _ready() -> void:
 	verify_save_directory(SAVE_FILE_PATH)
 	GameEvents.exp_vial_collected.connect(_on_exp_vial_collected)
+	GameEvents.enemy_killed.connect(_on_enemy_killed)
 	load_save_file()
 
 

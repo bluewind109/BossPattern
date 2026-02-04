@@ -58,11 +58,11 @@ func update_meta_currency(number: float):
 
 
 func update_boss_killed(number: int):
-	boss_killed += number
+	boss_killed = maxi(0, boss_killed + number)
 
 
 func update_enemy_killed(number: int):
-	enemy_killed += number
+	enemy_killed = maxi(0, enemy_killed + number)
 
 
 func unlock_weapon(_weapon_id: WeaponDefine.WEAPON_ID):
