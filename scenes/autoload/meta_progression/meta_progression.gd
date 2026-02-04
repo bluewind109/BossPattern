@@ -9,7 +9,6 @@ var save_data: SaveData
 func _ready() -> void:
 	verify_save_directory(SAVE_FILE_PATH)
 	GameEvents.exp_vial_collected.connect(_on_exp_vial_collected)
-	GameEvents.enemy_killed.connect(_on_enemy_killed)
 	load_save_file()
 
 
@@ -32,7 +31,8 @@ func load_save_file():
 	# save_data = file.get_var(true)
 	# print("load_save_file: ", save_data)
 	save_data = ResourceLoader.load(SAVE_FILE_PATH + SAVE_FILE_NAME)
-	print("load_save_file: ", save_data.meta_upgrade_currency)
+	print("load_save_file meta_upgrade_currency: ", save_data.meta_upgrade_currency)
+	print("load_save_file enemy_killed: ", save_data.game_tracking.enemy_killed)
 
 
 func save():
@@ -47,16 +47,32 @@ func get_weapon_progression() -> Dictionary[WeaponDefine.WEAPON_ID, WeaponUnlock
 
 
 func add_meta_upgrade(upgrade: Res_MetaUpgrade):
-	save_data.add_meta_upgrade(upgrade)
+	if (upgrade == null): return
+	if (not save_data.meta_upgrades.has(upgrade.id)):
+		save_data.meta_upgrades[upgrade.id] = MetaUpgradeTracking.new()
+		save_data.meta_upgrades[upgrade.id].init(
+			upgrade.id,
+			0,
+			upgrade.upgrade_value,
+		)
+	save_data.meta_upgrades[upgrade.id].upgrade_quantity(1)
 	save()
 
 
 func get_upgrade_count(upgrade_id: UpgradeDefine.META_UPGRADE_ID) -> int:
-	return save_data.get_upgrade_count(upgrade_id)
+	if (!save_data.meta_upgrades.has(upgrade_id)): return 0
+	return save_data.meta_upgrades[upgrade_id]["quantity"]
 
 
 func get_upgrade_value(upgrade_id: UpgradeDefine.META_UPGRADE_ID) -> float:
-	return save_data.get_upgrade_value(upgrade_id)
+	if (!save_data.meta_upgrades.has(upgrade_id)): return 0.0
+	if (!save_data.meta_upgrades[upgrade_id].has("upgrade_value")):
+		match upgrade_id:
+			UpgradeDefine.META_UPGRADE_ID.EXPERIENCE_GAIN:
+				return 0.1
+			UpgradeDefine.META_UPGRADE_ID.HEALTH_REGEN:
+				return 1.0
+	return save_data.meta_upgrades[upgrade_id]["upgrade_value"]
 
 
 func get_currency() -> float:
@@ -65,7 +81,41 @@ func get_currency() -> float:
 
 func update_currency(number: float):
 	print("update_currency: ", number)
-	save_data.update_meta_currency(number)
+	save_data.meta_upgrade_currency += number
+	save()
+
+func update_win_count(number: int):
+	save_data.game_tracking.win_count = maxi(0, save_data.game_tracking.win_count + number)
+	save()
+
+
+func update_loss_count(number: int):
+	save_data.game_tracking.loss_count = maxi(0, save_data.game_tracking.loss_count + number)
+	save()
+
+
+func get_boss_killed() -> int:
+	return save_data.game_tracking.boss_killed
+
+
+func update_boss_killed(number: int):
+	save_data.game_tracking.boss_killed = maxi(0, save_data.game_tracking.boss_killed + number)
+	save()
+
+
+func get_enemy_killed() -> int:
+	return save_data.game_tracking.enemy_killed
+
+
+func update_enemy_killed(number: int):
+	save_data.game_tracking.enemy_killed = maxi(0, save_data.game_tracking.enemy_killed + number)
+	print("update_enemy_killed: ", save_data.game_tracking.enemy_killed)
+	save()
+
+
+func unlock_weapon(_weapon_id: WeaponDefine.WEAPON_ID):
+	if (!save_data.weapon_unlock_progress.has(_weapon_id)): return
+	save_data.weapon_unlock_progress[_weapon_id].unlock()
 	save()
 
 
@@ -73,16 +123,5 @@ func _on_exp_vial_collected(number: float):
 	update_currency(number)
 
 
-func _on_boss_killed(number: int):
-	save_data.update_boss_killed(number)
-	save()
-
-
-func _on_enemy_killed(number: int):
-	save_data.update_enemy_killed(number)
-	save()
-
-
 func _on_unlock_weapon(_weapon_id: WeaponDefine.WEAPON_ID):
-	save_data.unlock_weapon(_weapon_id)
-	save()
+	unlock_weapon(_weapon_id)
