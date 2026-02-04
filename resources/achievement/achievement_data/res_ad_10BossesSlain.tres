@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AchievementData" format=3 uid="uid://brlvk30vkqmcr"]
+
+[ext_resource type="Script" uid="uid://ce4y7oh1w21ne" path="res://resources/achievement/achievement_data/achievement_data.gd" id="1_ytgjp"]
+
+[resource]
+script = ExtResource("1_ytgjp")
+id = 1
+name = "Ten Bosses Slain"
+metadata/_custom_type_script = "uid://ce4y7oh1w21ne"

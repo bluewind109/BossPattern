@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AchievementData" format=3 uid="uid://cm77tnbjwnil5"]
+
+[ext_resource type="Script" uid="uid://ce4y7oh1w21ne" path="res://resources/achievement/achievement_data/achievement_data.gd" id="1_wyp5x"]
+
+[resource]
+script = ExtResource("1_wyp5x")
+name = "Hundred Enemies Slain"
+metadata/_custom_type_script = "uid://ce4y7oh1w21ne"

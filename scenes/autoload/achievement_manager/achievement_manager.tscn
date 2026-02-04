@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bn61dnxsc5yab"]
+
+[ext_resource type="Script" uid="uid://blwobrjedm0tj" path="res://scenes/autoload/achievement_manager/achievement_manager.gd" id="1_mr6jv"]
+[ext_resource type="Resource" uid="uid://oshfbk5r0ji" path="res://resources/achievement/achievement_config/achievement_config.tres" id="2_3ei1o"]
+
+[node name="achievement_manager" type="Node" unique_id=1992277427]
+script = ExtResource("1_mr6jv")
+config = ExtResource("2_3ei1o")

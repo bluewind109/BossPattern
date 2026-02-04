@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://demcvio7smpha"]
+
+[ext_resource type="Script" uid="uid://yj2n2paqp14m" path="res://scenes/autoload/achievement_define/achievement_define.gd" id="1_xnlko"]
+
+[node name="achievement_define" type="Node" unique_id=1319860449]
+script = ExtResource("1_xnlko")
