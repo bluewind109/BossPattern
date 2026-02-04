@@ -1,15 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://b20o1b3sijcsr"]
+[gd_scene format=3 uid="uid://b20o1b3sijcsr"]
 
 [ext_resource type="Script" uid="uid://cp77v570t73w0" path="res://scenes/manager/enemy_manager/enemy_manager.gd" id="1_ij5hy"]
 [ext_resource type="Resource" uid="uid://drwe0wevvtp6e" path="res://resources/enemy/enemy_config/enemy_config.tres" id="2_a1uqj"]
 [ext_resource type="Resource" uid="uid://c8r07a8xjt8su" path="res://resources/enemy/spawn_config/spawn_config.tres" id="2_cg5kq"]
 
-[node name="enemy_manager" type="Node"]
+[node name="enemy_manager" type="Node" unique_id=783011470]
 script = ExtResource("1_ij5hy")
 spawn_config = ExtResource("2_cg5kq")
 enemy_config = ExtResource("2_a1uqj")
 
-[node name="spawn_timer" type="Timer" parent="."]
+[node name="spawn_timer" type="Timer" parent="." unique_id=959048613]
 unique_name_in_owner = true
 one_shot = true
 autostart = true
+
+[node name="tracking_timer" type="Timer" parent="." unique_id=973185130]
+unique_name_in_owner = true
+process_mode = 3
+wait_time = 3.0

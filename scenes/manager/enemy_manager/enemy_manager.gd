@@ -8,12 +8,15 @@ const SPAWN_RADIUS: float = 150
 @export var enemy_config: EnemyConfig
 @export var game_time_manager: GameTimeManager
 @onready var spawn_timer: Timer = $%spawn_timer
+@onready var tracking_timer: Timer = $%tracking_timer
 
 var base_spawn_time = 0
 var enemy_table = EnemyWeightedTable.new()
 var number_to_spawn: int = 1
 var current_difficulty: int = 0
 
+var enemy_killed: int = 0
+var boss_killed: int = 0
 
 func _ready() -> void:
 	# var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.BASE, 10)
@@ -23,6 +26,10 @@ func _ready() -> void:
 	base_spawn_time = spawn_timer.wait_time
 	game_time_manager.arena_difficulty_increased.connect(_on_arena_difficulty_increased)
 	spawn_timer.timeout.connect(_on_spawn_timeout)	
+	tracking_timer.timeout.connect(_on_tracking_timeout)
+
+	GameEvents.enemy_killed.connect(_on_enemy_killed)
+	GameEvents.boss_killed.connect(_on_boss_killed)
 
 
 func get_spawn_position() -> Vector2:
@@ -61,6 +68,17 @@ func update_spawn_pool_by_difficulty(_diff: int):
 		enemy_table.add_item(enemy_weight)
 
 
+func send_update_enemy_killed():
+	if (enemy_killed <= 0): return
+	MetaProgression.update_enemy_killed(enemy_killed)
+	enemy_killed = 0
+
+
+func send_update_boss_killed():
+	if (boss_killed <= 0): return
+	MetaProgression.update_boss_killed(boss_killed)
+	boss_killed = 0
+
 func _on_spawn_timeout():
 	if (is_disabled): return
 	spawn_timer.start()
@@ -91,3 +109,16 @@ func _on_arena_difficulty_increased(arena_difficulty: int):
 	if (arena_difficulty == current_difficulty): return
 	current_difficulty = arena_difficulty
 	update_spawn_pool_by_difficulty(current_difficulty)
+
+
+func _on_enemy_killed(new_value: int):
+	enemy_killed += new_value
+
+
+func _on_boss_killed(new_value: int):
+	boss_killed += new_value
+
+
+func _on_tracking_timeout():
+	send_update_enemy_killed()
+	send_update_boss_killed()
