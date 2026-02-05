@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ce4y7oh1w21ne" path="res://resources/achievement/achievement_data/achievement_data.gd" id="1_p1gtr"]
 [ext_resource type="Script" uid="uid://b26gmjebq62y6" path="res://resources/achievement/achievement_config/achievement_config.gd" id="2_ca8pe"]
-[ext_resource type="Resource" uid="uid://cm77tnbjwnil5" path="res://resources/achievement/achievement_data/res_ad_100EnemiesSlain.tres" id="2_m3inp"]
-[ext_resource type="Resource" uid="uid://brlvk30vkqmcr" path="res://resources/achievement/achievement_data/res_ad_10BossesSlain.tres" id="3_m3inp"]
-[ext_resource type="Resource" uid="uid://ci8kqn64mlv11" path="res://resources/achievement/achievement_data/res_ad_100EnemiesSlainWithSpear.tres" id="4_epj5o"]
 
 [resource]
 script = ExtResource("2_ca8pe")
-achievements = Array[ExtResource("1_p1gtr")]([ExtResource("2_m3inp"), ExtResource("3_m3inp"), ExtResource("4_epj5o")])
 metadata/_custom_type_script = "uid://b26gmjebq62y6"
