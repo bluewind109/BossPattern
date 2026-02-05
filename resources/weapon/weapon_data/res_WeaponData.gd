@@ -8,6 +8,7 @@ class_name Res_WeaponData
 @export var max_level: int = 1
 @export var icons: Array[Texture2D] = []
 @export var achievement_to_unlock: AchievementDefine.ACHIEVEMENT_ID
+@export var upgrade_data: WeaponUpgradeData
 
 
 func do():
@@ -27,3 +28,9 @@ func search_icons(search_string: String) -> Array[Texture2D]:
 		return _icons.resource_path.contains(search_string)
 	)
 	return filter_icons
+
+func get_scaled_damage(current_level: int) -> float:
+	var level_percent: float = current_level / max_level
+	var scaled_damage: float = upgrade_data.get_scaled_value(level_percent)
+	print("get_scaled_damage scaled_damage: ", scaled_damage)
+	return scaled_damage
