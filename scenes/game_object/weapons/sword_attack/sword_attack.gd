@@ -5,6 +5,7 @@ class_name SwordAttack
 @onready var pivot: Marker2D = $pivot
 @onready var animation_player: AnimationPlayer = $animation_player
 @onready var weapon_sprite: Sprite2D = $%weapon_sprite
+@onready var hitbox: ComponentHitbox = $%hitbox
 
 @export var sword_slash_scene: PackedScene
 @export var original_scale: float =  1.0
@@ -24,6 +25,11 @@ func _ready() -> void:
 	position = start_pos
 	animation_player.animation_finished.connect(_on_animation_finished)
 	scale = Vector2(original_scale, original_scale)
+
+
+func set_weapon_damage(val: float):
+	super.set_weapon_damage(val)
+	hitbox.set_damage(val)
 
 
 func _physics_process(delta: float) -> void:
