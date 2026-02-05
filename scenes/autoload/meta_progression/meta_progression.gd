@@ -46,6 +46,14 @@ func get_weapon_progression() -> Dictionary[WeaponDefine.WEAPON_ID, WeaponUnlock
 	return save_data.weapon_unlock_progress
 
 
+func get_weapon_progression_by_id(_id: WeaponDefine.WEAPON_ID) -> WeaponUnlockTracking:
+	var weapon_unlock_progress: Dictionary = save_data.weapon_unlock_progress
+	for weapon_id: WeaponDefine.WEAPON_ID in weapon_unlock_progress:
+		if (weapon_id == _id):
+			return weapon_unlock_progress[weapon_id]
+	return null
+
+
 func add_meta_upgrade(upgrade: Res_MetaUpgrade):
 	if (upgrade == null): return
 	if (not save_data.meta_upgrades.has(upgrade.id)):
@@ -91,9 +99,14 @@ func update_weapon_unlock_progression():
 
 
 func upgrade_weapon(_id: WeaponDefine.WEAPON_ID, number_of_ugrade: int = 1):
-	var weapon = save_data.weapon_unlock_progress[_id]
-	if (weapon == null): return
-	weapon.upgrade(number_of_ugrade)
+	var weapon_unlock_tracking: WeaponUnlockTracking = save_data.weapon_unlock_progress[_id]
+	if (weapon_unlock_tracking == null): return
+	var weapon: Res_WeaponData = WeaponManager.get_weapon_by_id(_id)
+	if (weapon_unlock_tracking.weapon_level >= weapon.max_level): return
+	if (weapon_unlock_tracking.weapon_level + number_of_ugrade > weapon.max_level):
+		number_of_ugrade = weapon.max_level - weapon_unlock_tracking.weapon_level
+	weapon_unlock_tracking.upgrade(number_of_ugrade)
+	save()
 
 
 func update_currency(number: float):

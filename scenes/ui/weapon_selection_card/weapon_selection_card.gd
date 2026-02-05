@@ -27,7 +27,7 @@ var can_select: bool = false
 
 func _ready() -> void:
 	self.name = "weapon_selection_card"
-
+	upgrade_button.pressed.connect(_on_upgrade_pressed)
 	select_button.pressed.connect(_on_select_pressed)
 	# locked_button.pressed.connect(_on_purchase_pressed)
 	pivot_offset = size / 2
@@ -39,34 +39,45 @@ func _ready() -> void:
 func init(tracking_data: WeaponUnlockTracking):
 	if (tracking_data == null): return
 	unlock_tracking = tracking_data
-	data = WeaponManager.get_weapon_by_id(unlock_tracking.id)
-	if (data == null): return
-	label_name.text = data.name
-	weapon_icon.texture = data.icons[0]
-	# if (unlock_tracking.is_unlocked):
-	var result_level = 1 if unlock_tracking.weapon_level == 0 else unlock_tracking.weapon_level
-	var search_string: String = data.name.to_lower() + "_0" + str(result_level)
-	print("weapon_level search_string: ", search_string)
-	var result_icon: Texture2D = data.search_icon(search_string)
-	if (result_icon != null): weapon_icon.texture = result_icon
-	locked_button.visible = !unlock_tracking.is_unlocked
-	upgrade_button.visible = unlock_tracking.is_unlocked
-	select_button.visible = unlock_tracking.is_unlocked
-
-	upgrade_button.disabled = true
-	locked_button.disabled = true
-	# label_description.text = _data.description
+	update_card_info()
 
 
 func enable_selection(val: bool) -> void:
 	can_select = val
 
 
-func set_card_info(_data: WeaponUnlockTracking) -> void:
+func update_card_info() -> void:
 	data = WeaponManager.get_weapon_by_id(unlock_tracking.id)
 	if (data == null): return
 	label_name.text = data.name
-	# label_description.text = _data.description
+	# label_description.text = data.description
+
+	update_weapon_icon()
+	update_upgrade_button()
+	update_locked_button()
+	select_button.visible = unlock_tracking.is_unlocked
+
+
+func update_weapon_icon():
+	weapon_icon.texture = data.icons[0]
+	var result_level = 1 if unlock_tracking.weapon_level == 0 else unlock_tracking.weapon_level
+	var search_string: String = data.name.to_lower() + "_0" + str(result_level)
+	print("weapon_level search_string: ", search_string)
+	var result_icon: Texture2D = data.search_icon(search_string)
+	if (result_icon != null): weapon_icon.texture = result_icon
+
+
+func update_upgrade_button():
+	upgrade_button.visible = true
+	if (unlock_tracking.weapon_level >= data.max_level):
+		upgrade_button.disabled = true
+		return
+	upgrade_button.disabled = false
+
+
+func update_locked_button():
+	locked_button.visible = !unlock_tracking.is_unlocked
+	locked_button.disabled = true
 
 
 func update_progress():
@@ -110,7 +121,9 @@ func _on_purchase_pressed():
 
 
 func _on_upgrade_pressed():
-	pass
+	MetaProgression.upgrade_weapon(data.id, 1)
+	unlock_tracking = MetaProgression.get_weapon_progression_by_id(unlock_tracking.id)
+	update_card_info()
 
 
 func _on_select_pressed():

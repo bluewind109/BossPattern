@@ -50,10 +50,14 @@ func _ready() -> void:
 	if (player_control):
 		player_control.set_max_speed(base_speed)
 
-	var weapon_data = WeaponManager.get_weapon_by_id(WeaponManager.current_weapon_id)
+	var weapon_data: Res_WeaponData = WeaponManager.get_weapon_by_id(WeaponManager.current_weapon_id)
+	var weapon_level: int = WeaponManager.get_weapon_level(WeaponManager.current_weapon_id)
+	var weapon_damage: float = weapon_data.get_scaled_damage(weapon_level)
+	print("weapon damage: ", weapon_damage)
+
 	var weapon = weapon_data.weapon_scene.instantiate() as Weapon
 	weapons.add_child(weapon)
-	weapon.set_weapon_damage(weapon_data.base_damage)
+	weapon.set_weapon_damage(weapon_damage)
 
 	if (hurtbox):
 		hurtbox.damaged.connect(_on_damaged)
