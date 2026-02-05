@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_wyp5x")
 name = "Hundred Enemies Slain"
+description = "Slay 100 enemies"
 metadata/_custom_type_script = "uid://ce4y7oh1w21ne"

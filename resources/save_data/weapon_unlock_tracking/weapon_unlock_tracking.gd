@@ -14,7 +14,7 @@ func init(_id: WeaponDefine.WEAPON_ID, _is_unlocked: bool, _level: int):
 
 func unlock():
 	is_unlocked = true
-	weapon_level = 1
+	weapon_level += 1
 
 
 func upgrade(number: int):

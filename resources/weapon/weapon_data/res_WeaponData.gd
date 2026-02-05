@@ -7,6 +7,7 @@ class_name Res_WeaponData
 @export var base_damage: float = 1.0
 @export var max_level: int = 1
 @export var icons: Array[Texture2D] = []
+@export var achievement_to_unlock: AchievementDefine.ACHIEVEMENT_ID
 
 
 func do():

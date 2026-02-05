@@ -27,4 +27,5 @@ id = 2
 name = "Bow"
 max_level = 4
 icons = Array[Texture2D]([ExtResource("1_iol54"), ExtResource("2_5qcji"), ExtResource("3_xlmy8"), ExtResource("4_5x7g4"), ExtResource("5_ixai3"), ExtResource("6_poib8"), ExtResource("7_qcqat"), ExtResource("8_vqd8d"), ExtResource("9_sa3k2"), ExtResource("10_07xj7"), ExtResource("11_phuo4"), ExtResource("12_d1lsw"), ExtResource("13_u0x6u"), ExtResource("14_v1cwu"), ExtResource("15_tbqgp"), ExtResource("16_mq7wv"), ExtResource("17_00wmc")])
+achievement_to_unlock = 1
 metadata/_custom_type_script = "uid://bixgjtnk5wryv"

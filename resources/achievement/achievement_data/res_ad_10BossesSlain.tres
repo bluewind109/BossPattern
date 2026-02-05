@@ -6,4 +6,5 @@
 script = ExtResource("1_ytgjp")
 id = 1
 name = "Ten Bosses Slain"
+description = "Slay 10 bosses"
 metadata/_custom_type_script = "uid://ce4y7oh1w21ne"

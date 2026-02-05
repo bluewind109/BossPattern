@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AchievementData" format=3 uid="uid://ci8kqn64mlv11"]
+
+[ext_resource type="Script" uid="uid://ce4y7oh1w21ne" path="res://resources/achievement/achievement_data/achievement_data.gd" id="1_k5lb4"]
+
+[resource]
+script = ExtResource("1_k5lb4")
+id = 2
+name = "Hundred Enemies Slain With Spear"
+description = "Slay 100 enemies while using spear"
+metadata/_custom_type_script = "uid://ce4y7oh1w21ne"
