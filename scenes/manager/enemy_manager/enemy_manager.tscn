@@ -18,3 +18,4 @@ autostart = true
 unique_name_in_owner = true
 process_mode = 3
 wait_time = 3.0
+autostart = true
