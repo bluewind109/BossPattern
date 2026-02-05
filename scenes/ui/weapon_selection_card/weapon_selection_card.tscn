@@ -120,11 +120,11 @@ max_value = 1.0
 value = 0.5
 show_percentage = false
 
-[node name="purchase_button" parent="margin_container/v_box_container" unique_id=224934897 instance=ExtResource("13_my4ps")]
+[node name="locked_button" parent="margin_container/v_box_container" unique_id=224934897 instance=ExtResource("13_my4ps")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-text = "Purchase"
+text = "Locked"
 
 [node name="upgrade_button" parent="margin_container/v_box_container" unique_id=136135281 instance=ExtResource("13_my4ps")]
 unique_name_in_owner = true

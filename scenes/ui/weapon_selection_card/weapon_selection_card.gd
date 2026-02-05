@@ -6,7 +6,7 @@ class_name WeaponSelectionCard
 @onready var weapon_icon: TextureRect = $%weapon_icon
 # @onready var label_progress: Label = $%label_progress
 # @onready var label_purchase_count: Label = $%label_purchase_count
-@onready var purchase_button: SoundButton = $%purchase_button
+@onready var locked_button: SoundButton = $%locked_button
 @onready var upgrade_button: SoundButton = $%upgrade_button
 @onready var select_button: SoundButton = $%select_button
 # @onready var progress_bar: ProgressBar = $%upgrade_progress_bar
@@ -29,7 +29,7 @@ func _ready() -> void:
 	self.name = "weapon_selection_card"
 
 	select_button.pressed.connect(_on_select_pressed)
-	# purchase_button.pressed.connect(_on_purchase_pressed)
+	# locked_button.pressed.connect(_on_purchase_pressed)
 	pivot_offset = size / 2
 	self.modulate.a = 0
 	can_select = false
@@ -49,12 +49,12 @@ func init(tracking_data: WeaponUnlockTracking):
 	print("weapon_level search_string: ", search_string)
 	var result_icon: Texture2D = data.search_icon(search_string)
 	if (result_icon != null): weapon_icon.texture = result_icon
-	purchase_button.visible = !unlock_tracking.is_unlocked
+	locked_button.visible = !unlock_tracking.is_unlocked
 	upgrade_button.visible = unlock_tracking.is_unlocked
 	select_button.visible = unlock_tracking.is_unlocked
 
 	upgrade_button.disabled = true
-	purchase_button.disabled = true
+	locked_button.disabled = true
 	# label_description.text = _data.description
 
 
@@ -79,11 +79,11 @@ func update_progress():
 	# percent = min(percent, 1)
 	# progress_bar.value = percent
 	# var is_enough_to_upgrade = percent < 1
-	# purchase_button.disabled = is_enough_to_upgrade || is_upgrade_maxed
+	# locked_button.disabled = is_enough_to_upgrade || is_upgrade_maxed
 	# label_progress.text = "%d/%d" % [floori(currency), upgrade.experience_cost]
 	# label_purchase_count.text = "x%d" % current_quantity
 	# if (is_upgrade_maxed):
-	# 	purchase_button.text = "Max"
+	# 	locked_button.text = "Max"
 
 
 func show_card() -> void:
