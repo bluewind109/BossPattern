@@ -79,10 +79,28 @@ func get_currency() -> float:
 	return save_data.meta_upgrade_currency
 
 
+func update_weapon_unlock_progression():
+	if (save_data == null): return
+	
+	for weapon_id in save_data.weapon_unlock_progress:
+		var weapon = save_data.weapon_unlock_progress[weapon_id]
+		if (weapon.is_unlocked): continue
+		if (!WeaponManager.check_can_unlock_weapon(weapon_id)): continue
+		weapon.unlock()
+	save()
+
+
+func upgrade_weapon(_id: WeaponDefine.WEAPON_ID, number_of_ugrade: int = 1):
+	var weapon = save_data.weapon_unlock_progress[_id]
+	if (weapon == null): return
+	weapon.upgrade(number_of_ugrade)
+
+
 func update_currency(number: float):
 	print("update_currency: ", number)
 	save_data.meta_upgrade_currency += number
 	save()
+
 
 func update_win_count(number: int):
 	save_data.game_tracking.win_count = maxi(0, save_data.game_tracking.win_count + number)
@@ -110,6 +128,16 @@ func get_enemy_killed() -> int:
 func update_enemy_killed(number: int):
 	save_data.game_tracking.enemy_killed = maxi(0, save_data.game_tracking.enemy_killed + number)
 	print("update_enemy_killed: ", save_data.game_tracking.enemy_killed)
+	save()
+
+
+func get_enemy_killed_with_spear() -> int:
+	return save_data.game_tracking.enemy_killed_with_spear
+
+
+func update_enemy_killed_with_spear(number: int):
+	save_data.game_tracking.enemy_killed_with_spear = maxi(0, save_data.game_tracking.enemy_killed_with_spear + number)
+	print("update_enemy_killed_with_spear: ", save_data.game_tracking.enemy_killed_with_spear)
 	save()
 
 
