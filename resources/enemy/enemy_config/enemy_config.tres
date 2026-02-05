@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyConfig" load_steps=7 format=3 uid="uid://drwe0wevvtp6e"]
+[gd_resource type="Resource" script_class="EnemyConfig" format=3 uid="uid://drwe0wevvtp6e"]
 
 [ext_resource type="Script" uid="uid://cmci7uxa50gcn" path="res://resources/enemy/enemy_data/res_EnemyData.gd" id="1_kwpky"]
 [ext_resource type="Script" uid="uid://so3dbbvfrqyl" path="res://resources/enemy/enemy_config/enemy_config.gd" id="2_3lqb5"]
