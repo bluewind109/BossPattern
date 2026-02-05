@@ -16,8 +16,7 @@ func _ready() -> void:
 		child.queue_free()
 		#(child as MetaUpgradeCard).show_card()
 
-	# TODO check if weapon is unlockable now
-
+	MetaProgression.update_weapon_unlock_progression()
 	var weapons: Dictionary = MetaProgression.get_weapon_progression()
 	for weapon_id in weapons:
 		var weapon = weapons[weapon_id]
