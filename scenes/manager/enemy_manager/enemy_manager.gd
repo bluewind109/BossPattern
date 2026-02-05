@@ -15,8 +15,10 @@ var enemy_table = EnemyWeightedTable.new()
 var number_to_spawn: int = 1
 var current_difficulty: int = 0
 
-var enemy_killed: int = 0
 var boss_killed: int = 0
+var enemy_killed: int = 0
+var enemy_killed_with_spear: int = 0
+
 
 func _ready() -> void:
 	# var enemy_weight = EnemyWeight.new(EnemyDefine.ENEMY_ID.BASE, 10)
@@ -74,6 +76,12 @@ func send_update_enemy_killed():
 	enemy_killed = 0
 
 
+func send_update_enemy_killed_with_spear():
+	if (enemy_killed_with_spear <= 0): return
+	MetaProgression.update_enemy_killed_with_spear(enemy_killed_with_spear)
+	enemy_killed_with_spear = 0
+
+
 func send_update_boss_killed():
 	if (boss_killed <= 0): return
 	MetaProgression.update_boss_killed(boss_killed)
@@ -113,6 +121,8 @@ func _on_arena_difficulty_increased(arena_difficulty: int):
 
 func _on_enemy_killed(new_value: int):
 	enemy_killed += new_value
+	if (WeaponManager.current_weapon_id == WeaponDefine.WEAPON_ID.SPEAR):
+		enemy_killed_with_spear += new_value
 
 
 func _on_boss_killed(new_value: int):
@@ -121,4 +131,6 @@ func _on_boss_killed(new_value: int):
 
 func _on_tracking_timeout():
 	send_update_enemy_killed()
+	send_update_enemy_killed_with_spear()
+
 	send_update_boss_killed()
