@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://ctc1aqnrat5u3" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_idle.png" id="2_ivf3s"]
 [ext_resource type="PackedScene" uid="uid://b71m46v4bx5ir" path="res://scenes/game_object/weapons/bow_attack/arrow/arrow.tscn" id="2_yraui"]
 [ext_resource type="Texture2D" uid="uid://dq6afmp3lc3eh" path="res://resources/weapon/weapon_data/sprites/bow/bow_idle.png" id="3_0ttkw"]
-[ext_resource type="Texture2D" uid="uid://b1tk70snv1trs" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_default_attack_01.png" id="4_aatt0"]
-[ext_resource type="Texture2D" uid="uid://dd0234djo8qpm" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_default_attack_02.png" id="5_38rky"]
-[ext_resource type="Texture2D" uid="uid://wdj0ixsmfies" path="res://scenes/game_object/weapons/bow_attack/sprites/bow_default_attack_03.png" id="6_6iibs"]
 
 [sub_resource type="Animation" id="Animation_yraui"]
 length = 0.001
@@ -23,25 +20,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.3089969]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("pivot/weapon_sprite:texture")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_ivf3s")]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -66,17 +51,19 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.3089969, 0.7853981633974483]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("pivot/weapon_sprite:texture")
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.20000002, 0.25, 0.45000002),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("2_ivf3s"), ExtResource("4_aatt0"), ExtResource("5_38rky"), ExtResource("6_6iibs"), ExtResource("2_ivf3s")]
+"times": PackedFloat32Array(0.45000002),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_arrow"
+}]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -85,20 +72,6 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.45000002),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_arrow"
-}]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0.15, 0.2, 0.25, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
@@ -132,25 +105,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.7853982, 1.3089969389957472]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("pivot/weapon_sprite:texture")
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_ivf3s")]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
