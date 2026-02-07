@@ -172,12 +172,13 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cm8ax"]
 size = Vector2(16, 8)
 
-[node name="spear_attack" type="Node2D" unique_id=391897471]
+[node name="spear_attack" type="Node2D" unique_id=391897471 node_paths=PackedStringArray("weapon_sprite")]
 script = ExtResource("1_ohc3y")
 start_pos = Vector2(0, -8)
 original_scale = 1.5
 attack_time = 0.4
 return_time = 0.4
+weapon_sprite = NodePath("pivot/weapon_sprite")
 
 [node name="animation_player" type="AnimationPlayer" parent="." unique_id=1465734874]
 libraries/ = SubResource("AnimationLibrary_ugkpk")

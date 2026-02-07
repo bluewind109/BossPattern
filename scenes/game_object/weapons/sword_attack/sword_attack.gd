@@ -4,7 +4,6 @@ class_name SwordAttack
 @export var start_pos: Vector2 = Vector2.ZERO
 @onready var pivot: Marker2D = $pivot
 @onready var animation_player: AnimationPlayer = $animation_player
-@onready var weapon_sprite: Sprite2D = $%weapon_sprite
 @onready var hitbox: ComponentHitbox = $%hitbox
 
 @export var sword_slash_scene: PackedScene
@@ -25,16 +24,6 @@ func _ready() -> void:
 	position = start_pos
 	animation_player.animation_finished.connect(_on_animation_finished)
 	scale = Vector2(original_scale, original_scale)
-
-
-func init(weapon_data: Res_WeaponData, weapon_level: int):
-	if (weapon_data == null): return
-	if (weapon_level == 0): weapon_level = 1
-	var search_string: String = weapon_data.name.to_lower() + "_0" + str(weapon_level)
-	var result_icon: Texture2D = weapon_data.search_icon(search_string)
-	if (result_icon != null): weapon_sprite.texture = result_icon
-	var final_damage = weapon_data.get_scaled_damage(weapon_level)
-	set_weapon_damage(final_damage)
 
 
 func set_weapon_damage(val: float):

@@ -6,7 +6,6 @@ class_name SpearAttack
 @onready var pivot: Marker2D = $pivot
 @onready var hitbox: ComponentHitbox = $%hitbox
 @onready var animation_player: AnimationPlayer = $animation_player
-@onready var weapon_sprite: Sprite2D = $%weapon_sprite
 
 @export var original_scale: float =  1.0
 @export var attack_time: float = 0.2

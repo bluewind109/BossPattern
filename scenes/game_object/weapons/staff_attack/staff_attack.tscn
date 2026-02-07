@@ -170,13 +170,14 @@ _data = {
 &"return_2": SubResource("Animation_efy51")
 }
 
-[node name="staff_attack" type="Node2D" unique_id=1087172617 node_paths=PackedStringArray("projectile_spawn")]
+[node name="staff_attack" type="Node2D" unique_id=1087172617 node_paths=PackedStringArray("projectile_spawn", "weapon_sprite")]
 script = ExtResource("1_kkywp")
 magic_projectile_scene = ExtResource("2_1eyw0")
 start_pos = Vector2(0, -11)
 projectile_spawn = NodePath("pivot/weapon_sprite/projectile_spawn")
 original_scale = 1.5
 attack_time = 0.5
+weapon_sprite = NodePath("pivot/weapon_sprite")
 
 [node name="animation_player" type="AnimationPlayer" parent="." unique_id=929718801]
 libraries/ = SubResource("AnimationLibrary_a0sdu")

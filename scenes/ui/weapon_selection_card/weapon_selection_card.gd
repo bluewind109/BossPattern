@@ -62,6 +62,8 @@ func update_weapon_icon():
 	weapon_icon.texture = data.icons[0]
 	var result_level = 1 if unlock_tracking.weapon_level == 0 else unlock_tracking.weapon_level
 	var search_string: String = data.name.to_lower() + "_0" + str(result_level)
+	if (data.name.to_lower().contains("bow")):
+		search_string = data.name.to_lower() + "_0" + str(result_level) + "_attack_01"
 	print("weapon_level search_string: ", search_string)
 	var result_icon: Texture2D = data.search_icon(search_string)
 	if (result_icon != null): weapon_icon.texture = result_icon
@@ -69,7 +71,7 @@ func update_weapon_icon():
 
 func update_upgrade_button():
 	upgrade_button.visible = true
-	if (unlock_tracking.weapon_level >= data.max_level):
+	if (unlock_tracking.is_unlocked == false || unlock_tracking.weapon_level >= data.max_level):
 		upgrade_button.disabled = true
 		return
 	upgrade_button.disabled = false

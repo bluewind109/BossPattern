@@ -7,7 +7,6 @@ class_name StaffAttack
 
 @onready var pivot: Marker2D = $pivot
 @onready var animation_player: AnimationPlayer = $animation_player
-@onready var weapon_sprite: Sprite2D = $%weapon_sprite
 @onready var spells_node: Node = $%spells
 
 @export var original_scale: float =  1.0

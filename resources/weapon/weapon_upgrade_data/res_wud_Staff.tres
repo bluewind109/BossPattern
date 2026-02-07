@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WeaponUpgradeData" format=3 uid="uid://dxkguh0axdpd3"]
+
+[ext_resource type="Script" uid="uid://bhyy0sqiv1ubh" path="res://resources/weapon/weapon_upgrade_data/weapon_upgrade_data.gd" id="1_lruxw"]
+[ext_resource type="Curve" uid="uid://csi8dok04ky2f" path="res://resources/weapon/weapon_upgrade_data/damage_curve/damage_curve_Sword.tres" id="1_shnq3"]
+
+[resource]
+script = ExtResource("1_lruxw")
+damage_scale = ExtResource("1_shnq3")
+metadata/_custom_type_script = "uid://bhyy0sqiv1ubh"

@@ -1,13 +1,9 @@
 [gd_resource type="Resource" script_class="WeaponUpgradeData" format=3 uid="uid://c0kxkdv3qlj2s"]
 
 [ext_resource type="Script" uid="uid://bhyy0sqiv1ubh" path="res://resources/weapon/weapon_upgrade_data/weapon_upgrade_data.gd" id="1_2wbqn"]
-
-[sub_resource type="Curve" id="Curve_2wbqn"]
-_limits = [1.0, 40.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+[ext_resource type="Curve" uid="uid://csi8dok04ky2f" path="res://resources/weapon/weapon_upgrade_data/damage_curve/damage_curve_Sword.tres" id="1_ak7n8"]
 
 [resource]
 script = ExtResource("1_2wbqn")
-damage_scale = SubResource("Curve_2wbqn")
+damage_scale = ExtResource("1_ak7n8")
 metadata/_custom_type_script = "uid://bhyy0sqiv1ubh"

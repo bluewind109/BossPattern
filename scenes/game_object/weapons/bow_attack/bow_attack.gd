@@ -7,15 +7,18 @@ class_name BowAttack
 
 @onready var pivot: Marker2D = $pivot
 @onready var animation_player: AnimationPlayer = $animation_player
-@onready var weapon_sprite: Sprite2D = $%weapon_sprite
 
 @export var original_scale: float =  1.0
 @export var attack_time: float = 0.2
 @export var return_time: float = 0.5
 @export var arrow_speed: float = 300.0
 
+var arrow_sprite: Texture2D
 var can_attack: bool = true
 var current_look_dir: String = "left"
+
+@export var bow_idle_sprite: Texture2D
+var bow_attack_sprites: Array[Texture2D] = []
 
 const ATTACK_ANIM = "attack"
 const RETURN_ANIM = "return"
@@ -25,6 +28,21 @@ func _ready() -> void:
 	position = start_pos
 	animation_player.animation_finished.connect(_on_animation_finished)
 	scale = Vector2(original_scale, original_scale)
+
+
+func init(weapon_data: Res_WeaponData, weapon_level: int):
+	super.init(weapon_data, weapon_level)
+	weapon_sprite.texture = bow_idle_sprite
+
+	var arrow_search_string: String = "arrow"+ "_0" + str(weapon_level)
+	arrow_sprite = weapon_data.search_icon(arrow_search_string)
+
+	var weapon_search_string: String = weapon_data.name.to_lower() + "_0" + str(weapon_level)
+	for i in 3:
+		var bow_attack_search_string: String = weapon_search_string + "_attack_0" + str(i + 1)
+		print("bow_attack_search_string: ", bow_attack_search_string)
+		var result_icon: Texture2D = weapon_data.search_icon(bow_attack_search_string)
+		if (result_icon != null): bow_attack_sprites.append(result_icon)
 
 
 func _physics_process(delta: float) -> void:
@@ -45,12 +63,22 @@ func _physics_process(delta: float) -> void:
 		can_attack = false
 
 
+func update_bow_texture(val: int):
+	print("update_bow_texture: ", val)
+	if (val == -1): 
+		weapon_sprite.texture = bow_idle_sprite
+		return
+	weapon_sprite.texture = bow_attack_sprites[val]
+
+
 func spawn_arrow() -> void:
 	if (arrow_scene == null): return
 	var arrow = arrow_scene.instantiate() as Arrow
 	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 	if (entities_layer == null): return
 	entities_layer.add_child(arrow)
+	if (arrow_sprite != null):
+		arrow.sprite.texture = arrow_sprite
 
 	if (arrow_spawn == null): 
 		arrow.global_position = global_position

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ds3yfc4fykop0" path="res://scenes/game_object/weapons/spear_attack/spear_attack.tscn" id="2_pvrsx"]
 [ext_resource type="Texture2D" uid="uid://bi74201smyih4" path="res://resources/weapon/weapon_data/sprites/spear/spear_03.png" id="3_sevaf"]
 [ext_resource type="Texture2D" uid="uid://b4ne1u5d3qh8l" path="res://resources/weapon/weapon_data/sprites/spear/spear_04.png" id="4_wcbfd"]
+[ext_resource type="Resource" uid="uid://cvhmd5rjn8g5g" path="res://resources/weapon/weapon_upgrade_data/res_wud_Spear.tres" id="6_d3ap4"]
 
 [resource]
 script = ExtResource("1_pvrsx")
@@ -14,4 +15,5 @@ id = 1
 name = "Spear"
 max_level = 4
 icons = Array[Texture2D]([ExtResource("1_8utwt"), ExtResource("2_d3ap4"), ExtResource("3_sevaf"), ExtResource("4_wcbfd")])
+upgrade_data = ExtResource("6_d3ap4")
 metadata/_custom_type_script = "uid://bixgjtnk5wryv"

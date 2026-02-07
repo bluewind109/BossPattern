@@ -447,13 +447,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqrji"]
 size = Vector2(16.25, 23.5)
 
-[node name="sword_attack" type="Node2D" unique_id=1214358038]
+[node name="sword_attack" type="Node2D" unique_id=1214358038 node_paths=PackedStringArray("weapon_sprite")]
 script = ExtResource("1_08kf2")
 start_pos = Vector2(0, -6)
 sword_slash_scene = ExtResource("2_n2civ")
 original_scale = 1.5
 attack_time = 0.4
 return_time = 0.4
+weapon_sprite = NodePath("pivot/weapon_sprite")
 
 [node name="animation_player" type="AnimationPlayer" parent="." unique_id=536635953]
 libraries/ = SubResource("AnimationLibrary_ljfvw")

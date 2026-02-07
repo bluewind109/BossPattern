@@ -8,30 +8,31 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_heunv"]
 radius = 4.0
 
-[node name="arrow" type="Node2D"]
+[node name="arrow" type="Node2D" unique_id=185308589 node_paths=PackedStringArray("sprite")]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_heunv")
+sprite = NodePath("pivot/arrow_sprite")
 
-[node name="visible_on_screen_notifier_2d" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="visible_on_screen_notifier_2d" type="VisibleOnScreenNotifier2D" parent="." unique_id=1373370538]
 rect = Rect2(-20, -10, 40, 20)
 
-[node name="pivot" type="Marker2D" parent="."]
+[node name="pivot" type="Marker2D" parent="." unique_id=570103110]
 
-[node name="sprite_2d" type="Sprite2D" parent="pivot"]
+[node name="arrow_sprite" type="Sprite2D" parent="pivot" unique_id=1764670253]
 position = Vector2(8, 0)
 rotation = 0.7853982
 texture = ExtResource("1_1fy38")
 
-[node name="hitbox" parent="pivot" instance=ExtResource("2_aml5w")]
+[node name="hitbox" parent="pivot" unique_id=284870382 instance=ExtResource("2_aml5w")]
 unique_name_in_owner = true
 position = Vector2(8, 0)
 collision_layer = 0
 collision_mask = 256
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="pivot/hitbox"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="pivot/hitbox" unique_id=314665318]
 position = Vector2(3, 0)
 shape = SubResource("CircleShape2D_heunv")
 
-[node name="gpu_particles_2d" type="GPUParticles2D" parent="."]
+[node name="gpu_particles_2d" type="GPUParticles2D" parent="." unique_id=204519036]
 amount = 25
 process_material = ExtResource("4_dgjlo")

@@ -1,10 +1,11 @@
 extends Node2D
 class_name Arrow
 
+@export var sprite: Sprite2D
+
 @onready var hitbox: ComponentHitbox = $%hitbox
 @onready var pivot: Marker2D = $pivot
 @onready var on_screen_notifier: VisibleOnScreenNotifier2D = $visible_on_screen_notifier_2d
-@onready var sprite: Sprite2D = $pivot/sprite_2d
 
 var speed: float = 150.0
 var weapon_damage: float = 1.0
