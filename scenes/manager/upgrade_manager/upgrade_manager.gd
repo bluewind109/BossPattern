@@ -27,6 +27,10 @@ func _ready() -> void:
 	experience_manager.level_up.connect(_on_level_up)
 
 
+func setup_upgrade_pool():
+	pass
+
+
 func _apply_upgrade(upgrade: Res_AbilityUpgrade, quantity: int = 1):
 	var has_upgrade: bool = current_upgrades.has(upgrade.id)
 	if (!has_upgrade):

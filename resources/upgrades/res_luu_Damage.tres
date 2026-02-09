@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Res_LevelUpUpgrade" format=3 uid="uid://d1sbthof6p5xv"]
+
+[ext_resource type="Script" uid="uid://csj3qy7mbr7mi" path="res://resources/upgrades/res_LevelUpUpgrade.gd" id="1_0n2po"]
+
+[resource]
+script = ExtResource("1_0n2po")
+id = 70
+metadata/_custom_type_script = "uid://csj3qy7mbr7mi"
