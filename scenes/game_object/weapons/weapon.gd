@@ -1,8 +1,11 @@
 extends Node2D
 class_name Weapon
 
+signal attacking(speed_scale: float)
+
 @export var weapon_sprite: Sprite2D
 @export var weapon_damage: float = 1.0
+@export var speed_scale: float = 0.5
 
 
 func init(weapon_data: Res_WeaponData, weapon_level: int):
@@ -17,3 +20,11 @@ func init(weapon_data: Res_WeaponData, weapon_level: int):
 
 func set_weapon_damage(val: float):
 	weapon_damage = val
+
+
+func start_attack():
+	attacking.emit(speed_scale)
+
+
+func stop_attack():
+	attacking.emit(1.0)

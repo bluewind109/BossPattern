@@ -1,6 +1,7 @@
 extends Weapon
 class_name SwordAttack
 
+
 @export var start_pos: Vector2 = Vector2.ZERO
 @onready var pivot: Marker2D = $pivot
 @onready var animation_player: AnimationPlayer = $animation_player
@@ -48,6 +49,7 @@ func _physics_process(delta: float) -> void:
 		animation_player.get_animation(ATTACK_1_ANIM).length /  attack_time
 		animation_player.play(ATTACK_1_ANIM)
 		can_attack = false
+		start_attack()
 
 
 func spawn_slash() -> void:
@@ -77,5 +79,6 @@ func _on_animation_finished(_anim_name: StringName):
 		animation_player.speed_scale =\
 		animation_player.get_animation(RETURN_ANIM).length /  return_time
 		animation_player.play(RETURN_ANIM)
+		stop_attack()
 	else:
 		can_attack = true

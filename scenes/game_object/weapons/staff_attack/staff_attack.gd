@@ -51,6 +51,7 @@ func shoot_projectile() -> void:
 	animation_player.get_animation(ATTACK_1_ANIM).length /  attack_time
 	animation_player.play(ATTACK_1_ANIM)
 	can_attack = false
+	start_attack()
 
 
 func spawn_projectile() -> void:
@@ -80,6 +81,7 @@ func cast_spell() -> void:
 	animation_player.get_animation(ATTACK_2_ANIM).length /  attack_time
 	animation_player.play(ATTACK_2_ANIM)
 	can_attack = false	
+	start_attack()
 
 
 func _on_animation_finished(_anim_name: StringName):
@@ -87,9 +89,11 @@ func _on_animation_finished(_anim_name: StringName):
 		animation_player.speed_scale =\
 		animation_player.get_animation(RETURN_1_ANIM).length /  return_time
 		animation_player.play(RETURN_1_ANIM)
+		stop_attack()
 	elif (_anim_name == ATTACK_2_ANIM):
 		animation_player.speed_scale =\
 		animation_player.get_animation(RETURN_2_ANIM).length /  return_time
 		animation_player.play(RETURN_2_ANIM)
+		stop_attack()
 	else:
 		can_attack = true

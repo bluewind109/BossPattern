@@ -54,6 +54,7 @@ func _ready() -> void:
 	var weapon_level: int = WeaponManager.get_weapon_level(WeaponManager.current_weapon_id)
 	var weapon = weapon_data.weapon_scene.instantiate() as Weapon
 	weapons.add_child(weapon)
+	weapon.attacking.connect(_on_attacking)
 	weapon.init(weapon_data, weapon_level)
 
 	if (hurtbox):
@@ -151,3 +152,7 @@ func _on_arena_difficulty_increased(difficulty: int):
 	var is_thirty_seconds_interval = (difficulty % 1) == 0
 	if (is_thirty_seconds_interval):
 		comp_health.heal(health_regen_quantity * health_regen_value)
+
+
+func _on_attacking(speed_scale: float):
+	player_control.set_max_speed(base_speed * speed_scale)

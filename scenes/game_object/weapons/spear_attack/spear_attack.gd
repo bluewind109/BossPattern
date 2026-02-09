@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 		animation_player.get_animation(ATTACK_ANIM).length /  attack_time
 		animation_player.play(ATTACK_ANIM)
 		can_attack = false
+		start_attack()
 
 
 func _on_animation_finished(_anim_name: StringName):
@@ -48,5 +49,6 @@ func _on_animation_finished(_anim_name: StringName):
 		animation_player.speed_scale =\
 		animation_player.get_animation(RETURN_ANIM).length /  return_time
 		animation_player.play(RETURN_ANIM)
+		stop_attack()
 	else:
 		can_attack = true
