@@ -452,8 +452,6 @@ script = ExtResource("1_08kf2")
 start_pos = Vector2(0, -6)
 sword_slash_scene = ExtResource("2_n2civ")
 original_scale = 1.5
-attack_time = 1.0
-return_time = 1.0
 weapon_sprite = NodePath("pivot/weapon_sprite")
 
 [node name="animation_player" type="AnimationPlayer" parent="." unique_id=536635953]
