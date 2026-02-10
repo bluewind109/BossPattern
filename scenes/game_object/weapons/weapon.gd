@@ -6,7 +6,8 @@ signal attacking(speed_scale: float)
 @export var weapon_sprite: Sprite2D
 @export var weapon_damage: float = 1.0
 @export var speed_scale: float = 0.5
-
+@export var base_attack_speed: float = 1.0
+var attack_speed_upgrades: Array[float] = []
 
 func init(weapon_data: Res_WeaponData, weapon_level: int):
 	if (weapon_data == null): return
@@ -20,6 +21,18 @@ func init(weapon_data: Res_WeaponData, weapon_level: int):
 
 func set_weapon_damage(val: float):
 	weapon_damage = val
+
+
+func add_attack_speed_upgrade(new_value: float):
+	attack_speed_upgrades.append(new_value)
+
+
+func get_attack_speed() -> float:
+	var upgrade_value: float = 0.0
+	for upgrade in attack_speed_upgrades:
+		upgrade_value += upgrade
+	upgrade_value = minf(upgrade_value, 1.5)
+	return base_attack_speed + upgrade_value
 
 
 func start_attack():

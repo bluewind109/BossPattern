@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 		current_look_dir = "left"
 
 	if (Input.is_action_just_pressed("attack") and can_attack):
-		animation_player.speed_scale = attack_time
+		animation_player.speed_scale = attack_time * get_attack_speed()
 		# animation_player.get_animation(ATTACK_ANIM).length / attack_time
 		animation_player.play(ATTACK_ANIM)
 		can_attack = false
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == ATTACK_ANIM):
-		animation_player.speed_scale = return_time
+		animation_player.speed_scale = return_time * get_attack_speed()
 		# animation_player.get_animation(RETURN_ANIM).length / return_time
 		animation_player.play(RETURN_ANIM)
 		stop_attack()
