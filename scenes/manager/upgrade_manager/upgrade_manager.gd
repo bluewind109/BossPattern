@@ -4,13 +4,13 @@ class_name UpgradeManager
 @export var level_up_popup: PackedScene
 @export var experience_manager: ExperienceManager
 
-@export var upgrade_axe: Res_AbilityUpgrade
-@export var upgrade_axe_damage: Res_AbilityUpgrade
-@export var upgrade_sword_rate: Res_AbilityUpgrade
-@export var upgrade_sword_damage: Res_AbilityUpgrade
-@export var upgrade_player_speed: Res_AbilityUpgrade
-@export var upgrade_anvil: Res_AbilityUpgrade
-@export var upgrade_anvil_amount: Res_AbilityUpgrade
+@export var upgrade_axe: Res_LevelUpUpgrade
+@export var upgrade_axe_damage: Res_LevelUpUpgrade
+@export var upgrade_sword_rate: Res_LevelUpUpgrade
+@export var upgrade_sword_damage: Res_LevelUpUpgrade
+@export var upgrade_player_speed: Res_LevelUpUpgrade
+@export var upgrade_anvil: Res_LevelUpUpgrade
+@export var upgrade_anvil_amount: Res_LevelUpUpgrade
 
 var current_upgrades = {}
 var current_popup: LevelUpPopup
@@ -31,7 +31,7 @@ func setup_upgrade_pool():
 	pass
 
 
-func _apply_upgrade(upgrade: Res_AbilityUpgrade, quantity: int = 1):
+func _apply_upgrade(upgrade: Res_LevelUpUpgrade, quantity: int = 1):
 	var has_upgrade: bool = current_upgrades.has(upgrade.id)
 	if (!has_upgrade):
 		current_upgrades[upgrade.id] = {
@@ -52,23 +52,23 @@ func _apply_upgrade(upgrade: Res_AbilityUpgrade, quantity: int = 1):
 	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
 
 
-func _update_upgrade_pool(chosen_upgrade: Res_AbilityUpgrade):
+func _update_upgrade_pool(chosen_upgrade: Res_LevelUpUpgrade):
 	if (chosen_upgrade.id == upgrade_axe.id):
 		upgrade_pool.add_item(upgrade_axe_damage, 10)
 	elif (chosen_upgrade.id == upgrade_anvil.id):
 		upgrade_pool.add_item(upgrade_anvil_amount, 5)
 
 
-func _pick_upgrades() -> Array[Res_AbilityUpgrade]:
-	var chosen_upgrades: Array[Res_AbilityUpgrade] = []
+func _pick_upgrades() -> Array[Res_LevelUpUpgrade]:
+	var chosen_upgrades: Array[Res_LevelUpUpgrade] = []
 	for i in 3:
 		if (upgrade_pool.items.size() == chosen_upgrades.size()): break
-		var chosen_upgrade: Res_AbilityUpgrade = upgrade_pool.pick_item(chosen_upgrades)
+		var chosen_upgrade: Res_LevelUpUpgrade = upgrade_pool.pick_item(chosen_upgrades)
 		chosen_upgrades.append(chosen_upgrade)
 	return chosen_upgrades
 
 
-func _on_upgrade_selected(upgrade: Res_AbilityUpgrade):
+func _on_upgrade_selected(upgrade: Res_LevelUpUpgrade):
 	_apply_upgrade(upgrade)
 
 

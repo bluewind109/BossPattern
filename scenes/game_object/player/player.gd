@@ -118,7 +118,7 @@ func on_leave_run_state():
 
 
 func _on_ability_upgrade_added(
-	_upgrade: Res_AbilityUpgrade, 
+	_upgrade: Res_LevelUpUpgrade, 
 	current_upgrades: Dictionary
 ):
 	if (_upgrade is Res_Ability):

@@ -20,12 +20,12 @@ var is_animation_done: bool = false
 var is_card_selected: bool = false
 
 var card_pool: Array[CardLevelUp]
-var selected_card: Res_AbilityUpgrade
+var selected_card: Res_LevelUpUpgrade
 
 signal on_panel_shown
 signal on_card_shown
 signal on_button_shown
-signal upgrade_selected(upgrade: Res_AbilityUpgrade)
+signal upgrade_selected(upgrade: Res_LevelUpUpgrade)
 signal reroll_upgrades
 
 
@@ -44,7 +44,7 @@ func _reset_cards() -> void:
 		i.queue_free()
 
 
-func set_ability_upgrades(upgrades: Array[Res_AbilityUpgrade]):
+func set_ability_upgrades(upgrades: Array[Res_LevelUpUpgrade]):
 	card_pool = []
 	for upgrade in upgrades:
 		if (upgrade == null): continue
@@ -161,7 +161,7 @@ func _on_button_ok() -> void:
 	)
 
 
-func _on_card_selected(_upgrade: Res_AbilityUpgrade) -> void:
+func _on_card_selected(_upgrade: Res_LevelUpUpgrade) -> void:
 	if (_upgrade == null): return
 	print("_on_card_selected ", _upgrade.name)
 	selected_card = _upgrade

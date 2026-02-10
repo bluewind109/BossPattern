@@ -1,7 +1,7 @@
 extends PanelContainer
 class_name CardLevelUp
 
-signal card_selected(upgrade: Res_AbilityUpgrade)
+signal card_selected(upgrade: Res_LevelUpUpgrade)
 
 @onready var hover_sfx: RandomAudioPlayer = $hover_sfx
 @onready var click_sfx: RandomAudioPlayer = $click_sfx
@@ -11,7 +11,7 @@ signal card_selected(upgrade: Res_AbilityUpgrade)
 @export var button_component: Button
 
 var popup_ref: LevelUpPopup
-var upgrade: Res_AbilityUpgrade
+var upgrade: Res_LevelUpUpgrade
 
 # short duration = game with fast level up for urgency
 # long duration = game with slower level up for more impact
@@ -30,7 +30,7 @@ func _ready() -> void:
 	can_select = false
 
 
-func init(_upgrade: Res_AbilityUpgrade):
+func init(_upgrade: Res_LevelUpUpgrade):
 	if (_upgrade == null): return
 	upgrade = _upgrade
 	label_name.text = _upgrade.name
@@ -41,7 +41,7 @@ func enable_selection(val: bool) -> void:
 	can_select = val
 
 
-func set_card_info(_upgrade: Res_AbilityUpgrade) -> void:
+func set_card_info(_upgrade: Res_LevelUpUpgrade) -> void:
 	label_name.text = _upgrade.name
 	label_description.text = _upgrade.desc
 

@@ -50,7 +50,7 @@ func _on_ability_timer_finished():
 	axe_instance.global_position = player.global_position
 
 
-func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary):
+func _on_ability_upgraded(upgrade: Res_LevelUpUpgrade, current_upgrades: Dictionary):
 	if (upgrade == null): return
 	match upgrade.id:
 		# "axe_rate":

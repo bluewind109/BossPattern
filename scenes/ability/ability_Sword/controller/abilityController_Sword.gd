@@ -62,7 +62,7 @@ func _on_ability_timer_finished():
 	sword_instance.rotation = enemy_direction.angle()
 
 
-func _on_ability_upgraded(upgrade: Res_AbilityUpgrade, current_upgrades: Dictionary):
+func _on_ability_upgraded(upgrade: Res_LevelUpUpgrade, current_upgrades: Dictionary):
 	if (upgrade == null): return
 	match upgrade.id:
 		UpgradeDefine.UPGRADE_ID.SWORD_RATE:
