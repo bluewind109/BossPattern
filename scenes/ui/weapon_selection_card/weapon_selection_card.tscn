@@ -128,7 +128,6 @@ text = "Locked"
 
 [node name="upgrade_button" parent="margin_container/v_box_container" unique_id=136135281 instance=ExtResource("13_my4ps")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 text = "Upgrade"
 

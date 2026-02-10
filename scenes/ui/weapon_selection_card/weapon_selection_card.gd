@@ -49,7 +49,7 @@ func enable_selection(val: bool) -> void:
 func update_card_info() -> void:
 	data = WeaponManager.get_weapon_by_id(unlock_tracking.id)
 	if (data == null): return
-	label_name.text = data.name
+	label_name.text = data.name + " Lvl. " + str(unlock_tracking.weapon_level)
 	# label_description.text = data.description
 
 	update_weapon_icon()
@@ -71,9 +71,16 @@ func update_weapon_icon():
 
 func update_upgrade_button():
 	upgrade_button.visible = true
+
 	if (unlock_tracking.is_unlocked == false || unlock_tracking.weapon_level >= data.max_level):
+		upgrade_button.text = "Upgrade"
 		upgrade_button.disabled = true
 		return
+		
+	var result_level = 1 if unlock_tracking.weapon_level == 0 else unlock_tracking.weapon_level
+	var upgrade_cost: int = data.upgrade_data.upgrade_cost[result_level - 1]
+	upgrade_button.text = "Upgrade (0/" + str(upgrade_cost) + ")"
+		
 	upgrade_button.disabled = false
 
 
