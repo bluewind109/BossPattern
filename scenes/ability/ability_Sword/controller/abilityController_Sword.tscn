@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://chqcr7r1nl7w7"]
+[gd_scene format=3 uid="uid://chqcr7r1nl7w7"]
 
 [ext_resource type="Script" uid="uid://b3m544c6lnwah" path="res://scenes/ability/ability_Sword/controller/abilityController_Sword.gd" id="1_vouvy"]
 [ext_resource type="PackedScene" uid="uid://dble3f1r3i2oh" path="res://scenes/ability/ability_Sword/ability_Sword.tscn" id="2_78fr6"]
 
-[node name="abilityController_Sword" type="Node"]
+[node name="abilityController_Sword" type="Node" unique_id=807824813]
 script = ExtResource("1_vouvy")
 sword_ability_scene = ExtResource("2_78fr6")
 
-[node name="timer" type="Timer" parent="."]
+[node name="timer" type="Timer" parent="." unique_id=777045805]
 autostart = true
