@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq0fbqbm5hl5q"]
+[gd_scene format=3 uid="uid://bq0fbqbm5hl5q"]
 
 [ext_resource type="Script" uid="uid://cdosyln01e0ly" path="res://scenes/ability/ability_Anvil/controller/abilityController_Anvil.gd" id="1_e11fh"]
 [ext_resource type="PackedScene" uid="uid://bey44qkykl76j" path="res://scenes/ability/ability_Anvil/abilivty_Anvil.tscn" id="2_syfb7"]
 
-[node name="abilityController_Anvil" type="Node"]
+[node name="abilityController_Anvil" type="Node" unique_id=643686213]
 script = ExtResource("1_e11fh")
 anvil_ability_scene = ExtResource("2_syfb7")
 
-[node name="timer" type="Timer" parent="."]
+[node name="timer" type="Timer" parent="." unique_id=678257243]
+wait_time = 5.0
 autostart = true
