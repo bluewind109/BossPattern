@@ -176,8 +176,8 @@ size = Vector2(16, 8)
 script = ExtResource("1_ohc3y")
 start_pos = Vector2(0, -8)
 original_scale = 1.5
-attack_time = 0.4
-return_time = 0.4
+attack_time = 1.75
+return_time = 1.0
 weapon_sprite = NodePath("pivot/weapon_sprite")
 
 [node name="animation_player" type="AnimationPlayer" parent="." unique_id=1465734874]

@@ -176,7 +176,8 @@ magic_projectile_scene = ExtResource("2_1eyw0")
 start_pos = Vector2(0, -11)
 projectile_spawn = NodePath("pivot/weapon_sprite/projectile_spawn")
 original_scale = 1.5
-attack_time = 0.5
+attack_time = 1.0
+return_time = 1.0
 weapon_sprite = NodePath("pivot/weapon_sprite")
 
 [node name="animation_player" type="AnimationPlayer" parent="." unique_id=929718801]

@@ -9,8 +9,8 @@ class_name BowAttack
 @onready var animation_player: AnimationPlayer = $animation_player
 
 @export var original_scale: float =  1.0
-@export var attack_time: float = 0.2
-@export var return_time: float = 0.5
+@export var attack_time: float = 1.0
+@export var return_time: float = 1.0
 @export var arrow_speed: float = 300.0
 
 var arrow_sprite: Texture2D
@@ -57,8 +57,8 @@ func _physics_process(delta: float) -> void:
 		current_look_dir = "left"
 
 	if (Input.is_action_just_pressed("attack") and can_attack):
-		animation_player.speed_scale =\
-		animation_player.get_animation(ATTACK_ANIM).length /  attack_time
+		animation_player.speed_scale = attack_time
+		# animation_player.get_animation(ATTACK_ANIM).length /  attack_time
 		animation_player.play(ATTACK_ANIM)
 		can_attack = false
 		start_attack()
@@ -99,8 +99,8 @@ func spawn_arrow() -> void:
 
 func _on_animation_finished(_anim_name: StringName):
 	if (_anim_name == ATTACK_ANIM):
-		animation_player.speed_scale =\
-		animation_player.get_animation(RETURN_ANIM).length /  return_time
+		animation_player.speed_scale = return_time
+		# animation_player.get_animation(RETURN_ANIM).length /  return_time
 		animation_player.play(RETURN_ANIM)
 		stop_attack()
 	else:
