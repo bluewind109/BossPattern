@@ -49,7 +49,7 @@ func _apply_upgrade(upgrade: Res_LevelUpUpgrade, quantity: int = 1):
 			upgrade_pool.remove_item(upgrade)
 			
 	_update_upgrade_pool(upgrade)
-	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
+	GameEvents.emit_level_up_upgrade_added(upgrade, current_upgrades)
 
 
 func _update_upgrade_pool(chosen_upgrade: Res_LevelUpUpgrade):
@@ -74,7 +74,7 @@ func _on_upgrade_selected(upgrade: Res_LevelUpUpgrade):
 
 func _on_reroll_upgrades():
 	if (current_popup == null): return
-	current_popup.set_ability_upgrades(_pick_upgrades())
+	current_popup.set_upgrades(_pick_upgrades())
 
 
 func _on_level_up(current_level: int):
@@ -85,7 +85,7 @@ func _on_level_up(current_level: int):
 
 	var popup_instance = level_up_popup.instantiate() as LevelUpPopup
 	current_popup = popup_instance
-	popup_instance.set_ability_upgrades(chosen_upgrades)
+	popup_instance.set_upgrades(chosen_upgrades)
 	popup_instance.reroll_upgrades.connect(_on_reroll_upgrades)
 	popup_instance.upgrade_selected.connect(_on_upgrade_selected)
 	get_tree().current_scene.add_child(popup_instance)

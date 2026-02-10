@@ -38,7 +38,7 @@ var current_anim: String = ""
 
 
 func _ready() -> void:
-	GameEvents.ability_upgrade_added.connect(_on_ability_upgrade_added)
+	GameEvents.level_up_upgrade_added.connect(_on_upgrade_added)
 	if (game_time_manager):
 		game_time_manager.arena_difficulty_increased.connect(_on_arena_difficulty_increased)
 
@@ -117,7 +117,7 @@ func on_leave_run_state():
 	pass
 
 
-func _on_ability_upgrade_added(
+func _on_upgrade_added(
 	_upgrade: Res_LevelUpUpgrade, 
 	current_upgrades: Dictionary
 ):

@@ -12,7 +12,7 @@ var anvil_amount: int
 
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
-	GameEvents.ability_upgrade_added.connect(_on_ability_upgraded)
+	GameEvents.level_up_upgrade_added.connect(_on_ability_upgraded)
 	anvil_amount = base_anvil_amount
 
 

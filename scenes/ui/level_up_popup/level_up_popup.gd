@@ -44,7 +44,7 @@ func _reset_cards() -> void:
 		i.queue_free()
 
 
-func set_ability_upgrades(upgrades: Array[Res_LevelUpUpgrade]):
+func set_upgrades(upgrades: Array[Res_LevelUpUpgrade]):
 	card_pool = []
 	for upgrade in upgrades:
 		if (upgrade == null): continue

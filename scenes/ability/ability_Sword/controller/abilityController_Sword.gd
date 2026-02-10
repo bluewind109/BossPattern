@@ -24,7 +24,7 @@ func _ready() -> void:
 	base_damage = damage
 	base_wait_time = timer.wait_time
 	timer.timeout.connect(_on_ability_timer_finished)
-	GameEvents.ability_upgrade_added.connect(_on_ability_upgraded)
+	GameEvents.level_up_upgrade_added.connect(_on_ability_upgraded)
 
 
 func _on_ability_timer_finished():
