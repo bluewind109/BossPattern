@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Res_LevelUpUpgrade" format=3 uid="uid://x1ff0grr6f6i"]
+
+[ext_resource type="Script" uid="uid://csj3qy7mbr7mi" path="res://resources/upgrades/res_LevelUpUpgrade.gd" id="1_8qa6d"]
+
+[resource]
+script = ExtResource("1_8qa6d")
+id = 80
+max_quantity = 10
+upgrade_value = 0.1
+name = "Attack Speed"
+desc = "Increase attack speed."
+metadata/_custom_type_script = "uid://csj3qy7mbr7mi"
