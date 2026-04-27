@@ -9,6 +9,8 @@ var wave_index: int = 0
 var enemy_spawned: int = 0
 var enemy_killed: int = 0
 
+signal on_stage_cleared
+
 func _ready() -> void:
 	GameEvents.enemy_killed.connect(_on_enemy_killed)
 
@@ -47,6 +49,6 @@ func _on_wave_cleared():
 	if (wave_index < total_waves):
 		load_wave()
 	elif (wave_index == total_waves):
-		# TODO show stage clear UI
+		# show stage clear UI
 		print("Stage cleared!")
-		# GameEvents.emit_game_paused(true)
+		on_stage_cleared.emit()

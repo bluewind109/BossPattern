@@ -15,7 +15,8 @@ var show_duration: float = 0.25
 var is_animation_done: bool = false
 
 signal on_panel_shown
-
+signal on_continue_pressed
+signal on_quit_pressed
 
 func _ready() -> void:
 	panel_end.pivot_offset = panel_end.size / 2
@@ -68,14 +69,11 @@ func play_sfx(defeat: bool = false):
 func _on_continue_button_pressed():
 	if (!is_animation_done): return
 	is_animation_done = false
-	ScreenTransition.start_transition(func(): 
-		GameEvents.emit_game_paused(false)
-		get_tree().change_scene_to_file("res://scenes/ui/meta_menu/meta_menu.tscn")
-	)
-	
+	on_continue_pressed.emit()
+
 
 func _on_quit_button_pressed():
-	ScreenTransition.start_transition(func(): 
-		GameEvents.emit_game_paused(false)
-		get_tree().change_scene_to_file("res://scenes/ui/main_menu/main_menu.tscn")
-	)
+	if (!is_animation_done): return
+	is_animation_done = false
+	on_quit_pressed.emit()
+

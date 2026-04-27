@@ -12,8 +12,6 @@ signal update_player_health_bar(percent: float)
 signal player_damaged
 signal game_paused
 
-signal show_end_screen(is_victory: bool)
-
 func emit_explosion_created(target: Explosion):
 	explosion_created.emit(target)
 
