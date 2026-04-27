@@ -14,6 +14,7 @@ func _ready() -> void:
 	player.comp_health.died.connect(_on_player_died)
 	GameEvents.explosion_created.connect(_on_explosion_created)
 	GameEvents.game_paused.connect(_on_game_paused)
+	GameEvents.show_end_screen.connect(_on_show_end_screen)
 
 
 func _process(delta: float) -> void:
@@ -42,3 +43,10 @@ func _on_player_died():
 func _on_game_paused(val: bool):
 	BgmPlayer.set_pause_volume(val)
 	is_paused = val
+
+func _on_show_end_screen(is_victory: bool):
+	var end_screen = end_screen_scene.instantiate() as EndScreen
+	add_child(end_screen)
+	if not is_victory:
+		end_screen.set_defeat.call_deferred()
+	MetaProgression.save()

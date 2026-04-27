@@ -90,7 +90,8 @@ folder_colors={
 "res://assets/": "purple",
 "res://resources/": "teal",
 "res://scenes/game_object/": "yellow",
-"res://scenes/game_object/player/": "blue"
+"res://scenes/game_object/player/": "blue",
+"res://scenes/manager/spawn_handlers/": "red"
 }
 
 [gui]

@@ -2,13 +2,17 @@ extends Node
 
 signal explosion_created(target: Explosion)
 signal exp_vial_collected(number: float)
+
+signal spawn_enemy(enemy_data: Res_EnemyData, spawn_position: Vector2)
 signal boss_killed(number: int)
 signal enemy_killed(number: int)
+
 signal level_up_upgrade_added(upgrade: Res_LevelUpUpgrade, current_upgrades: Dictionary)
 signal update_player_health_bar(percent: float)
 signal player_damaged
 signal game_paused
 
+signal show_end_screen(is_victory: bool)
 
 func emit_explosion_created(target: Explosion):
 	explosion_created.emit(target)

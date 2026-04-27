@@ -1,5 +1,5 @@
 extends Node
-class_name EnemyManager
+class_name EnemyManagerOld
 
 const SPAWN_RADIUS: float = 150
 
@@ -7,6 +7,7 @@ const SPAWN_RADIUS: float = 150
 @export var spawn_config: SpawnConfig
 @export var enemy_config: EnemyConfig
 @export var game_time_manager: GameTimeManager
+
 @onready var spawn_timer: Timer = $%spawn_timer
 @onready var tracking_timer: Timer = $%tracking_timer
 
