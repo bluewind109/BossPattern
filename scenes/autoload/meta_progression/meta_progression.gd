@@ -87,6 +87,15 @@ func get_currency() -> float:
 	return save_data.meta_upgrade_currency
 
 
+func cheat_unlock_all_weapons():
+	if (save_data == null): return
+	
+	for weapon_id in save_data.weapon_unlock_progress:
+		var weapon = save_data.weapon_unlock_progress[weapon_id]
+		if (weapon.is_unlocked): continue
+		weapon.unlock()
+
+
 func update_weapon_unlock_progression():
 	if (save_data == null): return
 	

@@ -16,6 +16,7 @@ func _ready() -> void:
 	upgrade_button.pressed.connect(_on_upgrade_pressed)
 	options_button.pressed.connect(_on_options_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
+	MetaProgression.cheat_unlock_all_weapons() # CHEAT: unlock all weapons for testing
 
 
 func _on_play_pressed():
