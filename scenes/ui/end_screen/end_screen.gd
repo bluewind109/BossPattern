@@ -76,4 +76,3 @@ func _on_quit_button_pressed():
 	if (!is_animation_done): return
 	is_animation_done = false
 	on_quit_pressed.emit()
-

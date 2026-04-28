@@ -21,6 +21,7 @@ func _ready() -> void:
 	for weapon_id in weapons:
 		var weapon = weapons[weapon_id]
 		var weapon_selection_card = weapon_selection_card_scene.instantiate() as WeaponSelectionCard
+		weapon_selection_card.card_selected.connect(_on_card_selected)
 		card_container.add_child(weapon_selection_card)
 		weapon_selection_card.init(weapon)
 		weapon_selection_card.show_card()
@@ -35,3 +36,8 @@ func _on_back_button_pressed():
 	ScreenTransition.start_transition(func():
 		get_tree().change_scene_to_file("res://scenes/ui/main_menu/main_menu.tscn")
 	)
+
+func _on_card_selected(weapon_id: WeaponDefine.WEAPON_ID):
+	# save the chosen weapon
+	WeaponManager.current_weapon_id = weapon_id
+	get_tree().change_scene_to_file("res://scenes/game/game.tscn")

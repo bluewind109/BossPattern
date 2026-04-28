@@ -24,6 +24,7 @@ var tween_duration: float = 0.25
 # enable when tween animation is done
 var can_select: bool = false
 
+signal card_selected(weapon_id: WeaponDefine.WEAPON_ID)
 
 func _ready() -> void:
 	self.name = "weapon_selection_card"
@@ -136,6 +137,4 @@ func _on_upgrade_pressed():
 
 
 func _on_select_pressed():
-	# save the chosen weapon
-	WeaponManager.current_weapon_id = data.id
-	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
+	card_selected.emit(data.id)
