@@ -40,18 +40,15 @@ func _physics_process(delta: float) -> void:
 		scale.x = original_scale * -1
 		current_look_dir = "left"
 
-	if (Input.is_action_just_pressed("attack") and can_attack):
-		shoot_projectile()
-	if (Input.is_action_just_pressed("alt_attack") and can_attack):
-		cast_spell()
 
+func start_attack() -> void:
+	if (not can_attack): return
+	super.start_attack()
 
-func shoot_projectile() -> void:
 	animation_player.speed_scale = attack_time * get_attack_speed()
 	# animation_player.get_animation(ATTACK_1_ANIM).length /  attack_time
 	animation_player.play(ATTACK_1_ANIM)
 	can_attack = false
-	start_attack()
 
 
 func spawn_projectile() -> void:
@@ -76,12 +73,13 @@ func spawn_projectile() -> void:
 	magic_projectile.init(_direction, weapon_damage, projectile_speed)
 
 
-func cast_spell() -> void:
+func start_alt_attack() -> void:
+	if (not can_attack): return
+	super.start_alt_attack()
 	animation_player.speed_scale = attack_time * get_attack_speed()
 	# animation_player.get_animation(ATTACK_2_ANIM).length /  attack_time
 	animation_player.play(ATTACK_2_ANIM)
 	can_attack = false	
-	start_attack()
 
 
 func _on_animation_finished(_anim_name: StringName):

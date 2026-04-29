@@ -179,6 +179,7 @@ original_scale = 1.5
 attack_time = 1.0
 return_time = 1.0
 weapon_sprite = NodePath("pivot/weapon_sprite")
+has_alt_attack = true
 
 [node name="animation_player" type="AnimationPlayer" parent="." unique_id=929718801]
 libraries/ = SubResource("AnimationLibrary_a0sdu")

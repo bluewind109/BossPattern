@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://nb6g7v2jhm7d"]
+
+[sub_resource type="Gradient" id="Gradient_ilo08"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6cwc1"]
+gradient = SubResource("Gradient_ilo08")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_68yka"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_6cwc1")
+
+[node name="DashParticles" type="GPUParticles2D"]
+show_behind_parent = true
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_68yka")

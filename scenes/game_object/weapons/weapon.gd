@@ -1,12 +1,14 @@
 extends Node2D
 class_name Weapon
 
-signal attacking(speed_scale: float)
+signal on_start_attack(speed_scale: float)
+signal on_stop_attack()
 
 @export var weapon_sprite: Sprite2D
 @export var weapon_damage: float = 1.0
 @export var speed_scale: float = 0.5
 @export var base_attack_speed: float = 1.0
+@export var has_alt_attack: bool = false
 var attack_speed_upgrades: Array[float] = []
 
 func init(weapon_data: Res_WeaponData, weapon_level: int):
@@ -37,9 +39,12 @@ func get_attack_speed() -> float:
 
 
 func start_attack():
-	# attacking.emit(speed_scale)
-	attacking.emit(0)
+	on_start_attack.emit(0)
+
+
+func start_alt_attack():
+	on_start_attack.emit(0)
 
 
 func stop_attack():
-	attacking.emit(1.0)
+	on_stop_attack.emit()

@@ -1,6 +1,6 @@
 @icon("./icon.png")
 extends Node
-class_name ComponentFourWaysControl
+class_name FourWaysControl
 
 const PLAYER_INPUT: Dictionary[String, String] = {
 	"UP": "up",
@@ -9,12 +9,15 @@ const PLAYER_INPUT: Dictionary[String, String] = {
 	"RIGHT": "right",
 }
 
+const BASE_SPEED_MULTIPLIER: float = 1.0
+
 var input_action_up: InputEventAction
 var input_action_down: InputEventAction
 var input_action_left: InputEventAction
 var input_action_right: InputEventAction
 
 var max_speed: float = 100.0
+var speed_multiplier: float = BASE_SPEED_MULTIPLIER
 
 
 func _ready() -> void:
@@ -35,11 +38,19 @@ func set_max_speed(amount: float):
 	max_speed = max(0, amount)
 
 
+func set_speed_multiplier(amount: float):
+	speed_multiplier = max(0, amount)
+
+
+func reset_speed_multiplier():
+	speed_multiplier = BASE_SPEED_MULTIPLIER
+
+
 func _process(_delta: float) -> void:
 	var direction = get_movement_direction()
 	var owner_node= owner as CharacterBody2D
 	if (owner_node == null): return
-	owner_node.velocity = max_speed * direction
+	owner_node.velocity = max_speed * speed_multiplier * direction
 	owner_node.move_and_slide()
 
 

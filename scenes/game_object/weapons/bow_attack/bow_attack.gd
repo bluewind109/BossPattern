@@ -56,12 +56,14 @@ func _physics_process(delta: float) -> void:
 		scale.x = original_scale * -1
 		current_look_dir = "left"
 
-	if (Input.is_action_just_pressed("attack") and can_attack):
-		animation_player.speed_scale = attack_time * get_attack_speed()
-		# animation_player.get_animation(ATTACK_ANIM).length /  attack_time
-		animation_player.play(ATTACK_ANIM)
-		can_attack = false
-		start_attack()
+
+func start_attack():
+	if (not can_attack): return
+	super.start_attack()
+	animation_player.speed_scale = attack_time * get_attack_speed()
+	# animation_player.get_animation(ATTACK_ANIM).length /  attack_time
+	animation_player.play(ATTACK_ANIM)
+	can_attack = false
 
 
 func update_bow_texture(val: int):

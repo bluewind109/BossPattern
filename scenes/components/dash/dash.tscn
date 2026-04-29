@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://kljvbchkdpne"]
+
+[ext_resource type="Script" uid="uid://h7y18iehes6k" path="res://scenes/components/dash/dash.gd" id="1_mg8rb"]
+[ext_resource type="PackedScene" uid="uid://nb6g7v2jhm7d" path="res://scenes/components/dash/particles/particle_Dash.tscn" id="2_y4cg5"]
+[ext_resource type="Texture2D" uid="uid://bkeid42ecd8uj" path="res://scenes/components/dash/sprites/burger.png" id="3_0wgbc"]
+[ext_resource type="Material" uid="uid://dbfrj3fyejf2s" path="res://scenes/components/dash/materials/dash_particle_material.tres" id="3_ub8xx"]
+[ext_resource type="PackedScene" uid="uid://dx53nj5qhasvl" path="res://scenes/components/ghost_effect/ghost_effect.tscn" id="5_ub8xx"]
+
+[node name="dash" type="Node2D" unique_id=409709976]
+script = ExtResource("1_mg8rb")
+
+[node name="duration_timer" type="Timer" parent="." unique_id=230980439]
+unique_name_in_owner = true
+wait_time = 0.25
+one_shot = true
+
+[node name="cooldown_timer" type="Timer" parent="." unique_id=351133995]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="effect_particles" parent="." unique_id=20752420 instance=ExtResource("2_y4cg5")]
+unique_name_in_owner = true
+amount = 32
+process_material = ExtResource("3_ub8xx")
+
+[node name="dash_cooldown_bar" type="TextureProgressBar" parent="effect_particles" unique_id=1937754487]
+unique_name_in_owner = true
+offset_left = -11.0
+offset_top = -33.0
+offset_right = 53.0
+offset_bottom = 31.0
+scale = Vector2(0.35, 0.35)
+fill_mode = 5
+texture_under = ExtResource("3_0wgbc")
+texture_progress = ExtResource("3_0wgbc")
+tint_progress = Color(0.370364, 0.370364, 0.370364, 1)
+
+[node name="ghost_effect" parent="." unique_id=246159952 instance=ExtResource("5_ub8xx")]
+unique_name_in_owner = true

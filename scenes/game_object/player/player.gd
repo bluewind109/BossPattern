@@ -5,12 +5,14 @@ enum STATE {Idle, Run, Attack, Die}
 
 @onready var state_machine: CallableStateMachine = $callable_state_machine
 
+@onready var visuals: Node2D = $%visuals
 @onready var character_sprite: Sprite2D = $%character_sprite
 
 @onready var comp_health: ComponentHealth = $health
 @onready var comp_look: ComponentLook = $look
-@onready var player_control: ComponentFourWaysControl = $component_FourWaysControl
+@onready var player_control: FourWaysControl = $four_ways_control
 @onready var hurtbox: ComponentHurtbox = $hurtbox
+@onready var dash: Dash = $dash
 
 @onready var abilities: Node = $abilities
 @onready var weapons: Node2D = $%weapons
@@ -36,6 +38,10 @@ var current_anim: String = ""
 
 @export var game_time_manager: GameTimeManager
 
+var current_weapon: Weapon
+
+var is_attacking: bool = false
+var is_dashing: bool = false
 
 func _ready() -> void:
 	GameEvents.level_up_upgrade_added.connect(_on_upgrade_added)
@@ -50,12 +56,19 @@ func _ready() -> void:
 	if (player_control):
 		player_control.set_max_speed(base_speed)
 
+	if (dash):
+		dash.player_control = player_control
+		dash.start_dash.connect(_on_start_dash)
+		dash.stop_dash.connect(_on_stop_dash)
+
 	var weapon_data: Res_WeaponData = WeaponManager.get_weapon_by_id(WeaponManager.current_weapon_id)
 	var weapon_level: int = WeaponManager.get_weapon_level(WeaponManager.current_weapon_id)
 	var weapon = weapon_data.weapon_scene.instantiate() as Weapon
 	weapons.add_child(weapon)
-	weapon.attacking.connect(_on_attacking)
+	weapon.on_start_attack.connect(_on_start_attack)
+	weapon.on_stop_attack.connect(_on_stop_attack)
 	weapon.init(weapon_data, weapon_level)
+	current_weapon = weapon
 
 	if (hurtbox):
 		hurtbox.damaged.connect(_on_damaged)
@@ -77,6 +90,15 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)
+
+	if (Input.is_action_just_pressed("dash") and not is_attacking):
+		dash.activate(visuals)
+
+	if (Input.is_action_just_pressed("attack") and not is_dashing):
+		current_weapon.start_attack()
+
+	if (Input.is_action_just_pressed("alt_attack") and current_weapon.has_alt_attack and not is_dashing):
+		current_weapon.start_alt_attack()
 
 	var target_pos = get_global_mouse_position()
 	comp_look.look(target_pos)
@@ -154,5 +176,19 @@ func _on_arena_difficulty_increased(difficulty: int):
 		comp_health.heal(health_regen_quantity * health_regen_value)
 
 
-func _on_attacking(speed_scale: float):
+func _on_start_attack(speed_scale: float):
+	is_attacking = true
 	player_control.set_max_speed(base_speed * speed_scale)
+
+
+func _on_stop_attack():
+	is_attacking = false
+	player_control.set_max_speed(base_speed)
+
+
+func _on_start_dash():
+	is_dashing = true
+
+
+func _on_stop_dash():
+	is_dashing = false

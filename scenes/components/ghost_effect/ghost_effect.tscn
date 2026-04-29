@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dx53nj5qhasvl"]
+
+[ext_resource type="Script" uid="uid://df3nspaij1f5k" path="res://scenes/components/ghost_effect/ghost_effect.gd" id="1_md353"]
+
+[node name="ghost_effect" type="Node2D" unique_id=246159952]
+script = ExtResource("1_md353")
+
+[node name="duration_timer" type="Timer" parent="." unique_id=1810488116]
+wait_time = 0.1
+
+[connection signal="timeout" from="duration_timer" to="." method="_on_ghost_timer_timeout"]

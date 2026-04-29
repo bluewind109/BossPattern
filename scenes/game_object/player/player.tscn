@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c5srpg1xw2dur" path="res://scenes/components/look/look.tscn" id="5_8t03j"]
 [ext_resource type="PackedScene" uid="uid://c8vwlygwm1ac2" path="res://scenes/components/exp/exp.tscn" id="5_g6k8r"]
 [ext_resource type="PackedScene" uid="uid://chqcr7r1nl7w7" path="res://scenes/ability/ability_Sword/controller/abilityController_Sword.tscn" id="5_gbew5"]
+[ext_resource type="PackedScene" uid="uid://kljvbchkdpne" path="res://scenes/components/dash/dash.tscn" id="5_gme53"]
 [ext_resource type="Script" uid="uid://bb5c06xlmd0fb" path="res://scenes/components/exp/exp.gd" id="6_boad6"]
 [ext_resource type="PackedScene" uid="uid://bp71esg3p5br1" path="res://scenes/components/four_ways_control/four_ways_control.tscn" id="7_rgyib"]
 [ext_resource type="PackedScene" uid="uid://2uyf81565djh" path="res://scenes/components/random_audio_player_2d/random_audio_player_2d.tscn" id="9_oxhc3"]
@@ -215,7 +216,10 @@ one_shot = true
 
 [node name="health" parent="." unique_id=568269807 instance=ExtResource("2_yw30f")]
 
-[node name="component_FourWaysControl" parent="." unique_id=1247695353 instance=ExtResource("7_rgyib")]
+[node name="four_ways_control" parent="." unique_id=1247695353 instance=ExtResource("7_rgyib")]
+
+[node name="dash" parent="." unique_id=409709976 instance=ExtResource("5_gme53")]
+position = Vector2(0, -18)
 
 [node name="abilities" type="Node" parent="." unique_id=793335777]
 
@@ -241,6 +245,7 @@ root_node = NodePath("../visuals/character_sprite")
 libraries/ = SubResource("AnimationLibrary_2ieo8")
 
 [node name="visuals" type="Node2D" parent="." unique_id=69906433]
+unique_name_in_owner = true
 
 [node name="character_sprite" type="Sprite2D" parent="visuals" unique_id=1152032062]
 unique_name_in_owner = true
