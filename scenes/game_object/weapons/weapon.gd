@@ -20,6 +20,7 @@ func init(weapon_data: Res_WeaponData, weapon_level: int):
 
 
 func set_weapon_damage(val: float):
+	print("set_weapon_damage val: ", val)
 	weapon_damage = val
 
 

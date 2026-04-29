@@ -27,7 +27,6 @@ func _ready() -> void:
 
 func set_weapon_damage(val: float):
 	super.set_weapon_damage(val)
-	print("weapon damage: ", val)
 	hitbox.set_damage(val)
 
 
