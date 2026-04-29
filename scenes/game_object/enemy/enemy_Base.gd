@@ -67,11 +67,11 @@ func add_states():
 
 func _disable_collision():
 	if (component_hitbox):
-		component_hitbox.monitoring = false
-		component_hitbox.monitorable = false
+		component_hitbox.set_deferred("monitoring", false)
+		component_hitbox.set_deferred("monitorable", false)
 	if (component_hurtbox):
-		component_hurtbox.monitoring = false
-		component_hurtbox.monitorable = false
+		component_hurtbox.set_deferred("monitoring", false)
+		component_hurtbox.set_deferred("monitorable", false)
 
 
 func init_component_look(_target: Node2D):

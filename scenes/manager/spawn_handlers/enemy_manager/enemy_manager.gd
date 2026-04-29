@@ -34,11 +34,11 @@ func spawn(enemy_id: EnemyDefine.ENEMY_ID, spawn_position: Vector2) -> void:
 	
 	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 	if (entities_layer == null): return
-	entities_layer.add_child(enemy_instance)
+	entities_layer.add_child.call_deferred(enemy_instance)
 
-	enemy_instance.killed.connect(_on_enemy_killed)
-	enemy_instance.global_position = spawn_position
-	enemy_instance.apply_stat(enemy_config.enemies[enemy_id])
+	enemy_instance.killed.connect.call_deferred(_on_enemy_killed)
+	enemy_instance.set_deferred("global_position", spawn_position)
+	enemy_instance.apply_stat.call_deferred(enemy_config.enemies[enemy_id])
 
 func is_all_enemies_killed() -> bool:
 	return enemy_spawned > 0 and enemy_spawned == enemy_killed
