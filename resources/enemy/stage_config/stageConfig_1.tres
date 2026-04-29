@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StageConfig" format=3 uid="uid://cq6ccp36j1fj1"]
+
+[ext_resource type="Script" uid="uid://m0ut7ns57clw" path="res://resources/enemy/stage_config/stage_config.gd" id="1_ewvvy"]
+[ext_resource type="Script" uid="uid://dkn83y58avu6o" path="res://resources/enemy/wave_data/wave_data.gd" id="2_gxkgv"]
+[ext_resource type="Resource" uid="uid://j6a6p6exl8kh" path="res://resources/enemy/wave_data/stage_1/waveData_1_1.tres" id="3_jwl6v"]
+[ext_resource type="Resource" uid="uid://cmgilg0u6hmvs" path="res://resources/enemy/wave_data/stage_1/waveData_1_2.tres" id="4_yfb4b"]
+[ext_resource type="Resource" uid="uid://pqd6df77y43b" path="res://resources/enemy/wave_data/stage_1/waveData_1_3.tres" id="5_k64jv"]
+
+[resource]
+script = ExtResource("1_ewvvy")
+wave_list = Array[ExtResource("2_gxkgv")]([ExtResource("3_jwl6v"), ExtResource("4_yfb4b"), ExtResource("5_k64jv")])
+metadata/_custom_type_script = "uid://m0ut7ns57clw"
