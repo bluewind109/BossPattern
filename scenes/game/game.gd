@@ -19,6 +19,8 @@ func _ready() -> void:
 	GameEvents.explosion_created.connect(_on_explosion_created)
 	GameEvents.game_paused.connect(_on_game_paused)
 
+	stage_manager.start_stage()
+
 func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("escape")):
 		show_pause_menu()

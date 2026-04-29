@@ -1,12 +1,10 @@
 [gd_scene format=3 uid="uid://b20o1b3sijcsr"]
 
-[ext_resource type="Script" uid="uid://cp77v570t73w0" path="res://scenes/manager/spawn_handlers/enemy_manager/enemy_manager_old.gd" id="1_ij5hy"]
+[ext_resource type="Script" uid="uid://bky43jkcni2jn" path="res://scenes/manager/spawn_handlers/enemy_manager/enemy_manager.gd" id="1_1d12s"]
 [ext_resource type="Resource" uid="uid://drwe0wevvtp6e" path="res://resources/enemy/enemy_config/enemy_config.tres" id="2_a1uqj"]
-[ext_resource type="Resource" uid="uid://c8r07a8xjt8su" path="res://resources/enemy/spawn_config/spawn_config.tres" id="2_cg5kq"]
 
 [node name="enemy_manager" type="Node" unique_id=783011470]
-script = ExtResource("1_ij5hy")
-spawn_config = ExtResource("2_cg5kq")
+script = ExtResource("1_1d12s")
 enemy_config = ExtResource("2_a1uqj")
 
 [node name="spawn_timer" type="Timer" parent="." unique_id=959048613]

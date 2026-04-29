@@ -1,40 +1,28 @@
 [gd_scene format=4 uid="uid://s35lmfixqjns"]
 
 [ext_resource type="Script" uid="uid://cpl63vx0dh74g" path="res://scenes/game/game.gd" id="1_l1rk1"]
-[ext_resource type="PackedScene" uid="uid://cmetek8tl6wgi" path="res://scenes/manager/experience_manager/experience_manager.tscn" id="2_5jirj"]
 [ext_resource type="PackedScene" uid="uid://cm82t1bny8bri" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="2_ftsea"]
 [ext_resource type="PackedScene" uid="uid://v67gpa0c2rdm" path="res://scenes/game_object/player/player.tscn" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://bxcdcnb2upyhd" path="res://scenes/ui/end_screen/end_screen.tscn" id="2_vaxfo"]
 [ext_resource type="TileSet" uid="uid://6vofakptbxdi" path="res://resources/tilemap/swamp_tileset.tres" id="3_l8g03"]
+[ext_resource type="PackedScene" uid="uid://b5t45u4260d53" path="res://scenes/manager/spawn_handlers/stage_manager/stage_manager.tscn" id="4_2a8rs"]
 [ext_resource type="PackedScene" uid="uid://dtgbre40tbe7a" path="res://scenes/game_object/game_camera/game_camera.tscn" id="4_j8tme"]
-[ext_resource type="PackedScene" uid="uid://b20o1b3sijcsr" path="res://scenes/manager/spawn_handlers/enemy_manager/enemy_manager.tscn" id="4_kp23o"]
-[ext_resource type="PackedScene" uid="uid://dturn24adh3lf" path="res://scenes/manager/upgrade_manager/upgrade_manager.tscn" id="5_ftsea"]
 [ext_resource type="PackedScene" uid="uid://d2yb1w04fimn3" path="res://scenes/ui/health_bar/health_bar.tscn" id="5_vaxfo"]
-[ext_resource type="PackedScene" uid="uid://byl6awhgih8kh" path="res://scenes/ui/experience_bar/experience_bar.tscn" id="6_5jirj"]
 [ext_resource type="PackedScene" uid="uid://bxqhxclk73slc" path="res://scenes/ui/vignette/vignette.tscn" id="6_ftsea"]
-[ext_resource type="PackedScene" uid="uid://b8a8w5nfrr16x" path="res://scenes/manager/game_time_manager/game_time_manager.tscn" id="6_vaxfo"]
 
-[node name="game" type="Node" unique_id=1237937455]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2a8rs"]
+
+[node name="game" type="Node" unique_id=1237937455 node_paths=PackedStringArray("stage_manager")]
 script = ExtResource("1_l1rk1")
 pause_menu_scene = ExtResource("2_ftsea")
 end_screen_scene = ExtResource("2_vaxfo")
+stage_manager = NodePath("stage_manager")
+
+[node name="stage_manager" parent="." unique_id=731466706 instance=ExtResource("4_2a8rs")]
 
 [node name="vignette" parent="." unique_id=1838833893 instance=ExtResource("6_ftsea")]
 
-[node name="game_time_manager" parent="." unique_id=422024534 instance=ExtResource("6_vaxfo")]
-
-[node name="experience_bar" parent="." unique_id=1419623300 node_paths=PackedStringArray("experience_manager") instance=ExtResource("6_5jirj")]
-experience_manager = NodePath("../experience_manager")
-
 [node name="health_bar" parent="." unique_id=1187933724 instance=ExtResource("5_vaxfo")]
-
-[node name="enemy_manager" parent="." unique_id=1987873047 node_paths=PackedStringArray("game_time_manager") instance=ExtResource("4_kp23o")]
-game_time_manager = NodePath("../game_time_manager")
-
-[node name="experience_manager" parent="." unique_id=1957738431 instance=ExtResource("2_5jirj")]
-
-[node name="upgrade_manager" parent="." unique_id=791360494 node_paths=PackedStringArray("experience_manager") instance=ExtResource("5_ftsea")]
-experience_manager = NodePath("../experience_manager")
 
 [node name="game_camera" parent="." unique_id=267433304 instance=ExtResource("4_j8tme")]
 zoom = Vector2(1, 1)
@@ -65,6 +53,14 @@ y_sort_enabled = true
 [node name="player" parent="entities" unique_id=544829870 node_paths=PackedStringArray("game_time_manager") instance=ExtResource("2_vasa2")]
 unique_name_in_owner = true
 position = Vector2(302, 184)
-game_time_manager = NodePath("../../game_time_manager")
+game_time_manager = NodePath("")
+
+[node name="node_2d" type="Node2D" parent="entities" unique_id=1364818139]
+visible = false
+position = Vector2(391, 71.00003)
+scale = Vector2(20, 20)
+
+[node name="sprite_2d" type="Sprite2D" parent="entities/node_2d" unique_id=790536612]
+texture = SubResource("PlaceholderTexture2D_2a8rs")
 
 [node name="foreground" type="Node2D" parent="." unique_id=2077309366 groups=["foreground_layer"]]

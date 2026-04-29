@@ -2,17 +2,15 @@ extends Node
 class_name StageManager
 
 @export var stage_config: StageConfig
+@onready var enemy_manager: EnemyManager = $%enemy_manager
 
 var total_waves: int = 0
 var wave_index: int = 0
 
-var enemy_spawned: int = 0
-var enemy_killed: int = 0
-
 signal on_stage_cleared
 
 func _ready() -> void:
-	GameEvents.enemy_killed.connect(_on_enemy_killed)
+	enemy_manager.on_all_enemies_killed.connect(_on_wave_cleared)
 
 func start_stage() -> void:
 	if (stage_config == null):
@@ -21,33 +19,25 @@ func start_stage() -> void:
 
 	total_waves = stage_config.wave_list.size()
 	wave_index = 0
-	enemy_spawned = 0
-	enemy_killed = 0
-	load_wave()
+	start_new_wave()
 
-func load_wave() -> void:
+func start_new_wave() -> void:
+	enemy_manager.reset()
+
 	var wave_data: WaveData = stage_config.get_wave_data(wave_index)
 	if (wave_data == null):
 		print("Error: Wave data not found for index: ", wave_index)
 		return
 
 	var spawn_data_list: Array[SpawnData] = wave_data.spawn_data
-	for spawn_data in spawn_data_list:
-		GameEvents.spawn_enemy.emit(spawn_data.enemy_data, spawn_data.spawn_position)
-		enemy_spawned += 1
-
-func is_all_enemies_killed() -> bool:
-	return enemy_spawned > 0 and enemy_spawned == enemy_killed
-
-func _on_enemy_killed(number: int = 1):
-	enemy_killed += number
-	if (is_all_enemies_killed()):
-		_on_wave_cleared()
+	for spawn_data: SpawnData in spawn_data_list:
+		enemy_manager.spawn(spawn_data.enemy_id, spawn_data.spawn_position)
 
 func _on_wave_cleared():
 	wave_index += 1
 	if (wave_index < total_waves):
-		load_wave()
+		start_new_wave()
+		return
 	elif (wave_index == total_waves):
 		# show stage clear UI
 		print("Stage cleared!")

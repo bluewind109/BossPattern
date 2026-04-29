@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b5t45u4260d53"]
+
+[ext_resource type="Script" uid="uid://bs8tpk5ypnyvl" path="res://scenes/manager/spawn_handlers/stage_manager/stage_manager.gd" id="1_pvs2e"]
+[ext_resource type="PackedScene" uid="uid://b20o1b3sijcsr" path="res://scenes/manager/spawn_handlers/enemy_manager/enemy_manager.tscn" id="2_4uct7"]
+[ext_resource type="Resource" uid="uid://cq6ccp36j1fj1" path="res://resources/enemy/stage_config/stageConfig_1.tres" id="2_kch1d"]
+
+[node name="stage_manager" type="Node" unique_id=731466706]
+script = ExtResource("1_pvs2e")
+stage_config = ExtResource("2_kch1d")
+
+[node name="enemy_manager" parent="." unique_id=783011470 instance=ExtResource("2_4uct7")]
+unique_name_in_owner = true

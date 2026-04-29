@@ -23,6 +23,7 @@ var is_boss: bool = false
 var is_spawning: bool = false
 var is_dead: bool = false
 
+signal killed(is_boss: bool)
 
 func _ready() -> void:
 	component_hurtbox.damaged.connect(_on_damaged)
@@ -119,3 +120,4 @@ func _on_die():
 	is_dead = true
 	GameEvents.emit_enemy_killed(1)
 	if (is_boss): GameEvents.emit_boss_killed(1)
+	killed.emit(is_boss)
