@@ -37,7 +37,8 @@ func get_attack_speed() -> float:
 
 
 func start_attack():
-	attacking.emit(speed_scale)
+	# attacking.emit(speed_scale)
+	attacking.emit(0)
 
 
 func stop_attack():
