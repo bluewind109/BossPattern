@@ -1,3 +1,4 @@
+@icon("./icon.png")
 extends CharacterBody2D
 class_name Player
 

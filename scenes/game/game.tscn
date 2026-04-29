@@ -10,8 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://d2yb1w04fimn3" path="res://scenes/ui/health_bar/health_bar.tscn" id="5_vaxfo"]
 [ext_resource type="PackedScene" uid="uid://bxqhxclk73slc" path="res://scenes/ui/vignette/vignette.tscn" id="6_ftsea"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2a8rs"]
-
 [node name="game" type="Node" unique_id=1237937455 node_paths=PackedStringArray("stage_manager")]
 script = ExtResource("1_l1rk1")
 pause_menu_scene = ExtResource("2_ftsea")
@@ -50,17 +48,8 @@ position = Vector2(-260, -119)
 [node name="entities" type="Node2D" parent="." unique_id=1356823802 groups=["entities_layer"]]
 y_sort_enabled = true
 
-[node name="player" parent="entities" unique_id=544829870 node_paths=PackedStringArray("game_time_manager") instance=ExtResource("2_vasa2")]
+[node name="player" parent="entities" unique_id=544829870 instance=ExtResource("2_vasa2")]
 unique_name_in_owner = true
 position = Vector2(302, 184)
-game_time_manager = NodePath("")
-
-[node name="node_2d" type="Node2D" parent="entities" unique_id=1364818139]
-visible = false
-position = Vector2(391, 71.00003)
-scale = Vector2(20, 20)
-
-[node name="sprite_2d" type="Sprite2D" parent="entities/node_2d" unique_id=790536612]
-texture = SubResource("PlaceholderTexture2D_2a8rs")
 
 [node name="foreground" type="Node2D" parent="." unique_id=2077309366 groups=["foreground_layer"]]
