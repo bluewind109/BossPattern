@@ -11,6 +11,7 @@ func _ready() -> void:
 
 
 func _on_died():
+	return # disabled for now
 	if (exp_vial == null): return
 	if (not owner is Node2D): return
 	# var result = randf()
