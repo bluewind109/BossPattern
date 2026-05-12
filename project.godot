@@ -32,6 +32,7 @@ run/main_scene="uid://dtrnobu8tbaur"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="CubeSlayer"
 config/features=PackedStringArray("4.6", "Forward Plus")
+run/max_fps=60
 boot_splash/bg_color=Color(0.10980392, 0.10980392, 0.10980392, 1)
 boot_splash/image="uid://ka27qycefy6q"
 config/icon="uid://ka27qycefy6q"
