@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cbsmy8l7srlc1"]
+[gd_scene format=3 uid="uid://cbsmy8l7srlc1"]
 
 [ext_resource type="Script" uid="uid://b4ynji4ptgobk" path="res://scenes/game_object/enemy/enemy_Base.gd" id="1_5wlh4"]
 [ext_resource type="PackedScene" uid="uid://c8qiyb0hv14it" path="res://scenes/components/health/health.tscn" id="2_6w35g"]
@@ -20,52 +20,52 @@
 [ext_resource type="AudioStream" uid="uid://crktohgv8bagm" path="res://assets/audio/sfx/combat/footstep_carpet_004.ogg" id="17_3cxg8"]
 [ext_resource type="PackedScene" uid="uid://cf3da8fvmbcq2" path="res://scenes/components/death/death.tscn" id="18_44g7e"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7g67l"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5cng"]
 resource_local_to_scene = true
 shader = ExtResource("8_rx6up")
 shader_parameter/lerp_percent = 0.0
 
-[node name="enemy_Base" type="CharacterBody2D" groups=["Enemy"]]
+[node name="enemy_Base" type="CharacterBody2D" unique_id=448992481 groups=["Enemy"]]
 collision_layer = 256
 motion_mode = 1
 script = ExtResource("1_5wlh4")
 
-[node name="callable_state_machine" parent="." instance=ExtResource("2_8r14e")]
+[node name="callable_state_machine" parent="." unique_id=1215074549 instance=ExtResource("2_8r14e")]
 
-[node name="health" parent="." instance=ExtResource("2_6w35g")]
+[node name="health" parent="." unique_id=1697364349 instance=ExtResource("2_6w35g")]
 
-[node name="velocity" parent="." instance=ExtResource("7_vg5so")]
+[node name="velocity" parent="." unique_id=779065496 instance=ExtResource("7_vg5so")]
 
-[node name="look" parent="." instance=ExtResource("8_faccg")]
+[node name="look" parent="." unique_id=737463941 instance=ExtResource("8_faccg")]
 
-[node name="vial_drop" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_v4efm")]
+[node name="vial_drop" parent="." unique_id=1925983329 node_paths=PackedStringArray("health_component") instance=ExtResource("5_v4efm")]
 health_component = NodePath("../health")
 
-[node name="dissolve_effect" parent="." instance=ExtResource("7_b5cng")]
+[node name="dissolve_effect" parent="." unique_id=1855948462 instance=ExtResource("7_b5cng")]
 unique_name_in_owner = true
 
-[node name="hit_flash" parent="." node_paths=PackedStringArray("comp_health") instance=ExtResource("7_v4efm")]
+[node name="hit_flash" parent="." unique_id=31683682 node_paths=PackedStringArray("comp_health") instance=ExtResource("7_v4efm")]
 unique_name_in_owner = true
-hit_flash_material = SubResource("ShaderMaterial_7g67l")
+hit_flash_material = SubResource("ShaderMaterial_b5cng")
 comp_health = NodePath("../health")
 
-[node name="attack_manager" parent="." instance=ExtResource("3_faccg")]
+[node name="attack_manager" parent="." unique_id=1967781645 instance=ExtResource("3_faccg")]
 ATTACK_RANGE = 25.0
 
-[node name="death" parent="." node_paths=PackedStringArray("comp_health") instance=ExtResource("18_44g7e")]
+[node name="death" parent="." unique_id=1569959856 node_paths=PackedStringArray("comp_health") instance=ExtResource("18_44g7e")]
 comp_health = NodePath("../health")
 
-[node name="hit_random_audio_player_2d" parent="." instance=ExtResource("12_7g67l")]
+[node name="hit_random_audio_player_2d" parent="." unique_id=1750464905 instance=ExtResource("12_7g67l")]
 max_distance = 300.0
 streams = Array[AudioStream]([ExtResource("13_2iash"), ExtResource("14_44g7e"), ExtResource("15_b5cng"), ExtResource("16_1mvnh"), ExtResource("17_3cxg8")])
 
-[node name="hitbox" parent="." instance=ExtResource("3_8r14e")]
+[node name="hitbox" parent="." unique_id=1523059350 instance=ExtResource("3_8r14e")]
 collision_layer = 0
 collision_mask = 2
 damage_amount = 5.0
 
-[node name="hurtbox" parent="." instance=ExtResource("4_jw7fl")]
+[node name="hurtbox" parent="." unique_id=1424035047 instance=ExtResource("4_jw7fl")]
 collision_layer = 256
 collision_mask = 0
 
-[node name="visuals" type="Node2D" parent="."]
+[node name="visuals" type="Node2D" parent="." unique_id=1265018384]
