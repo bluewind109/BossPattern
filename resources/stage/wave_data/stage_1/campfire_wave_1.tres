@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CampfireWave" format=3 uid="uid://2lf57hpv5mve"]
+
+[ext_resource type="Script" uid="uid://cws0noiestwwh" path="res://resources/stage/wave_data/campfire_wave/campfire_wave.gd" id="1_cpps0"]
+
+[resource]
+script = ExtResource("1_cpps0")
+metadata/_custom_type_script = "uid://cws0noiestwwh"

@@ -1,5 +1,5 @@
-extends Resource
-class_name WaveData
+extends WaveData
+class_name CombatWave
 
 @export var spawn_data: Array[SpawnData] = []
 
